@@ -90,7 +90,8 @@
       checked: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce: coerce,
+        twoWay: true
       },
       readonly: {
         type: [Boolean, String],

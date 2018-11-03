@@ -9,7 +9,7 @@
 
   .icon {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 
     &.x-large {
       .iconSize(80rpx);
@@ -83,7 +83,7 @@
       },
       color: {
         type: String,
-        default: '#08b0fe'
+        default: '#666'
       }
     }
 

@@ -1,8 +1,7 @@
 <style lang="less">
   @import "../less/mixin";
 
-  .form-item-wrap {
-    flex: 1;
+  .form-item {
     background-color: #fff;
 
     &:not(.nomargin) {
@@ -26,16 +25,18 @@
     color: #888;
   }
 
-  .form-item {
+  .form-item-bd {
     border-radius: 8rpx;
     flex: 1;
+    .flex-v-center();
 
-    > .input{
+    > .input {
       width: 100%;
       padding: 12rpx 24rpx;
       font-size: 28rpx;
       display: block;
       box-sizing: border-box;
+      flex: 1;
 
       &.large {
         height: @large;
@@ -49,27 +50,30 @@
       }
     }
 
-    > .icon {
-      &.left {
-        margin-right: -24rpx;
+    > .icon-left {
+        margin-right: -18rpx;
       }
-      &.right {
+
+    > .icon-right {
+        padding: 10rpx;
         margin-left: -24rpx;
       }
-    }
 
-    &.bordered{
+    &.bordered {
       border: 2rpx solid @color-border;
     }
   }
 </style>
 <template>
-  <view class="form-item-wrap {{nomargin ? 'nomargin' : ''}} {{className}}" style="{{style}}">
+  <view class="form-item {{nomargin ? 'nomargin' : ''}} {{className}}" style="{{style}}">
     <view class="form-item-inner {{underline ? 'underline' : ''}}">
       <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
-      <view class="form-item {{bordered ? 'bordered' : ''}}">
-        <icon wx:if="{{icon}}" class="left" :name="icon" :size="size" />
+      <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
+        <icon wx:if="{{icon}}" class="icon-left" color="#999" :name="icon" :size="size" />
         <input password="{{password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}" placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input" @focus="focus" @blur="blur" @confirm="confirm" />
+        <view class="icon-right" wx:if="{{showClear}}" @tap="clearField" style="display: {{shouldClearShow ? '' : 'none'}}">
+          <iconclear size="x-small" color="#999" name="close"></iconclear>
+        </view>
       </view>
     </view>
   </view>
@@ -103,7 +107,8 @@
       },
       value: {
         type: [String, Number],
-        default: ''
+        default: '',
+        twoWay: true
       },
       maxlength: {
         type: [String, Number],
@@ -114,6 +119,11 @@
       bordered: {
         type: [Boolean, String],
         default: true,
+        coerce: coerce
+      },
+      showClear: {
+        type: [Boolean, String],
+        default: false,
         coerce: coerce
       },
       nomargin: {
@@ -148,18 +158,29 @@
     }
 
     components = {
-      icon: Icon
+      icon: Icon,
+      iconclear: Icon
     }
 
     data = {
-
+      shouldClearShow: false
     }
-    
+
+    computed = {
+      shouldClearShow () {
+        return this.showClear ? this.value !== '' : false
+      }
+    }
+
     methods = {
+      clearField () {
+        this.value = ''
+      },
       tap (e) {
         this.$emit('tap', e.detail.value, e)
       },
       input (e) {
+        this.value = e.detail.value
         this.$emit('input', e.detail.value, e)
       },
       focus (e) {

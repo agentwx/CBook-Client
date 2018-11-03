@@ -60,7 +60,8 @@
       tabIndex: {
         type: [String, Number],
         default: 0,
-        coerce: v => +v
+        coerce: v => +v,
+        twoWay: true
       },
       tabBar: {
         type: Object,

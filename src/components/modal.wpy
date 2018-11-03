@@ -24,6 +24,8 @@
     position: relative;
     width: 80%;
     max-width: 640rpx;
+    -webkit-animation: zoom-out .2s ease;
+    animation: zoom-out .2s ease;
 
     &.hasTitle {
       .modal-content {
@@ -71,6 +73,33 @@
     }
   }
 
+  @-webkit-keyframes zoom-out {
+    from {
+      opacity: .4;
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+
+  @keyframes zoom-out {
+    from {
+      opacity: .4;
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
 </style>
 
 <template>
@@ -108,7 +137,8 @@
       visible: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce: coerce,
+        twoWay: true
       },
       title: {
         type: String,
