@@ -53,8 +53,9 @@
 
   .modal-close {
     position: absolute;
-    right: 16rpx;
-    top: 16rpx;
+    padding: 20rpx;
+    right: 0;
+    top: 0;
   }
 
   .modal-footer {
@@ -78,7 +79,9 @@
       <view class="modal-header" wx:if="{{title !== ''}}">
         <text>{{title}}</text>
       </view>
-      <closeIcon wx:if="{{showClose}}" className="modal-close" name="close" @tap.user="closeModal"></closeIcon>
+      <view class="modal-close" wx:if="{{showClose}}" @tap="closeModal">
+        <closeIcon size="x-small" color="#999" name="close"></closeIcon>
+      </view>
       <view class="modal-content">
         <slot></slot>
         <view class="modal-footer">

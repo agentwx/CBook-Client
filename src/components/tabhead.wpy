@@ -13,7 +13,7 @@
 
     text {
       display: inline-block;
-      padding: 20rpx 16rpx;
+      padding: 24rpx 16rpx;
       border-bottom: 6rpx solid transparent;
     }
 

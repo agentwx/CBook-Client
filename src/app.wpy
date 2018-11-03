@@ -1,5 +1,6 @@
 <style lang="less">
   @import "less/mixin";
+  @import 'less/iconfont';
 
   page {
     min-height: 100%;
@@ -52,10 +53,11 @@ export default class extends wepy.app {
       'pages/index'
     ],
     window: {
-      backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '星月童书',
       navigationBarTextStyle: 'black',
+      navigationBarTitleText: '星月童书',
+      backgroundColor: '#f0f0f0',
+      backgroundTextStyle: 'dark',
       enablePullDownRefresh: false
     },
     networkTimeout: {
@@ -64,7 +66,7 @@ export default class extends wepy.app {
       uploadFile: 60000,
       downloadFile: 60000
     },
-    debug: true,
+    debug: true
     /*tabBar: {
       color: '#777',
       selectedColor: '#01458e',

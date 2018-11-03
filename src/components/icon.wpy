@@ -1,45 +1,53 @@
 <style lang="less">
-  .icon{
+  @import "../less/mixin";
+
+  .iconSize (@size) {
+    width: @size;
+    height: @size;
+    font-size: @size;
+  }
+
+  .icon {
     display: inline-block;
-    padding: 10rpx;
-    vertical-align: middle;
+    vertical-align: top;
 
     &.x-large {
-      width: 100rpx;
-      height: 100rpx;
+      .iconSize(80rpx);
     }
+
     &.large {
-      width: 72rpx;
-      height: 72rpx;
+      .iconSize(64rpx);
     }
+
     &.middle {
-      width: 50rpx;
-      height: 50rpx;
+      .iconSize(56rpx);
     }
-    &.normal{
-      width: 40rpx;
-      height: 40rpx;
+
+    &.normal {
+      .iconSize(40rpx);
     }
-    &.small{
-      width: 32rpx;
-      height: 32rpx;
+
+    &.small {
+      .iconSize(28rpx);
     }
-    &.x-small{
-      width: 24rpx;
-      height: 24rpx;
+
+    &.x-small {
+      .iconSize(20rpx);
     }
 
     .icon-img {
       display: block;
       width: 100%;
       height: 100%;
+      text-align: center;
+      font-size: inherit;
     }
   }
 </style>
 
 <template>
   <view class="icon {{size}} {{className}}" style="{{style}}" @tap="tap">
-    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont-{{name}}" style="{{iconColor}}"></text>
+    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont icon-{{name}}" style="color: {{color}}"></text>
     <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}" mode="{{mode}}"></image>
   </view>
 </template>
@@ -75,16 +83,7 @@
       },
       color: {
         type: String,
-        default: ''
-      }
-    }
-
-    computed = {
-      iconColor () {
-        if (this.color) {
-          return `color: ${this.color}`
-        }
-        return ''
+        default: '#08b0fe'
       }
     }
 

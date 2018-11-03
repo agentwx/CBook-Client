@@ -1,7 +1,7 @@
 <style lang="less">
   @import "../less/mixin";
 
-  .tabbar-wrap{
+  .tabbar-wrap {
     .flex();
     border-width: 2rpx 0 0;
     border-style: solid;
@@ -10,22 +10,20 @@
     left: 0;
     right: 0;
     bottom: 0;
+  }
 
-    .tabbar-item {
-      flex: 1;
-      .flex-center();
-      flex-direction: column;
-      padding: 10rpx 0 4rpx;
-      font-size: 20rpx;
+  .tabbar-item {
+    flex: 1;
+    .flex-center();
+    flex-direction: column;
+    padding: 4rpx 0;
 
-      .icon {
-        padding: 4rpx;
+    .icon {
+      margin-bottom: 3rpx;
+    }
 
-        .icon-img {
-          width: 50rpx;
-          height: 50rpx;
-        }
-      }
+    > text {
+      font-size: 24rpx;
     }
   }
 </style>
@@ -34,9 +32,9 @@
   <view class="tabbar-wrap {{className}}" style="{{style}}" wx:if="{{tabBar.list.length>0}}">
     <repeat for="{{tabBar.list}}">
       <view class="tabbar-item {{tabIndex == index ? 'selected' : ''}}" style="color:{{tabIndex == index ? tabBar.selectedColor : tabBar.color}}" @tap="tap('{{index}}')">
-        <icon wx:if="{{tabIndex != index}}" :name="item.icon"></icon>
-        <icon wx:if="{{tabIndex == index}}" :name="item.selectedIcon"></icon>
-        <view>{{item.text}}</view>
+        <icon wx:if="{{tabIndex != index}}" size="middle" :color="tabBar.color" :name="item.icon"></icon>
+        <icon wx:if="{{tabIndex == index}}" size="middle" :color="tabBar.selectedColor" :name="item.selectedIcon"></icon>
+        <text>{{item.text}}</text>
       </view>
     </repeat>
   </view>
@@ -96,11 +94,11 @@
         if (!this.disabled) {
           this.tabIndex = index
         }
-        this.$emit('tabbarChange', index, $event)
+        this.$emit('change', index, $event)
       }
     }
     onLoad (e) {
-      this.$emit('tabbarChange', this.tabIndex, e)
+      this.$emit('change', this.tabIndex, e)
     }
   }
 </script>

@@ -45,27 +45,29 @@
     <view slot="footer">footer</view>
   </panel>
 
-  <listitem>地址管理</listitem>
-  
+  <listitem icon="wallet-o">地址管理</listitem>
+
   <view class="iconitem-wrap">
-    <iconitem icon="user">
-    <text>待付款</text>
-  </iconitem>
+    <iconitem1 icon="ticket">
+      <text>待付款</text>
+    </iconitem1>
 
-   <iconitem icon="user">
+    <iconitem2 icon="coffee">
     <text>待发货</text>
-  </iconitem>
+    </iconitem2>
 
-   <iconitem icon="user">
-    <text>待收货</text>
-  </iconitem>
+    <iconitem3 icon="equity">
+      <text>待收货</text>
+    </iconitem3>
 
-   <iconitem icon="user">
-    <text>已完成</text>
-  </iconitem>
+    <iconitem4 icon="cake">
+      <text>已完成</text>
+    </iconitem4>
   </view>
 
   <tabhead :items="tabItems"></tabhead>
+
+  <tabbar :tabBar="tabBar" @change.user="tabbarChange"></tabbar>
 
   <modal visible="true">
     <view class="modal-container">
@@ -91,6 +93,7 @@
   import Iconitem from '@/components/iconitem'
   import Modal from '@/components/modal'
   import Tabhead from '@/components/tabhead'
+  import Tabbar from '@/components/tabbar'
 
   @connect({
     num (state) {
@@ -106,7 +109,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '基础组件展示'
     }
 
     components = {
@@ -118,77 +121,48 @@
       formitem: Formitem,
       panel: Panel,
       listitem: Listitem,
-      iconitem: Iconitem,
+      iconitem1: Iconitem,
+      iconitem2: Iconitem,
+      iconitem3: Iconitem,
+      iconitem4: Iconitem,
       modal: Modal,
-      tabhead: Tabhead
+      tabhead: Tabhead,
+      tabbar: Tabbar
     }
 
     data = {
-      mynum: 20,
-      userInfo: {
-        nickName: '加载中...'
-      },
-      normalTitle: '原始标题',
-      setTimeoutTitle: '标题三秒后会被修改',
-      count: 0,
-      netrst: '',
       tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
-      groupList: [
-        {
-          id: 1,
-          name: '点击改变',
-          list: [
-            {
-              childid: '1.1',
-              childname: '子项，点我改变'
-            }, {
-              childid: '1.2',
-              childname: '子项，点我改变'
-            }, {
-              childid: '1.3',
-              childname: '子项，点我改变'
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: '点击改变',
-          list: [
-            {
-              childid: '2.1',
-              childname: '子项，点我改变'
-            }, {
-              childid: '2.2',
-              childname: '子项，点我改变'
-            }, {
-              childid: '2.3',
-              childname: '子项，点我改变'
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: '点击改变',
-          list: [
-            {
-              childid: '3.1',
-              childname: '子项，点我改变'
-            }
-          ]
-        }
-      ]
+      tabBar: {
+        color: '#777',
+        selectedColor: '#08b0fe',
+        borderStyle: '#ddd',
+        backgroundColor: '#fff',
+        list: [
+          {
+            text: '统计',
+            icon: 'coffee',
+            selectedIcon: 'coffee'
+          },
+          {
+            text: '列表',
+            icon: 'cake',
+            selectedIcon: 'cake'
+          }
+        ]
+      }
     }
 
     computed = {
-      now () {
-        return +new Date()
-      }
+
     }
 
     methods = {
       checkboxChange (value, isChecked) {
         console.log(value)
         console.log(isChecked)
+      },
+      tabbarChange (index) {
+        console.log(index)
       },
       plus () {
         this.mynum++
