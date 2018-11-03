@@ -1,0 +1,145 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.4);
+    .flex-center();
+    z-index: 1000;
+
+    &.visible {
+      display: flex;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .modal-dialog {
+    position: relative;
+    width: 80%;
+    max-width: 640rpx;
+
+    &.hasTitle {
+      .modal-content {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  .modal-header {
+    .flex-v-center();
+    justify-content: space-between;
+    background-color: #fff;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    padding-top: 20rpx;
+    border-top-left-radius: 24rpx;
+    border-top-right-radius: 24rpx;
+  }
+
+  .modal-content {
+    background-color: #fff;
+    padding: 40rpx;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 16rpx;
+    top: 16rpx;
+  }
+
+  .modal-footer {
+    padding-top: 20rpx;
+
+    > view {
+      .flex-h-center();
+    }
+
+    .button {
+      margin-left: 10rpx;
+      margin-right: 10rpx;
+    }
+  }
+
+</style>
+
+<template>
+  <view class="modal" style="{{style}}" wx:if="{{visible}}">
+    <view class="modal-dialog {{title !== '' ? 'hasTitle' : ''}}">
+      <view class="modal-header" wx:if="{{title !== ''}}">
+        <text>{{title}}</text>
+      </view>
+      <closeIcon wx:if="{{showClose}}" className="modal-close" name="close" @tap.user="closeModal"></closeIcon>
+      <view class="modal-content">
+        <slot></slot>
+        <view class="modal-footer">
+          <slot name="footer"></slot>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Icon from './icon'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Button extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      visible: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      title: {
+        type: String,
+        default: ''
+      },
+      showClose: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      }
+    }
+
+    components = {
+      closeIcon: Icon
+    }
+
+    data = {}
+
+    open (e) {
+      this.visible = true
+      this.$apply()
+      this.$emit('modalOpen', e)
+    }
+
+    close (e) {
+      this.visible = false
+      this.$apply()
+      this.$emit('modalClose', e)
+    }
+
+    methods = {
+      closeModal (e) {
+        this.close(e)
+      }
+    }
+  }
+</script>

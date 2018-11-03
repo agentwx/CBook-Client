@@ -1,0 +1,240 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  page {
+    background-color: #f0f0f0;
+  }
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+  }
+
+  .userinfo-nickname {
+    color: #aaa;
+  }
+
+
+  .modal-container {
+    .flex-v-center();
+    flex-direction: column;
+  }
+
+  .iconitem-wrap {
+    .flex();
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+  }
+</style>
+<template>
+  <button>添加地址</button>
+
+  <checkbox checked="true" @change.user="checkboxChange"></checkbox>
+
+  <formitem label="联系人" bordered="false" underline="true"></formitem>
+
+  <panel>
+    <view slot="title">图书列表</view>
+    <view>内容</view>
+    <view slot="footer">footer</view>
+  </panel>
+
+  <listitem>地址管理</listitem>
+  
+  <view class="iconitem-wrap">
+    <iconitem icon="user">
+    <text>待付款</text>
+  </iconitem>
+
+   <iconitem icon="user">
+    <text>待发货</text>
+  </iconitem>
+
+   <iconitem icon="user">
+    <text>待收货</text>
+  </iconitem>
+
+   <iconitem icon="user">
+    <text>已完成</text>
+  </iconitem>
+  </view>
+
+  <tabhead :items="tabItems"></tabhead>
+
+  <modal visible="true">
+    <view class="modal-container">
+      <checkbox2 checked="true" size="large"></checkbox2>
+      <view style="font-size: 18px; margin-bottom: 10rpx;margin-top: 16rpx;">提交成功</view>
+      <view style="color: #888;margin-bottom: 20rpx;">请准备好你的书箱，交给快递员！</view>
+    </view>
+    <view slot="footer">
+      <modalbutton bordered="true" type="plain" size="small">取消</modalbutton>
+      <modalbutton2 size="small">确定</modalbutton2>
+    </view>
+  </modal>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import Button from '@/components/button'
+  import Checkbox from '@/components/checkbox'
+  import Formitem from '@/components/formitem'
+  import Panel from '@/components/panel'
+  import Listitem from '@/components/listitem'
+  import Iconitem from '@/components/iconitem'
+  import Modal from '@/components/modal'
+  import Tabhead from '@/components/tabhead'
+
+  @connect({
+    num (state) {
+      return state.counter.num
+    },
+    asyncNum (state) {
+      return state.counter.asyncNum
+    },
+    sumNum (state) {
+      return state.counter.num + state.counter.asyncNum
+    }
+  })
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+
+    components = {
+      button: Button,
+      modalbutton: Button,
+      modalbutton2: Button,
+      checkbox: Checkbox,
+      checkbox2: Checkbox,
+      formitem: Formitem,
+      panel: Panel,
+      listitem: Listitem,
+      iconitem: Iconitem,
+      modal: Modal,
+      tabhead: Tabhead
+    }
+
+    data = {
+      mynum: 20,
+      userInfo: {
+        nickName: '加载中...'
+      },
+      normalTitle: '原始标题',
+      setTimeoutTitle: '标题三秒后会被修改',
+      count: 0,
+      netrst: '',
+      tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
+      groupList: [
+        {
+          id: 1,
+          name: '点击改变',
+          list: [
+            {
+              childid: '1.1',
+              childname: '子项，点我改变'
+            }, {
+              childid: '1.2',
+              childname: '子项，点我改变'
+            }, {
+              childid: '1.3',
+              childname: '子项，点我改变'
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: '点击改变',
+          list: [
+            {
+              childid: '2.1',
+              childname: '子项，点我改变'
+            }, {
+              childid: '2.2',
+              childname: '子项，点我改变'
+            }, {
+              childid: '2.3',
+              childname: '子项，点我改变'
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: '点击改变',
+          list: [
+            {
+              childid: '3.1',
+              childname: '子项，点我改变'
+            }
+          ]
+        }
+      ]
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+      checkboxChange (value, isChecked) {
+        console.log(value)
+        console.log(isChecked)
+      },
+      plus () {
+        this.mynum++
+      },
+      toast () {
+        let promise = this.$invoke('toast', 'show', {
+          title: '自定义标题',
+          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+        })
+
+        promise.then((d) => {
+          console.log('toast done')
+        })
+      },
+      tap () {
+        console.log('do noting from ' + this.$name)
+      },
+      communicate () {
+        console.log(this.$name + ' tap')
+
+        this.$invoke('counter2', 'minus', 45, 6)
+        this.$invoke('counter1', 'plus', 45, 6)
+
+        this.$broadcast('index-broadcast', 1, 3, 4)
+      },
+      request () {
+        let self = this
+        let i = 10
+        let map = ['MA==', 'MQo=', 'Mg==', 'Mw==', 'NA==', 'NQ==', 'Ng==', 'Nw==', 'OA==', 'OQ==']
+        while (i--) {
+          wepy.request({
+            url: 'https://www.madcoder.cn/tests/sleep.php?time=1&t=css&c=' + map[i] + '&i=' + i,
+            success: function (d) {
+              self.netrst += d.data + '.'
+              self.$apply()
+            }
+          })
+        }
+      },
+      counterEmit (...args) {
+        let $event = args[args.length - 1]
+        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
+      }
+    }
+
+    onLoad() {
+    }
+  }
+</script>

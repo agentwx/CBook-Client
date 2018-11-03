@@ -1,0 +1,132 @@
+<style lang="less">
+  @import "less/mixin";
+
+  page {
+    min-height: 100%;
+    background-color: #fff;
+    color: #333;
+    font-size: 28rpx;
+    font-family: -apple-system-font, 'Helvetica Neue', Helvetica, 'Microsoft YaHei', sans-serif;
+  }
+
+  image {
+    vertical-align: top;
+  }
+
+  page, view, text, scroll-view, input, textarea, button, form {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /*wetoast style override*/
+  .wetoast__bd {
+    min-height: auto !important;
+    min-width: auto !important;
+    padding: 8px 20px !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .wetoast__bd__title {
+    margin: 0 !important;
+    font-size: 28rpx !important;
+  }
+</style>
+
+<script>
+import './pollyfill'
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+
+import { toast, confirm, showLoading, hideLoading } from './utils/util'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: '星月童书',
+      navigationBarTextStyle: 'black',
+      enablePullDownRefresh: false
+    },
+    networkTimeout: {
+      request: 60000,
+      connectSocket: 60000,
+      uploadFile: 60000,
+      downloadFile: 60000
+    },
+    debug: true,
+    /*tabBar: {
+      color: '#777',
+      selectedColor: '#01458e',
+      borderStyle: '#ddd',
+      backgroundColor: '#fff',
+      list: [
+        {
+          text: '主页',
+          pagePath: 'pages/home/home',
+          iconPath: 'images/home.png',
+          selectedIconPath: 'images/home-selected.png'
+        },
+        {
+          text: '我的',
+          pagePath: 'pages/my/my',
+          iconPath: 'images/my.png',
+          selectedIconPath: 'images/my-selected.png'
+        }
+      ]
+    }*/
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  getPrevPage () {
+    // eslint-disable-next-line
+    const pages = getCurrentPages()
+    return pages[pages.length - 2]
+  }
+
+  toast = toast
+  confirm = confirm
+  showLoading = showLoading
+  hideLoading = hideLoading
+
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async getUserInfo() {
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    let userInfo = await wepy.getUserInfo() // eslint-disable-line
+    this.globalData.userInfo = userInfo
+    return userInfo
+  }
+
+  onLaunch() {
+
+  }
+}
+</script>

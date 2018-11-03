@@ -1,0 +1,44 @@
+<style lang="less">
+  .panel {
+    background-color: #fff;
+    padding: 24rpx 20rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .panel-title {
+    font-size: 30rpx;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .panel-body {
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+  }
+
+  .panel-footer {
+    padding-top: 24rpx;
+    border-top: 2rpx solid @color-underline;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+<template>
+  <view class="panel">
+    <view class="panel-title">
+      <slot name="title"></slot>
+    </view>
+    <view class="panel-body">
+      <slot></slot>
+    </view>
+    <view class="panel-footer">
+      <slot name="footer"></slot>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Panel extends wepy.component {
+  }
+</script>

@@ -1,0 +1,84 @@
+<style lang="less">
+  .icon{
+    display: inline-block;
+    padding: 10rpx;
+    vertical-align: middle;
+
+    &.x-large {
+      width: 100rpx;
+      height: 100rpx;
+    }
+    &.large {
+      width: 72rpx;
+      height: 72rpx;
+    }
+    &.middle {
+      width: 50rpx;
+      height: 50rpx;
+    }
+    &.normal{
+      width: 40rpx;
+      height: 40rpx;
+    }
+    &.small{
+      width: 32rpx;
+      height: 32rpx;
+    }
+    &.x-small{
+      width: 24rpx;
+      height: 24rpx;
+    }
+
+    .icon-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+</style>
+
+<template>
+  <view class="icon {{size}} {{className}}" style="{{style}}" @tap="tap">
+    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont-{{name}}"></text>
+    <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}" mode="{{mode}}"></image>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Icon extends wepy.component {
+    props = {
+      className: {
+        type: String,
+        default: ''
+      },
+      style: {
+        type: String,
+        default: ''
+      },
+      size: {
+        type: String,
+        default: 'normal'
+      },
+      name: {
+        type: String,
+        default: ''
+      },
+      mode: {
+        type: String,
+        default: 'aspectFit'
+      },
+      type: {
+        type: String,
+        default: 'iconfont'
+      }
+    }
+
+    methods = {
+      tap ($event) {
+        this.$emit('tap', $event)
+      }
+    }
+  }
+</script>

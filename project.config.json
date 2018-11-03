@@ -1,0 +1,16 @@
+{
+	"description": "a book recovery project",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"minified": false,
+		"postcss": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxc24d08eec697c731",
+	"projectname": "cbook-client",
+	"miniprogramRoot": "dist/",
+	"libVersion": "2.3.2",
+	"condition": {}
+}

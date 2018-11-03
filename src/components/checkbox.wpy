@@ -1,0 +1,109 @@
+<style lang="less">
+  @import "../less/mixin";
+  .checkbox {
+    border: 2rpx solid @color-border;
+    border-radius: 50%;
+
+    &.checked {
+      position: relative;
+      .g-gradient();
+      border: none;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 50%;
+        height: 25%;
+        border-style: solid;
+        border-color: #fff;
+        border-width: 0 0 4rpx 4rpx;
+        transform: translate(-50%, -70%) rotate(-45deg);
+      }
+    }
+
+    &.large {
+      width: 60rpx;
+      height: 60rpx;
+    }
+
+    &.normal {
+      width: 40rpx;
+      height: 40rpx;
+    }
+
+    &.small {
+      width: 24rpx;
+      height: 24rpx;
+
+      &:before {
+        border-width: 0 0 2rpx 2rpx;
+      }
+    }
+
+    &.disabled {
+      opacity: .7;
+      pointer-events: none;
+    }
+  }
+</style>
+
+<template>
+  <view class="checkbox {{checked ? 'checked' : ''}} {{size}} {{type}} {{disabled ? 'disabled' : ''}} {{className}}" style="{{style}}" @tap="tap">
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Button extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      className: {
+        type: String,
+        default: ''
+      },
+      size: {
+        type: String,
+        default: 'normal'
+      },
+      type: {
+        type: String,
+        default: 'primary'
+      },
+      disabled: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      checked: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      value: {
+        type: null,
+        default: ''
+      }
+    }
+
+    components = {
+    }
+
+    data = {}
+
+    methods = {
+      tap($event) {
+        this.checked = !this.checked;
+        this.$emit('change', this.value, this.checked, $event)
+      }
+    }
+  }
+</script>

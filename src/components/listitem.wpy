@@ -1,0 +1,94 @@
+<style type="less">
+  @import "../less/mixin";
+
+  .list-item {
+    .flex-v-center();
+    padding: 24rpx 40rpx;
+    background-color: #fff;
+
+    &.bordered {
+      border-top:2rpx solid @color-underline;
+      border-bottom:2rpx solid @color-underline;
+    }
+
+    .list-item-bd {
+      .flex-v-center();
+      flex: 1;
+    }
+
+    .list-item-icon {
+      margin-right: 20rpx;
+      margin-left: 20rpx;
+    }
+
+    &:active {
+      background-color: @color-active;
+    }
+
+    &.hasArrow {
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 16rpx;
+        height: 16rpx;
+        border-width: 4rpx 4rpx 0 0;
+        border-style: solid;
+        border-color: #bdbdbd;
+        transform: rotate(45deg);
+      }
+    }
+  }
+</style>
+<template>
+  <view class="list-item {{hasArrow ? 'hasArrow' : ''}} {{bordered ? 'bordered' : ''}} {{className}}" style="{{style}}" @tap="tap">
+    <icon wx:if="{{icon}}" :name="icon" :size="iconSize" className="list-item-icon"></icon>
+    <view class="list-item-bd">
+      <slot></slot>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import Icon from './icon'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Listitem extends wepy.component {
+    props = {
+      icon: String,
+      iconSize: {
+        type: String,
+        default: 'large'
+      },
+      style: {
+        type: String,
+        default: ''
+      },
+      className: {
+        type: String,
+        default: ''
+      },
+      hasArrow: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      },
+      bordered: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      }
+    }
+    components = {
+      icon: Icon
+    }
+    data = {
+    }
+    methods = {
+      tap ($event) {
+        this.$emit('tap', Number(this.$index), $event)
+      }
+    }
+  }
+</script>

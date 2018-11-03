@@ -1,0 +1,115 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dist/dist/_wepylogs.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/app.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/button.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/buttongroup.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/checkbox.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/counter.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/datetimepicker.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/formitem.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/group.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/groupitem.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/icon.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/iconitem.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/list.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/listitem.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/modal.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/panel.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/picker.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/regionpicker.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/tabbar.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/components/wepy-list.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/mixins/test.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/pages/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/pollyfill/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/service/auth.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/service/fetch.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/service/history.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/service/storage.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/service/user.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/actions/counter.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/actions/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/reducers/counter.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/reducers/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/types/counter.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/store/types/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/Math.uuid.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/barcode.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/md5.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/qrcode.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/util.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/wechat.js" />
+        <item url="file://$PROJECT_DIR$/dist/dist/utils/wxbarqrGen.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/pollyfill/index.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/service/fetch.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/Math.uuid.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/barcode.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/md5.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/qrcode.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/util.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/wechat.js" />
+        <item url="file://$PROJECT_DIR$/dist/src/utils/wxbarqrGen.js" />
+        <item url="file://$PROJECT_DIR$/dist/wepy.config.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/dist/dist/_wepylogs.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/app.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/button.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/buttongroup.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/checkbox.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/counter.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/datetimepicker.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/formitem.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/group.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/groupitem.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/icon.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/iconitem.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/list.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/listitem.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/modal.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/panel.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/picker.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/regionpicker.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/tabbar.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/components/wepy-list.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/mixins/test.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/pages/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/pollyfill/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/service/auth.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/service/fetch.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/service/history.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/service/storage.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/service/user.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/actions/counter.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/actions/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/reducers/counter.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/reducers/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/types/counter.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/store/types/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/Math.uuid.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/barcode.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/md5.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/qrcode.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/util.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/wechat.js" />
+      <root url="file://$PROJECT_DIR$/dist/dist/utils/wxbarqrGen.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/pollyfill/index.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/service/fetch.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/Math.uuid.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/barcode.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/md5.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/qrcode.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/util.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/wechat.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/utils/wxbarqrGen.js" />
+      <root url="file://$PROJECT_DIR$/dist/wepy.config.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

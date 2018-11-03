@@ -1,0 +1,113 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .button-group {
+    &.inline {
+      .flex();
+
+      > .button-group-item {
+        flex: 1;
+        border-radius: 0;
+        margin-bottom: 0;
+
+        &:not(:first-child) {
+          margin-left: -2rpx;
+        }
+
+        &:first-child {
+          border-top-left-radius: 8rpx;
+          border-bottom-left-radius: 8rpx;
+        }
+
+        &:last-child {
+          border-top-right-radius: 8rpx;
+          border-bottom-right-radius: 8rpx;
+        }
+
+      }
+    }
+  }
+
+  .button-group-item {
+    .flex-center();
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    border-radius: 8rpx;
+    border: 2rpx solid @gcolor;
+    background-color: #fff;
+    margin-bottom: 6rpx;
+
+    &.actived {
+      background-color: @gcolor;
+      color: #fff;
+    }
+
+    &.large {
+      height: @large;
+      font-size: 36rpx;
+    }
+    &.normal {
+      height: @normal;
+    }
+    &.small {
+      height: @small;
+    }
+
+  }
+</style>
+
+<template>
+  <view class="button-group {{(inline === true || inline === 'true') ? 'inline' : ''}} {{className}}" style="{{style}}">
+    <repeat for="{{items}}" key="index" index="index">
+      <view class="button-group-item {{size}} {{activeIndex === index ? 'actived' : ''}}" @tap="tap({{index}})">{{item}}</view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Buttongroup extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      className: {
+        type: String,
+        default: ''
+      },
+      size: {
+        type: String,
+        default: 'small'
+      },
+      inline: {
+        type: [String, Boolean],
+        default: true,
+        coerce: coerce
+      },
+      items: {
+        type: Array,
+        default: []
+      }
+    }
+
+    components = {
+
+    }
+
+    data = {
+      activeIndex: 0
+    }
+
+    methods = {
+      tap (index, $event) {
+        this.activeIndex = Number(index)
+        this.$emit('tap', this.activeIndex, $event)
+      }
+    }
+  }
+</script>

@@ -1,0 +1,80 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .tabhead {
+    .flex();
+    background-color: #fff;
+    border-bottom: 2rpx solid @color-underline;
+  }
+
+  .tabhead-item {
+    flex: 1;
+    text-align: center;
+
+    text {
+      display: inline-block;
+      padding: 20rpx 16rpx;
+      border-bottom: 6rpx solid transparent;
+    }
+
+    &.active {
+      text {
+        font-weight: bold;
+        border-color: @gcolor;
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="tabhead {{className}}" style="{{style}}" wx:if="{{items.length>0}}">
+    <repeat for="{{items}}">
+      <view class="tabhead-item {{tabIndex == index ? 'active' : ''}}" @tap="tap('{{index}}')">
+        <text>{{item}}</text>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Tabhead extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      className: {
+        type: String,
+        default: ''
+      },
+      tabIndex: {
+        type: [String, Number],
+        default: 0,
+        coerce: v => +v
+      },
+      items: {
+        type: Array,
+        default: []
+      }
+    }
+
+    components = {}
+
+    data = {
+    }
+
+    methods = {
+      tap (index, $event) {
+        index = Number(index)
+        if (this.tabIndex === index) return
+        this.tabIndex = index
+        this.$emit('change', index, $event)
+      }
+    }
+    onLoad (e) {
+      this.$emit('change', this.tabIndex, e)
+    }
+  }
+</script>

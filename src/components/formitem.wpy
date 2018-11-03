@@ -1,0 +1,186 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .form-item-wrap {
+    flex: 1;
+    background-color: #fff;
+
+    &:not(.nomargin) {
+      margin-bottom: 20rpx;
+    }
+  }
+
+  .form-item-inner {
+    .flex-v-center();
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+
+    &.underline {
+      border-bottom: 2rpx solid @color-underline;
+    }
+  }
+
+  .form-item-label {
+    display: inline-block;
+    margin-right: 20rpx;
+    color: #888;
+  }
+
+  .form-item {
+    border-radius: 8rpx;
+    flex: 1;
+
+    > .input{
+      width: 100%;
+      padding: 12rpx 24rpx;
+      font-size: 28rpx;
+      display: block;
+      box-sizing: border-box;
+
+      &.large {
+        height: @large;
+        font-size: 32rpx;
+      }
+      &.normal {
+        height: @normal;
+      }
+      &.small {
+        height: @small;
+      }
+    }
+
+    > .icon {
+      &.left {
+        margin-right: -24rpx;
+      }
+      &.right {
+        margin-left: -24rpx;
+      }
+    }
+
+    &.bordered{
+      border: 2rpx solid @color-border;
+    }
+  }
+</style>
+<template>
+  <view class="form-item-wrap {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
+    <view class="form-item-inner {{underline ? 'underline' : ''}}">
+      <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
+      <view class="form-item {{bordered ? 'bordered' : ''}}">
+        <iconleft wx:if="{{iconLeft}}" class="left" :name="iconLeft" :size="size" @tap.user="iconTap" />
+        <input password="{{password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}" placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input" @focus="focus" @blur="blur" @confirm="confirm" />
+        <iconright wx:if="{{iconRight}}" class="right" :name="iconRight" :size="size" @tap.user="iconTap" />
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import Icon from './icon'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Formitem extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      label: String,
+      iconLeft: String,
+      iconRight: String,
+      labelWidth: {
+        type: String,
+        default: ''
+      },
+      size: {
+        type: String,
+        default: 'normal'
+      },
+      value: {
+        type: [String, Number],
+        default: ''
+      },
+      maxlength: {
+        type: [String, Number],
+        default: -1,
+        coerce: v => +v
+      },
+      placeholder: String,
+      bordered: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      },
+      nomargin: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      underline: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      type: {
+        type: String,
+        default: 'text'
+      },
+      password: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      focus: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      disabled: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      }
+    }
+
+    components = {
+      iconleft: Icon,
+      iconright: Icon
+    }
+
+    data = {
+
+    }
+    computed = {
+      iconLeft () {
+        if (this.iconRight === true) {
+          this.iconLeft = false
+          return this.iconLeft
+        }
+        return this.iconLeft
+      }
+    }
+    methods = {
+      tap (e) {
+        this.$emit('tap', e.detail.value, e)
+      },
+      input (e) {
+        this.$emit('input', e.detail.value, e)
+      },
+      focus (e) {
+        this.$emit('focus', e.detail.value, e)
+      },
+      blur (e) {
+        this.$emit('blur', e.detail.value, e)
+      },
+      confirm (e) {
+        this.$emit('confirm', e.detail.value, e)
+      },
+      iconTap (e) {
+        this.$emit('iconTap', e.detail.value, e)
+      }
+    }
+  }
+</script>
