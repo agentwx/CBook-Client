@@ -64,13 +64,12 @@
   }
 </style>
 <template>
-  <view class="form-item-wrap {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
+  <view class="form-item-wrap {{nomargin ? 'nomargin' : ''}} {{className}}" style="{{style}}">
     <view class="form-item-inner {{underline ? 'underline' : ''}}">
       <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
       <view class="form-item {{bordered ? 'bordered' : ''}}">
-        <iconleft wx:if="{{iconLeft}}" class="left" :name="iconLeft" :size="size" @tap.user="iconTap" />
+        <icon wx:if="{{icon}}" class="left" :name="icon" :size="size" />
         <input password="{{password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}" placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input" @focus="focus" @blur="blur" @confirm="confirm" />
-        <iconright wx:if="{{iconRight}}" class="right" :name="iconRight" :size="size" @tap.user="iconTap" />
       </view>
     </view>
   </view>
@@ -88,9 +87,12 @@
         type: String,
         default: ''
       },
+      className: {
+        type: String,
+        default: ''
+      },
       label: String,
-      iconLeft: String,
-      iconRight: String,
+      icon: String,
       labelWidth: {
         type: String,
         default: ''
@@ -146,22 +148,13 @@
     }
 
     components = {
-      iconleft: Icon,
-      iconright: Icon
+      icon: Icon
     }
 
     data = {
 
     }
-    computed = {
-      iconLeft () {
-        if (this.iconRight === true) {
-          this.iconLeft = false
-          return this.iconLeft
-        }
-        return this.iconLeft
-      }
-    }
+    
     methods = {
       tap (e) {
         this.$emit('tap', e.detail.value, e)
@@ -177,9 +170,6 @@
       },
       confirm (e) {
         this.$emit('confirm', e.detail.value, e)
-      },
-      iconTap (e) {
-        this.$emit('iconTap', e.detail.value, e)
       }
     }
   }

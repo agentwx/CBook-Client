@@ -39,7 +39,7 @@
 
 <template>
   <view class="icon {{size}} {{className}}" style="{{style}}" @tap="tap">
-    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont-{{name}}"></text>
+    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont-{{name}}" style="{{iconColor}}"></text>
     <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}" mode="{{mode}}"></image>
   </view>
 </template>
@@ -72,6 +72,19 @@
       type: {
         type: String,
         default: 'iconfont'
+      },
+      color: {
+        type: String,
+        default: ''
+      }
+    }
+
+    computed = {
+      iconColor () {
+        if (this.color) {
+          return `color: ${this.color}`
+        }
+        return ''
       }
     }
 

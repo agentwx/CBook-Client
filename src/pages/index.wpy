@@ -69,7 +69,7 @@
 
   <modal visible="true">
     <view class="modal-container">
-      <checkbox2 checked="true" size="large"></checkbox2>
+      <checkbox2 checked="true" size="large" readonly="true"></checkbox2>
       <view style="font-size: 18px; margin-bottom: 10rpx;margin-top: 16rpx;">提交成功</view>
       <view style="color: #888;margin-bottom: 20rpx;">请准备好你的书箱，交给快递员！</view>
     </view>
