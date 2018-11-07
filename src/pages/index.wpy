@@ -37,7 +37,9 @@
 
   <checkbox checked="true" @change.user="checkboxChange"></checkbox>
 
-  <formitem label="联系人" bordered="false" underline="true" showClear="true" icon="find" :value.sync="inputValue"></formitem>
+  <formuser label="用户名" labelWidth="3.2em" bordered="false" underline="true" icon="user" :value.sync="inputUser"></formuser>
+
+  <formpwd label="密码" labelWidth="3.2em" bordered="false" icon="lock" showEye="true" password="true" underline="true" showClear="true" :value.sync="inputPwd"></formpwd>
 
   <panel>
     <view slot="title">图书列表</view>
@@ -118,7 +120,8 @@
       modalbutton2: Button,
       checkbox: Checkbox,
       checkbox2: Checkbox,
-      formitem: Formitem,
+      formuser: Formitem,
+      formpwd: Formitem,
       panel: Panel,
       listitem: Listitem,
       iconitem1: Iconitem,
@@ -151,7 +154,8 @@
         ]
       },
       modalVisible: false,
-      inputValue: 54555
+      inputUser: '',
+      inputPwd: ''
     }
 
     computed = {

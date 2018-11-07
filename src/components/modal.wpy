@@ -58,6 +58,10 @@
     padding: 20rpx;
     right: 0;
     top: 0;
+
+    .icon {
+      vertical-align: top;
+    }
   }
 
   .modal-footer {
