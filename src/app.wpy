@@ -50,7 +50,7 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/index'
+      'pages/home/home'
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

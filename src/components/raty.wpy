@@ -1,0 +1,83 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .raty-wrap {
+    &.readonly {
+      pointer-events: none;
+    }
+
+    .raty-item {
+      margin-right: 4rpx;
+      color: #d3d3d3;
+
+      &.active {
+        color: #faa431;
+      }
+    }
+
+    .raty-value {
+      margin-left: 16rpx;
+      color: #999;
+      font-size: 30rpx;
+    }
+  }
+</style>
+
+<template>
+  <view class="raty-wrap {{readonly ? 'readonly' : ''}} {{className}}" style="{{style}}">
+    <repeat for="{{max}}">
+      <text class="raty-item iconfont icon-star {{index < ratyIndex ? 'active' : ''}}" @tap="pickRaty({{index}})"></text>
+    </repeat>
+    <text class="raty-value">{{value}}</text>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Raty extends wepy.component {
+    props = {
+      className: {
+        type: String,
+        default: ''
+      },
+      style: {
+        type: String,
+        default: ''
+      },
+      max: {
+        type: [Number, String],
+        default: 5,
+        coerce: v => +v
+      },
+      value: {
+        type: [Number, String],
+        default: 0,
+        coerce: v => +v
+      },
+      readonly: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      }
+    }
+
+    computed = {
+      ratyIndex () {
+        return Math.floor(this.value)
+      }
+    }
+
+    methods = {
+      pickRaty (rateIndex, $e) {
+        if (!this.readonly) {
+          this.value = rateIndex + 1
+          this.$emit('onPick', this.value, $e)
+        }
+      }
+    }
+  }
+</script>

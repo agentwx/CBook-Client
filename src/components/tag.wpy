@@ -1,0 +1,48 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .tag-item {
+    display: inline-block;
+    padding: 6rpx 16rpx;
+    border-radius: 640rpx;
+    background-color: #f2f3f7;
+    color: #999;
+    font-size: 26rpx;
+    margin-right: 16rpx;
+  }
+</style>
+
+<template>
+  <view class="tag-item {{className}}" style="{{style}}">
+    <slot></slot>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
+
+  export default class Raty extends wepy.component {
+    props = {
+      className: {
+        type: String,
+        default: ''
+      },
+      style: {
+        type: String,
+        default: ''
+      }
+    }
+
+    methods = {
+      pickRaty (rateIndex, $e) {
+        if (!this.readonly) {
+          this.value = rateIndex + 1
+          this.$emit('onPick', this.value, $e)
+        }
+      }
+    }
+  }
+</script>
