@@ -53,7 +53,7 @@
 
     > .icon-left {
       margin-right: -18rpx;
-      margin-top: -4px;
+      margin-top: -6px;
     }
 
     > .icon-right {
@@ -187,7 +187,6 @@
     }
 
     data = {
-      shouldClearShow: false
     }
 
     computed = {
