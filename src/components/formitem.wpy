@@ -11,8 +11,10 @@
 
   .form-item-inner {
     .flex-v-center();
-    padding-left: 20rpx;
-    padding-right: 20rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
 
     &.underline {
       border-bottom: 2rpx solid @color-underline;
@@ -62,9 +64,14 @@
       margin-left: -24rpx;
     }
 
-    .icon-wrap {
+    .ctrl-icon {
       padding: 6rpx;
       margin-left: 4rpx;
+      color: #8a8a8a;
+    }
+
+    .pwd-ctrl {
+      font-size: 36rpx;
     }
 
     &.bordered {
@@ -73,24 +80,22 @@
   }
 </style>
 <template>
-  <view class="form-item {{nomargin ? 'nomargin' : ''}} {{className}}" style="{{style}}">
+  <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
     <view class="form-item-inner {{underline ? 'underline' : ''}}">
       <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
       <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
-        <icon wx:if="{{icon}}" class="icon-left" color="#999" :name="icon" :size="size"/>
+        <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
         <input wx:if="{{!password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
                placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm"/>
-        <input wx:if="{{password}}" password="true" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
+        <input wx:if="{{password}}" password class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
                placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm"/>
         <view class="icon-right" wx:if="{{showClear || showEye}}">
-          <view class="icon-wrap" wx:if="{{showClear}}" @tap="clearField"
-                style="margin-top:-4rpx; display: {{shouldClearShow ? '' : 'none'}}">
-            <iconclear size="small" color="#8a8a8a" name="close-circle"></iconclear>
+          <view class="ctrl-icon iconfont icon-close-circle" wx:if="{{showClear}}" @tap="clearField"
+                style="display: {{shouldClearShow ? '' : 'none'}}">
           </view>
-          <view class="icon-wrap" wx:if="{{showEye}}" @tap="togglePwdVisible">
-            <iconeye color="#8a8a8a" :name.sync="eyeName"></iconeye>
+          <view class="ctrl-icon pwd-ctrl iconfont icon-{{eyeName}}" wx:if="{{showEye}}" @tap="togglePwdVisible">
           </view>
         </view>
       </view>
@@ -110,12 +115,9 @@
         type: String,
         default: ''
       },
-      className: {
-        type: String,
-        default: ''
-      },
       label: String,
       icon: String,
+      iconType: String,
       labelWidth: {
         type: String,
         default: ''

@@ -1,8 +1,12 @@
 <style lang="less">
   @import "../less/mixin";
+
   .checkbox {
+    display: inline-block;
     border: 2rpx solid @color-border;
+    background-color: #fff;
     border-radius: 50%;
+    vertical-align: middle;
 
     &.checked {
       position: relative;
@@ -54,7 +58,7 @@
 </style>
 
 <template>
-  <view class="checkbox {{size}} {{type}} {{checked ? 'checked' : ''}} {{readonly ? 'readonly' : ''}} {{disabled ? 'disabled' : ''}} {{className}}" style="{{style}}" @tap="tap">
+  <view class="checkbox {{size}} {{type}} {{checked ? 'checked' : ''}} {{readonly ? 'readonly' : ''}} {{disabled ? 'disabled' : ''}}" style="{{style}}" @tap="tap">
   </view>
 </template>
 
@@ -67,10 +71,6 @@
   export default class Button extends wepy.component {
     props = {
       style: {
-        type: String,
-        default: ''
-      },
-      className: {
         type: String,
         default: ''
       },

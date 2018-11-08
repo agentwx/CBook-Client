@@ -1,12 +1,15 @@
 <style lang="less">
+  @import "../less/mixin";
+
   .panel {
     background-color: #fff;
-    padding: 24rpx 20rpx;
+    padding: 24rpx 30rpx;
     margin-bottom: 20rpx;
   }
 
   .panel-title {
     font-size: 30rpx;
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
   }
@@ -24,21 +27,25 @@
   }
 </style>
 <template>
-  <view class="panel">
+  <view class="panel" style="{{style}}">
     <view class="panel-title">
       <slot name="title"></slot>
     </view>
     <view class="panel-body">
       <slot></slot>
     </view>
-    <view class="panel-footer">
-      <slot name="footer"></slot>
-    </view>
+    <slot name="footer"></slot>
   </view>
 </template>
 <script>
   import wepy from 'wepy'
 
   export default class Panel extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      }
+    }
   }
 </script>

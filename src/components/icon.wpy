@@ -46,7 +46,7 @@
 </style>
 
 <template>
-  <view class="icon {{size}} {{className}}" style="{{style}}" @tap="tap">
+  <view class="icon {{size}}" style="{{style}}">
     <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont icon-{{name}}" style="{{iconColor}}"></text>
     <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}" mode="{{mode}}"></image>
   </view>
@@ -57,10 +57,6 @@
 
   export default class Icon extends wepy.component {
     props = {
-      className: {
-        type: String,
-        default: ''
-      },
       style: {
         type: String,
         default: ''
@@ -87,12 +83,6 @@
     computed = {
       iconColor () {
         return this.color ? `color: ${this.color}` : ''
-      }
-    }
-
-    methods = {
-      tap ($event) {
-        this.$emit('tap', $event)
       }
     }
   }

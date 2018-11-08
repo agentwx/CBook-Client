@@ -1,0 +1,143 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    padding-bottom: 100rpx;
+    background-color: #f7f7f7;
+  }
+
+  .addr-title {
+    font-size: 30rpx;
+    margin-bottom: 10rpx;
+  }
+
+  .addr-username {
+    margin-right: 20rpx;
+  }
+
+  .addr-text {
+    font-size: 26rpx;
+    color: #888;
+  }
+
+  .address-action-button {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    font-size: 36rpx;
+    color: #fff;
+    .g-gradient(60%);
+    .flex-center();
+
+    &:active {
+      .g-darken-gradient(60%);
+    }
+  }
+
+  .addr-left {
+    padding: 0 16rpx;
+    margin-left: -16rpx;
+    .flex-v-center();
+  }
+
+  .addr-right {
+    .flex-v-center();
+    margin-right: -16rpx;
+  }
+
+  .addr-action-item {
+    padding: 0 16rpx;
+    margin-left: 24rpx;
+
+    .iconfont {
+      margin-right: 6rpx;
+      position: relative;
+      top: 2rpx;
+    }
+  }
+</style>
+<template>
+  <panel>
+    <view class="addr-title">
+      <text class="addr-username">小溪</text>
+      <text class="addr-usertel">13812345678</text>
+    </view>
+    <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
+    <view class="panel-footer" slot="footer">
+      <view class="addr-left">
+        <checkbox />
+        <text style="margin-left: 10rpx;">设为默认</text>
+      </view>
+      <view class="addr-right">
+        <view class="addr-action-item">
+          <text class="iconfont icon-edit"></text>
+          <text>编辑</text>
+        </view>
+        <view class="addr-action-item">
+          <text class="iconfont icon-trash"></text>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </panel>
+
+  <panel>
+    <view class="addr-title">
+      <text class="addr-username">小溪</text>
+      <text class="addr-usertel">13812345678</text>
+    </view>
+    <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
+    <view class="panel-footer" slot="footer">
+      <view class="addr-left">
+        <checkbox />
+        <text style="margin-left: 10rpx;">设为默认</text>
+      </view>
+      <view class="addr-right">
+        <view class="addr-action-item">
+          <text class="iconfont icon-edit"></text>
+          <text>编辑</text>
+        </view>
+        <view class="addr-action-item">
+          <text class="iconfont icon-trash"></text>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </panel>
+
+  <view class="address-action-button">
+    新建地址
+  </view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Icon from '@/components/icon'
+  import Panel from '@/components/panel'
+  import Checkbox from '@/components/checkbox'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '地址管理'
+    }
+
+    components = {
+      editicon: Icon,
+      delicon: Icon,
+      panel: Panel,
+      checkbox: Checkbox
+    }
+
+    data = {
+
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

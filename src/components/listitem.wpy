@@ -3,7 +3,7 @@
 
   .list-item {
     .flex-v-center();
-    padding: 24rpx 20rpx;
+    padding: 24rpx 30rpx;
     background-color: #fff;
 
     &.bordered {
@@ -12,7 +12,6 @@
     }
 
     .list-item-bd {
-      .flex-v-center();
       flex: 1;
     }
 
@@ -40,8 +39,8 @@
   }
 </style>
 <template>
-  <view class="list-item {{hasArrow ? 'hasArrow' : ''}} {{bordered ? 'bordered' : ''}} {{className}}" style="{{style}}" @tap="tap">
-    <icon wx:if="{{icon}}" :name="icon" :size="iconSize" className="list-item-icon"></icon>
+  <view class="list-item {{hasArrow ? 'hasArrow' : ''}} {{bordered ? 'bordered' : ''}}" style="{{style}}" @tap="tap">
+    <icon wx:if="{{icon}}" :name="icon" :size="iconSize" class="list-item-icon"></icon>
     <view class="list-item-bd">
       <slot></slot>
     </view>
@@ -56,18 +55,14 @@
 
   export default class Listitem extends wepy.component {
     props = {
-      icon: String,
-      iconSize: {
-        type: String,
-        default: 'middle'
-      },
       style: {
         type: String,
         default: ''
       },
-      className: {
+      icon: String,
+      iconSize: {
         type: String,
-        default: ''
+        default: 'middle'
       },
       hasArrow: {
         type: [Boolean, String],

@@ -27,7 +27,7 @@
 </style>
 
 <template>
-  <view class="tabhead {{className}}" style="{{style}}" wx:if="{{items.length>0}}">
+  <view class="tabhead" wx:if="{{items.length>0}}" style="{{style}}">
     <repeat for="{{items}}">
       <view class="tabhead-item {{tabIndex == index ? 'active' : ''}}" @tap="tap('{{index}}')">
         <text>{{item}}</text>
@@ -42,10 +42,6 @@
   export default class Tabhead extends wepy.component {
     props = {
       style: {
-        type: String,
-        default: ''
-      },
-      className: {
         type: String,
         default: ''
       },

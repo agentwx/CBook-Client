@@ -1,0 +1,374 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    padding-bottom: 102rpx;
+  }
+
+  .detail-swiper-wrap {
+    padding-top: 20rpx;
+  }
+
+  .detail-swiper {
+    height: 400rpx;
+  }
+
+  .swiper-item {
+    .flex-center();
+    > image {
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .detail-pdinfo-wrap {
+    padding: 30rpx 20rpx;
+  }
+
+  .detail-title {
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  .detail-salesInfo {
+    .flex();
+    justify-content: space-between;
+  }
+
+  .sale-price {
+    .flex();
+    align-items: baseline;
+
+    .now-price {
+      color: #eb5a21;
+      font-size: 40rpx;
+      margin-right: 16rpx;
+
+      .unit {
+        font-size: 26rpx;
+      }
+    }
+
+    .orig-price {
+      color: #999;
+      text-decoration: line-through;
+    }
+  }
+
+  .sales-count {
+    color: #999;
+  }
+
+  .product-info {
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+
+    > view {
+      padding: 4rpx 0;
+    }
+  }
+
+  .product-flags {
+    margin-top: 40rpx;
+
+    .flag-item {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 30rpx;
+
+      > .icon {
+        margin-right: 10rpx;
+        position: relative;
+        top: -2rpx;
+        color: @gcolor;
+      }
+    }
+  }
+
+  .detail-action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    border-top: 2rpx solid #efefef;
+    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    z-index: 200;
+    .flex();
+
+    .action-item {
+      .flex-center();
+      flex-direction: column;
+      height: 100rpx;
+    }
+
+    .action-cart {
+      flex: none;
+      padding-left: 30rpx;
+      padding-right: 30rpx;
+      border-right: 2rpx solid #efefef;
+      color: #666;
+      font-size: 24rpx;
+    }
+
+    .action-buy {
+      flex: 1;
+
+      .price {
+        font-size: 36rpx;
+      }
+
+      .unit {
+        font-size: 26rpx;
+      }
+
+      .buy-text {
+        font-size: 32rpx;
+      }
+
+      &.cash-buy {
+        color: @gcolor;
+
+        &:active {
+          background-color: @color-active;
+        }
+      }
+
+      &.coin-buy {
+        .g-gradient(50%);
+        color: #fff;
+
+        &:active {
+          .g-darken-gradient(50%);
+        }
+      }
+    }
+  }
+
+
+  .detail-pdintro-wrap {
+    margin-top: 60rpx;
+  }
+
+  .pdintro-title {
+    text-align: center;
+    font-size: 32rpx;
+    margin-bottom: 30rpx;
+  }
+
+  .pdintro-body {
+    image {
+      width: 100%;
+    }
+  }
+
+
+  .suggest-window {
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+  }
+
+  .suggest-title {
+    font-size: 32rpx;
+    text-align: center;
+    margin-bottom: 30rpx;
+  }
+
+  .suggest-scrollview {
+    width: 100%;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    overflow: hidden;
+  }
+
+  .suggest-list {
+    .flex();
+    flex-wrap: nowrap;
+  }
+
+  .suggest-item {
+    width: 216rpx;
+    margin-right: 30rpx;
+
+    .suggest-cover {
+      width: 100%;
+      overflow: hidden;
+      /*box-shadow: 0 0 16rpx rgba(0,0,0,.2);*/
+
+      image {
+        width: 100%;
+      }
+    }
+
+    .suggest-pdname {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 16rpx;
+      margin-bottom: 10rpx;
+    }
+
+    .suggest-pdprice {
+      font-size: 32rpx;
+      color: #eb5a21;
+
+      text {
+        font-size: 24rpx;
+      }
+    }
+  }
+</style>
+<template>
+  <view class="detail-swiper-wrap">
+    <swiper class="detail-swiper" autoplay="true" interval="5000" duration="300" indicatorDots="true" circular="true"
+            wx:if="{{picList.length>0}}">
+      <repeat for="{{picList}}">
+        <swiper-item class="swiper-item">
+          <image src="{{item.source}}" mode="aspectFit"></image>
+        </swiper-item>
+      </repeat>
+    </swiper>
+  </view>
+
+  <view class="detail-pdinfo-wrap">
+    <view class="detail-title">和爸妈去旅行 3-6岁幼儿小百科 绘本故事</view>
+    <view class="detail-salesInfo">
+      <view class="sale-price">
+        <view class="now-price">
+          <text class="unit">￥</text>
+          <text>29.9</text>
+        </view>
+        <view class="orig-price">￥15.00</view>
+      </view>
+      <view class="sales-count">已售912份</view>
+    </view>
+
+    <view class="product-info">
+      <view>作者：黄宇</view>
+      <view>出版社：北京联合出版有限公司</view>
+      <view>出版时间：2018年06月</view>
+      <raty value="3.8"></raty>
+    </view>
+
+    <view class="product-flags">
+      <view class="flag-item">
+        <iconcheck name="check"></iconcheck>
+        消毒塑料
+      </view>
+      <view class="flag-item">
+        <iconcheck name="check"></iconcheck>
+        正品保证
+      </view>
+      <view class="flag-item">
+        <iconcheck name="check"></iconcheck>
+        原价回收
+      </view>
+    </view>
+
+  </view>
+
+  <view class="detail-action-bar">
+    <iconitem icon="cart" class="action-item action-cart">
+      购物车
+    </iconitem>
+    <view class="action-item action-buy cash-buy">
+      <view>
+        <text class="unit">￥</text>
+        <text class="price">29.8</text>
+      </view>
+      <view class="buy-text">直接买</view>
+    </view>
+    <view class="action-item action-buy coin-buy">
+      <view>
+        <text class="unit">￥</text>
+        <text class="price">29.8</text>
+      </view>
+      <view class="buy-text">星币价</view>
+    </view>
+  </view>
+
+  <view class="detail-pdintro-wrap">
+    <view class="pdintro-title">商品详情</view>
+    <view class="pdintro-body">
+      <image src="../../images/d1.jpg" mode="widthFix"></image>
+      <image src="../../images/d2.jpg" mode="widthFix"></image>
+      <image src="../../images/d3.jpg" mode="widthFix"></image>
+    </view>
+  </view>
+
+  <view class="suggest-window">
+    <view class="suggest-title">猜您喜欢</view>
+    <scroll-view class="suggest-scrollview" scroll-x="true">
+      <view class="suggest-list">
+        <view class="suggest-item">
+          <view class="suggest-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="suggest-pdname">孩子看的编程启蒙书</view>
+          <view class="suggest-pdprice"><text>￥</text>49.9</view>
+        </view>
+        <view class="suggest-item">
+          <view class="suggest-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="suggest-pdname">孩子看的编程启蒙书</view>
+          <view class="suggest-pdprice"><text>￥</text>49.9</view>
+        </view>
+        <view class="suggest-item">
+          <view class="suggest-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="suggest-pdname">孩子看的编程启蒙书</view>
+          <view class="suggest-pdprice"><text>￥</text>49.9</view>
+        </view>
+        <view class="suggest-item">
+          <view class="suggest-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="suggest-pdname">孩子看的编程启蒙书</view>
+          <view class="suggest-pdprice"><text>￥</text>49.9</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Raty from '@/components/raty'
+  import Icon from '@/components/icon'
+  import Iconitem from '@/components/iconitem'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '商品详情'
+    }
+
+    components = {
+      raty: Raty,
+      iconcheck: Icon,
+      iconitem: Iconitem
+    }
+
+    data = {
+      picList: [
+        {
+          source: '../../images/book2.jpg'
+        },
+        {
+          source: '../../images/book2.jpg'
+        }
+      ]
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

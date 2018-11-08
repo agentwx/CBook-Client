@@ -1,16 +1,20 @@
 <style lang="less">
 @import '../../less/mixin';
 
-page {
+.home-search-wrap {
   background-color: #fff;
-  padding-top: 30rpx;
-  padding-bottom: 30rpx;
+
+  &.expand {
+    .flex();
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
 .home-search {
   .flex-v-center();
   padding: 20rpx 30rpx;
-  margin: 0 20rpx 30rpx;
+  margin: 30rpx 20rpx;
   background-color: #fff;
   border-radius: 60rpx;
   box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
@@ -19,6 +23,42 @@ page {
     font-size: 36rpx;
     margin-right: 16rpx;
     color: #888;
+  }
+}
+
+.search-sublayer {
+  flex: 1;
+  padding: 20rpx;
+}
+
+.ssbl-hd {
+  .flex-v-center();
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+
+  .ssbl-title {
+    font-weight: bold;
+  }
+
+  .ssbl-icon {
+    padding: 8rpx;
+    font-size: 40rpx;
+  }
+}
+
+.ssr-item {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 60rpx;
+  border: 2rpx solid @color-border;
+  color: #888;
+  font-size: 26rpx;
+  margin-right: 16rpx;
+  margin-bottom: 20rpx;
+
+  &:active {
+    border-color: darken(@color-border, 10%);
+    color: #555;
   }
 }
 
@@ -208,16 +248,32 @@ page {
 }
 </style>
 <template>
-  <view class="home-search">
-    <text class="iconfont icon-find"></text>
-    <input type="text" placeholder="搜索书名、作者" />
+  <view class="home-search-wrap {{isSearchShow ? 'expand' : ''}}">
+    <view class="home-search">
+      <text class="iconfont icon-find"></text>
+      <input type="text" placeholder="搜索书名、作者" @focus="showSearch" />
+    </view>
+
+    <view class="search-sublayer" wx:if="{{isSearchShow}}" @tap="hideSearch">
+      <view class="ssbl-hd">
+        <text class="ssbl-title">历史搜索</text>
+        <text class="ssbl-icon iconfont icon-trash"></text>
+      </view>
+      <view class="search-history">
+        <view class="ssr-item">小猪佩奇</view>
+        <view class="ssr-item">情绪管理</view>
+        <view class="ssr-item">娃娃队</view>
+        <view class="ssr-item">8岁以上</view>
+        <view class="ssr-item">6-8岁</view>
+      </view>
+    </view>
   </view>
 
-  <view class="home-banner">
+  <view class="home-banner" hidden="{{isSearchShow}}">
     <image src="../../images/home_banner.jpg" mode="widthFix"></image>
   </view>
 
-  <view class="filter-toolbar">
+  <view class="filter-toolbar" hidden="{{isSearchShow}}">
     <view class="filter-itemtype sort">
      综合排序
      <text class="iconfont icon-caret-down"></text>
@@ -244,7 +300,7 @@ page {
 
       <view class="filter-itemcatelog">
         <view class="filter-catelog-hd">
-          <iconage name="leaf" type="png"></iconage>
+          <iconage name="leaf" type="svg"></iconage>
           年龄（单选）
         </view>
         <view class="filter-catelog-bd">
@@ -255,7 +311,7 @@ page {
           <view class="filter-catelog-item">8岁以上</view>
         </view>
         <view class="filter-catelog-hd">
-          <iconcate name="tags" type="png"></iconcate>
+          <iconcate name="catelog" type="svg"></iconcate>
           分类（可多选）
         </view>
         <view class="filter-catelog-bd">
@@ -267,7 +323,7 @@ page {
           <view class="filter-catelog-item">启发想象</view>
         </view>
         <view class="filter-catelog-hd">
-          <iconlang name="lang" type="png"></iconlang>
+          <iconlang name="lang" type="svg"></iconlang>
           语言（单选）
         </view>
         <view class="filter-catelog-bd">
@@ -282,7 +338,7 @@ page {
 
   </view>
 
-  <view class="product-listview">
+  <view class="product-listview" hidden="{{isSearchShow}}">
     <view class="product-panel">
       <view class="product-cover">
         <image src="../../images/book1.png" mode="widthFix"></image>
@@ -391,10 +447,17 @@ export default class Index extends wepy.page {
   }
 
   data = {
-    searchVal: ''
-  };
+    isSearchShow: false
+  }
 
-  methods = {};
+  methods = {
+    showSearch () {
+      this.isSearchShow = true
+    },
+    hideSearch () {
+      this.isSearchShow = false
+    }
+  }
 
   onLoad() {}
 }

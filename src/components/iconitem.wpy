@@ -5,7 +5,7 @@
     flex: 1;
     .flex-center();
     flex-direction: column;
-    padding: 16rpx;
+    padding: 16rpx 16rpx 20rpx;
     background-color: #fff;
 
     &:active {
@@ -15,15 +15,11 @@
     &.inline {
       .inline-flex();
     }
-
-    .icon {
-      margin-bottom: 6rpx;
-    }
   }
 </style>
 <template>
-  <view class="icon-item {{inline ? 'inline' : ''}} {{className}}" style="style" @tap="tap">
-    <icon :size="iconSize" :name="icon"></icon>
+  <view class="icon-item {{inline ? 'inline' : ''}}" style="{{style}}" @tap="tap">
+    <icon :size="iconSize" :type="iconType" :name="icon"></icon>
     <slot></slot>
   </view>
 </template>
@@ -36,24 +32,21 @@
 
   export default class Iconitem extends wepy.component {
     props = {
+      style: {
+        type: String,
+        default: ''
+      },
       icon: String,
       iconSize: {
         type: String,
         default: 'large'
       },
-      style: {
-        type: String,
-        default: ''
-      },
-      className: {
-        type: String,
-        default: ''
-      },
+      iconType: String,
       inline: {
         type: [Boolean, String],
         default: true,
         coerce: coerce
-      },
+      }
     }
     components = {
       icon: Icon

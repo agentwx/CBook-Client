@@ -13,7 +13,7 @@
 </style>
 
 <template>
-  <view class="tag-item {{className}}" style="{{style}}">
+  <view class="tag-item" style="{{style}}">
     <slot></slot>
   </view>
 </template>
@@ -21,15 +21,8 @@
 <script>
   import wepy from 'wepy'
 
-  const coerce = t =>
-    typeof t === 'string' ? JSON.parse(t) : t
-
   export default class Raty extends wepy.component {
     props = {
-      className: {
-        type: String,
-        default: ''
-      },
       style: {
         type: String,
         default: ''

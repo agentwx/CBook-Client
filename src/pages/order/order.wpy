@@ -1,0 +1,171 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    padding-bottom: 100rpx;
+    background-color: #f7f7f7;
+  }
+
+  .address-selection {
+    position: relative;
+    .flex-v-center();
+    padding: 24rpx 30rpx 30rpx;
+    background-color: #fff;
+
+    &:active {
+      background-color: @color-active;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 6rpx;
+      background: #fff url(data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAxNCA3OS4xNTE0ODEsIDIwMTMvMDMvMTMtMTI6MDk6MTUgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUZCRUNFQThFMzJGMTFFOEEyNzc5N0QzQjgwMkZCMTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUZCRUNFQTlFMzJGMTFFOEEyNzc5N0QzQjgwMkZCMTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRkJFQ0VBNkUzMkYxMUU4QTI3Nzk3RDNCODAyRkIxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRkJFQ0VBN0UzMkYxMUU4QTI3Nzk3RDNCODAyRkIxNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHB8fHx8fHx8fHx8BBwcHDQwNGBAQGBoVERUaHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fH//AABEIAAUANAMBEQACEQEDEQH/xAByAAEAAwAAAAAAAAAAAAAAAAAGAgUHAQEAAwEAAAAAAAAAAAAAAAAFAQQGAxAAAQEFBgUFAAAAAAAAAAAAERIAATETFCFBUYECIqHRBCQVggMFBgcRAAICAgEFAAAAAAAAAAAAAAARAQQhEhNRYSJiA//aAAwDAQACEQMRAD8A3j9DqpfR2dqdRe6MwWH0wzZGgs9StYeASyJVLj6lS+f6WofYXysJg2nPi1e0+OUdfktoZoHzs7xfvSohy8UHcGz9h6SheouSGC2JHCWhC9KyguUIi8NMES1gedvS3U6MkDkzONexnvLb2Z//2Q==) repeat-x 0 100%;
+      background-size: auto 100%;
+    }
+
+    .addr-slbd {
+      flex: 1;
+      margin-left: 20rpx;
+      margin-right: 20rpx;
+    }
+
+    .addr-sltitle {
+      font-size: 30rpx;
+      font-weight: bold;
+      margin-bottom: 10rpx;
+    }
+
+    .addr-username {
+      margin-right: 20rpx;
+    }
+
+    .addr-text {
+      font-size: 24rpx;
+      color: #888;
+    }
+  }
+
+  .timepicker {
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .timepicker-bd {
+    .flex-v-center();
+    justify-content: space-between;
+    padding-right: 10rpx;
+
+    .tm-hd {
+      font-weight: bold;
+    }
+  }
+
+  .order-book {
+    padding: 6rpx 0;
+    .flex();
+    justify-content: space-between;
+  }
+
+  .order-ft {
+    text {
+      font-weight: bold;
+    }
+  }
+
+  .order-action-button {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    font-size: 36rpx;
+    color: #fff;
+    .g-gradient(60%);
+    .flex-center();
+
+    &:active {
+      .g-darken-gradient(60%);
+    }
+  }
+</style>
+<template>
+
+  <alert showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</alert>
+
+  <view class="address-selection">
+    <geoicon name="geo" size="middle" />
+    <view class="addr-slbd">
+      <view class="addr-sltitle">
+        <text class="addr-username">小溪</text>
+        <text class="addr-usertel">13812345678</text>
+      </view>
+      <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
+    </view>
+    <arrowicon name="arrow-right-o" size="small" color="#777" />
+  </view>
+
+  <listitem class="timepicker">
+    <view class="timepicker-bd">
+      <text class="tm-hd">取件时间</text>
+      <text>09:30-12:00</text>
+    </view>
+  </listitem>
+
+  <panel>
+    <view slot="title">图书列表</view>
+    <view class="order-body">
+      <view class="order-book">
+        <text>父与子全集（全10册）</text>
+        <text>￥159.8</text>
+      </view>
+      <view class="order-book">
+        <text>孩子看的编程启蒙书</text>
+        <text>￥89.0</text>
+      </view>
+    </view>
+    <view class="panel-footer" slot="footer">
+      <view class="order-ft">总共<text>2</text>本图书</view>
+      <view class="order-ft">预计收入 <text>￥247.8</text></view>
+    </view>
+  </panel>
+
+  <view class="order-action-button">
+    提交订单
+  </view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Alert from '@/components/alert'
+  import Icon from '@/components/icon'
+  import Listitem from '@/components/listitem'
+  import Panel from '@/components/panel'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '订单确认'
+    }
+
+    components = {
+      alert: Alert,
+      geoicon: Icon,
+      arrowicon: Icon,
+      listitem: Listitem,
+      panel: Panel
+    }
+
+    data = {
+
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

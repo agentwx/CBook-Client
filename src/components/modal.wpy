@@ -107,7 +107,7 @@
 </style>
 
 <template>
-  <view class="modal" style="{{style}}" wx:if="{{visible}}">
+  <view class="modal" wx:if="{{visible}}" style="{{style}}">
     <view class="modal-dialog {{title !== '' ? 'hasTitle' : ''}}">
       <view class="modal-header" wx:if="{{title !== ''}}">
         <text>{{title}}</text>

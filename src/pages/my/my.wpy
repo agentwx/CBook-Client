@@ -1,0 +1,185 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    background-color: #fff;
+  }
+
+  .ucbg-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  .uc-userinfo {
+    position: relative;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 98rpx;
+    color: #fff;
+    .flex-v-center();
+
+    .uc-avatar {
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 30rpx;
+
+      image {
+        width: 100%;
+      }
+    }
+
+    .uc-userinfo-main {
+      flex: 1;
+    }
+
+    .uc-username {
+      font-size: 32rpx;
+      margin-bottom: 12rpx;
+    }
+
+    .uc-usertype {
+      display: inline-block;
+      padding: 2rpx 16rpx;
+      border: 2rpx solid #fff;
+      border-radius: 60rpx;
+      font-size: 24rpx;
+    }
+
+    .uc-birth-entry {
+      .flex-v-center();
+      align-self: flex-end;
+      margin-bottom: 10rpx;
+    }
+  }
+
+  .uc-assets-panel {
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    margin-top: 60rpx;
+    background-color: #fff;
+    border-radius: 12rpx;
+    .flex-v-center();
+    box-shadow: 0 12rpx 20rpx rgba(0,0,0,.05);
+  }
+
+  .uc-assets-item {
+    flex: 1;
+    padding: 50rpx;
+    text-align: center;
+
+    .assets-value {
+      font-size: 36rpx;
+      margin-bottom: 4rpx;
+    }
+
+    .assets-name {
+      color: #888;
+    }
+  }
+
+  .order-entry-panel {
+    margin-top: 60rpx;
+    margin-bottom: 40rpx;
+  }
+
+  .order-entry-head {
+    .flex();
+    justify-content: space-between;
+    padding: 0 30rpx 40rpx;
+    font-weight: bold;
+  }
+
+  .order-entry-body {
+    .flex();
+  }
+
+  .uc-listitem {
+    .icon {
+      color: @gcolor;
+    }
+  }
+</style>
+<template>
+  <view class="ucbg-wrap">
+    <image src="../../images/ucenter_top_bg.jpg" mode="widthFix"></image>
+  </view>
+  <view class="uc-userinfo">
+    <view class="uc-avatar">
+      <image src="../../images/user_avatar.jpg" mode="widthFix"></image>
+    </view>
+    <view class="uc-userinfo-main">
+      <view class="uc-username">我的名字</view>
+      <view class="uc-usertype">普通会员</view>
+    </view>
+    <view class="uc-birth-entry">
+      <birthicon name="baby" />
+      <text>出生日期</text>
+    </view>
+  </view>
+  <view class="uc-assets-panel">
+    <view class="uc-assets-item">
+      <view class="assets-value">6</view>
+      <view class="assets-name">星星币</view>
+    </view>
+    <view class="uc-assets-item">
+      <view class="assets-value">3</view>
+      <view class="assets-name">优惠券</view>
+    </view>
+  </view>
+  <view class="order-entry-panel">
+    <view class="order-entry-head">
+      <text>买书订单</text>
+      <text>全部订单</text>
+    </view>
+    <view class="order-entry-body">
+      <iconitem1 icon="prepay" iconType="svg">待付款</iconitem1>
+      <iconitem2 icon="presend" iconType="svg">待发货</iconitem2>
+      <iconitem3 icon="precollect" iconType="svg">待收货</iconitem3>
+      <iconitem4 icon="order_done" iconType="svg">已完成</iconitem4>
+    </view>
+  </view>
+  <view class="uc-listitem">
+    <addritem icon="geo">地址管理</addritem>
+    <serviceitem icon="service">联系客服</serviceitem>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Icon from '@/components/icon'
+  import Iconitem from '@/components/iconitem'
+  import Listitem from '@/components/listitem'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '个人中心'
+    }
+
+    components = {
+      birthicon: Icon,
+      iconitem1: Iconitem,
+      iconitem2: Iconitem,
+      iconitem3: Iconitem,
+      iconitem4: Iconitem,
+      addritem: Listitem,
+      serviceitem: Listitem
+    }
+
+    data = {
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

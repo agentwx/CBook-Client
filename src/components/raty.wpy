@@ -9,6 +9,7 @@
     .raty-item {
       margin-right: 4rpx;
       color: #d3d3d3;
+      font-size: 36rpx;
 
       &.active {
         color: #faa431;
@@ -24,7 +25,7 @@
 </style>
 
 <template>
-  <view class="raty-wrap {{readonly ? 'readonly' : ''}} {{className}}" style="{{style}}">
+  <view class="raty-wrap {{readonly ? 'readonly' : ''}}" style="{{style}}">
     <repeat for="{{max}}">
       <text class="raty-item iconfont icon-star {{index < ratyIndex ? 'active' : ''}}" @tap="pickRaty({{index}})"></text>
     </repeat>
@@ -40,10 +41,6 @@
 
   export default class Raty extends wepy.component {
     props = {
-      className: {
-        type: String,
-        default: ''
-      },
       style: {
         type: String,
         default: ''

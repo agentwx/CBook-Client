@@ -3,8 +3,8 @@
 
   .button {
     .flex-center();
-    padding-left: 40rpx;
-    padding-right: 40rpx;
+    padding-left: 50rpx;
+    padding-right: 50rpx;
     flex-direction: row;
     color: #444;
     font-size: 28rpx;
@@ -150,7 +150,7 @@
 
     &.large {
       height: @large;
-      font-size: 36rpx;
+      font-size: 32rpx;
     }
 
     &.normal {
@@ -165,11 +165,9 @@
 </style>
 
 <template>
-  <view class="button {{inline ? 'inline' : ''}} {{circled ? 'circled' : ''}} {{bordered ? 'bordered' : ''}} {{size}} {{type}} {{disabled ? 'disabled' : ''}} {{className}}"
-        style="{{style}}" @tap="tap">
-    <icon wx:if="{{icon}}" :name="icon" :size="size"></icon>
+  <view class="button {{inline ? 'inline' : ''}} {{circled ? 'circled' : ''}} {{bordered ? 'bordered' : ''}} {{size}} {{type}} {{disabled ? 'disabled' : ''}}" style="{{style}}" @tap="tap">
+    <icon wx:if="{{icon}}" :type="iconType" :name="icon" :size="size"></icon>
     <slot></slot>
-    {{text}}
   </view>
 </template>
 
@@ -183,10 +181,6 @@
   export default class Button extends wepy.component {
     props = {
       style: {
-        type: String,
-        default: ''
-      },
-      className: {
         type: String,
         default: ''
       },
@@ -222,10 +216,7 @@
         default: true,
         coerce: coerce
       },
-      text: {
-        type: String,
-        default: ''
-      }
+      iconType: String
     }
 
     components = {
