@@ -2,6 +2,7 @@
   @import '../../less/mixin';
 
   page {
+    height: auto;
     padding-bottom: 102rpx;
   }
 
@@ -180,8 +181,8 @@
 
   .suggest-scrollview {
     width: 100%;
-    padding-left: 20rpx;
-    padding-right: 20rpx;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
     overflow: hidden;
   }
 
@@ -191,7 +192,7 @@
   }
 
   .suggest-item {
-    width: 216rpx;
+    width: 208rpx;
     margin-right: 30rpx;
 
     .suggest-cover {

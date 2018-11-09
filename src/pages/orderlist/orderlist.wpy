@@ -1,0 +1,209 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  .tabs-wrapper {
+    padding-top: 20rpx;
+  }
+
+  .order-hd {
+    font-weight: normal;
+
+    .order-num {
+      color: #666;
+    }
+
+    .order-status {
+      color: @gcolor;
+    }
+  }
+
+  .order-body {
+    .flex();
+    padding-top: 20rpx;
+  }
+
+  .order-cover {
+    width: 160rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  .order-main {
+    flex: 1;
+    .flex-h-center();
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .order-pd-hd {
+    .title {
+      font-weight: bold;
+      font-size: 30rpx;
+      margin-bottom: 6rpx;
+    }
+
+    .desc {
+      color: #999;
+    }
+  }
+
+  .order-pd-specs {
+    .flex();
+    justify-content: space-between;
+    font-size: 30rpx;
+  }
+
+  .order-subinfo {
+    text-align: right;
+
+    .order-sumup {
+      margin-bottom: 16rpx;
+      color: #777;
+
+      .price {
+        color: #333;
+      }
+    }
+  }
+
+  .empty-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70%;
+    max-width: 640rpx;
+    transform: translate(-50%,-50%);
+
+    image {
+      width: 100%;
+    }
+
+    .empty-action {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 40rpx;
+      text-align: center;
+    }
+
+    .empty-text {
+      font-size: 32rpx;
+      color: #888;
+    }
+  }
+</style>
+
+<template>
+  <tabhead :items="tabItems" :tabIndex.sync="tabIndex"></tabhead>
+
+  <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
+    <view class="tab-panel">
+      <panel>
+        <view class="panel-title order-hd" slot="title">
+          <text class="order-num">单号：SH0221XXSD120</text>
+          <text class="order-status">待付款</text>
+        </view>
+        <view class="order-body">
+          <view class="order-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="order-main">
+            <view class="order-pd-hd">
+              <view class="title">父与子全集（全10册）</view>
+              <view class="desc">规格：默认</view>
+            </view>
+            <view class="order-pd-specs">
+              <text class="price">￥9.25</text>
+              <text class="count">x1</text>
+            </view>
+          </view>
+        </view>
+        <view class="panel-footer order-footer" slot="footer">
+          <view></view>
+          <view class="order-subinfo">
+            <view class="order-sumup">
+              总共1件商品 合计 <text class="price">￥9.25</text>
+            </view>
+            <paybutton inline="true" bordered="true" size="small">去付款</paybutton>
+          </view>
+        </view>
+      </panel>
+
+      <panel>
+        <view class="panel-title order-hd" slot="title">
+          <text class="order-num">单号：SH0221XXSD120</text>
+          <text class="order-status">待付款</text>
+        </view>
+        <view class="order-body">
+          <view class="order-cover">
+            <image src="../../images/book2.jpg" mode="widthFix"></image>
+          </view>
+          <view class="order-main">
+            <view class="order-pd-hd">
+              <view class="title">父与子全集（全10册）</view>
+              <view class="desc">规格：默认</view>
+            </view>
+            <view class="order-pd-specs">
+              <text class="price">￥9.25</text>
+              <text class="count">x1</text>
+            </view>
+          </view>
+        </view>
+        <view class="panel-footer order-footer" slot="footer">
+          <view></view>
+          <view class="order-subinfo">
+            <view class="order-sumup">
+              总共1件商品 合计 <text class="price">￥9.25</text>
+            </view>
+            <paybutton inline="true" bordered="true" size="small">去付款</paybutton>
+          </view>
+        </view>
+      </panel>
+
+    </view>
+  </view>
+
+  <view class="empty-layer" wx:if="{{orders.length === 0}}">
+    <image src="../../images/orders_empty_bg.png" mode="widthFix"></image>
+    <view class="empty-action">
+      <view class="empty-text">暂无订单~</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Tabhead from '@/components/tabhead'
+  import Panel from '@/components/panel'
+  import Button from '@/components/button'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '订单列表'
+    }
+
+    components = {
+      tabhead: Tabhead,
+      panel: Panel,
+      paybutton: Button
+    }
+
+    data = {
+      tabIndex: 0,
+      tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
+      orders: [1]
+    }
+
+    methods = {}
+
+    onLoad({tabIndex}) {
+      if (tabIndex !== undefined) {
+        this.tabIndex = tabIndex
+      }
+    }
+  }
+</script>

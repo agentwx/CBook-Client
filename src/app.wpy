@@ -3,7 +3,6 @@
   @import 'less/iconfont';
 
   page {
-    height: 100%;
     background-color: #fff;
     color: #333;
     font-size: 28rpx;
@@ -50,13 +49,19 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/recycle/manual',
+      'pages/recycle/order',
+      'pages/recycle/index',
+      'pages/recycleorders/detail',
+      'pages/recycleorders/list',
       'pages/my/my',
+      'pages/orderlist/orderlist',
       'pages/address/new_address',
       'pages/address/address',
       'pages/order/order',
+      'pages/detail/detail',
       'pages/shopcart/shopcart',
-      'pages/home/home',
-      'pages/detail/detail'
+      'pages/home/home'
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

@@ -1,0 +1,219 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  .orders-wrap {
+    margin-top: 40rpx;
+  }
+
+  .panel {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .order-body {
+    .flex();
+  }
+
+  .order-cover {
+    width: 160rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  .order-main {
+    flex: 1;
+    .flex-h-center();
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .order-pd-hd {
+    .title {
+      font-weight: bold;
+      font-size: 30rpx;
+      margin-bottom: 6rpx;
+    }
+
+    .desc {
+      color: #999;
+    }
+  }
+
+  .order-pd-specs {
+    .price {
+      font-size: 30rpx;
+    }
+
+    .discount {
+      margin-left: 30rpx;
+      color: #777;
+      font-size: 26rpx;
+    }
+  }
+
+  .recycle-action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    background-color: #fff;
+    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    .flex();
+  }
+
+  .recycle-info-tip {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 24rpx;
+
+    .income {
+      font-size: 30rpx;
+    }
+
+    .hint {
+      color: #999;
+      font-size: 24rpx;
+    }
+  }
+
+  .action-button {
+    .g-gradient(50%);
+    .flex-center();
+    color: #fff;
+    font-size: 32rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+
+    &:active {
+      .g-darken-gradient(50%);
+    }
+  }
+
+  .float-action-bar {
+    position: fixed;
+    right: 40rpx;
+    bottom: 200rpx;
+  }
+
+  .float-button {
+    padding: 20rpx;
+    margin-top: 40rpx;
+    border-radius: 50%;
+    box-shadow: 0 0 32rpx rgba(8,175,254,.4);
+    background-color: #fdfdfd;
+
+    &:active {
+      background-color: darken(#fdfdfd, 10%);
+    }
+
+    > text {
+      display: inline-block;
+      width: 2.5em;
+      height: 2.5em;
+      text-align: center;
+      font-size: 24rpx;
+      line-height: 1.2;
+    }
+
+    &.primary {
+      color: #fff;
+      background-color: @gcolor;
+
+      &:active {
+        background-color: darken(@gcolor, 10%);
+      }
+    }
+  }
+</style>
+
+<template>
+  <alert showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</alert>
+
+  <view class="orders-wrap">
+    <panel>
+      <view class="order-body">
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-main">
+          <view class="order-pd-hd">
+            <view class="title">父与子全集（全10册）</view>
+            <view class="desc">规格：默认</view>
+          </view>
+          <view class="order-pd-specs">
+            <text class="price">￥9.25</text>
+            <text class="discount">8折</text>
+          </view>
+        </view>
+      </view>
+    </panel>
+
+    <panel>
+      <view class="order-body">
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-main">
+          <view class="order-pd-hd">
+            <view class="title">父与子全集（全10册）</view>
+            <view class="desc">规格：默认</view>
+          </view>
+          <view class="order-pd-specs">
+            <text class="price">￥9.25</text>
+            <text class="discount">8折</text>
+          </view>
+        </view>
+      </view>
+    </panel>
+  </view>
+
+  <view class="float-action-bar">
+    <view class="float-button">
+      <text>手动输入</text>
+    </view>
+    <view class="float-button primary">
+      <text>扫码卖书</text>
+    </view>
+  </view>
+
+  <view class="recycle-action-bar">
+    <view class="recycle-info-tip">
+      <view class="income">预计收入￥5.25</view>
+      <view class="hint">请继续扫描哦~</view>
+    </view>
+    <view class="action-button">下一步(1)</view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Alert from '@/components/alert'
+  import Panel from '@/components/panel'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '回收给星月童书'
+    }
+
+    components = {
+      alert: Alert,
+      panel: Panel
+    }
+
+    data = {
+
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

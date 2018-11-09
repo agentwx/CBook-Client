@@ -102,6 +102,12 @@
       color: @gcolor;
     }
   }
+
+  .service-hint-text {
+    padding-top: 60rpx;
+    padding-bottom: 50rpx;
+    text-align: center;
+  }
 </style>
 <template>
   <view class="ucbg-wrap">
@@ -133,19 +139,26 @@
   <panel class="order-entry-panel">
     <view class="panel-title" slot="title">
       <text>买书订单</text>
-      <text class="to-orders">全部订单</text>
+      <text class="to-orders" @tap="goToOrders('0')">全部订单</text>
     </view>
     <view class="order-entry-body">
-      <iconitem1 icon="prepay" iconType="svg">待付款</iconitem1>
-      <iconitem2 icon="presend" iconType="svg">待发货</iconitem2>
-      <iconitem3 icon="precollect" iconType="svg">待收货</iconitem3>
-      <iconitem4 icon="order_done" iconType="svg">已完成</iconitem4>
+      <iconitem1 icon="prepay" iconType="svg" tabIndex="1" @tap.user="goToOrders">待付款</iconitem1>
+      <iconitem2 icon="presend" iconType="svg" tabIndex="2" @tap.user="goToOrders">待发货</iconitem2>
+      <iconitem3 icon="precollect" iconType="svg" tabIndex="3" @tap.user="goToOrders">待收货</iconitem3>
+      <iconitem4 icon="order_done" iconType="svg" tabIndex="4" @tap.user="goToOrders">已完成</iconitem4>
     </view>
   </panel>
   <view class="uc-listitem">
-    <addritem icon="geo">地址管理</addritem>
-    <serviceitem icon="service">联系客服</serviceitem>
+    <addritem icon="geo" @tap.user="goToAddress">地址管理</addritem>
+    <serviceitem icon="service" @tap.user="showServieModal">联系客服</serviceitem>
   </view>
+
+  <servicemodal :visible.sync="showServiceModal" showClose="false">
+    <view class="service-hint-text">你可以在星月童书公众号联系客服</view>
+    <view slot="footer">
+      <closebutton bordered="true" size="small" @tap.user="closeServieModal">知道了</closebutton>
+    </view>
+  </servicemodal>
 </template>
 
 <script>
@@ -154,6 +167,8 @@
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
   import Listitem from '@/components/listitem'
+  import Modal from '@/components/modal'
+  import Button from '@/components/button'
 
   export default class Index extends wepy.page {
     config = {
@@ -168,13 +183,33 @@
       iconitem3: Iconitem,
       iconitem4: Iconitem,
       addritem: Listitem,
-      serviceitem: Listitem
+      serviceitem: Listitem,
+      servicemodal: Modal,
+      closebutton: Button
     }
 
     data = {
+      showServiceModal: false
     }
 
-    methods = {}
+    methods = {
+      goToOrders (index) {
+        this.toOrders(index)
+      },
+      goToAddress () {
+        this.$navigate('/pages/address/address')
+      },
+      showServieModal() {
+        this.showServiceModal = true
+      },
+      closeServieModal() {
+        this.showServiceModal = false
+      }
+    }
+
+    toOrders (tabIndex) {
+      this.$navigate('/pages/orderlist/orderlist', {tabIndex})
+    }
 
     onLoad() {
     }

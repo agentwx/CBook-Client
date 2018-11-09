@@ -46,6 +46,10 @@
         type: [Boolean, String],
         default: true,
         coerce: coerce
+      },
+      tabIndex: {
+        type: [String, Number],
+        coerce: v => +v
       }
     }
     components = {
@@ -54,8 +58,8 @@
     data = {
     }
     methods = {
-      tap ($event) {
-        this.$emit('tap', Number(this.$index), $event)
+      tap ($e) {
+        this.$emit('tap', this.tabIndex, $e)
       }
     }
   }

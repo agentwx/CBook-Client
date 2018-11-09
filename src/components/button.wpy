@@ -3,12 +3,16 @@
 
   .button {
     .flex-center();
-    padding-left: 50rpx;
-    padding-right: 50rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
     flex-direction: row;
     color: #444;
     font-size: 28rpx;
     box-sizing: border-box;
+
+    > .icon {
+      margin-right: 6rpx;
+    }
 
     &.circled {
       border-radius: @large;

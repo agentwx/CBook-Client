@@ -1,6 +1,10 @@
 <style lang="less">
 @import '../../less/mixin';
 
+page {
+  height: 100%;
+}
+
 .home-search-wrap {
   background-color: #fff;
 

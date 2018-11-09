@@ -107,7 +107,7 @@
     </view>
   </panel>
 
-  <view class="address-action-button">
+  <view class="address-action-button" @tap="newAddress">
     新建地址
   </view>
 
@@ -135,7 +135,11 @@
 
     }
 
-    methods = {}
+    methods = {
+      newAddress () {
+        this.$navigate('/pages/address/new_address')
+      }
+    }
 
     onLoad() {
     }

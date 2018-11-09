@@ -1,0 +1,137 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  .recycle-intro {
+    padding-top: 40rpx;
+  }
+
+  .intro-item {
+    padding: 12rpx 30rpx;
+    .flex-center();
+
+    .intro-img {
+      width: 320rpx;
+      margin-right: 50rpx;
+      overflow: hidden;
+
+      image {
+        width: 100%;
+      }
+    }
+
+    .intro-aside {
+      width: 200rpx;
+    }
+
+    .intro-text {
+      font-size: 30rpx;
+      font-weight: bold;
+      letter-spacing: 6rpx;
+      margin-bottom: 4rpx;
+    }
+
+    .intro-refuses {
+      color: @gcolor;
+      font-size: 24rpx;
+      margin-top: 6rpx;
+      .flex-v-center();
+
+      .iconfont {
+        font-size: 36rpx;
+      }
+    }
+  }
+
+  .recycle-hint {
+    text-align: center;
+    margin-bottom: 40rpx;
+    color: @gcolor;
+  }
+
+  .recycle-actions {
+    .flex();
+    flex-direction: column;
+    align-items: center;
+
+    .button {
+      margin-bottom: 30rpx;
+    }
+  }
+</style>
+
+<template>
+  <view class="recycle-intro">
+    <view class="intro-item">
+      <view class="intro-img">
+        <image src="../../images/recycle_1.png" mode="widthFix"></image>
+      </view>
+      <view class="intro-aside">
+        <view class="intro-text">手机扫码</view>
+        <view class="intro-text">看收购价</view>
+        <view class="intro-refuses">
+          <text>什么书不收</text>
+          <text class="iconfont icon-arrow-down"></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="intro-item">
+      <view class="intro-img">
+        <image src="../../images/recycle_2.png" mode="widthFix"></image>
+      </view>
+      <view class="intro-aside">
+        <view class="intro-text">快递免费</view>
+        <view class="intro-text">上门取件</view>
+      </view>
+    </view>
+
+    <view class="intro-item">
+      <view class="intro-img">
+        <image src="../../images/recycle_3.png" mode="widthFix"></image>
+      </view>
+      <view class="intro-aside">
+        <view class="intro-text">审核通过</view>
+        <view class="intro-text">书款到账</view>
+        <view class="intro-refuses">
+          <text>什么是审核</text>
+          <text class="iconfont icon-arrow-down"></text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="recycle-hint">
+    《暂不支持提现，具体查看买卖规则》
+  </view>
+
+  <view class="recycle-actions">
+    <scanbutton type="default" icon="scan" size="large" inline="true">扫描条形码卖书</scanbutton>
+    <maulbutton type="default" icon="pointer" size="large" inline="true">手动输入ISBN号</maulbutton>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Button from '@/components/button'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '回收给星月童书'
+    }
+
+    components = {
+      scanbutton: Button,
+      maulbutton: Button
+    }
+
+    data = {
+
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

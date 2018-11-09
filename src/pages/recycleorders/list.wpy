@@ -1,0 +1,175 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    background-color: #f7f7f7;
+  }
+
+  .orders-scrollview {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .order-hd {
+    font-weight: normal;
+    color: #666;
+    .order-num {
+      color: #666;
+    }
+
+    .order-status {
+      font-size: 26rpx;
+      color: #999;
+    }
+  }
+
+  .order-body {
+    .flex();
+    flex-wrap: nowrap;
+    padding-top: 20rpx;
+  }
+
+  .order-cover {
+    width: 160rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  .order-subinfo {
+    text-align: right;
+
+    .order-sumup {
+      margin-bottom: 16rpx;
+      color: #777;
+
+      .bold {
+        color: #333;
+      }
+    }
+  }
+
+  .empty-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70%;
+    max-width: 640rpx;
+    transform: translate(-50%,-50%);
+
+    image {
+      width: 100%;
+    }
+
+    .empty-action {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 40rpx;
+      text-align: center;
+    }
+
+    .empty-text {
+      font-size: 32rpx;
+      color: #888;
+    }
+  }
+</style>
+
+<template>
+  <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
+    <panel>
+      <view class="panel-title order-hd" slot="title">
+        <text class="order-num">单号：SH0221XXSD120</text>
+        <text class="order-status">已关闭</text>
+      </view>
+      <view class="order-body">
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="panel-footer order-footer" slot="footer">
+        <view></view>
+        <view class="order-subinfo">
+          <view class="order-sumup">
+            总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
+          </view>
+          <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
+        </view>
+      </view>
+    </panel>
+
+    <panel>
+      <view class="panel-title order-hd" slot="title">
+        <text class="order-num">单号：SH0221XXSD120</text>
+        <text class="order-status">已关闭</text>
+      </view>
+      <view class="order-body">
+        <view class="order-cover">
+          <image src="../../images/book2.jpg" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="panel-footer order-footer" slot="footer">
+        <view></view>
+        <view class="order-subinfo">
+          <view class="order-sumup">
+            总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
+          </view>
+          <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
+        </view>
+      </view>
+    </panel>
+
+  </view>
+
+  <view class="empty-layer" wx:if="{{orders.length === 0}}">
+    <image src="../../images/orders_empty_bg.png" mode="widthFix"></image>
+    <view class="empty-action">
+      <view class="empty-text">暂无订单~</view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Panel from '@/components/panel'
+  import Button from '@/components/button'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '回收订单'
+    }
+
+    components = {
+      panel: Panel,
+      paybutton: Button
+    }
+
+    data = {
+      orders: [1]
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

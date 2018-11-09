@@ -10,8 +10,13 @@
   .panel-title {
     font-size: 30rpx;
     font-weight: bold;
+    margin-bottom: 20rpx;
     display: flex;
     justify-content: space-between;
+
+    > view {
+
+    }
   }
 
   .panel-body {

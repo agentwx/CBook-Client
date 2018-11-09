@@ -1,0 +1,102 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  .manual-panel {
+    margin: 50rpx 40rpx;
+    padding: 40rpx 50rpx;
+    border-radius: 16px;
+    box-shadow: 0 0 24px rgba(0,0,0,.1);
+  }
+
+  .manual-hd {
+    text-align: center;
+    margin-top: 30rpx;
+    margin-bottom: 40rpx;
+    font-size: 30rpx;
+
+    .title {
+      color: #888;
+      margin-bottom: 12rpx;
+    }
+
+    .text {
+      font-weight: bold;
+      margin-bottom: 6rpx;
+    }
+  }
+
+  .manual-hint-img {
+    text-align: center;
+
+    image {
+      width: 100%;
+      max-width: 560rpx;
+    }
+  }
+
+  .manual-field {
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+  }
+
+  .manual-input {
+    padding: 12rpx 24px;
+    background-color: #eee;
+    text-align: center;
+    border-radius: 16rpx;
+    height: 84rpx;
+  }
+
+  .manual-action {
+    .flex();
+
+    .button {
+      flex: 1;
+    }
+  }
+</style>
+
+<template>
+  <view class="manual-panel">
+    <view class="manual-hd">
+      <view class="title">添加书箱</view>
+      <view class="text">请输入13位或10位ISBN码</view>
+      <view class="text">不含“-”符号</view>
+    </view>
+    <view class="manual-hint-img">
+      <image src="../../images/manual_hint.png" mode="widthFix"></image>
+    </view>
+    <view class="manual-field">
+      <input type="text" class="manual-input" placeholder="请输入书箱的ISBN号" />
+    </view>
+    <view class="manual-action">
+      <cancelbutton type="plain">取消</cancelbutton>
+      <confirmbutton style="margin-left: 30rpx;">确认</confirmbutton>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Button from '@/components/button'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '回收给星月童书 手动输入'
+    }
+
+    components = {
+      cancelbutton: Button,
+      confirmbutton: Button
+    }
+
+    data = {
+
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>

@@ -1,0 +1,106 @@
+<style lang="less">
+  @import "../less/mixin";
+
+  .steps-wrap {
+    .flex();
+  }
+
+  .step-item {
+    position: relative;
+    flex: 1;
+    text-align: center;
+
+    .step-dot {
+      position: relative;
+      display: inline-block;
+      width: 24rpx;
+      height: 24rpx;
+      background-color: #ddd;
+      background-clip: padding-box;
+      border: 6rpx solid rgba(0,0,0,0);
+      border-radius: 50%;
+      z-index: 5;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      height: 6rpx;
+      width: 50%;
+      position: absolute;
+      top: 16rpx;
+      background-color: #ddd;
+    }
+
+    &:before {
+      left: 0;
+      right: 50%;
+    }
+
+    &:after {
+      left: 50%;
+      right: 0;
+    }
+
+    &:first-child:before,
+    &:last-child:after {
+      display: none;
+    }
+
+    .step-text {
+      margin-top: 12rpx;
+      color: #666;
+    }
+
+    &.actived {
+      &:not(.last):after,
+      &:before {
+        background-color: #09c8fe;
+      }
+
+      .step-dot {
+        background-color: #09c8fe;
+        border-color: rgba(9,200,254,.4);
+      }
+
+      .step-text {
+        color: #333;
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="steps-wrap" style="{{style}}">
+    <repeat for="{{items}}">
+      <view class="step-item {{index < stepIndex ? 'actived' : ''}} {{index === stepIndex - 1 ? 'last' : ''}}">
+        <view class="step-dot"></view>
+        <view class="step-text">{{item}}</view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Button extends wepy.component {
+    props = {
+      style: {
+        type: String,
+        default: ''
+      },
+      stepIndex: {
+        type: [String, Number],
+        default: 0,
+        coerce: v => +v
+      },
+      items: {
+        type: Array,
+        default: []
+      }
+    }
+  }
+</script>

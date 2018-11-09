@@ -1,0 +1,229 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    background-color: #f7f7f7;
+  }
+
+  .delivery-body {
+    .flex-v-center();
+
+    .geo-icon {
+      margin-right: 20rpx;
+    }
+  }
+
+  .delivery-hd {
+    font-weight: bold;
+    margin-bottom: 12rpx;
+
+    .username {
+      margin-right: 20rpx;
+    }
+  }
+
+  .delivery-address,
+  .delivery-picktime {
+    color: #888;
+    font-size: 26rpx;
+    margin-bottom: 10rpx;
+  }
+
+  .book-body {
+    .flex();
+  }
+
+  .book-cover {
+    width: 160rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  .book-main {
+    flex: 1;
+    .flex-h-center();
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .book-hd {
+    .title {
+      font-weight: bold;
+      font-size: 30rpx;
+      margin-bottom: 6rpx;
+    }
+
+    .desc {
+      color: #999;
+    }
+  }
+
+  .book-specs {
+    .flex();
+    justify-content: space-between;
+
+    .price {
+      font-size: 30 rpx;
+    }
+
+    .status {
+      color: #09c8fe;
+    }
+  }
+
+  .book-title {
+    .flex-v-center();
+
+    .icon {
+      margin-right: 10rpx;
+    }
+  }
+
+  .delivery-panel,
+  .income-panel {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .income-item {
+    .flex();
+    justify-content: space-between;
+    padding: 6rpx 0;
+
+    &:first-child {
+      color: #888;
+    }
+
+    &:last-child {
+      font-weight: bold;
+    }
+  }
+
+  .order-panel {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .order-item {
+    .flex();
+    justify-content: space-between;
+    padding: 6rpx 0;
+    color: #888;
+  }
+
+  .action-button {
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    .flex-center();
+
+    &:active {
+      background-color: @color-active;
+    }
+  }
+</style>
+
+<template>
+  <stepspanel>
+    <steps stepIndex="3" :items="stepItems"></steps>
+  </stepspanel>
+  <deliverypanel class="delivery-panel">
+    <view class="delivery-body">
+      <geoicon name="geo" class="geo-icon"></geoicon>
+      <view class="delivery-main">
+        <view class="delivery-hd">
+          <text class="username">小溪</text>
+          <text class="usertel">13812345678</text>
+        </view>
+        <view class="delivery-address">上海市普陀区 真北路968号7号楼502室</view>
+        <view class="delivery-picktime">预约上门取件时间: 2018-11-30 11:00-12:00</view>
+      </view>
+    </view>
+  </deliverypanel>
+  <bookspanel>
+    <view class="panel-title" slot="title">
+      <view class="book-title">
+        <libicon name="library"></libicon>
+        <text>图书列表</text>
+      </view>
+    </view>
+    <view class="book-body">
+      <view class="book-cover">
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
+      </view>
+      <view class="book-main">
+        <view class="book-hd">
+          <view class="title">父与子全集（全10册）</view>
+          <view class="desc">上海译文出版社</view>
+        </view>
+        <view class="book-specs">
+          <text class="price">￥9.25</text>
+          <text class="status">未审核</text>
+        </view>
+      </view>
+    </view>
+  </bookspanel>
+  <incomepanel class="income-panel">
+    <view class="income-item">
+      <text>预计收入</text>
+      <text>￥129.25</text>
+    </view>
+    <view class="income-item">
+      <text>实际收入</text>
+      <text>￥0.00</text>
+    </view>
+  </incomepanel>
+  <orderpanel class="order-panel">
+    <view class="order-item">
+      <text>订单编号：SH0221XXSD120</text>
+      <text>复制</text>
+    </view>
+    <view class="order-item">
+      <text>创建时间：2018-11-30 11:00-12:00</text>
+    </view>
+  </orderpanel>
+  <view class="action-button">
+    <serviceicon name="service" />
+    <text>召唤客服</text>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Panel from '@/components/panel'
+  import Steps from '@/components/steps'
+  import Icon from '@/components/icon'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '回收订单详情'
+    }
+
+    components = {
+      stepspanel: Panel,
+      deliverypanel: Panel,
+      bookspanel: Panel,
+      incomepanel: Panel,
+      orderpanel: Panel,
+      steps: Steps,
+      libicon: Icon,
+      geoicon: Icon,
+      serviceicon: Icon
+    }
+
+    data = {
+      stepItems: ['线上审核', '物流取件', '平台取件', '验收书箱', '书费到账'],
+      orders: [1]
+    }
+
+    methods = {}
+
+    onLoad() {
+    }
+  }
+</script>
