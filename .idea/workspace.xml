@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/cart-selected.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/cart.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/home-selected.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/home.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/my-selected.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/my.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/recycle-selected.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/recycle.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/detail/detail.wpy" afterPath="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/order/order.wpy" afterPath="$PROJECT_DIR$/src/pages/order/order.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/index.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/manual.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/manual.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/order.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" afterPath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,9 +30,11 @@
       <file leaf-file-name="home.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="265" column="0" lean-forward="true" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="285">
+              <caret line="617" column="5" lean-forward="true" selection-start-line="617" selection-start-column="5" selection-end-line="617" selection-end-column="5" />
+              <folding>
+                <element signature="e#14008#14031#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/pages/recycle/manual.wpy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="302">
-              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#confirmbutton#0;n#view#3;n#view#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#1544#1567#0" expanded="true" />
@@ -105,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="155">
-              <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding>
                 <element signature="e#5245#5268#0" expanded="true" />
               </folding>
@@ -117,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="274">
-              <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+              <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -126,8 +113,8 @@
       <file leaf-file-name="detail.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="370" column="19" lean-forward="false" selection-start-line="370" selection-start-column="19" selection-end-line="370" selection-end-column="19" />
+            <state relative-caret-position="19">
+              <caret line="88" column="7" lean-forward="false" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
               <folding>
                 <element signature="e#7134#7157#0" expanded="true" />
               </folding>
@@ -139,20 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>status</find>
-      <find>goToOrder</find>
-      <find>goToOrder4</find>
-      <find>goToOders</find>
-      <find>empty-layer</find>
-      <find>goToOrders</find>
-      <find>tabIndex</find>
-      <find>console</find>
-      <find>price</find>
-      <find>order-status</find>
-      <find>order-subinfo</find>
-      <find>order-</find>
-      <find>book-specs</find>
-      <find>panel-title</find>
       <find>income-panel</find>
       <find>libicon</find>
       <find>lib-cio</find>
@@ -168,11 +141,27 @@
       <find>address-selection</find>
       <find>home</find>
       <find>home-search</find>
+      <find>showSearch</find>
+      <find>isSearchShow</find>
+      <find>filter-itemtype sort</find>
+      <find>showFilter</find>
+      <find>display: none</find>
+      <find>toolbar</find>
+      <find>filterBarFixed</find>
+      <find>pageS</find>
+      <find>filter-itemtype</find>
+      <find>catelog</find>
+      <find>filterBarTop</find>
+      <find>.filter-toolbar</find>
+      <find>box-sha</find>
+      <find>book1.png</find>
+      <find>filter-toolbar</find>
     </findStrings>
     <replaceStrings>
       <replace>goToOrders4</replace>
       <replace>goToOrders</replace>
       <replace>book-</replace>
+      <replace>book2.jpg</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\MyProject\CBook-Client\src\images</dir>
@@ -325,12 +314,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
-      <workItem from="1541729503250" duration="26128000" />
+      <workItem from="1541729503250" duration="31119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26128000" />
+    <option name="totallyTimeSpent" value="31119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -580,16 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="370" column="19" lean-forward="false" selection-start-line="370" selection-start-column="19" selection-end-line="370" selection-end-column="19" />
-          <folding>
-            <element signature="e#7134#7157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -603,7 +582,7 @@
     <entry file="file://$PROJECT_DIR$/src/pages/recycle/manual.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#confirmbutton#0;n#view#3;n#view#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#1544#1567#0" expanded="true" />
@@ -622,7 +601,7 @@
     <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -630,18 +609,38 @@
     <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
-          <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding>
             <element signature="e#5245#5268#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="88" column="7" lean-forward="false" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+          <folding>
+            <element signature="e#7134#7157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="265" column="0" lean-forward="true" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="285">
+          <caret line="617" column="5" lean-forward="true" selection-start-line="617" selection-start-column="5" selection-end-line="617" selection-end-column="5" />
+          <folding>
+            <element signature="e#14008#14031#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

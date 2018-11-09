@@ -1,261 +1,286 @@
 <style lang="less">
-@import '../../less/mixin';
+  @import '../../less/mixin';
 
-page {
-  height: 100%;
-}
-
-.home-search-wrap {
-  background-color: #fff;
-
-  &.expand {
-    .flex();
-    flex-direction: column;
+  page {
     height: 100%;
   }
-}
 
-.home-search {
-  .flex-v-center();
-  margin: 30rpx 20rpx;
-  padding-left: 30rpx;
-  background-color: #fff;
-  border-radius: 60rpx;
-  overflow: hidden;
-  box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
+  .home-search-wrap {
+    background-color: #fff;
 
-  .icon-find {
-    font-size: 36rpx;
-    color: #888;
-  }
-}
-
-.search-input {
-  width: 100%;
-  padding: 20rpx 30rpx 20rpx 16rpx;
-  height: 80rpx;
-}
-
-.search-sublayer {
-  flex: 1;
-  padding: 20rpx;
-}
-
-.ssbl-hd {
-  .flex-v-center();
-  justify-content: space-between;
-  margin-bottom: 20rpx;
-
-  .ssbl-title {
-    font-weight: bold;
+    &.expand {
+      .flex();
+      flex-direction: column;
+      height: 100%;
+    }
   }
 
-  .ssbl-icon {
-    padding: 8rpx;
-    font-size: 40rpx;
+  .home-search {
+    .flex-v-center();
+    margin: 30rpx 20rpx;
+    padding-left: 30rpx;
+    background-color: #fff;
+    border-radius: 60rpx;
+    overflow: hidden;
+    box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
+
+    .icon-find {
+      font-size: 36rpx;
+      color: #888;
+    }
   }
-}
 
-.ssr-item {
-  display: inline-block;
-  padding: 8rpx 20rpx;
-  border-radius: 60rpx;
-  border: 2rpx solid @color-border;
-  color: #888;
-  font-size: 26rpx;
-  margin-right: 16rpx;
-  margin-bottom: 20rpx;
-
-  &:active {
-    border-color: darken(@color-border, 10%);
-    color: #555;
-  }
-}
-
-.home-banner {
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  overflow: hidden;
-  margin-bottom: 20rpx;
-  border-radius: 12rpx;
-  box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.08);
-  image {
+  .search-input {
     width: 100%;
-    display: block;
+    padding: 20rpx 30rpx 20rpx 16rpx;
+    height: 80rpx;
   }
-}
 
-.filter-toolbar {
-  position: relative;
-  .flex-v-center();
-  justify-content: space-between;
-  padding: 20rpx;
-
-  .filter-itemtype {
+  .search-sublayer {
     flex: 1;
-    text-align: center;
-    color: #666;
+    padding: 20rpx;
+  }
 
-    &:first-child {
-      text-align: left;
+  .ssbl-hd {
+    .flex-v-center();
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+
+    .ssbl-title {
+      font-weight: bold;
+    }
+
+    .ssbl-icon {
+      padding: 8rpx;
+      font-size: 40rpx;
+    }
+  }
+
+  .ssr-item {
+    display: inline-block;
+    padding: 8rpx 20rpx;
+    border-radius: 60rpx;
+    border: 2rpx solid @color-border;
+    color: #888;
+    font-size: 26rpx;
+    margin-right: 16rpx;
+    margin-bottom: 20rpx;
+
+    &:active {
+      border-color: darken(@color-border, 10%);
+      color: #555;
+    }
+  }
+
+  .home-banner {
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.08);
+    image {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .filter-toolbar-wrap {
+    height: 78rpx;
+  }
+
+  .filter-toolbar {
+    position: relative;
+    .flex-v-center();
+    justify-content: space-between;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    height: 78rpx;
+    background-color: #fff;
+    z-index: 20;
+
+    .filter-itemtype {
+      flex: 1;
+      padding-top: 20rpx;
+      padding-bottom: 20rpx;
+      text-align: center;
+      color: #666;
+
+      &:first-child {
+        text-align: left;
+
+        &.selected {
+          font-weight: bold;
+          color: #333;
+        }
+      }
 
       &.selected {
-        font-weight: bold;
-        color: #333;
+        color: #27a1f8;
       }
     }
 
+    &.fixed {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      box-shadow: 0 10rpx 16rpx rgba(0,0,0,.08);
+    }
+  }
+
+  .filter-sublayer {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.07);
+  }
+
+  .filter-itemsort {
+    padding: 24rpx;
+    .flex();
+    justify-content: space-between;
+
     &.selected {
+      color: #27a1f8;
+      &:after {
+        content: "\e92e";
+        font-family: "iconfont";
+        font-size: 36rpx;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
+    &:active {
+      background-color: @color-active;
+    }
+  }
+
+  .filter-itemcatelog {
+    padding: 20rpx 20rpx 0;
+  }
+
+  .filter-catelog-hd {
+    .flex-v-center();
+    margin-bottom: 30rpx;
+
+    .icon {
+      margin-right: 10rpx;
+    }
+  }
+
+  .filter-catelog-bd {
+    margin-bottom: 40rpx;
+  }
+
+  .filter-catelog-item {
+    display: inline-block;
+    padding: 8rpx 24rpx;
+    border: 2rpx solid #ddd;
+    border-radius: 60rpx;
+    margin: 0 16rpx 16rpx 0;
+    color: #666;
+    font-size: 26rpx;
+
+    &.selected {
+      background-color: #daeaf6;
+      border-color: #daeaf6;
       color: #27a1f8;
     }
   }
-}
 
-.filter-sublayer {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.08);
-}
 
-.filter-itemsort-wrap {
-  display: none;
-}
+  .product-listview {
+    padding-bottom: 30rpx;
+  }
 
-.filter-itemsort {
-  padding: 24rpx;
-  .flex();
-  justify-content: space-between;
+  .product-panel {
+    .flex();
+    padding: 20rpx;
 
-  &.selected {
-    color: #27a1f8;
-    &:after {
-      content: "\e92e";
-      font-family: "iconfont";
-      font-size: 36rpx;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    &:active {
+      background-color: @color-active;
     }
   }
 
-  &:active {
-    background-color: @color-active;
-  }
-}
+  .product-cover {
+    width: 240rpx;
+    margin-right: 24rpx;
+    overflow: hidden;
 
-.filter-itemcatelog {
-  padding: 20rpx 20rpx 0;
-  display: none;
-}
-
-.filter-catelog-hd {
-  .flex-v-center();
-  margin-bottom: 30rpx;
-
-  .icon {
-    margin-right: 10rpx;
-  }
-}
-
-.filter-catelog-bd {
-  margin-bottom: 40rpx;
-}
-
-.filter-catelog-item {
-  display: inline-block;
-  padding: 8rpx 24rpx;
-  border: 2rpx solid #ddd;
-  border-radius: 60rpx;
-  margin: 0 16rpx 16rpx 0;
-  color: #666;
-  font-size: 26rpx;
-
-  &.selected {
-    background-color: #daeaf6;
-    border-color: #daeaf6;
-    color: #27a1f8;
-  }
-}
-
-
-.product-panel {
-  .flex();
-  padding: 20rpx;
-
-  &:active {
-    background-color: @color-active;
-  }
-}
-
-.product-cover {
-  width: 240rpx;
-  margin-right: 24rpx;
-  overflow: hidden;
- /* box-shadow: 0 0 20rpx rgba(0,0,0,.1), 10rpx 10rpx 16rpx rgba(0,0,0,0.04);*/
-
-  > image {
-    display: block;
-    width: 100%;
-  }
-}
-
-.product-panel-body {
-  flex: 1;
-  .flex();
-  flex-direction: column;
-  justify-content: space-between;
-
-  .product-caption {
-    font-size: 32rpx;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 6rpx;
-  }
-
-  .product-author {
-    color: #777;
-  }
-
-  .product-desc {
-    font-size: 26rpx;
-    color: #888;
-    margin-top: 4rpx;
-    margin-bottom: 16rpx;
-  }
-
-  .product-tags {
-    margin-top: 20rpx;
-  }
-}
-
-.product-subinfo {
-  .flex-v-center();
-
-  .product-price {
-    font-size: 32rpx;
-    color: #eb5a21;
-
-    .unit {
-      font-size: 24rpx;
-      margin-right: 6rpx;
+    > image {
+      display: block;
+      width: 100%;
     }
   }
 
-  .product-tax {
-    color: #27a1f8;
+  .product-panel-body {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+    justify-content: space-between;
+
+    .product-caption {
+      font-size: 32rpx;
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 6rpx;
+    }
+
+    .product-author {
+      color: #777;
+    }
+
+    .product-desc {
+      font-size: 26rpx;
+      color: #888;
+      margin-top: 4rpx;
+      margin-bottom: 16rpx;
+    }
+
+    .product-tags {
+      margin-top: 20rpx;
+    }
   }
 
-  .split {
-    width: 0;
-    display: inline-block;
-    border-left: 2rpx solid #ddd;
-    margin-left: 16rpx;
-    margin-right: 16rpx;
-    height: 30rpx;
+  .product-subinfo {
+    .flex-v-center();
+
+    .product-price {
+      font-size: 32rpx;
+      color: #eb5a21;
+
+      .unit {
+        font-size: 24rpx;
+        margin-right: 6rpx;
+      }
+    }
+
+    .product-tax {
+      color: #27a1f8;
+    }
+
+    .split {
+      width: 0;
+      display: inline-block;
+      border-left: 2rpx solid #ddd;
+      margin-left: 16rpx;
+      margin-right: 16rpx;
+      height: 30rpx;
+    }
   }
-}
+
+  .filter-mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+  }
 </style>
 <template>
   <view class="home-search-wrap {{isSearchShow ? 'expand' : ''}}">
@@ -283,75 +308,77 @@ page {
     <image src="../../images/home_banner.jpg" mode="widthFix"></image>
   </view>
 
-  <view class="filter-toolbar" hidden="{{isSearchShow}}">
-    <view class="filter-itemtype sort">
-     综合排序
-     <text class="iconfont icon-caret-down"></text>
-    </view>
-    <view class="filter-itemtype">
-     人气优先
-    </view>
-    <view class="filter-itemtype">
-     新书优化
-    </view>
-    <view class="filter-itemtype filter">
-     筛选
-     <text class="iconfont icon-filter"></text>
-    </view>
-
-    <view class="filter-sublayer">
-      <view class="filter-itemsort-wrap">
-        <view class="filter-itemsort">综合排序</view>
-        <view class="filter-itemsort">人气优先</view>
-        <view class="filter-itemsort selected">好评优先</view>
-        <view class="filter-itemsort">新书优先</view>
-        <view class="filter-itemsort">智能排序</view>
+  <view id="filter_bar" class="filter-toolbar-wrap" hidden="{{isSearchShow}}">
+    <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
+      <view class="filter-itemtype sort {{filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
+       综合排序
+       <text class="iconfont icon-caret-down"></text>
+      </view>
+      <view class="filter-itemtype {{filterType=='popular' ? 'selected' : ''}}" @tap="showFilter('popular')">
+       人气优先
+      </view>
+      <view class="filter-itemtype {{filterType=='new' ? 'selected' : ''}}" @tap="showFilter('new')">
+       新书优先
+      </view>
+      <view class="filter-itemtype filter {{filterType=='catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
+       筛选
+       <text class="iconfont icon-filter"></text>
       </view>
 
-      <view class="filter-itemcatelog">
-        <view class="filter-catelog-hd">
-          <iconage name="leaf" type="svg"></iconage>
-          年龄（单选）
+      <view class="filter-sublayer">
+        <view class="filter-itemsort-wrap" wx:if="{{filterType=='sort'}}">
+          <view class="filter-itemsort">综合排序</view>
+          <view class="filter-itemsort">人气优先</view>
+          <view class="filter-itemsort selected">好评优先</view>
+          <view class="filter-itemsort">新书优先</view>
+          <view class="filter-itemsort">智能排序</view>
         </view>
-        <view class="filter-catelog-bd">
-          <view class="filter-catelog-item">0-2岁</view>
-          <view class="filter-catelog-item selected">2-4岁</view>
-          <view class="filter-catelog-item">4-6岁</view>
-          <view class="filter-catelog-item">6-8岁</view>
-          <view class="filter-catelog-item">8岁以上</view>
+
+        <view class="filter-itemcatelog" wx:if="{{filterType=='catelog'}}">
+          <view class="filter-catelog-hd">
+            <iconage name="leaf" type="svg"></iconage>
+            年龄（单选）
+          </view>
+          <view class="filter-catelog-bd">
+            <view class="filter-catelog-item">0-2岁</view>
+            <view class="filter-catelog-item selected">2-4岁</view>
+            <view class="filter-catelog-item">4-6岁</view>
+            <view class="filter-catelog-item">6-8岁</view>
+            <view class="filter-catelog-item">8岁以上</view>
+          </view>
+          <view class="filter-catelog-hd">
+            <iconcate name="catelog" type="svg"></iconcate>
+            分类（可多选）
+          </view>
+          <view class="filter-catelog-bd">
+            <view class="filter-catelog-item">亲子共读</view>
+            <view class="filter-catelog-item">育儿教育</view>
+            <view class="filter-catelog-item">儿童启蒙</view>
+            <view class="filter-catelog-item">经典童话</view>
+            <view class="filter-catelog-item">育儿宝典</view>
+            <view class="filter-catelog-item">启发想象</view>
+          </view>
+          <view class="filter-catelog-hd">
+            <iconlang name="lang" type="svg"></iconlang>
+            语言（单选）
+          </view>
+          <view class="filter-catelog-bd">
+            <view class="filter-catelog-item">中文</view>
+            <view class="filter-catelog-item">英文</view>
+            <view class="filter-catelog-item">中英文</view>
+            <view class="filter-catelog-item">中文注音</view>
+          </view>
         </view>
-        <view class="filter-catelog-hd">
-          <iconcate name="catelog" type="svg"></iconcate>
-          分类（可多选）
-        </view>
-        <view class="filter-catelog-bd">
-          <view class="filter-catelog-item">亲子共读</view>
-          <view class="filter-catelog-item">育儿教育</view>
-          <view class="filter-catelog-item">儿童启蒙</view>
-          <view class="filter-catelog-item">经典童话</view>
-          <view class="filter-catelog-item">育儿宝典</view>
-          <view class="filter-catelog-item">启发想象</view>
-        </view>
-        <view class="filter-catelog-hd">
-          <iconlang name="lang" type="svg"></iconlang>
-          语言（单选）
-        </view>
-        <view class="filter-catelog-bd">
-          <view class="filter-catelog-item">中文</view>
-          <view class="filter-catelog-item">英文</view>
-          <view class="filter-catelog-item">中英文</view>
-          <view class="filter-catelog-item">中文注音</view>
-        </view>
+
       </view>
 
     </view>
-
   </view>
 
   <view class="product-listview" hidden="{{isSearchShow}}">
     <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
-        <image src="../../images/book1.png" mode="widthFix"></image>
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
       </view>
       <view class="product-panel-body">
         <view class="product-maininfo">
@@ -379,7 +406,7 @@ page {
 
     <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
-        <image src="../../images/book1.png" mode="widthFix"></image>
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
       </view>
       <view class="product-panel-body">
         <view class="product-maininfo">
@@ -407,7 +434,91 @@ page {
 
     <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
-        <image src="../../images/book1.png" mode="widthFix"></image>
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
+      </view>
+      <view class="product-panel-body">
+        <view class="product-maininfo">
+          <view class="product-caption">父与子全集(全10册)</view>
+          <view class="product-author">汤佳</view>
+          <view class="product-desc">亲子教育绘本第20名</view>
+          <raty value="4.8"></raty>
+          <view class="product-tags">
+            <tag1>科普百科</tag1>
+            <tag2>幽默风趣</tag2>
+          </view>
+        </view>
+        <view class="product-subinfo">
+          <view class="product-price">
+            <text class="unit">￥</text>
+            <text>29.9</text>
+          </view>
+          <view class="split"></view>
+          <view class="product-tax">
+            书费价 ￥5.25
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="product-panel" @tap="viewDetail">
+      <view class="product-cover">
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
+      </view>
+      <view class="product-panel-body">
+        <view class="product-maininfo">
+          <view class="product-caption">父与子全集(全10册)</view>
+          <view class="product-author">汤佳</view>
+          <view class="product-desc">亲子教育绘本第20名</view>
+          <raty value="4.8"></raty>
+          <view class="product-tags">
+            <tag1>科普百科</tag1>
+            <tag2>幽默风趣</tag2>
+          </view>
+        </view>
+        <view class="product-subinfo">
+          <view class="product-price">
+            <text class="unit">￥</text>
+            <text>29.9</text>
+          </view>
+          <view class="split"></view>
+          <view class="product-tax">
+            书费价 ￥5.25
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="product-panel" @tap="viewDetail">
+      <view class="product-cover">
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
+      </view>
+      <view class="product-panel-body">
+        <view class="product-maininfo">
+          <view class="product-caption">父与子全集(全10册)</view>
+          <view class="product-author">汤佳</view>
+          <view class="product-desc">亲子教育绘本第20名</view>
+          <raty value="4.8"></raty>
+          <view class="product-tags">
+            <tag1>科普百科</tag1>
+            <tag2>幽默风趣</tag2>
+          </view>
+        </view>
+        <view class="product-subinfo">
+          <view class="product-price">
+            <text class="unit">￥</text>
+            <text>29.9</text>
+          </view>
+          <view class="split"></view>
+          <view class="product-tax">
+            书费价 ￥5.25
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="product-panel" @tap="viewDetail">
+      <view class="product-cover">
+        <image src="../../images/book2.jpg" mode="widthFix"></image>
       </view>
       <view class="product-panel-body">
         <view class="product-maininfo">
@@ -434,6 +545,8 @@ page {
     </view>
 
   </view>
+
+  <view class="filter-mask" wx:if="{{filterType=='sort'||filterType=='catelog'}}" @tap="showFilter('none')"></view>
 </template>
 
 <script>
@@ -441,6 +554,7 @@ import wepy from 'wepy'
 import Raty from '@/components/raty'
 import Tag from '@/components/tag'
 import Icon from '@/components/icon'
+import {getNodeRef} from '../../utils/util'
 
 export default class Index extends wepy.page {
   config = {
@@ -457,7 +571,9 @@ export default class Index extends wepy.page {
   }
 
   data = {
-    isSearchShow: false
+    isSearchShow: false,
+    filterBarFixed: false,
+    filterType: 'none'
   }
 
   methods = {
@@ -469,9 +585,43 @@ export default class Index extends wepy.page {
     },
     viewDetail () {
       this.$navigate('/pages/detail/detail')
+    },
+    showFilter (type) {
+      this.filterType = type
+      if (type !== 'none' && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
+        wx.pageScrollTo({
+          scrollTop: this.filterBarTop
+        })
+      }
     }
   }
 
-  onLoad() {}
+  getFilterBarTop() {
+    getNodeRef('#filter_bar').then(res => {
+      this.filterBarTop = res.top
+    })
+  }
+
+  onPageScroll (e) {
+    let isFixed = false
+    this.lastScrollTop = e.scrollTop
+
+    if (e.scrollTop > this.filterBarTop) {
+      isFixed = true
+    } else {
+      isFixed = false
+    }
+
+    if (isFixed !== this.filterBarFixed) {
+      this.filterBarFixed = isFixed
+      this.$apply()
+    }
+  }
+
+  onLoad() {
+    setTimeout(() => {
+      this.getFilterBarTop()
+    }, 200)
+  }
 }
 </script>
