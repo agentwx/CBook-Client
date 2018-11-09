@@ -19,9 +19,7 @@
 
   .uc-userinfo {
     position: relative;
-    margin-left: 12%;
-    margin-right: 12%;
-    margin-top: 98rpx;
+    padding: 98rpx 12% 0 12%;
     color: #fff;
     .flex-v-center();
 
@@ -87,15 +85,12 @@
   }
 
   .order-entry-panel {
-    margin-top: 60rpx;
-    margin-bottom: 40rpx;
+    margin-top: 36rpx;
   }
 
-  .order-entry-head {
-    .flex();
-    justify-content: space-between;
-    padding: 0 30rpx 40rpx;
-    font-weight: bold;
+  .to-orders {
+    font-weight: normal;
+    font-size: 28rpx;
   }
 
   .order-entry-body {
@@ -135,10 +130,10 @@
       <view class="assets-name">优惠券</view>
     </view>
   </view>
-  <view class="order-entry-panel">
-    <view class="order-entry-head">
+  <panel class="order-entry-panel">
+    <view class="panel-title" slot="title">
       <text>买书订单</text>
-      <text>全部订单</text>
+      <text class="to-orders">全部订单</text>
     </view>
     <view class="order-entry-body">
       <iconitem1 icon="prepay" iconType="svg">待付款</iconitem1>
@@ -146,7 +141,7 @@
       <iconitem3 icon="precollect" iconType="svg">待收货</iconitem3>
       <iconitem4 icon="order_done" iconType="svg">已完成</iconitem4>
     </view>
-  </view>
+  </panel>
   <view class="uc-listitem">
     <addritem icon="geo">地址管理</addritem>
     <serviceitem icon="service">联系客服</serviceitem>
@@ -155,6 +150,7 @@
 
 <script>
   import wepy from 'wepy'
+  import Panel from '@/components/panel'
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
   import Listitem from '@/components/listitem'
@@ -165,6 +161,7 @@
     }
 
     components = {
+      panel: Panel,
       birthicon: Icon,
       iconitem1: Iconitem,
       iconitem2: Iconitem,

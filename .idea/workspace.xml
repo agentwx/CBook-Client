@@ -2,47 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e8f8682-8f99-4149-83f6-5b04a476c3cd" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/alert.wpy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/cart-empty-bg.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/catelog.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/lang.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/leaf.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/order_done.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/precollect.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/prepay.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/presend.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/address/new_address.wpy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/order/order.wpy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.wepycache" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/button.wpy" afterPath="$PROJECT_DIR$/src/components/button.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/buttongroup.wpy" afterPath="$PROJECT_DIR$/src/components/buttongroup.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox.wpy" afterPath="$PROJECT_DIR$/src/components/checkbox.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem.wpy" afterPath="$PROJECT_DIR$/src/components/formitem.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/icon.wpy" afterPath="$PROJECT_DIR$/src/components/icon.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/iconitem.wpy" afterPath="$PROJECT_DIR$/src/components/iconitem.wpy" />
       <change beforePath="$PROJECT_DIR$/src/components/listitem.wpy" afterPath="$PROJECT_DIR$/src/components/listitem.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal.wpy" afterPath="$PROJECT_DIR$/src/components/modal.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/notice.wpy" afterPath="$PROJECT_DIR$/src/components/notice.wpy" />
       <change beforePath="$PROJECT_DIR$/src/components/panel.wpy" afterPath="$PROJECT_DIR$/src/components/panel.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/raty.wpy" afterPath="$PROJECT_DIR$/src/components/raty.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar.wpy" afterPath="$PROJECT_DIR$/src/components/tabbar.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead.wpy" afterPath="$PROJECT_DIR$/src/components/tabhead.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/tag.wpy" afterPath="$PROJECT_DIR$/src/components/tag.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/images/lang.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/images/leaf.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/images/tags.png" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/less/iconfont.less" afterPath="$PROJECT_DIR$/src/less/iconfont.less" />
-      <change beforePath="$PROJECT_DIR$/src/less/iconfont.wxss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/less/mixin.less" afterPath="$PROJECT_DIR$/src/less/mixin.less" />
-      <change beforePath="$PROJECT_DIR$/src/less/mixin.wxss" afterPath="$PROJECT_DIR$/src/pages/address/address.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my/my.wpy" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="52" column="18" lean-forward="false" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+            <state relative-caret-position="323">
+              <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
               <folding>
                 <element signature="e#772#792#0" expanded="true" />
               </folding>
@@ -83,13 +47,23 @@
       <file leaf-file-name="address.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/address/address.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="56" column="16" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+            <state relative-caret-position="-323">
+              <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
               <folding>
                 <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#1;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#2391#2414#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="107" column="64" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,11 +83,21 @@
       <file leaf-file-name="my.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
-                <element signature="e#3129#3152#0" expanded="true" />
+                <element signature="e#3033#3056#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listitem.wpy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/listitem.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +105,7 @@
       <file leaf-file-name="iconitem.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/iconitem.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="-136">
               <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
               <folding>
                 <element signature="e#512#535#0" expanded="true" />
@@ -134,7 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>searchVal</find>
       <find>searchFocused</find>
       <find>showSearch</find>
       <find>tran</find>
@@ -164,6 +147,7 @@
       <find>quick</find>
       <find>list-item-icon</find>
       <find>className</find>
+      <find>uc-userinfo</find>
     </findStrings>
     <replaceStrings>
       <replace>showSearch</replace>
@@ -197,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/components/tabbar.wpy" />
         <option value="$PROJECT_DIR$/src/components/tabhead.wpy" />
         <option value="$PROJECT_DIR$/src/components/tag.wpy" />
-        <option value="$PROJECT_DIR$/src/components/panel.wpy" />
         <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
         <option value="$PROJECT_DIR$/src/components/alert.wpy" />
         <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
@@ -206,10 +189,11 @@
         <option value="$PROJECT_DIR$/src/components/formitem.wpy" />
         <option value="$PROJECT_DIR$/src/pages/address/new_address.wpy" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
-        <option value="$PROJECT_DIR$/src/components/listitem.wpy" />
-        <option value="$PROJECT_DIR$/src/less/iconfont.less" />
         <option value="$PROJECT_DIR$/src/components/iconitem.wpy" />
+        <option value="$PROJECT_DIR$/src/components/panel.wpy" />
         <option value="$PROJECT_DIR$/src/pages/my/my.wpy" />
+        <option value="$PROJECT_DIR$/src/less/iconfont.less" />
+        <option value="$PROJECT_DIR$/src/components/listitem.wpy" />
       </list>
     </option>
   </component>
@@ -230,7 +214,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -270,12 +254,6 @@
               <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
               <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="less" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -290,6 +268,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="my" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="order" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -343,16 +328,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541581227945</updated>
-      <workItem from="1541581238920" duration="38741000" />
+      <workItem from="1541581238920" duration="40945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38741000" />
+    <option name="totallyTimeSpent" value="40945000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18377976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -363,7 +347,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113673806" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35584843" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -515,14 +499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/panel.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -537,18 +513,6 @@
           <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#view#0;n#template#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/address/address.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="56" column="16" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#1;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2391#2414#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -608,33 +572,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#465#2184#1" expanded="false" />
-            <element signature="e#4399#4422#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/address/new_address.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding>
             <element signature="e#1035#1058#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/iconfont.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="79" column="38" lean-forward="true" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
-          <folding>
-            <element signature="e#251#8268#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -647,19 +590,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/listitem.wpy">
+    <entry file="file://$PROJECT_DIR$/src/app.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="48" column="8" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+        <state relative-caret-position="323">
+          <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
           <folding>
-            <element signature="e#1046#1069#0" expanded="false" />
+            <element signature="e#772#792#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/panel.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/iconitem.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="-136">
           <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
           <folding>
             <element signature="e#512#535#0" expanded="true" />
@@ -667,23 +618,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+    <entry file="file://$PROJECT_DIR$/src/pages/address/address.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+        <state relative-caret-position="-323">
+          <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
           <folding>
-            <element signature="e#3129#3152#0" expanded="true" />
+            <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#text#0;n#view#0;n#view#2;n#panel#1;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#2391#2414#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.wpy">
+    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="52" column="18" lean-forward="false" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+        <state relative-caret-position="254">
+          <caret line="107" column="64" lean-forward="true" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
-            <element signature="e#772#792#0" expanded="true" />
+            <element signature="e#3033#3056#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/iconfont.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding>
+            <element signature="e#251#8016#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/listitem.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>

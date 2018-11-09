@@ -28,9 +28,7 @@
 </style>
 <template>
   <view class="panel" style="{{style}}">
-    <view class="panel-title">
-      <slot name="title"></slot>
-    </view>
+    <slot name="title"></slot>
     <view class="panel-body">
       <slot></slot>
     </view>
