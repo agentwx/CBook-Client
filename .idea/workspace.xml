@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my/my.wpy" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="617" column="5" lean-forward="true" selection-start-line="617" selection-start-column="5" selection-end-line="617" selection-end-column="5" />
+            <state relative-caret-position="268">
+              <caret line="616" column="19" lean-forward="false" selection-start-line="616" selection-start-column="19" selection-end-line="616" selection-end-column="19" />
               <folding>
                 <element signature="e#14008#14031#0" expanded="true" />
               </folding>
@@ -71,6 +71,16 @@
               <folding>
                 <element signature="e#3714#3737#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my.wpy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="88" column="25" lean-forward="true" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>income-panel</find>
       <find>libicon</find>
       <find>lib-cio</find>
       <find>order-body</find>
@@ -156,6 +165,7 @@
       <find>box-sha</find>
       <find>book1.png</find>
       <find>filter-toolbar</find>
+      <find>uc-assets-panel</find>
     </findStrings>
     <replaceStrings>
       <replace>goToOrders4</replace>
@@ -175,7 +185,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
         <option value="$PROJECT_DIR$/src/components/iconitem.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/my/my.wpy" />
         <option value="$PROJECT_DIR$/src/pages/recycleorders/recycleorders.wpy" />
         <option value="$PROJECT_DIR$/src/components/steps.wpy" />
         <option value="$PROJECT_DIR$/src/pages/recycleorders/detail.wpy" />
@@ -193,6 +202,7 @@
         <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
         <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
         <option value="$PROJECT_DIR$/src/pages/home/home.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/my/my.wpy" />
       </list>
     </option>
   </component>
@@ -314,12 +324,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
-      <workItem from="1541729503250" duration="31119000" />
+      <workItem from="1541729503250" duration="31420000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31119000" />
+    <option name="totallyTimeSpent" value="31420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -377,16 +387,6 @@
         <state relative-caret-position="289">
           <caret line="44" column="21" lean-forward="true" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="146" column="95" lean-forward="false" selection-start-line="146" selection-start-column="95" selection-end-line="146" selection-end-column="95" />
-          <folding>
-            <element signature="e#3633#3656#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -636,11 +636,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="617" column="5" lean-forward="true" selection-start-line="617" selection-start-column="5" selection-end-line="617" selection-end-column="5" />
+        <state relative-caret-position="268">
+          <caret line="616" column="19" lean-forward="false" selection-start-line="616" selection-start-column="19" selection-end-line="616" selection-end-column="19" />
           <folding>
             <element signature="e#14008#14031#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="88" column="25" lean-forward="true" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

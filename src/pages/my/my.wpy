@@ -70,6 +70,7 @@
   }
 
   .uc-assets-item {
+    position: relative;
     flex: 1;
     padding: 50rpx;
     text-align: center;
@@ -81,6 +82,15 @@
 
     .assets-name {
       color: #888;
+    }
+
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 60rpx;
+      bottom: 60rpx;
+      border-left: 2rpx solid #ddd;
     }
   }
 
