@@ -17,7 +17,7 @@
       .lib-icon {
         position: relative;
         margin-top: -4rpx;
-        margin-right: 16rpx;
+        margin-right: 10rpx;
         font-size: 40rpx;
       }
     }
@@ -248,7 +248,7 @@
         <view class="cart-summary">合计￥0.00</view>
         <view class="cart-hint">非偏远地区，满69包邮</view>
       </view>
-      <view class="cart-buybtn">结算(1)</view>
+      <view class="cart-buybtn" @tap="gotoBuy">结算(1)</view>
     </view>
   </view>
 </template>
@@ -278,7 +278,11 @@
       emptycart: false
     }
 
-    methods = {}
+    methods = {
+      gotoBuy () {
+        this.$navigate('/pages/order/order')
+      }
+    }
 
     onLoad() {
     }

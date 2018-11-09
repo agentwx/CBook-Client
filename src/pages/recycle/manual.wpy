@@ -70,8 +70,8 @@
       <input type="text" class="manual-input" placeholder="请输入书箱的ISBN号" />
     </view>
     <view class="manual-action">
-      <cancelbutton type="plain">取消</cancelbutton>
-      <confirmbutton style="margin-left: 30rpx;">确认</confirmbutton>
+      <cancelbutton type="plain" @tap.user="onCancel">取消</cancelbutton>
+      <confirmbutton style="margin-left: 30rpx;" @tap.user="onConfirm">确认</confirmbutton>
     </view>
   </view>
 </template>
@@ -94,7 +94,14 @@
 
     }
 
-    methods = {}
+    methods = {
+      onCancel () {
+        this.$back()
+      },
+      onConfirm () {
+        this.$navigate('/pages/recycle/order')
+      }
+    }
 
     onLoad() {
     }

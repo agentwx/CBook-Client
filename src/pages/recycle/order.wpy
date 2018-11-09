@@ -175,10 +175,10 @@
   </view>
 
   <view class="float-action-bar">
-    <view class="float-button">
+    <view class="float-button" @tap="manualInput">
       <text>手动输入</text>
     </view>
-    <view class="float-button primary">
+    <view class="float-button primary" @tap="scanBarcode">
       <text>扫码卖书</text>
     </view>
   </view>
@@ -211,7 +211,14 @@
 
     }
 
-    methods = {}
+    methods = {
+      manualInput () {
+        this.$navigate('/pages/recycle/manual')
+      },
+      scanBarcode () {
+        wepy.scanCode()
+      }
+    }
 
     onLoad() {
     }

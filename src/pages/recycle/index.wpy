@@ -106,8 +106,8 @@
   </view>
 
   <view class="recycle-actions">
-    <scanbutton type="default" icon="scan" size="large" inline="true">扫描条形码卖书</scanbutton>
-    <maulbutton type="default" icon="pointer" size="large" inline="true">手动输入ISBN号</maulbutton>
+    <scanbutton type="default" icon="scan" size="large" inline="true" @tap.user="scanBarcode">扫描条形码卖书</scanbutton>
+    <maulbutton type="default" icon="pointer" size="large" inline="true" @tap.user="manualInput">手动输入ISBN号</maulbutton>
   </view>
 </template>
 
@@ -129,7 +129,14 @@
 
     }
 
-    methods = {}
+    methods = {
+      scanBarcode () {
+        this.$navigate('/pages/recycle/order')
+      },
+      manualInput () {
+        this.$navigate('/pages/recycle/manual')
+      }
+    }
 
     onLoad() {
     }

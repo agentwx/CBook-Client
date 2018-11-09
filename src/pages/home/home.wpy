@@ -17,17 +17,23 @@ page {
 
 .home-search {
   .flex-v-center();
-  padding: 20rpx 30rpx;
   margin: 30rpx 20rpx;
+  padding-left: 30rpx;
   background-color: #fff;
   border-radius: 60rpx;
+  overflow: hidden;
   box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
 
   .icon-find {
     font-size: 36rpx;
-    margin-right: 16rpx;
     color: #888;
   }
+}
+
+.search-input {
+  width: 100%;
+  padding: 20rpx 30rpx 20rpx 16rpx;
+  height: 80rpx;
 }
 
 .search-sublayer {
@@ -187,7 +193,7 @@ page {
   width: 240rpx;
   margin-right: 24rpx;
   overflow: hidden;
-  box-shadow: 0 0 20rpx rgba(0,0,0,.1), 10rpx 10rpx 16rpx rgba(0,0,0,0.04);
+ /* box-shadow: 0 0 20rpx rgba(0,0,0,.1), 10rpx 10rpx 16rpx rgba(0,0,0,0.04);*/
 
   > image {
     display: block;
@@ -228,7 +234,7 @@ page {
   .flex-v-center();
 
   .product-price {
-    font-size: 40rpx;
+    font-size: 32rpx;
     color: #eb5a21;
 
     .unit {
@@ -255,7 +261,7 @@ page {
   <view class="home-search-wrap {{isSearchShow ? 'expand' : ''}}">
     <view class="home-search">
       <text class="iconfont icon-find"></text>
-      <input type="text" placeholder="搜索书名、作者" @focus="showSearch" />
+      <input type="text" class="search-input" placeholder="搜索书名、作者" @focus="showSearch" />
     </view>
 
     <view class="search-sublayer" wx:if="{{isSearchShow}}" @tap="hideSearch">
@@ -343,7 +349,7 @@ page {
   </view>
 
   <view class="product-listview" hidden="{{isSearchShow}}">
-    <view class="product-panel">
+    <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
         <image src="../../images/book1.png" mode="widthFix"></image>
       </view>
@@ -371,7 +377,7 @@ page {
       </view>
     </view>
 
-    <view class="product-panel">
+    <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
         <image src="../../images/book1.png" mode="widthFix"></image>
       </view>
@@ -399,7 +405,7 @@ page {
       </view>
     </view>
 
-    <view class="product-panel">
+    <view class="product-panel" @tap="viewDetail">
       <view class="product-cover">
         <image src="../../images/book1.png" mode="widthFix"></image>
       </view>
@@ -460,6 +466,9 @@ export default class Index extends wepy.page {
     },
     hideSearch () {
       this.isSearchShow = false
+    },
+    viewDetail () {
+      this.$navigate('/pages/detail/detail')
     }
   }
 

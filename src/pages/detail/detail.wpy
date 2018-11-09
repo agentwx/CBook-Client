@@ -274,17 +274,17 @@
   </view>
 
   <view class="detail-action-bar">
-    <iconitem icon="cart" class="action-item action-cart">
+    <iconitem icon="cart" class="action-item action-cart" @tap.user="gotoCart">
       购物车
     </iconitem>
-    <view class="action-item action-buy cash-buy">
+    <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
         <text class="unit">￥</text>
         <text class="price">29.8</text>
       </view>
       <view class="buy-text">直接买</view>
     </view>
-    <view class="action-item action-buy coin-buy">
+    <view class="action-item action-buy coin-buy" @tap="gotoBuy">
       <view>
         <text class="unit">￥</text>
         <text class="price">29.8</text>
@@ -367,7 +367,14 @@
       ]
     }
 
-    methods = {}
+    methods = {
+      gotoCart () {
+        this.$switch('/pages/shopcart/shopcart')
+      },
+      gotoBuy () {
+        this.$navigate('/pages/order/order')
+      }
+    }
 
     onLoad() {
     }

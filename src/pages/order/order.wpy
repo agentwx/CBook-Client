@@ -91,13 +91,33 @@
       .g-darken-gradient(60%);
     }
   }
+
+  .modal-container {
+    .flex-v-center();
+    flex-direction: column;
+
+    .md-title {
+      font-size: 36rpx;
+      margin-bottom: 10rpx;
+      margin-top: 16rpx;
+    }
+
+    .md-subtitle {
+      color: #888;
+      margin-bottom: 20rpx;
+    }
+  }
+
+  .panel-title {
+    margin-bottom: 0;
+  }
 </style>
 <template>
 
   <alert showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</alert>
 
-  <view class="address-selection">
-    <geoicon name="geo" size="middle" />
+  <view class="address-selection" @tap="selectAddress">
+    <geoicon name="geo" color="#777" size="middle" />
     <view class="addr-slbd">
       <view class="addr-sltitle">
         <text class="addr-username">小溪</text>
@@ -116,7 +136,7 @@
   </listitem>
 
   <panel>
-    <view slot="title">图书列表</view>
+    <view class="panel-title" slot="title">图书列表</view>
     <view class="order-body">
       <view class="order-book">
         <text>父与子全集（全10册）</text>
@@ -133,9 +153,21 @@
     </view>
   </panel>
 
-  <view class="order-action-button">
+  <view class="order-action-button" @tap="submitOrder">
     提交订单
   </view>
+
+  <modal :visible.sync="modalVisible">
+    <view class="modal-container">
+      <chkicon name="check" color="#08affe" size="large"></chkicon>
+      <view class="md-title">提交成功</view>
+      <view class="md-subtitle">请准备好你的书箱，交给快递员！</view>
+    </view>
+    <view slot="footer">
+      <cancelbutton bordered="true" type="plain" size="small" @tap.user="closeModal">取消</cancelbutton>
+      <confirmbutton size="small" @tap.user="confirmOrder">确定</confirmbutton>
+    </view>
+  </modal>
 
 </template>
 
@@ -145,6 +177,8 @@
   import Icon from '@/components/icon'
   import Listitem from '@/components/listitem'
   import Panel from '@/components/panel'
+  import Modal from '@/components/modal'
+  import Button from '@/components/button'
 
   export default class Index extends wepy.page {
     config = {
@@ -155,15 +189,33 @@
       alert: Alert,
       geoicon: Icon,
       arrowicon: Icon,
+      chkicon: Icon,
       listitem: Listitem,
-      panel: Panel
+      panel: Panel,
+      modal: Modal,
+      cancelbutton: Button,
+      confirmbutton: Button
     }
 
     data = {
-
+      modalVisible: false
     }
 
-    methods = {}
+    methods = {
+      closeModal () {
+        this.modalVisible = false
+      },
+      selectAddress () {
+        this.$navigate('/pages/address/address')
+      },
+      submitOrder () {
+        this.modalVisible = true
+      },
+      confirmOrder () {
+        this.modalVisible = false
+        this.$navigate('/pages/orderlist/orderlist')
+      }
+    }
 
     onLoad() {
     }

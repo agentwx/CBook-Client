@@ -49,19 +49,19 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/recycle/manual',
-      'pages/recycle/order',
+      'pages/home/home',
       'pages/recycle/index',
-      'pages/recycleorders/detail',
-      'pages/recycleorders/list',
-      'pages/my/my',
-      'pages/orderlist/orderlist',
-      'pages/address/new_address',
-      'pages/address/address',
-      'pages/order/order',
+      'pages/recycle/order',
+      'pages/recycle/manual',
       'pages/detail/detail',
       'pages/shopcart/shopcart',
-      'pages/home/home'
+      'pages/order/order',
+      'pages/orderlist/orderlist',
+      'pages/recycleorders/list',
+      'pages/recycleorders/detail',
+      'pages/my/my',
+      'pages/address/address',
+      'pages/address/new_address'
     ],
     window: {
       navigationBarBackgroundColor: '#fff',
@@ -77,18 +77,30 @@ export default class extends wepy.app {
       uploadFile: 60000,
       downloadFile: 60000
     },
-    debug: true
-    /*tabBar: {
-      color: '#777',
-      selectedColor: '#01458e',
+    debug: true,
+    tabBar: {
+      color: '#666',
+      selectedColor: '#01aafa',
       borderStyle: '#ddd',
       backgroundColor: '#fff',
       list: [
         {
-          text: '主页',
+          text: '首页',
           pagePath: 'pages/home/home',
           iconPath: 'images/home.png',
           selectedIconPath: 'images/home-selected.png'
+        },
+        {
+          text: '回收书',
+          pagePath: 'pages/recycle/index',
+          iconPath: 'images/recycle.png',
+          selectedIconPath: 'images/recycle-selected.png'
+        },
+        {
+          text: '购物车',
+          pagePath: 'pages/shopcart/shopcart',
+          iconPath: 'images/cart.png',
+          selectedIconPath: 'images/cart-selected.png'
         },
         {
           text: '我的',
@@ -97,7 +109,7 @@ export default class extends wepy.app {
           selectedIconPath: 'images/my-selected.png'
         }
       ]
-    }*/
+    }
   }
 
   globalData = {
