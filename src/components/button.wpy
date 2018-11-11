@@ -140,10 +140,10 @@
 
     &.plain {
       background-color: transparent;
-      border: 2rpx solid @color-disabled;
+      border: 2rpx solid @color-border;
 
       &:active {
-        border-color: darken(@color-disabled, 10%);
+        border-color: darken(@color-border, 10%);
       }
     }
 
