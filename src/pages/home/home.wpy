@@ -256,7 +256,7 @@
     .product-desc {
       font-size: 26rpx;
       color: #888;
-      margin-top: 4rpx;
+      margin-top: 6rpx;
       margin-bottom: 16rpx;
     }
 
