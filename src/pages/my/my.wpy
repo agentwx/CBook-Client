@@ -165,6 +165,7 @@
   </panel>
 
   <view class="uc-listitem">
+    <orderitem icon="order" @tap.user="goToRecycleOrders">回收订单</orderitem>
     <addritem icon="geo" @tap.user="goToAddress">地址管理</addritem>
     <serviceitem icon="service" @tap.user="showServieModal">联系客服</serviceitem>
   </view>
@@ -198,6 +199,7 @@
       iconitem2: Iconitem,
       iconitem3: Iconitem,
       iconitem4: Iconitem,
+      orderitem: Listitem,
       addritem: Listitem,
       serviceitem: Listitem,
       servicemodal: Modal,
@@ -211,6 +213,9 @@
     methods = {
       goToOrders (index) {
         this.toOrders(index)
+      },
+      goToRecycleOrders () {
+        this.$navigate('/pages/recycle/list')
       },
       goToAddress () {
         this.$navigate('/pages/address/address')
