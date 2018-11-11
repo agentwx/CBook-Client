@@ -16,6 +16,7 @@
   .iconfont {
     font-size: 32rpx;
     line-height: 1;
+    font-weight: normal;
   }
 
   page, view, text, scroll-view, input, textarea, button, form {

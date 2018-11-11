@@ -225,7 +225,8 @@
   .product-cover {
     width: 240rpx;
     height: 294rpx;
-    margin-right: 24rpx;
+    margin-left: 10rpx;
+    margin-right: 30rpx;
     overflow: hidden;
 
     > image {
@@ -403,6 +404,8 @@
           <raty value="4.8"></raty>
           <view class="product-tags">
             <tag1>科普百科</tag1>
+            <tag2>幽默风趣</tag2>
+            <tag2>幽默风趣</tag2>
             <tag2>幽默风趣</tag2>
           </view>
         </view>
