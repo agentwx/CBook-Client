@@ -98,6 +98,7 @@
 
   .order-entry-panel {
     margin-top: 36rpx;
+    margin-bottom: 0;
   }
 
   .to-orders {
