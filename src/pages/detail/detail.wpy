@@ -80,6 +80,7 @@
       display: inline-flex;
       align-items: center;
       margin-right: 30rpx;
+      color: #888;
 
       > .icon {
         margin-right: 10rpx;
@@ -274,7 +275,7 @@
   </view>
 
   <view class="detail-action-bar">
-    <iconitem icon="cart" class="action-item action-cart" @tap.user="gotoCart">
+    <iconitem icon="cart" iconSize="middle" class="action-item action-cart" @tap.user="gotoCart">
       购物车
     </iconitem>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">

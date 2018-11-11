@@ -100,17 +100,22 @@
 
     .filter-itemtype {
       flex: 1;
-      .flex-center();
       padding-top: 20rpx;
       padding-bottom: 20rpx;
       color: #666;
+      text-align: center;
 
       &.selected {
         font-weight: bold;
         color: #333;
       }
 
+      &.sort {
+        text-align: left;
+      }
+
       &.filter {
+        text-align: right;
         &.selected {
           font-weight: normal;
           color: #27a1f8;

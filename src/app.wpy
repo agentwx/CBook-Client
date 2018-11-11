@@ -82,7 +82,7 @@ export default class extends wepy.app {
       uploadFile: 60000,
       downloadFile: 60000
     },
-    debug: true,
+    debug: false,
     tabBar: {
       color: '#666',
       selectedColor: '#01aafa',
