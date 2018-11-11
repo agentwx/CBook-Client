@@ -53,8 +53,8 @@
       <file leaf-file-name="button.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/button.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="151" column="27" lean-forward="true" selection-start-line="151" selection-start-column="27" selection-end-line="151" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -63,11 +63,9 @@
       <file leaf-file-name="iconfont.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/less/iconfont.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-              <folding>
-                <element signature="e#251#8756#1" expanded="true" />
-              </folding>
+            <state relative-caret-position="138">
+              <caret line="4" column="6276" lean-forward="true" selection-start-line="4" selection-start-column="6276" selection-end-line="4" selection-end-column="6276" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addr-action-item</find>
       <find>addr-left</find>
       <find>books-scrollview</find>
       <find>order-body</find>
@@ -158,6 +155,7 @@
       <find>f0f0f0</find>
       <find>book-title</find>
       <find>product-desc</find>
+      <find>xiala</find>
     </findStrings>
     <replaceStrings>
       <replace>goToOrders4</replace>
@@ -321,12 +319,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
-      <workItem from="1541729503250" duration="54042000" />
+      <workItem from="1541729503250" duration="54659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54042000" />
+    <option name="totallyTimeSpent" value="54659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -726,19 +724,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/button.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="151" column="27" lean-forward="true" selection-start-line="151" selection-start-column="27" selection-end-line="151" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/less/iconfont.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="e#251#8756#1" expanded="true" />
-          </folding>
+        <state relative-caret-position="138">
+          <caret line="4" column="6276" lean-forward="true" selection-start-line="4" selection-start-column="6276" selection-end-line="4" selection-end-column="6276" />
+          <folding />
         </state>
       </provider>
     </entry>
