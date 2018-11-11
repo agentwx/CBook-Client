@@ -4,7 +4,7 @@
   .alert-wrap {
     .flex-v-center();
     justify-content: space-between;
-    padding: 20rpx 24rpx;
+    padding: 16rpx 24rpx;
     background-color: #fff7d6;
     color: #ff9d33;
     font-size: 26rpx;

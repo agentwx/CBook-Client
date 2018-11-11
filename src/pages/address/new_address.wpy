@@ -10,8 +10,7 @@
   }
 
   .address-defset {
-    margin-top: 30rpx;
-    margin-left: 20rpx;
+    padding: 30rpx 20rpx;
     .flex-v-center();
 
     text {
@@ -20,7 +19,7 @@
   }
 
   .address-new-button {
-    margin-top: 40rpx;
+    margin-top: 10rpx;
     margin-left: 6%;
     margin-right: 6%;
   }

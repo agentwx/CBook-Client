@@ -13,6 +13,11 @@
     vertical-align: top;
   }
 
+  .iconfont {
+    font-size: 32rpx;
+    line-height: 1;
+  }
+
   page, view, text, scroll-view, input, textarea, button, form {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -50,15 +55,15 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/home/home',
+      'pages/detail/detail',
       'pages/recycle/index',
       'pages/recycle/order',
       'pages/recycle/manual',
-      'pages/detail/detail',
+      'pages/recycle/list',
+      'pages/recycle/detail',
       'pages/shopcart/shopcart',
       'pages/order/order',
       'pages/orderlist/orderlist',
-      'pages/recycleorders/list',
-      'pages/recycleorders/detail',
       'pages/my/my',
       'pages/address/address',
       'pages/address/new_address'

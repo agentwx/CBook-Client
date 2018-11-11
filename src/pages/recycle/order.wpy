@@ -16,11 +16,13 @@
 
   .order-cover {
     width: 160rpx;
+    height: 196rpx;
     margin-right: 30rpx;
     overflow: hidden;
 
     image {
       width: 100%;
+      height: 100%;
     }
   }
 
@@ -140,7 +142,7 @@
     <panel>
       <view class="order-body">
         <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
+          <image src="../../images/book2.jpg"></image>
         </view>
         <view class="order-main">
           <view class="order-pd-hd">
@@ -158,7 +160,7 @@
     <panel>
       <view class="order-body">
         <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
+          <image src="../../images/book2.jpg"></image>
         </view>
         <view class="order-main">
           <view class="order-pd-hd">
@@ -188,7 +190,7 @@
       <view class="income">预计收入￥5.25</view>
       <view class="hint">请继续扫描哦~</view>
     </view>
-    <view class="action-button">下一步(1)</view>
+    <view class="action-button" @tap="nextStep">下一步(1)</view>
   </view>
 </template>
 
@@ -217,6 +219,9 @@
       },
       scanBarcode () {
         wepy.scanCode()
+      },
+      nextStep () {
+        this.$navigate('/pages/recycle/list')
       }
     }
 

@@ -1,4 +1,5 @@
-@gcolor: #08affe; //#08b0fe;
+@gcolor: #08affe;
+@lgcolor: #09c8fe;
 @color-success: #5cb85c;
 @color-info: #5bc0de;
 @color-warning: #f0ad4e;
@@ -47,10 +48,10 @@
   margin-right: auto;
 }
 
-.g-gradient (@offset: 40%) {
-  background-image: -webkit-linear-gradient(-45deg, lighten(@gcolor, 30%), @gcolor @offset);
+.g-gradient (@offset: 50%) {
+  background-image: -webkit-linear-gradient(left, @lgcolor, @gcolor @offset);
 }
 
-.g-darken-gradient (@offset: 40%) {
-  background-image: -webkit-linear-gradient(-45deg, lighten(@gcolor, 10%), darken(@gcolor, 10%) @offset);
+.g-darken-gradient (@offset: 50%) {
+  background-image: -webkit-linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
 }

@@ -24,8 +24,8 @@
     }
 
     .list-arrow {
-      font-size: 32rpx;
-      color: #777;
+      font-size: 36rpx;
+      color: #888;
     }
   }
 </style>

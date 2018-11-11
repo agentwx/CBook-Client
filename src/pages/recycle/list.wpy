@@ -23,6 +23,11 @@
     }
   }
 
+  .books-scrollview {
+    width: 100%;
+    overflow: hidden;
+  }
+
   .order-body {
     .flex();
     flex-wrap: nowrap;
@@ -30,12 +35,15 @@
   }
 
   .order-cover {
-    width: 160rpx;
+    width: 150rpx;
+    height: 184rpx;
     margin-right: 30rpx;
     overflow: hidden;
+    flex: none;
 
     image {
       width: 100%;
+      height: 100%;
     }
   }
 
@@ -52,6 +60,15 @@
     }
   }
 
+  .empty-layer-wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+  }
+
   .empty-layer {
     position: absolute;
     left: 50%;
@@ -62,6 +79,7 @@
 
     image {
       width: 100%;
+      height: 390rpx;
     }
 
     .empty-action {
@@ -86,33 +104,35 @@
         <text class="order-num">单号：SH0221XXSD120</text>
         <text class="order-status">已关闭</text>
       </view>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
+      <scroll-view class="books-scrollview" scroll-x="true">
+        <view class="order-body">
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
         </view>
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
-        </view>
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
-        </view>
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
-        </view>
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
-        </view>
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
-        </view>
-      </view>
+      </scroll-view>
       <view class="panel-footer order-footer" slot="footer">
         <view></view>
         <view class="order-subinfo">
           <view class="order-sumup">
             总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
           </view>
-          <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
+          <paybutton inline="true" bordered="true" size="small" @tap.user="viewDetail">查看详情</paybutton>
         </view>
       </view>
     </panel>
@@ -122,28 +142,32 @@
         <text class="order-num">单号：SH0221XXSD120</text>
         <text class="order-status">已关闭</text>
       </view>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg" mode="widthFix"></image>
+      <scroll-view class="books-scrollview" scroll-x="true">
+        <view class="order-body">
+          <view class="order-cover">
+            <image src="../../images/book2.jpg"></image>
+          </view>
         </view>
-      </view>
+      </scroll-view>
       <view class="panel-footer order-footer" slot="footer">
         <view></view>
         <view class="order-subinfo">
           <view class="order-sumup">
             总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
           </view>
-          <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
+          <paybutton inline="true" bordered="true" size="small" @tap.user="viewDetail">查看详情</paybutton>
         </view>
       </view>
     </panel>
 
   </view>
 
-  <view class="empty-layer" wx:if="{{orders.length === 0}}">
-    <image src="../../images/orders_empty_bg.png" mode="widthFix"></image>
-    <view class="empty-action">
-      <view class="empty-text">暂无订单~</view>
+  <view class="empty-layer-wrap" wx:if="{{orders.length === 0}}">
+    <view class="empty-layer">
+      <image src="../../images/orders_empty_bg.png"></image>
+      <view class="empty-action">
+        <view class="empty-text">暂无订单~</view>
+      </view>
     </view>
   </view>
 </template>
@@ -167,7 +191,11 @@
       orders: [1]
     }
 
-    methods = {}
+    methods = {
+      viewDetail () {
+        this.$navigate('/pages/recycle/detail')
+      }
+    }
 
     onLoad() {
     }

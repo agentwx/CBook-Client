@@ -33,13 +33,13 @@
     }
 
     &.normal {
-      width: 40rpx;
-      height: 40rpx;
+      width: 36rpx;
+      height: 36rpx;
     }
 
     &.small {
-      width: 24rpx;
-      height: 24rpx;
+      width: 28rpx;
+      height: 28rpx;
 
       &:before {
         border-width: 0 0 2rpx 2rpx;

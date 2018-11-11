@@ -37,7 +37,6 @@
       width: 100%;
       padding: 12rpx 24rpx;
       font-size: 28rpx;
-      display: block;
       box-sizing: border-box;
       flex: 1;
 
@@ -136,7 +135,10 @@
         default: -1,
         coerce: v => +v
       },
-      placeholder: String,
+      placeholder: {
+        type: String,
+        default: ''
+      },
       bordered: {
         type: [Boolean, String],
         default: true,

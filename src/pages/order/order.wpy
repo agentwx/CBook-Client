@@ -125,7 +125,7 @@
       </view>
       <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
     </view>
-    <arrowicon name="arrow-right-o" size="small" color="#777" />
+    <arrowicon name="arrow-right-o" color="#888" style="font-size: 36rpx;" />
   </view>
 
   <listitem class="timepicker">

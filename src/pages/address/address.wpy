@@ -37,7 +37,9 @@
   }
 
   .addr-left {
-    padding: 0 16rpx;
+    padding: 24rpx 16rpx;
+    margin-top: -24rpx;
+    margin-bottom: -24rpx;
     margin-left: -16rpx;
     .flex-v-center();
   }
@@ -48,7 +50,9 @@
   }
 
   .addr-action-item {
-    padding: 0 16rpx;
+    padding: 24rpx 16rpx;
+    margin-top: -24rpx;
+    margin-bottom: -24rpx;
     margin-left: 24rpx;
 
     .iconfont {

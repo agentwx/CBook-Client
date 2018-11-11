@@ -24,8 +24,8 @@
     position: relative;
     width: 80%;
     max-width: 640rpx;
-    -webkit-animation: zoom-out .2s ease;
-    animation: zoom-out .2s ease;
+    -webkit-animation: zoom-out .2s ease-out;
+    animation: zoom-out .2s ease-out;
 
     &.hasTitle {
       .modal-content {
@@ -78,13 +78,13 @@
   }
 
   @-webkit-keyframes zoom-out {
-    from {
-      opacity: .4;
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
+    0% {
+      opacity: .3;
+      -webkit-transform: translateY(20%) scale(1.1);
+      transform: translateY(20%) scale(1.1);
     }
 
-    to {
+    100% {
       opacity: 1;
       -webkit-transform: none;
       transform: none;
@@ -92,13 +92,13 @@
   }
 
   @keyframes zoom-out {
-    from {
-      opacity: .4;
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
+    0% {
+      opacity: .3;
+      -webkit-transform: translateY(20%) scale(1.1);
+      transform: translateY(20%) scale(1.1);
     }
 
-    to {
+    100% {
       opacity: 1;
       -webkit-transform: none;
       transform: none;

@@ -14,6 +14,7 @@
 
     image {
       width: 100%;
+      height: 327rpx;
     }
   }
 
@@ -32,6 +33,7 @@
 
       image {
         width: 100%;
+        height: 100%;
       }
     }
 
@@ -121,11 +123,12 @@
 </style>
 <template>
   <view class="ucbg-wrap">
-    <image src="../../images/ucenter_top_bg.jpg" mode="widthFix"></image>
+    <image src="../../images/ucenter_top_bg.jpg"></image>
   </view>
+
   <view class="uc-userinfo">
     <view class="uc-avatar">
-      <image src="../../images/user_avatar.jpg" mode="widthFix"></image>
+      <image src="../../images/user_avatar.jpg"></image>
     </view>
     <view class="uc-userinfo-main">
       <view class="uc-username">我的名字</view>
@@ -136,6 +139,7 @@
       <text>出生日期</text>
     </view>
   </view>
+
   <view class="uc-assets-panel">
     <view class="uc-assets-item">
       <view class="assets-value">6</view>
@@ -146,6 +150,7 @@
       <view class="assets-name">优惠券</view>
     </view>
   </view>
+
   <panel class="order-entry-panel">
     <view class="panel-title" slot="title">
       <text>买书订单</text>
@@ -158,6 +163,7 @@
       <iconitem4 icon="order_done" iconType="svg" tabIndex="4" @tap.user="goToOrders">已完成</iconitem4>
     </view>
   </panel>
+
   <view class="uc-listitem">
     <addritem icon="geo" @tap.user="goToAddress">地址管理</addritem>
     <serviceitem icon="service" @tap.user="showServieModal">联系客服</serviceitem>
