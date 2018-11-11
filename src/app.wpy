@@ -73,7 +73,7 @@ export default class extends wepy.app {
       navigationBarBackgroundColor: '#fff',
       navigationBarTextStyle: 'black',
       navigationBarTitleText: '星月童书',
-      backgroundColor: '#f0f0f0',
+      backgroundColor: '#f7f7f7',
       backgroundTextStyle: 'dark',
       enablePullDownRefresh: false
     },
