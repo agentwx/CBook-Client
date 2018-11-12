@@ -345,6 +345,7 @@
   import Raty from '@/components/raty'
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
+  import fetch from '../../service/fetch'
 
   export default class Index extends wepy.page {
     config = {
@@ -377,7 +378,14 @@
       }
     }
 
+    loadData (isbn) {
+      fetch.post('/bookinfo/detail', {isbn}).then(res => {
+        console.log(res)
+      })
+    }
+
     onLoad() {
+      this.loadData('9787221078803')
     }
   }
 </script>

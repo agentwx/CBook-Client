@@ -2,7 +2,7 @@ import wepy from 'wepy'
 import {toast} from '../utils/util'
 import {session} from '../service/auth'
 
-export const serverUrl = 'http://testsrv.kurite.cn/qs'
+export const serverUrl = 'http://192.168.3.118:9001'
 
 let requestCount = 0
 let errorMsg = ''
@@ -20,24 +20,23 @@ let fetchApi = (url, params = {}, useToken = true, showLoading = true) => {
       })
     }
 
-    let defHeaders = {'content-type': 'application/json'}
-    let sessionInfo = session.get()
+    let defHeaders = {'Content-Type': 'application/x-www-form-urlencoded'}
 
-    if (useToken && sessionInfo && sessionInfo.token) {
+    if (useToken) {
       defHeaders = Object.assign(defHeaders, {
-        'access-token': sessionInfo.token
+        token: 'c52c83dbd4924d139565d5ed226901f7'
       })
     }
 
     wepy.request({
-      url: /^https?:\/\//.test(url) ? url : `${serverUrl}api/${url}`,
-      data: Object.assign({}, params.data),
+      url: /^https?:\/\//.test(url) ? url : `${serverUrl}${url}`,
+      data: JSON.stringify(Object.assign({}, params.data)),
       method: params.method || 'GET',
       header: Object.assign(defHeaders, params.header)
     })
     .then(res => {
       if (res.statusCode === 200) {
-        if (res.data.status === 'ok') {
+        if (res.data.code === 0) {
           resolve(res.data)
         } else {
           reject(errorMsg = res.data.msg)
@@ -56,7 +55,7 @@ let fetchApi = (url, params = {}, useToken = true, showLoading = true) => {
         } else {
           showLoading && wx.hideLoading()
         }
-        wx.stopPullDownRefresh()
+        //wx.stopPullDownRefresh()
       }
     })
   })

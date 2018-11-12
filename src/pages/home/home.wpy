@@ -568,7 +568,8 @@ import wepy from 'wepy'
 import Raty from '@/components/raty'
 import Tag from '@/components/tag'
 import Icon from '@/components/icon'
-import {getNodeRef} from '../../utils/util'
+import { getNodeRef } from '../../utils/util'
+import fetch from '../../service/fetch'
 
 export default class Index extends wepy.page {
   config = {
@@ -610,12 +611,6 @@ export default class Index extends wepy.page {
     }
   }
 
-  getFilterBarTop() {
-    getNodeRef('#filter_bar').then(res => {
-      this.filterBarTop = res.top
-    })
-  }
-
   onPageScroll (e) {
     let isFixed = false
     this.lastScrollTop = e.scrollTop
@@ -632,10 +627,27 @@ export default class Index extends wepy.page {
     }
   }
 
+  getFilterBarTop() {
+    getNodeRef('#filter_bar').then(res => {
+      this.filterBarTop = res.top
+    })
+  }
+
+  loadProducts (params = {filter: [], sort: []}) {
+    params = {
+      offset: this.pageNum,
+      limit: 15,
+      ...params
+    }
+    fetch.post('/sales/list', params).then(res => {
+      console.log(res)
+    })
+  }
+
   onLoad() {
-    setTimeout(() => {
-      this.getFilterBarTop()
-    }, 200)
+    this.pageNum = 1
+    this.getFilterBarTop()
+    this.loadProducts()
   }
 }
 </script>
