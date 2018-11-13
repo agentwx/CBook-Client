@@ -1,15 +1,16 @@
 function formatDate(source, format) {
+  if (!source) return ''
   source = !(source instanceof Date)
-    ? new Date(source)
+    ? new Date(source.replace(/\-/g, '/'))
     : source
   const o = {
-    'M+': source.getMonth() + 1, // 月份
-    'd+': source.getDate(), // 日
-    'H+': source.getHours(), // 小时
-    'm+': source.getMinutes(), // 分
-    's+': source.getSeconds(), // 秒
-    'q+': Math.floor((source.getMonth() + 3) / 3), // 季度
-    'f+': source.getMilliseconds() // 毫秒
+    'M+': source.getMonth() + 1,
+    'd+': source.getDate(),
+    'H+': source.getHours(),
+    'm+': source.getMinutes(),
+    's+': source.getSeconds(),
+    'q+': Math.floor((source.getMonth() + 3) / 3),
+    'f+': source.getMilliseconds()
   }
   if (/(y+)/.test(format)) {
     format = format.replace(RegExp.$1, (source.getFullYear() + '').substr(4 - RegExp.$1.length))

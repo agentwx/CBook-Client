@@ -11,11 +11,12 @@
   }
 
   .detail-swiper {
-    height: 400rpx;
+    height: 500rpx;
   }
 
   .swiper-item {
     .flex-center();
+
     > image {
       width: 100%;
       max-width: 100%;
@@ -158,13 +159,27 @@
   .pdintro-title {
     text-align: center;
     font-size: 32rpx;
-    margin-bottom: 30rpx;
+    padding-bottom: 30rpx;
+    margin: 0 20rpx 30rpx;
+    border-bottom: 2rpx solid @color-underline;
+  }
+
+  .pdintro-subtitle {
+    margin: 0 30rpx 16rpx;
   }
 
   .pdintro-body {
+    margin: 0 20rpx 50rpx;
+
     image {
       width: 100%;
     }
+  }
+
+  .pdintro-content {
+    font-size: 26rpx;
+    line-height: 1.5;
+    text-indent: 2em;
   }
 
 
@@ -228,10 +243,10 @@
 <template>
   <view class="detail-swiper-wrap">
     <swiper class="detail-swiper" autoplay="true" interval="5000" duration="300" indicatorDots="true" circular="true"
-            wx:if="{{product.picList.length>0}}">
-      <repeat for="{{product.picList}}">
+            wx:if="{{product.imags.length>0}}">
+      <repeat for="{{product.imags}}">
         <swiper-item class="swiper-item">
-          <image src="{{item.source}}" mode="aspectFit"></image>
+          <image src="{{item}}" mode="widthFix" lazyload="true"></image>
         </swiper-item>
       </repeat>
     </swiper>
@@ -296,16 +311,23 @@
 
   <view class="detail-pdintro-wrap">
     <view class="pdintro-title">商品详情</view>
+    <view class="pdintro-subtitle">【内容简介】</view>
+    <view class="pdintro-body">
+      <view class="pdintro-content">
+        {{product.contentBrief}}
+      </view>
+    </view>
+    <view class="pdintro-subtitle">【作者简介】</view>
+    <view class="pdintro-body">
+      <view class="pdintro-content">
+        {{product.authorBrief}}
+      </view>
+    </view>
+    <view class="pdintro-subtitle">【书摘插画】</view>
     <view class="pdintro-body">
       <repeat for="{{product.imags}}">
         <image src="{{item}}" mode="widthFix" lazyload="true"></image>
       </repeat>
-    </view>
-    <view class="pdintro-title">商品简介</view>
-    <view class="pdintro-body">
-      <view>
-        {{product.content}}
-      </view>
     </view>
   </view>
 
@@ -319,7 +341,6 @@
               <image src="{{item.smallIconDetail}}" lazyload="true"></image>
             </view>
             <view class="suggest-pdname">{{item.name}}</view>
-            <view class="suggest-pdprice"><text>￥</text>49.9</view>
           </view>
         </repeat>
       </view>
@@ -347,17 +368,7 @@
     }
 
     data = {
-      product: {
-        doubanScore: 1,
-        picList: [
-          {
-            source: '../../images/book2.jpg'
-          },
-          {
-            source: '../../images/book2.jpg'
-          }
-        ]
-      }
+      product: {}
     }
 
     computed = {
@@ -377,7 +388,8 @@
 
     async loadData (isbn) {
       let res = await fetch.post('/bookinfo/detail', {isbn})
-      console.log(res)
+      this.product = {...this.product, ...res.datas}
+      this.$apply()
     }
 
     onLoad(params) {

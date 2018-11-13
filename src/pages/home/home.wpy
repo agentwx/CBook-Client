@@ -30,42 +30,6 @@
     height: 80rpx;
   }
 
-  .search-sublayer {
-    height: 87.6%;
-    padding: 20rpx;
-
-    .ssbl-hd {
-      .flex-v-center();
-      justify-content: space-between;
-      margin-bottom: 20rpx;
-    }
-
-    .ssbl-title {
-      font-weight: bold;
-    }
-
-    .ssbl-icon {
-      padding: 8rpx;
-      font-size: 40rpx;
-    }
-  }
-
-  .ssr-item {
-    display: inline-block;
-    padding: 8rpx 20rpx;
-    border-radius: 60rpx;
-    border: 2rpx solid @color-border;
-    color: #888;
-    font-size: 26rpx;
-    margin-right: 16rpx;
-    margin-bottom: 20rpx;
-
-    &:active {
-      border-color: darken(@color-border, 10%);
-      color: #555;
-    }
-  }
-
   .home-banner {
     position: relative;
     height: 236rpx;
@@ -179,7 +143,7 @@
     }
   }
 
-  .filter-itemcatelog {
+  .filter-catelog-item {
     padding: 20rpx 20rpx 0;
   }
 
@@ -294,31 +258,17 @@
 </style>
 <template>
   <view class="home-search-wrap">
-    <view class="home-search">
+    <view class="home-search" @tap="toSearch">
       <text class="iconfont icon-find"></text>
-      <input type="text" class="search-input" placeholder="搜索书名、作者" @focus="showSearch" />
+      <input type="text" class="search-input" placeholder="搜索书名、作者" disabled />
     </view>
   </view>
 
-  <view class="search-sublayer" wx:if="{{isSearchShow}}" @tap="hideSearch">
-    <view class="ssbl-hd">
-      <text class="ssbl-title">历史搜索</text>
-      <text class="ssbl-icon iconfont icon-trash"></text>
-    </view>
-    <view class="search-history">
-      <view class="ssr-item">小猪佩奇</view>
-      <view class="ssr-item">情绪管理</view>
-      <view class="ssr-item">娃娃队</view>
-      <view class="ssr-item">8岁以上</view>
-      <view class="ssr-item">6-8岁</view>
-    </view>
-  </view>
-
-  <view class="home-banner" hidden="{{isSearchShow}}">
+  <view class="home-banner">
     <image src="../../images/home_banner.jpg"></image>
   </view>
 
-  <view id="filter_bar" class="filter-toolbar-wrap" hidden="{{isSearchShow}}" @touchmove.stop="true">
+  <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="true">
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
       <view class="filter-itemtype sort {{filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
        综合排序
@@ -344,7 +294,7 @@
           <view class="filter-itemsort">智能排序</view>
         </view>
 
-        <view class="filter-itemcatelog" wx:if="{{filterType=='catelog'}}">
+        <view class="filter-catelog-item" wx:if="{{filterType=='catelog'}}">
           <view class="filter-catelog-hd">
             <iconage name="leaf" type="svg"></iconage>
             年龄（单选）
@@ -391,7 +341,7 @@
 
   </view>
 
-  <view class="product-listview" hidden="{{isSearchShow}}">
+  <view class="product-listview">
     <repeat for="{{products}}">
       <view class="product-panel" @tap="viewDetail({{item}})">
         <view class="product-cover">
@@ -415,9 +365,7 @@
               <text>{{item.costPrice}}</text>
             </view>
             <view class="split"></view>
-            <view class="product-tax">
-              书费价 ￥{{item.price}}
-            </view>
+            <view class="product-tax">书费价 ￥{{item.price}}</view>
           </view>
         </view>
       </view>
@@ -447,18 +395,14 @@ export default class Index extends wepy.page {
   }
 
   data = {
-    isSearchShow: false,
     filterBarFixed: false,
     filterType: 'none',
     products: []
   }
 
   methods = {
-    showSearch () {
-      this.isSearchShow = true
-    },
-    hideSearch () {
-      this.isSearchShow = false
+    toSearch () {
+      this.$navigate('/pages/search/search')
     },
     viewDetail (item) {
       this.$navigate('/pages/detail/detail', item)
@@ -489,6 +433,10 @@ export default class Index extends wepy.page {
     }
   }
 
+  onReachBottom () {
+    this.loadProducts()
+  }
+
   getFilterBarTop() {
     getNodeRef('#filter_bar').then(res => {
       this.filterBarTop = res.top
@@ -503,8 +451,17 @@ export default class Index extends wepy.page {
     }
 
     let res = await fetch.post('/sales/list', params)
-    this.products = res.datas.Items
-    this.$apply()
+    if (this.pageNum > 1) {
+      if (res.datas.Items.length > 0) {
+        this.pageNum++
+        this.products = this.products.concat(res.datas.Items)
+        this.$apply()
+      }
+    } else {
+      this.pageNum++
+      this.products = res.datas.Items
+      this.$apply()
+    }
   }
 
   onLoad() {

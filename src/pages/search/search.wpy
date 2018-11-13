@@ -1,0 +1,295 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    height: 100%;
+  }
+
+  .home-search-wrap {
+    padding: 30rpx 20rpx;
+    background-color: #fff;
+  }
+
+  .home-search {
+    .flex-v-center();
+    padding-left: 30rpx;
+    padding-right: 20rpx;
+    background-color: #fff;
+    border-radius: 60rpx;
+    overflow: hidden;
+    box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
+
+    .icon-find {
+      font-size: 36rpx;
+      color: #888;
+    }
+
+    .clear-search {
+      color: #888;
+      padding: 8rpx;
+    }
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 20rpx 30rpx 20rpx 16rpx;
+    height: 80rpx;
+  }
+
+  .search-sublayer {
+    padding: 20rpx;
+
+    .ssbl-hd {
+      .flex-v-center();
+      justify-content: space-between;
+      margin-bottom: 20rpx;
+      min-height: 56rpx;
+    }
+
+    .ssbl-title {
+      font-weight: bold;
+    }
+
+    .ssbl-icon {
+      padding: 8rpx;
+      font-size: 40rpx;
+    }
+  }
+
+  .ssr-item {
+    display: inline-block;
+    padding: 8rpx 20rpx;
+    border-radius: 60rpx;
+    border: 2rpx solid @color-border;
+    color: #888;
+    font-size: 26rpx;
+    margin-right: 16rpx;
+    margin-bottom: 20rpx;
+
+    &:active {
+      border-color: darken(@color-border, 10%);
+      color: #555;
+    }
+  }
+
+  .product-listview {
+    padding-bottom: 30rpx;
+  }
+
+  .product-panel {
+    .flex();
+    padding: 20rpx;
+  }
+
+  .product-cover {
+    width: 240rpx;
+    height: 294rpx;
+    margin-left: 10rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    > image {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .product-panel-body {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+    justify-content: space-between;
+
+    .product-caption {
+      font-size: 32rpx;
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 6rpx;
+    }
+
+    .product-author {
+      color: #777;
+    }
+
+    .product-desc {
+      font-size: 26rpx;
+      color: #888;
+      margin-top: 6rpx;
+      margin-bottom: 16rpx;
+    }
+
+    .product-tags {
+      margin-top: 20rpx;
+    }
+  }
+
+  .product-subinfo {
+    .flex-v-center();
+
+    .product-price {
+      font-size: 32rpx;
+      color: #eb5a21;
+
+      .unit {
+        font-size: 24rpx;
+        margin-right: 6rpx;
+      }
+    }
+
+    .product-tax {
+      color: #27a1f8;
+    }
+
+    .split {
+      width: 0;
+      display: inline-block;
+      border-left: 2rpx solid #ddd;
+      margin-left: 16rpx;
+      margin-right: 16rpx;
+      height: 30rpx;
+    }
+  }
+</style>
+<template>
+  <view class="home-search-wrap">
+    <view class="home-search">
+      <text class="iconfont icon-find"></text>
+      <input type="text" class="search-input" placeholder="搜索书名、作者" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
+      <text class="clear-search iconfont icon-close-circle" hidden="{{isSearchEmpty}}" @tap="clearSearch"></text>
+    </view>
+  </view>
+
+  <view class="search-sublayer" wx:if="{{!isSearchShow && historyTags.length > 0}}">
+    <view class="ssbl-hd">
+      <text class="ssbl-title">历史搜索</text>
+      <text class="ssbl-icon iconfont icon-trash" @tap="clearHistory"></text>
+    </view>
+    <view class="search-history">
+      <repeat for="{{historyTags}}">
+        <view class="ssr-item" @tap="doSearchByTag({{item}})">{{item}}</view>
+      </repeat>
+    </view>
+  </view>
+
+  <view class="product-listview" hidden="{{!isSearchShow}}">
+    <repeat for="{{products}}">
+      <view class="product-panel" @tap="viewDetail({{item}})">
+        <view class="product-cover">
+          <image src="{{item.smallImageUrl}}" lazyload="true"></image>
+        </view>
+        <view class="product-panel-body">
+          <view class="product-maininfo">
+            <view class="product-caption">{{item.name}}</view>
+            <view class="product-author">{{item.author}}</view>
+            <view class="product-desc">{{item.press}}</view>
+            <raty :value.sync="item.doubanScore"></raty>
+            <view class="product-tags">
+              <repeat for="{{item.tags}}">
+                <tag>{{item}}</tag>
+              </repeat>
+            </view>
+          </view>
+          <view class="product-subinfo">
+            <view class="product-price">
+              <text class="unit">￥</text>
+              <text>{{item.costPrice}}</text>
+            </view>
+            <view class="split"></view>
+            <view class="product-tax">
+              星币价 ￥{{item.price}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Raty from '@/components/raty'
+  import Tag from '@/components/tag'
+  import fetch from '../../service/fetch'
+  import History from '../../service/history'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '星月童书'
+    }
+
+    components = {
+      raty: Raty,
+      tag: Tag
+    }
+
+    history = new History('home_search')
+
+    data = {
+      isSearchShow: false,
+      searchVal: '',
+      historyTags: [],
+      products: []
+    }
+
+    computed = {
+      isSearchEmpty () {
+        return this.searchVal === ''
+      }
+    }
+
+    methods = {
+      hideSearch () {
+        this.isSearchShow = false
+      },
+      viewDetail (item) {
+        this.$navigate('/pages/detail/detail', item)
+      },
+      onSearchChange (e) {
+        this.searchVal = e.detail.value
+      },
+      doSearch (e) {
+        this.loadProducts(e.detail.value)
+      },
+      doSearchByTag (name) {
+        this.loadProducts(name)
+      },
+      clearSearch () {
+        this.searchVal = ''
+        this.loadProducts()
+      },
+      clearHistory () {
+        this.history.clear()
+        this.historyTags = this.history.getAll()
+      }
+    }
+
+    async loadProducts (name = '', params = {filter: [], sort: []}) {
+      /*let params = {
+        offset: this.pageNum,
+        limit: 15,
+        name
+      }*/
+
+      params = {
+        offset: this.pageNum,
+        limit: 15,
+        ...params
+      }
+
+      this.searchVal = name
+      this.isSearchShow = true
+
+      let res = await fetch.post('/sales/list', params)
+      this.products = res.datas.Items
+      this.history.add(name)
+      this.historyTags = this.history.getAll()
+      this.$apply()
+    }
+
+    onLoad() {
+      this.pageNum = 1
+      this.historyTags = this.history.getAll()
+    }
+  }
+</script>
