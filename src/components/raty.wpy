@@ -9,7 +9,7 @@
     .raty-item {
       margin-right: 4rpx;
       color: #d3d3d3;
-      font-size: 36rpx;
+      font-size: 32rpx;
 
       &.active {
         color: #faa431;

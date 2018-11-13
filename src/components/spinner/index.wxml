@@ -1,0 +1,3 @@
+<view class="spinner {{size}} {{extraClass}}" hidden="{{!visible}}" style="{{extraStyle}}">
+  <image src="./throbber.svg"></image>
+</view>

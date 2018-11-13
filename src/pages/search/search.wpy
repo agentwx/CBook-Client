@@ -102,13 +102,13 @@
     justify-content: space-between;
 
     .product-caption {
-      font-size: 32rpx;
+      font-size: 30rpx;
       color: #333;
-      font-weight: bold;
-      margin-bottom: 6rpx;
+      margin-bottom: 10rpx;
     }
 
-    .product-author {
+    .product-press {
+      font-size: 26rpx;
       color: #777;
     }
 
@@ -181,7 +181,7 @@
         <view class="product-panel-body">
           <view class="product-maininfo">
             <view class="product-caption">{{item.name}}</view>
-            <view class="product-author">{{item.author}}</view>
+            <view class="product-press">{{item.author}}</view>
             <view class="product-desc">{{item.press}}</view>
             <raty :value.sync="item.doubanScore"></raty>
             <view class="product-tags">

@@ -1,0 +1,45 @@
+<svg version="1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 50 50">
+  <style type="text/css">
+      .qp-circular-loader {
+          animation: loading-rotate 2s linear infinite;
+          vertical-align: top;
+      }
+      .qp-circular-loader-path {
+          animation: loading-dash 1.5s ease-in-out infinite;
+          stroke-dasharray: 90,150;
+          stroke-dashoffset: 0;
+          stroke-width: 3;
+          stroke: #09c8fe;
+          stroke-linecap: round;
+      }
+      .qp-circular-loader,
+      .qp-circular-loader * {
+        transform-origin: 50% 50%;
+      }
+      @keyframes loading-rotate {
+          100% {
+              -webkit-transform: rotate(1turn);
+              transform: rotate(1turn);
+          }
+      }
+      @keyframes loading-dash {
+          0% {
+              stroke-dasharray: 1,200;
+              stroke-dashoffset: 0;
+          }
+          50% {
+              stroke-dasharray: 90,150;
+              stroke-dashoffset: -40px;
+          }
+          100% {
+              stroke-dasharray: 90,150;
+              stroke-dashoffset: -120px;
+          }
+      }
+  </style>
+  <g class="qp-circular-loader">
+      <circle cx="25" cy="25" r="20" fill="none" class="qp-circular-loader-path"></circle>
+  </g>
+</svg>
