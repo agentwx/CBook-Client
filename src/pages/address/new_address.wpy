@@ -131,6 +131,9 @@
         this.region = [params.province, params.city, params.region]
         this.address = params.address
         this.isDefault = JSON.parse(params.isDefault)
+        wx.setNavigationBarTitle({
+          title: '修改地址'
+        })
       }
     }
   }
