@@ -228,8 +228,8 @@
 <template>
   <view class="detail-swiper-wrap">
     <swiper class="detail-swiper" autoplay="true" interval="5000" duration="300" indicatorDots="true" circular="true"
-            wx:if="{{picList.length>0}}">
-      <repeat for="{{picList}}">
+            wx:if="{{product.picList.length>0}}">
+      <repeat for="{{product.picList}}">
         <swiper-item class="swiper-item">
           <image src="{{item.source}}" mode="aspectFit"></image>
         </swiper-item>
@@ -238,23 +238,23 @@
   </view>
 
   <view class="detail-pdinfo-wrap">
-    <view class="detail-title">和爸妈去旅行 3-6岁幼儿小百科 绘本故事</view>
+    <view class="detail-title">{{product.name}}</view>
     <view class="detail-salesInfo">
       <view class="sale-price">
         <view class="now-price">
           <text class="unit">￥</text>
-          <text>29.9</text>
+          <text>{{product.costPrice}}</text>
         </view>
-        <view class="orig-price">￥15.00</view>
+        <view class="orig-price">￥{{product.price}}</view>
       </view>
       <view class="sales-count">已售912份</view>
     </view>
 
     <view class="product-info">
-      <view>作者：黄宇</view>
-      <view>出版社：北京联合出版有限公司</view>
-      <view>出版时间：2018年06月</view>
-      <raty value="3.8"></raty>
+      <view>作者：{{product.author}}</view>
+      <view>出版社：{{product.press}}</view>
+      <view>出版时间：{{publishDateStr}}</view>
+      <raty :value.sync="product.doubanScore"></raty>
     </view>
 
     <view class="product-flags">
@@ -281,7 +281,7 @@
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
         <text class="unit">￥</text>
-        <text class="price">29.8</text>
+        <text class="price">{{product.costPrice}}</text>
       </view>
       <view class="buy-text">直接买</view>
     </view>
@@ -297,44 +297,31 @@
   <view class="detail-pdintro-wrap">
     <view class="pdintro-title">商品详情</view>
     <view class="pdintro-body">
-      <image src="../../images/d1.jpg" mode="widthFix"></image>
-      <image src="../../images/d2.jpg" mode="widthFix"></image>
-      <image src="../../images/d3.jpg" mode="widthFix"></image>
+      <repeat for="{{product.imags}}">
+        <image src="{{item}}" mode="widthFix" lazyload="true"></image>
+      </repeat>
+    </view>
+    <view class="pdintro-title">商品简介</view>
+    <view class="pdintro-body">
+      <view>
+        {{product.content}}
+      </view>
     </view>
   </view>
 
-  <view class="suggest-window">
+  <view class="suggest-window" wx:if="{{product.relatedBookInfoList.length > 0}}">
     <view class="suggest-title">猜您喜欢</view>
     <scroll-view class="suggest-scrollview" scroll-x="true">
       <view class="suggest-list">
-        <view class="suggest-item">
-          <view class="suggest-cover">
-            <image src="../../images/book2.jpg"></image>
+        <repeat for="{{product.relatedBookInfoList}}">
+          <view class="suggest-item">
+            <view class="suggest-cover">
+              <image src="{{item.smallIconDetail}}" lazyload="true"></image>
+            </view>
+            <view class="suggest-pdname">{{item.name}}</view>
+            <view class="suggest-pdprice"><text>￥</text>49.9</view>
           </view>
-          <view class="suggest-pdname">孩子看的编程启蒙书</view>
-          <view class="suggest-pdprice"><text>￥</text>49.9</view>
-        </view>
-        <view class="suggest-item">
-          <view class="suggest-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="suggest-pdname">孩子看的编程启蒙书</view>
-          <view class="suggest-pdprice"><text>￥</text>49.9</view>
-        </view>
-        <view class="suggest-item">
-          <view class="suggest-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="suggest-pdname">孩子看的编程启蒙书</view>
-          <view class="suggest-pdprice"><text>￥</text>49.9</view>
-        </view>
-        <view class="suggest-item">
-          <view class="suggest-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="suggest-pdname">孩子看的编程启蒙书</view>
-          <view class="suggest-pdprice"><text>￥</text>49.9</view>
-        </view>
+        </repeat>
       </view>
     </scroll-view>
   </view>
@@ -346,6 +333,7 @@
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
   import fetch from '../../service/fetch'
+  import {formatDate} from '../../utils/util'
 
   export default class Index extends wepy.page {
     config = {
@@ -359,14 +347,23 @@
     }
 
     data = {
-      picList: [
-        {
-          source: '../../images/book2.jpg'
-        },
-        {
-          source: '../../images/book2.jpg'
-        }
-      ]
+      product: {
+        doubanScore: 1,
+        picList: [
+          {
+            source: '../../images/book2.jpg'
+          },
+          {
+            source: '../../images/book2.jpg'
+          }
+        ]
+      }
+    }
+
+    computed = {
+      publishDateStr () {
+        return formatDate(this.product.publishDate, 'yyyy年MM月dd日')
+      }
     }
 
     methods = {
@@ -378,14 +375,14 @@
       }
     }
 
-    loadData (isbn) {
-      fetch.post('/bookinfo/detail', {isbn}).then(res => {
-        console.log(res)
-      })
+    async loadData (isbn) {
+      let res = await fetch.post('/bookinfo/detail', {isbn})
+      console.log(res)
     }
 
-    onLoad() {
-      this.loadData('9787221078803')
+    onLoad(params) {
+      this.product = {...this.product, ...params}
+      this.loadData(params.isbn)
     }
   }
 </script>

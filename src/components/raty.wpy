@@ -27,7 +27,7 @@
 <template>
   <view class="raty-wrap {{readonly ? 'readonly' : ''}}" style="{{style}}">
     <repeat for="{{max}}">
-      <text class="raty-item iconfont icon-star {{index < ratyIndex ? 'active' : ''}}" @tap="pickRaty({{index}})"></text>
+      <text class="raty-item iconfont icon-star {{index < value ? 'active' : ''}}" @tap="pickRaty({{index}})"></text>
     </repeat>
     <text class="raty-value">{{value}}</text>
   </view>

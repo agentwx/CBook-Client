@@ -139,6 +139,12 @@ function hideLoading() {
   wx.hideLoading()
 }
 
+function getPrevPage () {
+  // eslint-disable-next-line
+  const pages = getCurrentPages()
+  return pages[pages.length - 2]
+}
+
 module.exports = {
   formatDate,
   parseDate,
@@ -148,5 +154,6 @@ module.exports = {
   confirm,
   toast,
   showLoading,
-  hideLoading
+  hideLoading,
+  getPrevPage
 }

@@ -63,53 +63,31 @@
   }
 </style>
 <template>
-  <panel>
-    <view class="addr-title">
-      <text class="addr-username">小溪</text>
-      <text class="addr-usertel">13812345678</text>
-    </view>
-    <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
-    <view class="panel-footer" slot="footer">
-      <view class="addr-left">
-        <checkbox />
-        <text style="margin-left: 10rpx;">设为默认</text>
+  <repeat for="{{addressList}}">
+    <panel>
+      <view class="addr-title">
+        <text class="addr-username">{{item.name}}</text>
+        <text class="addr-usertel">{{item.mobile}}</text>
       </view>
-      <view class="addr-right">
-        <view class="addr-action-item">
-          <text class="iconfont icon-edit"></text>
-          <text>编辑</text>
+      <view class="addr-text">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
+      <view class="panel-footer" slot="footer">
+        <view class="addr-left" @tap="toggleDefault({{item}})">
+          <checkbox readonly="true" :checked.sync="item.isDefault" />
+          <text style="margin-left: 10rpx;">设为默认</text>
         </view>
-        <view class="addr-action-item">
-          <text class="iconfont icon-trash"></text>
-          <text>删除</text>
-        </view>
-      </view>
-    </view>
-  </panel>
-
-  <panel>
-    <view class="addr-title">
-      <text class="addr-username">小溪</text>
-      <text class="addr-usertel">13812345678</text>
-    </view>
-    <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
-    <view class="panel-footer" slot="footer">
-      <view class="addr-left">
-        <checkbox />
-        <text style="margin-left: 10rpx;">设为默认</text>
-      </view>
-      <view class="addr-right">
-        <view class="addr-action-item">
-          <text class="iconfont icon-edit"></text>
-          <text>编辑</text>
-        </view>
-        <view class="addr-action-item">
-          <text class="iconfont icon-trash"></text>
-          <text>删除</text>
+        <view class="addr-right">
+          <view class="addr-action-item" @tap="editAddress({{item}})">
+            <text class="iconfont icon-edit"></text>
+            <text>编辑</text>
+          </view>
+          <view class="addr-action-item" @tap="deleteAddress({{item.code}})">
+            <text class="iconfont icon-trash"></text>
+            <text>删除</text>
+          </view>
         </view>
       </view>
-    </view>
-  </panel>
+    </panel>
+  </repeat>
 
   <view class="address-action-button" @tap="newAddress">
     新建地址
@@ -122,6 +100,8 @@
   import Icon from '@/components/icon'
   import Panel from '@/components/panel'
   import Checkbox from '@/components/checkbox'
+  import fetch from '../../service/fetch'
+  import {toast, confirm} from '../../utils/util'
 
   export default class Index extends wepy.page {
     config = {
@@ -136,16 +116,48 @@
     }
 
     data = {
-
+      addressList: []
     }
 
     methods = {
+      async toggleDefault (item) {
+        let params = {
+          name: item.name,
+          mobile: item.mobile,
+          province: item.province,
+          city: item.city,
+          region: item.region,
+          address: item.address,
+          isDefault: item.isDefault ? 0 : 1,
+          code: item.code
+        }
+        await fetch.post('/user/address/update', params)
+        this.loadData()
+      },
+      editAddress (item) {
+        this.$navigate('/pages/address/new_address', {...item, actionMode: 'edit'})
+      },
+      async deleteAddress (code) {
+        let isOK = await confirm('确定要删除吗?')
+        if (isOK) {
+          await fetch.post('/user/address/delete', {code})
+          this.loadData()
+          toast.success('删除成功')
+        }
+      },
       newAddress () {
         this.$navigate('/pages/address/new_address')
       }
     }
 
-    onLoad() {
+    async loadData () {
+      let res = await fetch.post('/user/address/list')
+      this.addressList = res.datas.map(item => ({...item, isDefault: item.isDefault === 1}))
+      this.$apply()
+    }
+
+    onLoad () {
+      this.loadData()
     }
   }
 </script>

@@ -2,12 +2,12 @@ import wepy from 'wepy'
 import {toast} from '../utils/util'
 import {session} from '../service/auth'
 
-export const serverUrl = 'http://192.168.3.118:9001'
+export const serverUrl = 'http://123.206.112.37:9001'
 
 let requestCount = 0
 let errorMsg = ''
 
-let fetchApi = (url, params = {}, useToken = true, showLoading = true) => {
+let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
   return new Promise((resolve, reject) => {
 
     requestCount++
@@ -20,7 +20,7 @@ let fetchApi = (url, params = {}, useToken = true, showLoading = true) => {
       })
     }
 
-    let defHeaders = {'Content-Type': 'application/x-www-form-urlencoded'}
+    let defHeaders = {'Content-Type': 'application/json'}
 
     if (useToken) {
       defHeaders = Object.assign(defHeaders, {
@@ -61,12 +61,12 @@ let fetchApi = (url, params = {}, useToken = true, showLoading = true) => {
   })
 }
 
-fetchApi.post = (url, params, useToken, showLoading) => {
-  return fetchApi(url, {data: params, method: 'POST'}, useToken, showLoading)
+fetchApi.post = (url, params, showLoading, useToken) => {
+  return fetchApi(url, {data: params, method: 'POST'}, showLoading, useToken)
 }
 
-fetchApi.get = (url, params, useToken, showLoading) => {
-  return fetchApi(url, {data: params, method: 'GET'}, useToken, showLoading)
+fetchApi.get = (url, params, showLoading, useToken) => {
+  return fetchApi(url, {data: params, method: 'GET'}, showLoading, useToken)
 }
 
 export default fetchApi

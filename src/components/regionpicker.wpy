@@ -4,7 +4,6 @@
   picker {
     flex: 1;
     width: 100%;
-    border: 2rpx solid #ccc;
     background-color: #fff;
     border-radius: 8rpx;
 
@@ -12,9 +11,15 @@
       opacity: 0.7;
       pointer-events: none;
     }
+
+    &.bordered {
+      border: 2rpx solid @color-border;
+    }
   }
 
   .picker {
+    flex: 1;
+    width: 100%;
     padding: 12rpx 24rpx;
     font-size: 28rpx;
     box-sizing: border-box;
@@ -31,16 +36,14 @@
     &.small {
       height: @small;
     }
+  }
 
-    .icon {
-      padding: 0;
-
-      .icon-img {
-        width: 20rpx !important;
-        height: 20rpx !important;
-        vertical-align: middle;
-      }
-    }
+  .picker-value {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>
 
@@ -48,13 +51,21 @@
   <picker mode="region"
           @change="change"
           value="{{value}}"
-          custom-item="{{custom-item}}"
+          custom-item="{{customItem}}"
           class="{{disabled ? 'disabled' : ''}}"
           disabled="{{disabled}}"
   >
-    <view class="picker {{size}} {{className}}" style="{{style}}">
-      <text>{{value}}</text>
-      <icon name="angle-down-black.png"></icon>
+    <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
+      <view class="form-item-inner {{underline ? 'underline' : ''}}">
+        <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
+        <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
+          <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
+          <view class="picker {{size}} {{className}}" style="{{style}}">
+            <text class="picker-value">{{value}}</text>
+            <iconangle name="arrow-down" color="#999"></iconangle>
+          </view>
+        </view>
+      </view>
     </view>
   </picker>
 </template>
@@ -76,15 +87,23 @@
         type: String,
         default: ''
       },
+      label: String,
+      icon: String,
+      iconType: String,
+      labelWidth: {
+        type: String,
+        default: ''
+      },
       size: {
         type: String,
         default: 'normal'
       },
       value: {
-        type: String,
-        default: ''
+        type: Array,
+        default: [],
+        twoWay: true
       },
-      'custom-item': {
+      customItem: {
         type: String,
         default: ''
       },
@@ -92,11 +111,27 @@
         type: [Boolean, String],
         default: false,
         coerce: coerce
+      },
+      bordered: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      },
+      underline: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      nomargin: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
       }
     }
 
     components = {
-      icon: Icon
+      icon: Icon,
+      iconangle: Icon
     }
 
     data = {
@@ -105,7 +140,7 @@
     methods = {
       change (e) {
         this.value = e.detail.value
-        this.$emit('datetimechange', this.value, e)
+        this.$emit('change', this.value, e)
       }
     }
   }

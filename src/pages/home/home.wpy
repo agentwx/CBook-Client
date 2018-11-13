@@ -392,174 +392,36 @@
   </view>
 
   <view class="product-listview" hidden="{{isSearchShow}}">
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
+    <repeat for="{{products}}">
+      <view class="product-panel" @tap="viewDetail({{item}})">
+        <view class="product-cover">
+          <image src="{{item.smallImageUrl}}" lazyload="true"></image>
         </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
+        <view class="product-panel-body">
+          <view class="product-maininfo">
+            <view class="product-caption">{{item.name}}</view>
+            <view class="product-author">{{item.author}}</view>
+            <view class="product-desc">{{item.press}}</view>
+            <raty :value.sync="item.doubanScore"></raty>
+            <view class="product-tags">
+              <repeat for="{{item.tags}}">
+                <tag>{{item}}</tag>
+              </repeat>
+            </view>
           </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
-        </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
-          </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
+          <view class="product-subinfo">
+            <view class="product-price">
+              <text class="unit">￥</text>
+              <text>{{item.costPrice}}</text>
+            </view>
+            <view class="split"></view>
+            <view class="product-tax">
+              书费价 ￥{{item.price}}
+            </view>
           </view>
         </view>
       </view>
-    </view>
-
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
-        </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
-          </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
-        </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
-          </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
-        </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
-          </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="product-panel" @tap="viewDetail">
-      <view class="product-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="product-panel-body">
-        <view class="product-maininfo">
-          <view class="product-caption">父与子全集(全10册)</view>
-          <view class="product-author">汤佳</view>
-          <view class="product-desc">亲子教育绘本第20名</view>
-          <raty value="4.8"></raty>
-          <view class="product-tags">
-            <tag1>科普百科</tag1>
-            <tag2>幽默风趣</tag2>
-          </view>
-        </view>
-        <view class="product-subinfo">
-          <view class="product-price">
-            <text class="unit">￥</text>
-            <text>29.9</text>
-          </view>
-          <view class="split"></view>
-          <view class="product-tax">
-            书费价 ￥5.25
-          </view>
-        </view>
-      </view>
-    </view>
-
+    </repeat>
   </view>
 </template>
 
@@ -578,8 +440,7 @@ export default class Index extends wepy.page {
 
   components = {
     raty: Raty,
-    tag1: Tag,
-    tag2: Tag,
+    tag: Tag,
     iconage: Icon,
     iconcate: Icon,
     iconlang: Icon
@@ -588,7 +449,8 @@ export default class Index extends wepy.page {
   data = {
     isSearchShow: false,
     filterBarFixed: false,
-    filterType: 'none'
+    filterType: 'none',
+    products: []
   }
 
   methods = {
@@ -598,8 +460,8 @@ export default class Index extends wepy.page {
     hideSearch () {
       this.isSearchShow = false
     },
-    viewDetail () {
-      this.$navigate('/pages/detail/detail')
+    viewDetail (item) {
+      this.$navigate('/pages/detail/detail', item)
     },
     showFilter (type) {
       this.filterType = type
@@ -633,15 +495,16 @@ export default class Index extends wepy.page {
     })
   }
 
-  loadProducts (params = {filter: [], sort: []}) {
+  async loadProducts (params = {filter: [], sort: []}) {
     params = {
       offset: this.pageNum,
       limit: 15,
       ...params
     }
-    fetch.post('/sales/list', params).then(res => {
-      console.log(res)
-    })
+
+    let res = await fetch.post('/sales/list', params)
+    this.products = res.datas.Items
+    this.$apply()
   }
 
   onLoad() {

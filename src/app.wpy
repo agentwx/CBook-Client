@@ -47,8 +47,6 @@ import 'wepy-async-function'
 import { setStore } from 'wepy-redux'
 import configStore from './store'
 
-import { toast, confirm, showLoading, hideLoading } from './utils/util'
-
 const store = configStore()
 setStore(store)
 
@@ -127,17 +125,6 @@ export default class extends wepy.app {
     this.use('requestfix')
     this.use('promisify')
   }
-
-  getPrevPage () {
-    // eslint-disable-next-line
-    const pages = getCurrentPages()
-    return pages[pages.length - 2]
-  }
-
-  toast = toast
-  confirm = confirm
-  showLoading = showLoading
-  hideLoading = hideLoading
 
   sleep (s) {
     return new Promise((resolve, reject) => {
