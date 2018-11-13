@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modal-spinner/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modal-spinner/index.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modal-spinner/index.wxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/modal-spinner/index.wxss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/spinner/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/spinner/index.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/spinner/index.wxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/spinner/index.wxss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/spinner/throbber.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/less/loading.less" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/raty.wpy" afterPath="$PROJECT_DIR$/src/components/raty.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/less/iconfont.less" afterPath="$PROJECT_DIR$/src/less/iconfont.less" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/search/search.wpy" afterPath="$PROJECT_DIR$/src/pages/search/search.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,10 +32,11 @@
       <file leaf-file-name="home.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="441" column="42" lean-forward="true" selection-start-line="441" selection-start-column="42" selection-end-line="441" selection-end-column="42" />
+            <state relative-caret-position="275">
+              <caret line="501" column="23" lean-forward="true" selection-start-line="501" selection-start-column="23" selection-end-line="501" selection-end-column="23" />
               <folding>
-                <element signature="e#9440#9463#0" expanded="true" />
+                <element signature="n#style#0;n#view#4;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#9467#9490#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -297,12 +284,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
-      <workItem from="1541729503250" duration="96741000" />
+      <workItem from="1541729503250" duration="96932000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96741000" />
+    <option name="totallyTimeSpent" value="96932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -317,7 +304,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.184514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.184514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -774,10 +761,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="441" column="42" lean-forward="true" selection-start-line="441" selection-start-column="42" selection-end-line="441" selection-end-column="42" />
+        <state relative-caret-position="275">
+          <caret line="501" column="23" lean-forward="true" selection-start-line="501" selection-start-column="23" selection-end-line="501" selection-end-column="23" />
           <folding>
-            <element signature="e#9440#9463#0" expanded="true" />
+            <element signature="n#style#0;n#view#4;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#9467#9490#0" expanded="true" />
           </folding>
         </state>
       </provider>
