@@ -55,7 +55,6 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
         } else {
           showLoading && wx.hideLoading()
         }
-        //wx.stopPullDownRefresh()
       }
     })
   })

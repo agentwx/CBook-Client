@@ -107,6 +107,7 @@
     }
 
     .action-cart {
+      position: relative;
       flex: none;
       padding-left: 30rpx;
       padding-right: 30rpx;
@@ -114,6 +115,12 @@
       border-top: 2rpx solid #efefef;
       color: #666;
       font-size: 24rpx;
+
+      .badge {
+        position: absolute;
+        right: 0;
+        top: -20rpx;
+      }
     }
 
     .action-buy {
@@ -173,6 +180,10 @@
 
     image {
       width: 100%;
+    }
+
+    &:last-child {
+      margin-bottom: 20rpx;
     }
   }
 
@@ -251,7 +262,11 @@
       </repeat>
     </swiper>
   </view>
-
+  <view>
+    <repeat for="{{products}}">
+      <text>{{item.goodsId}}</text>
+    </repeat>
+  </view>
   <view class="detail-pdinfo-wrap">
     <view class="detail-title">{{product.name}}</view>
     <view class="detail-salesInfo">
@@ -262,14 +277,14 @@
         </view>
         <view class="orig-price">￥{{product.price}}</view>
       </view>
-      <view class="sales-count">已售912份</view>
+      <view class="sales-count">已售{{product.sales}}份</view>
     </view>
 
     <view class="product-info">
       <view>作者：{{product.author}}</view>
       <view>出版社：{{product.press}}</view>
       <view>出版时间：{{publishDateStr}}</view>
-      <raty :value.sync="product.doubanScore"></raty>
+      <raty value="{{product.doubanScore}}"></raty>
     </view>
 
     <view class="product-flags">
@@ -292,6 +307,7 @@
   <view class="detail-action-bar">
     <iconitem icon="cart" iconSize="middle" class="action-item action-cart" @tap.user="gotoCart">
       购物车
+      <text class="badge">{{cartCount}}</text>
     </iconitem>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
@@ -300,7 +316,7 @@
       </view>
       <view class="buy-text">直接买</view>
     </view>
-    <view class="action-item action-buy coin-buy" @tap="gotoBuy">
+    <view class="action-item action-buy coin-buy" @tap="addToCart">
       <view>
         <text class="unit">￥</text>
         <text class="price">29.8</text>
@@ -350,19 +366,30 @@
 
 <script>
   import wepy from 'wepy'
-  import Raty from '@/components/raty'
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
   import fetch from '../../service/fetch'
   import {formatDate} from '../../utils/util'
 
+  import { connect, getStore } from 'wepy-redux'
+
+  const store = getStore()
+
+  @connect({
+    cartCount (state) {
+      return state.shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
+    }
+  })
+
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '商品详情'
+      navigationBarTitleText: '商品详情',
+      usingComponents: {
+        'raty': '/components/raty/index'
+      }
     }
 
     components = {
-      raty: Raty,
       iconcheck: Icon,
       iconitem: Iconitem
     }
@@ -383,6 +410,14 @@
       },
       gotoBuy () {
         this.$navigate('/pages/order/order')
+      },
+      addToCart () {
+        store.dispatch({
+          type: 'ADD_CART',
+          payload: {
+            ID: this.product.goodsId
+          }
+        })
       }
     }
 

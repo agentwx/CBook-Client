@@ -17,13 +17,14 @@
   "author": "semdy <501859275@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "miniprogram-computed": "0.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-promise": "^0.5.3",
-    "wepy-redux": "^1.5.3",
     "wepy": "^1.6.0",
     "wepy-async-function": "^1.4.4",
-    "wepy-com-toast": "^1.0.2"
+    "wepy-com-toast": "^1.0.2",
+    "wepy-redux": "^1.5.3"
   },
   "devDependencies": {
     "autoprefixer": "^9.3.1",

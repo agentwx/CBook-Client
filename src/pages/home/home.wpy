@@ -352,7 +352,7 @@
             <view class="product-caption">{{item.name}}</view>
             <view class="product-press">{{item.author}}</view>
             <view class="product-desc">{{item.press}}</view>
-            <raty :value.sync="item.doubanScore"></raty>
+            <raty value="{{item.doubanScore}}"></raty>
             <view class="product-tags">
               <repeat for="{{item.tags}}">
                 <tag>{{item}}</tag>
@@ -372,32 +372,36 @@
     </repeat>
   </view>
 
-  <view class="weui-loadmore" style="visibility: {{!isLoading ? 'hidden' : ''}}">
+  <view class="weui-loadmore" hidden="{{!isLoading}}">
     <view class="weui-loading"></view>
     <view class="weui-loadmore__tips">正在加载 ...</view>
   </view>
 
-  <modal-spinner id="spin" wx:if="{{isLoading && isLoadByFilter}}" />
+  <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
 <script>
 import wepy from 'wepy'
-import Raty from '@/components/raty'
 import Tag from '@/components/tag'
 import Icon from '@/components/icon'
 import { getNodeRef } from '../../utils/util'
 import fetch from '../../service/fetch'
 
+import { getStore } from 'wepy-redux'
+
+const store = getStore()
+
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '星月童书',
+    enablePullDownRefresh: true,
     usingComponents: {
-      'modal-spinner': '/components/modal-spinner/index'
+      'modal-spinner': '/components/modal-spinner/index',
+      'raty': '/components/raty/index'
     }
   }
 
   components = {
-    raty: Raty,
     tag: Tag,
     iconage: Icon,
     iconcate: Icon,
@@ -406,7 +410,7 @@ export default class Index extends wepy.page {
 
   data = {
     isLoading: true,
-    isLoadByFilter: false,
+    isModalSpinShow: false,
     filterBarFixed: false,
     filterType: 'none',
     products: []
@@ -435,6 +439,50 @@ export default class Index extends wepy.page {
     }
   }
 
+  loadByfilterTag (name) {
+    this.isModalSpinShow = true
+    this.filterType = 'none'
+    this.reloadProducts()
+  }
+
+  getFilterBarTop() {
+    getNodeRef('#filter_bar').then(res => {
+      this.filterBarTop = res.top
+    })
+  }
+
+  async loadProducts (params = {filter: [], sort: []}) {
+    params = {
+      offset: this.pageNum,
+      limit: 15,
+      ...params
+    }
+
+    try {
+      this.isLoading = true
+      let res = await fetch.post('/sales/list', params, false)
+      if (res.datas.Items.length > 0) {
+        if (this.pageNum > 1) {
+          this.products = this.products.concat(res.datas.Items)
+        } else {
+          this.products = res.datas.Items
+        }
+        store.dispatch({type: 'ADD_PRODUCTS', payload: {products: res.datas.Items}})
+        this.pageNum++
+        this.$apply()
+      }
+    } finally {
+      this.isLoading = false
+      this.isModalSpinShow = false
+      this.$apply()
+    }
+  }
+
+  async reloadProducts () {
+    this.pageNum = 1
+    await this.loadProducts()
+  }
+
   onPageScroll (e) {
     let isFixed = false
     this.lastScrollTop = e.scrollTop
@@ -455,51 +503,15 @@ export default class Index extends wepy.page {
     this.loadProducts()
   }
 
-  loadByfilterTag (name) {
-    this.isLoadByFilter = true
-    this.filterType = 'none'
-    this.pageNum = 1
-    this.loadProducts()
-  }
-
-  getFilterBarTop() {
-    getNodeRef('#filter_bar').then(res => {
-      this.filterBarTop = res.top
-    })
-  }
-
-  async loadProducts (params = {filter: [], sort: []}) {
-    params = {
-      offset: this.pageNum,
-      limit: 15,
-      ...params
-    }
-
-    try {
-      this.isLoading = true
-      let res = await fetch.post('/sales/list', params, false)
-      if (this.pageNum > 1) {
-        if (res.datas.Items.length > 0) {
-          this.pageNum++
-          this.products = this.products.concat(res.datas.Items)
-          this.$apply()
-        }
-      } else {
-        this.pageNum++
-        this.products = res.datas.Items
-        this.$apply()
-      }
-    } finally {
-      this.isLoading = false
-      this.isLoadByFilter = false
-      this.$apply()
-    }
+  async onPullDownRefresh () {
+    this.isModalSpinShow = true
+    await this.reloadProducts()
+    wx.stopPullDownRefresh()
   }
 
   onLoad() {
-    this.pageNum = 1
     this.getFilterBarTop()
-    this.loadProducts()
+    this.reloadProducts()
   }
 }
 </script>

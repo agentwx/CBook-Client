@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import counter from './counter'
+import shopcart from './shopcart'
+import products from './products'
 
 export default combineReducers({
-  counter
+  shopcart,
+  products
 })

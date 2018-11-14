@@ -160,10 +160,10 @@
     </view>
   </view>
 
-  <view class="search-sublayer" wx:if="{{!isSearchShow && historyTags.length > 0}}">
+  <view class="search-sublayer" wx:if="{{!isSearchShow}}">
     <view class="ssbl-hd">
       <text class="ssbl-title">历史搜索</text>
-      <text class="ssbl-icon iconfont icon-trash" @tap="clearHistory"></text>
+      <text class="ssbl-icon iconfont icon-trash" @tap="clearHistory" wx:if="{{historyTags.length > 0}}"></text>
     </view>
     <view class="search-history">
       <repeat for="{{historyTags}}">
