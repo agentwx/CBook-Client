@@ -32,7 +32,7 @@
   }
 </style>
 <template>
-  <view class="panel" style="{{style}}">
+  <view class="panel" style="{{style}}" @tap="onTap">
     <slot name="title"></slot>
     <view class="panel-body">
       <slot></slot>
@@ -48,6 +48,12 @@
       style: {
         type: String,
         default: ''
+      },
+      params: Object
+    }
+    methods = {
+      onTap (e) {
+        this.$emit('tap', this.params, e)
       }
     }
   }

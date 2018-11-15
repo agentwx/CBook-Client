@@ -115,12 +115,6 @@
       color: @gcolor;
     }
   }
-
-  .service-hint-text {
-    padding-top: 60rpx;
-    padding-bottom: 50rpx;
-    text-align: center;
-  }
 </style>
 <template>
   <view class="ucbg-wrap">
@@ -168,15 +162,8 @@
   <view class="uc-listitem">
     <orderitem icon="order" @tap.user="goToRecycleOrders">回收订单</orderitem>
     <addritem icon="geo" @tap.user="goToAddress">地址管理</addritem>
-    <serviceitem icon="service" @tap.user="showServieModal">联系客服</serviceitem>
+    <serviceitem icon="service" @tap.user="callService">联系客服</serviceitem>
   </view>
-
-  <servicemodal :visible.sync="showServiceModal" showClose="false">
-    <view class="service-hint-text">你可以在星月童书公众号联系客服</view>
-    <view slot="footer">
-      <closebutton bordered="true" size="small" @tap.user="closeServieModal">知道了</closebutton>
-    </view>
-  </servicemodal>
 </template>
 
 <script>
@@ -185,7 +172,6 @@
   import Icon from '@/components/icon'
   import Iconitem from '@/components/iconitem'
   import Listitem from '@/components/listitem'
-  import Modal from '@/components/modal'
   import Button from '@/components/button'
 
   export default class Index extends wepy.page {
@@ -203,12 +189,10 @@
       orderitem: Listitem,
       addritem: Listitem,
       serviceitem: Listitem,
-      servicemodal: Modal,
       closebutton: Button
     }
 
     data = {
-      showServiceModal: false
     }
 
     methods = {
@@ -221,16 +205,15 @@
       goToAddress () {
         this.$navigate('/pages/address/address')
       },
-      showServieModal() {
-        this.showServiceModal = true
-      },
-      closeServieModal() {
-        this.showServiceModal = false
+      callService () {
+        wx.makePhoneCall({
+          phoneNumber: '13746584675'
+        })
       }
     }
 
     toOrders (tabIndex) {
-      this.$navigate('/pages/orderlist/orderlist', {tabIndex})
+      this.$navigate('/pages/orderlist/orderlist', { tabIndex })
     }
 
     onLoad() {

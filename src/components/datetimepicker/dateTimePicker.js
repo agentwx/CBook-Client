@@ -2,12 +2,12 @@ function padZero(param) {
   return param < 10 ? '0' + param : '' + param
 }
 
-function getLoopArray(start, end) {
+function getLoopArray(start, end, suffix = '') {
   let array = []
   start = start || 0
   end = end || 1
   for (let i = start; i <= end; i++) {
-    array.push(padZero(i))
+    array.push(padZero(i) + suffix)
   }
   return array
 }
@@ -44,7 +44,7 @@ function getMonthDay(year, month) {
 function getNowDateArray() {
   let newDate = new Date()
   let year = padZero(newDate.getFullYear())
-  let month = padZero(newDate.getMonth())
+  let month = padZero(newDate.getMonth() + 1)
   let date = padZero(newDate.getDate())
   let hour = padZero(newDate.getHours())
   let minu = padZero(newDate.getMinutes())

@@ -45,7 +45,7 @@ export default handleActions({
       list: state.list.filter(cart => cart.ID !== ID)
     }
   },
-  CLEAR_CART (state, action) {
+  CLEAR_CART (state) {
     return {
       ...state,
       list: []

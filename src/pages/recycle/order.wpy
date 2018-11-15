@@ -139,41 +139,24 @@
   <alert showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</alert>
 
   <view class="orders-wrap">
-    <panel>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg"></image>
-        </view>
-        <view class="order-main">
-          <view class="order-pd-hd">
-            <view class="title">父与子全集（全10册）</view>
-            <view class="desc">规格：默认</view>
+    <repeat for="{{products}}">
+      <panel>
+        <view class="order-body">
+          <view class="order-cover">
+            <image src="{{item.smallImageUrl}}" layload="true"></image>
           </view>
-          <view class="order-pd-specs">
-            <text class="price">￥9.25</text>
-            <text class="discount">8折</text>
-          </view>
-        </view>
-      </view>
-    </panel>
-
-    <panel>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg"></image>
-        </view>
-        <view class="order-main">
-          <view class="order-pd-hd">
-            <view class="title">父与子全集（全10册）</view>
-            <view class="desc">规格：默认</view>
-          </view>
-          <view class="order-pd-specs">
-            <text class="price">￥9.25</text>
-            <text class="discount">8折</text>
+          <view class="order-main">
+            <view class="order-pd-hd">
+              <view class="title">{{item.name}}</view>
+              <view class="desc">规格：默认</view>
+            </view>
+            <view class="order-pd-specs">
+              <text class="price">￥{{item.costPrice}}</text>
+            </view>
           </view>
         </view>
-      </view>
-    </panel>
+      </panel>
+    </repeat>
   </view>
 
   <view class="float-action-bar">
@@ -187,10 +170,10 @@
 
   <view class="recycle-action-bar">
     <view class="recycle-info-tip">
-      <view class="income">预计收入￥5.25</view>
+      <view class="income">预计收入￥{{totalPrice}}</view>
       <view class="hint">请继续扫描哦~</view>
     </view>
-    <view class="action-button" @tap="nextStep">下一步(1)</view>
+    <view class="action-button" @tap="nextStep">下一步({{totalCount}})</view>
   </view>
 </template>
 
@@ -198,6 +181,11 @@
   import wepy from 'wepy'
   import Alert from '@/components/alert'
   import Panel from '@/components/panel'
+  import fetch from '../../service/fetch'
+
+  import {getStore} from 'wepy-redux'
+
+  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -209,23 +197,51 @@
       panel: Panel
     }
 
-    data = {
+    computed = {
+      totalPrice () {
+        return this.products.reduce((prev, cur) => prev + cur.costPrice, 0)
+      },
+      totalCount () {
+        return this.products.length
+      }
+    }
 
+    data = {
+      products: []
     }
 
     methods = {
       manualInput () {
         this.$navigate('/pages/recycle/manual')
       },
-      scanBarcode () {
-        wepy.scanCode()
+      async scanBarcode () {
+        const { result } = await wepy.scanCode()
+        this.queryBookInfo(result)
       },
       nextStep () {
-        this.$navigate('/pages/recycle/list')
+        this.$navigate('/pages/order/order', {ordesource: 'recycle', products: JSON.stringify(this.products)})
       }
     }
 
+    async queryBookInfo (isbn) {
+      let res = await fetch.post('/bookinfo/base', { isbn })
+      store.dispatch({
+        type: 'ADD_RECYCLE',
+        payload: {
+          product: res.datas
+        }
+      })
+      this.loadRecycles()
+    }
+
+    loadRecycles () {
+      const { recycles } = store.getState()
+      this.products = recycles.list.map(item => ({...item, COUNT: 1}))
+      this.$apply()
+    }
+
     onLoad() {
+      this.loadRecycles()
     }
   }
 </script>

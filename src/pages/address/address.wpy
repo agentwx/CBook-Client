@@ -64,23 +64,23 @@
 </style>
 <template>
   <repeat for="{{addressList}}">
-    <panel>
+    <panel @tap.user="selectAddress" :params.sync="item">
       <view class="addr-title">
         <text class="addr-username">{{item.name}}</text>
         <text class="addr-usertel">{{item.mobile}}</text>
       </view>
       <view class="addr-text">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
       <view class="panel-footer" slot="footer">
-        <view class="addr-left" @tap="toggleDefault({{item}})">
+        <view class="addr-left" @tap.stop="toggleDefault({{item}})">
           <checkbox readonly="true" :checked.sync="item.isDefault" />
           <text style="margin-left: 10rpx;">设为默认</text>
         </view>
         <view class="addr-right">
-          <view class="addr-action-item" @tap="editAddress({{item}})">
+          <view class="addr-action-item" @tap.stop="editAddress({{item}})">
             <text class="iconfont icon-edit"></text>
             <text>编辑</text>
           </view>
-          <view class="addr-action-item" @tap="deleteAddress({{item.code}})">
+          <view class="addr-action-item" @tap.stop="deleteAddress({{item.code}})">
             <text class="iconfont icon-trash"></text>
             <text>删除</text>
           </view>
@@ -101,7 +101,7 @@
   import Panel from '@/components/panel'
   import Checkbox from '@/components/checkbox'
   import fetch from '../../service/fetch'
-  import {toast, confirm} from '../../utils/util'
+  import {toast, confirm, getPrevPage} from '../../utils/util'
 
   export default class Index extends wepy.page {
     config = {
@@ -147,6 +147,12 @@
       },
       newAddress () {
         this.$navigate('/pages/address/new_address')
+      },
+      selectAddress (address) {
+        if (this.actionMode === 'select') {
+          getPrevPage().fillAddress(address)
+          this.$back()
+        }
       }
     }
 
@@ -156,7 +162,10 @@
       this.$apply()
     }
 
-    onLoad () {
+    onLoad (options) {
+      if (options.actionMode) {
+        this.actionMode = options.actionMode
+      }
       this.loadData()
     }
   }

@@ -68,7 +68,7 @@
       <image src="../../images/manual_hint.png"></image>
     </view>
     <view class="manual-field">
-      <input type="text" class="manual-input" placeholder="请输入书箱的ISBN号" />
+      <input type="text" class="manual-input" value="{{isbn}}" placeholder="请输入书箱的ISBN号" @input="changeIsbn" />
     </view>
     <view class="manual-action">
       <cancelbutton type="plain" @tap.user="onCancel">取消</cancelbutton>
@@ -80,6 +80,12 @@
 <script>
   import wepy from 'wepy'
   import Button from '@/components/button'
+  import fetch from '../../service/fetch'
+  import { toast, confirm } from '../../utils/util'
+
+  import {getStore} from 'wepy-redux'
+
+  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -92,15 +98,34 @@
     }
 
     data = {
-
+      isbn: null
     }
 
     methods = {
       onCancel () {
         this.$back()
       },
-      onConfirm () {
-        this.$navigate('/pages/recycle/order')
+      async onConfirm () {
+        if (!this.isbn) {
+          return toast.error('请输入书籍的isbn号')
+        }
+        let res = await fetch.post('/bookinfo/base', { isbn: this.isbn })
+        store.dispatch({
+          type: 'ADD_RECYCLE',
+          payload: {
+            product: res.datas
+          }
+        })
+        const isOK = await confirm('添加成功，请选择下一步', '', '回收列表', '继续填写')
+        if (isOK) {
+          this.$navigate('/pages/recycle/order')
+        } else {
+          this.isbn = null
+          this.$apply()
+        }
+      },
+      changeIsbn (e) {
+        this.isbn = e.detail.value
       }
     }
 

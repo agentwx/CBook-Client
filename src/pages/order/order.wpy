@@ -1,115 +1,121 @@
 <style lang="less">
-  @import '../../less/mixin'
+  @import '../../less/mixin';
 
   page {
-    padding-bottom: 100rpx
-    background-color: #f7f7f7
+    padding-bottom: 100rpx;
+    background-color: #f7f7f7;
   }
 
   .address-selection {
-    position: relative
-    .flex-v-center()
-    padding: 24rpx 30rpx 30rpx
-    background-color: #fff
+    position: relative;
+    .flex-v-center();
+    padding: 24rpx 30rpx 30rpx;
+    background-color: #fff;
 
     &:active {
-      background-color: @color-active
+      background-color: @color-active;
     }
 
     &:after {
-      content: ''
-      position: absolute
-      left: 0
-      bottom: 0
-      right: 0
-      height: 6rpx
-      background: #fff url(data:image/jpgbase64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAxNCA3OS4xNTE0ODEsIDIwMTMvMDMvMTMtMTI6MDk6MTUgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUZCRUNFQThFMzJGMTFFOEEyNzc5N0QzQjgwMkZCMTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUZCRUNFQTlFMzJGMTFFOEEyNzc5N0QzQjgwMkZCMTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRkJFQ0VBNkUzMkYxMUU4QTI3Nzk3RDNCODAyRkIxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRkJFQ0VBN0UzMkYxMUU4QTI3Nzk3RDNCODAyRkIxNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHB8fHx8fHx8fHx8BBwcHDQwNGBAQGBoVERUaHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fH//AABEIAAUANAMBEQACEQEDEQH/xAByAAEAAwAAAAAAAAAAAAAAAAAGAgUHAQEAAwEAAAAAAAAAAAAAAAAFAQQGAxAAAQEFBgUFAAAAAAAAAAAAERIAATETFCFBUYECIqHRBCQVggMFBgcRAAICAgEFAAAAAAAAAAAAAAARAQQhEhNRYSJiA//aAAwDAQACEQMRAD8A3j9DqpfR2dqdRe6MwWH0wzZGgs9StYeASyJVLj6lS+f6WofYXysJg2nPi1e0+OUdfktoZoHzs7xfvSohy8UHcGz9h6SheouSGC2JHCWhC9KyguUIi8NMES1gedvS3U6MkDkzONexnvLb2Z//2Q==) repeat-x 0 100%
-      background-size: auto 100%
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 6rpx;
+      background: #fff url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wgARCAAFADQDAREAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAABwMGCP/EABgBAAMBAQAAAAAAAAAAAAAAAAQFBgAC/9oADAMBAAIQAxAAAADVbkE4bhWkElUk35wjppdwtU0h/8QAJRAAAgIABAUFAAAAAAAAAAAAAQIDBAAFERIGBxATITFDcXKC/9oACAEBAAE/AOatuQ2MvqeztMn68jpy8qR2uJ65lGvZVpF+w9McVzPDksuzxvKofgnpXjEtiGNtdrsoOERYkCINFUaAY//EABsRAAICAwEAAAAAAAAAAAAAAAECABEEBRAD/9oACAECAQE/ANUgpm5sGK47VMxivi1cWKABU//EAB0RAAIBBAMAAAAAAAAAAAAAAAECAAMEEBEFISL/2gAIAQMBAT8Au2PnFuoZxuccoauu8VGKJ1AS+yZ//9k=) repeat-x 0 100%;
+      background-size: auto 100%;
     }
 
     .addr-slbd {
-      flex: 1
-      margin-left: 20rpx
-      margin-right: 20rpx
+      flex: 1;
+      margin-left: 20rpx;
+      margin-right: 20rpx;
+      min-height: 82rpx;
+    }
+
+    .addr-slbd2 {
+      .flex-v-center();
+      font-weight: bold;
     }
 
     .addr-sltitle {
-      font-size: 30rpx
-      font-weight: bold
-      margin-bottom: 10rpx
+      font-size: 30rpx;
+      font-weight: bold;
+      margin-bottom: 10rpx;
     }
 
     .addr-username {
-      margin-right: 20rpx
+      margin-right: 20rpx;
     }
 
     .addr-text {
-      font-size: 24rpx
+      font-size: 24rpx;
       color: #888
     }
   }
 
   .timepicker {
-    margin-top: 20rpx
-    margin-bottom: 20rpx
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
   }
 
   .timepicker-bd {
-    .flex-v-center()
-    justify-content: space-between
-    padding-right: 10rpx
+    .flex-v-center();
+    justify-content: space-between;
+    padding-right: 10rpx;
 
     .tm-hd {
-      font-weight: bold
+      font-weight: bold;
     }
   }
 
   .order-book {
-    padding: 6rpx 0
-    .flex()
-    justify-content: space-between
+    padding: 6rpx 0;
+    .flex();
+    justify-content: space-between;
   }
 
   .order-ft {
     text {
-      font-weight: bold
+      font-weight: bold;
     }
   }
 
   .order-action-button {
-    position: fixed
-    left: 0
-    right: 0
-    bottom: 0
-    height: 100rpx
-    font-size: 36rpx
-    color: #fff
-    .g-gradient(60%)
-    .flex-center()
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    font-size: 36rpx;
+    color: #fff;
+    .g-gradient(60%);
+    .flex-center();
 
     &:active {
-      .g-darken-gradient(60%)
+      .g-darken-gradient(60%);
     }
   }
 
   .modal-container {
-    .flex-v-center()
-    flex-direction: column
+    .flex-v-center();
+    flex-direction: column;
 
     .md-title {
-      font-size: 36rpx
-      margin-bottom: 10rpx
-      margin-top: 16rpx
+      font-size: 36rpx;
+      margin-bottom: 10rpx;
+      margin-top: 16rpx;
     }
 
     .md-subtitle {
-      color: #888
-      margin-bottom: 20rpx
+      color: #888;
+      margin-bottom: 20rpx;
     }
   }
 
   .panel-title {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 </style>
 <template>
@@ -117,32 +123,26 @@
   <alert showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</alert>
 
   <view class="address-selection" @tap="selectAddress">
-    <geoicon name="geo" color="#777" size="middle" />
-    <view class="addr-slbd">
+    <geoicon name="geo" color="#777" size="middle"/>
+    <view class="addr-slbd" wx:if="{{address !== null}}">
       <view class="addr-sltitle">
-        <text class="addr-username">小溪</text>
-        <text class="addr-usertel">13812345678</text>
+        <text class="addr-username">{{address.name}}</text>
+        <text class="addr-usertel">{{address.mobile}}</text>
       </view>
-      <view class="addr-text">上海市普陀区 真北路968号7号楼502室</view>
+      <view class="addr-text">{{address.province}} {{address.city}} {{address.region}}{{address.address}}</view>
     </view>
-    <arrowicon name="arrow-right-o" color="#888" style="font-size: 36rpx" />
+    <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">请选择取件地址...</view>
+    <arrowicon name="arrow-right-o" color="#888" style="font-size: 36rpx"/>
   </view>
 
-  <!--<picker mode="date" value="2015-09-01" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+  <datetimepicker fields="minute" @change="datetimeChange">
     <listitem class="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
-        <text>09:30-12:00</text>
+        <text>{{deliveryTime}}</text>
       </view>
     </listitem>
-  </picker>-->
-
-
-  <picker class='alarm_picker' mode="multiSelector" value="{{dateTime}}" @change="changeDateTime" @columnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-    <view class="picker">
-      {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}:{{dateTimeArray[5][dateTime[5]]}}
-    </view>
-  </picker>
+  </datetimepicker>
 
   <panel>
     <view class="panel-title" slot="title">图书列表</view>
@@ -153,13 +153,19 @@
             <text>{{item.name}}</text>
             <text>x{{item.COUNT}}</text>
           </view>
-          <view>￥{{item.costPrice}}</view>
+          <view wx:if="{{ordesource=='normal'}}">￥{{item.price}}</view>
+          <view wx:if="{{ordesource=='recycle'}}">￥{{item.costPrice}}</view>
         </view>
       </repeat>
     </view>
     <view class="panel-footer" slot="footer">
-      <view class="order-ft">总共<text>{{totalCount}}</text>本图书</view>
-      <view class="order-ft">预计收入 <text>￥{{totalPrice}}</text></view>
+      <view class="order-ft">总共
+        <text>{{totalCount}}</text>
+        本图书
+      </view>
+      <view class="order-ft">预计收入
+        <text>￥{{totalPrice}}</text>
+      </view>
     </view>
   </panel>
 
@@ -189,16 +195,19 @@
   import Panel from '@/components/panel'
   import Modal from '@/components/modal'
   import Button from '@/components/button'
+  import { toast } from '../../utils/util'
+  import fetch from '../../service/fetch'
 
   import {getStore} from 'wepy-redux'
-
-  import dateTimePicker  from '../../utils/dateTimePicker'
 
   const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '订单确认'
+      navigationBarTitleText: '订单确认',
+      usingComponents: {
+        datetimepicker: '/components/datetimepicker/index'
+      }
     }
 
     components = {
@@ -215,103 +224,97 @@
 
     data = {
       modalVisible: false,
-      products: [],
-      date: '2018-10-01',
-      time: '12:00',
-      dateTimeArray: null,
-      dateTime: null,
-      dateTimeArray1: null,
-      dateTime1: null,
-      startYear: 2000,
-      endYear: 2050
+      deliveryTime: '',
+      ordesource: 'normal',
+      address: null,
+      products: []
     }
 
     computed = {
-      totalPrice () {
+      totalPrice() {
+        const isn = this.ordesource === 'normal'
         return this.products
-          .reduce((prev, cur) => prev + cur.COUNT * +cur.costPrice, 0).toFixed(2)
+          .reduce((prev, cur) => prev + cur.COUNT * +(isn ? cur.price : cur.costPrice), 0).toFixed(2)
       },
-      totalCount () {
+      totalCount() {
         return this.products
           .reduce((prev, cur) => prev + cur.COUNT, 0)
       }
     }
 
     methods = {
-      closeModal () {
+      closeModal() {
         this.modalVisible = false
       },
-      selectAddress () {
-        this.$navigate('/pages/address/address')
+      selectAddress() {
+        this.$navigate('/pages/address/address', {actionMode: 'select'})
       },
-      submitOrder () {
-        this.modalVisible = true
+      submitOrder() {
+        if (!this.address) {
+          return toast.error('请选择取件地址')
+        }
+
+        if (!this.deliveryTime) {
+          return toast.error('请选择取件时间')
+        }
+
+        if (this.orderSource === 'normal') {
+          this.createBuyOrder()
+        } else {
+          this.createRecycleOrder()
+        }
+        // this.modalVisible = true
       },
-      confirmOrder () {
+      confirmOrder() {
         this.modalVisible = false
         this.$navigate('/pages/orderlist/orderlist')
       },
-      changeDate(e) {
-        this.setData({
-          date: e.detail.value
-        })
-      },
-      changeTime(e) {
-        this.setData({
-          time: e.detail.value
-        })
-      },
-      changeDateTime(e) {
-        this.setData({
-          dateTime: e.detail.value
-        })
-      },
-      changeDateTime1(e) {
-        this.setData({
-          dateTime1: e.detail.value
-        })
-      },
-      changeDateTimeColumn(e) {
-        var arr = this.data.dateTime,
-          dateArr = this.data.dateTimeArray
-
-        arr[e.detail.column] = e.detail.value
-        dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
-
-        this.setData({
-          dateTimeArray: dateArr,
-          dateTime: arr
-        })
-      },
-      changeDateTimeColumn1(e) {
-        var arr = this.data.dateTime1,
-          dateArr = this.data.dateTimeArray1
-
-        arr[e.detail.column] = e.detail.value
-        dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
-
-        this.setData({
-          dateTimeArray1: dateArr,
-          dateTime1: arr
-        })
+      datetimeChange (e) {
+        this.deliveryTime = e.detail.value
       }
     }
 
-    getProductsFromCart () {
-      const {products, shopcart} = store.getState()
-      this.products = products.list.filter(product => {
-        for (let i = 0; i < shopcart.list.length; i++) {
-          if (shopcart.list[i].ID === product.goodsId) {
-            product.COUNT = shopcart.list[i].COUNT
-            product.isChecked = this.isSelectAll
-            return true
-          }
-        }
-        return false
-      })
+    fillAddress (address) {
+      this.address = address
+      this.$apply()
     }
 
-    onLoad({ products }) {
+    async createRecycleOrder () {
+      let params = {
+        addressCode: this.address.code,
+        appointment: this.deliveryTime,
+        isbnList: this.products.map(item => item.isbn),
+        income: parseFloat(this.totalPrice)
+      }
+
+      await fetch.post('/recover/order/create', params)
+
+      store.dispatch({
+        type: 'CLEAR_RECYCLE'
+      })
+
+      this.$navigate('/pages/recycle/list')
+    }
+
+    async createBuyOrder () {
+      let params = {
+        addressCode: this.address.code,
+        appointment: this.deliveryTime,
+        isbnList: this.products.map(item => item.isbn),
+        income: parseFloat(this.totalPrice)
+      }
+
+      await fetch.post('/buy/order/create', params)
+
+      store.dispatch({
+        type: 'CLEAR_CART'
+      })
+
+      this.$navigate('/pages/orderlist/orderlist')
+    }
+
+    onLoad({ordesource, products}) {
+      this.ordesource = ordesource
       this.products = JSON.parse(products)
     }
   }

@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions'
 
 function addProduct (list, product) {
-  let item = list.find(item => item.goodsId === product.goodsId)
+  let item = list.find(item => item.isbn === product.isbn)
   if (!item) {
     list.push(product)
   }
@@ -13,19 +13,19 @@ const defaultState = {
 }
 
 export default handleActions({
-  ADD_PRODUCT (state, { payload: { product } }) {
+  ADD_RECYCLE (state, { payload: { product } }) {
     return {
       ...state,
       list: addProduct(state.list, product)
     }
   },
-  ADD_PRODUCTS (state, { payload: { products } }) {
+  ADD_RECYCLES (state, { payload: { products } }) {
     return {
       ...state,
       list: [...state.list, ...products]
     }
   },
-  CLEAR_PRODUCTS (state) {
+  CLEAR_RECYCLE (state) {
     return {
       ...state,
       list: []

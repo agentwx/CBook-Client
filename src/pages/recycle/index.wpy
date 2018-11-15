@@ -117,6 +117,11 @@
 <script>
   import wepy from 'wepy'
   import Button from '@/components/button'
+  import fetch from '../../service/fetch'
+
+  import {getStore} from 'wepy-redux'
+
+  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -133,14 +138,24 @@
     }
 
     methods = {
-      scanBarcode () {
-        wepy.scanCode().finally(() => {
-          this.$navigate('/pages/recycle/order')
-        })
+      async scanBarcode () {
+        const { result } = await wepy.scanCode()
+        this.queryBookInfo(result)
       },
       manualInput () {
         this.$navigate('/pages/recycle/manual')
       }
+    }
+
+    async queryBookInfo (isbn) {
+      let res = await fetch.post('/bookinfo/base', { isbn })
+      store.dispatch({
+        type: 'ADD_RECYCLE',
+        payload: {
+          product: res.datas
+        }
+      })
+      this.$navigate('/pages/recycle/order')
     }
 
     onLoad() {

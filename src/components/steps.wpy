@@ -55,8 +55,13 @@
     }
 
     &.actived {
-      &:not(.last):after,
-      &:before {
+      /*&:before,
+      &:not(.last):after {
+        background-color: #09c8fe;
+      }*/
+
+      &:before,
+      &:after {
         background-color: #09c8fe;
       }
 
@@ -75,7 +80,7 @@
 <template>
   <view class="steps-wrap" style="{{style}}">
     <repeat for="{{items}}">
-      <view class="step-item {{index < stepIndex ? 'actived' : ''}} {{index === stepIndex - 1 ? 'last' : ''}}">
+      <view class="step-item {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'last' : ''}}">
         <view class="step-dot"></view>
         <view class="step-text">{{item}}</view>
       </view>

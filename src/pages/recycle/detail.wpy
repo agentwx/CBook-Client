@@ -31,6 +31,7 @@
 
   .book-body {
     .flex();
+    margin-bottom: 20rpx;
   }
 
   .book-cover {
@@ -54,8 +55,6 @@
 
   .book-hd {
     .title {
-      font-weight: bold;
-      font-size: 30rpx;
       margin-bottom: 6rpx;
     }
 
@@ -96,13 +95,13 @@
     justify-content: space-between;
     padding: 6rpx 0;
 
-    &:first-child {
+    /*&:first-child {
       color: #888;
     }
 
     &:last-child {
       font-weight: bold;
-    }
+    }*/
   }
 
   .order-panel {
@@ -132,18 +131,18 @@
 
 <template>
   <stepspanel>
-    <steps stepIndex="3" :items="stepItems"></steps>
+    <steps :stepIndex.sync="stepIndex" :items="stepItems"></steps>
   </stepspanel>
   <deliverypanel class="delivery-panel">
     <view class="delivery-body">
       <geoicon name="geo" class="geo-icon"></geoicon>
       <view class="delivery-main">
         <view class="delivery-hd">
-          <text class="username">小溪</text>
-          <text class="usertel">13812345678</text>
+          <text class="username">{{order.orderName}}</text>
+          <text class="usertel">{{order.orderMobile}}</text>
         </view>
-        <view class="delivery-address">上海市普陀区 真北路968号7号楼502室</view>
-        <view class="delivery-picktime">预约上门取件时间: 2018-11-30 11:00-12:00</view>
+        <view class="delivery-address">{{order.orderAddress}}</view>
+        <view class="delivery-picktime">预约上门取件时间: {{order.appointment}}</view>
       </view>
     </view>
   </deliverypanel>
@@ -154,42 +153,44 @@
         <text>图书列表</text>
       </view>
     </view>
-    <view class="book-body">
-      <view class="book-cover">
-        <image src="../../images/book2.jpg"></image>
-      </view>
-      <view class="book-main">
-        <view class="book-hd">
-          <view class="title">父与子全集（全10册）</view>
-          <view class="desc">上海译文出版社</view>
+    <repeat for="{{order.bookInfos}}">
+      <view class="book-body">
+        <view class="book-cover">
+          <image src="{{item.smallIcon}}" lazyload="true"></image>
         </view>
-        <view class="book-specs">
-          <text class="price">￥9.25</text>
-          <text class="status">未审核</text>
+        <view class="book-main">
+          <view class="book-hd">
+            <view class="title">{{item.name}}</view>
+            <view class="desc">{{item.press}}</view>
+          </view>
+          <view class="book-specs">
+            <text class="price">￥{{item.costPrice}}</text>
+            <text class="status">{{item.bookStatusText}}</text>
+          </view>
         </view>
       </view>
-    </view>
+    </repeat>
   </bookspanel>
   <incomepanel class="income-panel">
     <view class="income-item">
       <text>预计收入</text>
-      <text>￥129.25</text>
+      <text>￥{{order.income}}</text>
     </view>
-    <view class="income-item">
+    <!--<view class="income-item">
       <text>实际收入</text>
-      <text>￥0.00</text>
-    </view>
+      <text>￥{{order.income}}</text>
+    </view>-->
   </incomepanel>
   <orderpanel class="order-panel">
     <view class="order-item">
-      <text>订单编号：SH0221XXSD120</text>
-      <text>复制</text>
+      <text>订单编号：{{order.orderCode}}</text>
+      <text @tap="copyOrderNum">复制</text>
     </view>
     <view class="order-item">
-      <text>创建时间：2018-11-30 11:00-12:00</text>
+      <text>创建时间：{{order.createTime}}</text>
     </view>
   </orderpanel>
-  <view class="action-button">
+  <view class="action-button" @tap="callService">
     <serviceicon name="service" />
     <text>召唤客服</text>
   </view>
@@ -200,6 +201,13 @@
   import Panel from '@/components/panel'
   import Steps from '@/components/steps'
   import Icon from '@/components/icon'
+
+  import { toast } from '../../utils/util'
+
+  const BOOK_STATUS_MAP = {
+    0: '待审核',
+    1: '审核通过'
+  }
 
   export default class Index extends wepy.page {
     config = {
@@ -220,12 +228,35 @@
 
     data = {
       stepItems: ['线上审核', '物流取件', '平台取件', '验收书箱', '书费到账'],
-      orders: [1]
+      order: {}
     }
 
-    methods = {}
+    computed = {
+      stepIndex () {
+        return this.order.orderStatus || 0
+      }
+    }
 
-    onLoad() {
+    methods = {
+      async copyOrderNum () {
+        await wepy.setClipboardData({data: this.order.orderCode})
+        toast.success('复制成功')
+      },
+      callService () {
+        wx.makePhoneCall({
+          phoneNumber: '13746584675'
+        })
+      }
+    }
+
+    onLoad({ order }) {
+      if (order) {
+        order = JSON.parse(order)
+        order.bookInfos = order.bookInfos.map(item =>
+          ({...item, bookStatusText: BOOK_STATUS_MAP[item.bookStatus]})
+        )
+        this.order = order
+      }
     }
   }
 </script>

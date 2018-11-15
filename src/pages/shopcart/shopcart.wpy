@@ -231,13 +231,13 @@
         <view class="cart-pd-main">
           <view class="pd-head">
             <view class="pd-title">{{item.name}}</view>
-            <view class="pd-orig-price">原价：￥{{item.price}}</view>
+            <view class="pd-orig-price">原价：￥{{item.costPrice}}</view>
           </view>
           <view class="cart-pd-footer">
             <view class="cart-pdft">
               <view class="pd-now-price">
                 <text class="unit">￥</text>
-                <text>{{item.costPrice}}</text>
+                <text>{{item.price}}</text>
               </view>
               <text class="pd-count">x{{item.COUNT}}</text>
             </view>
@@ -308,7 +308,7 @@
       totalPrice () {
         return this.products
           .filter(product => product.isChecked)
-          .reduce((prev, cur) => prev + cur.COUNT * +cur.costPrice, 0).toFixed(2)
+          .reduce((prev, cur) => prev + cur.COUNT * +cur.price, 0).toFixed(2)
       },
       totalCount () {
         return this.products
@@ -329,7 +329,7 @@
     methods = {
       gotoBuy () {
         const productsToBuy = this.products.filter(product => product.isChecked)
-        this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
+        this.$navigate('/pages/order/order', {ordesource: 'normal', products: JSON.stringify(productsToBuy)})
       },
       goShopping () {
         this.$switch('/pages/home/home')
@@ -386,16 +386,17 @@
     }
 
     getProductsFromCart () {
-      const {products, shopcart} = store.getState()
-      this.products = products.list.filter(product => {
-        for (let i = 0; i < shopcart.list.length; i++) {
-          if (shopcart.list[i].ID === product.goodsId) {
-            product.COUNT = shopcart.list[i].COUNT
-            product.isChecked = this.isSelectAll
-            return true
+      let {products, shopcart} = store.getState()
+
+      products = products.list
+      this.products = shopcart.list.map(item => {
+        for (let i = 0; i < products.length; i++) {
+          if (item.ID === products[i].goodsId) {
+            products[i].COUNT = item.COUNT
+            products[i].isChecked = this.isSelectAll
+            return products[i]
           }
         }
-        return false
       })
     }
 

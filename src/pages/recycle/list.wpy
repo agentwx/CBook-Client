@@ -5,6 +5,10 @@
     background-color: #f7f7f7;
   }
 
+  .panel:last-child {
+    margin-bottom: 0;
+  }
+
   .orders-scrollview {
     width: 100%;
     overflow: hidden;
@@ -98,84 +102,62 @@
 </style>
 
 <template>
-  <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
-    <panel>
-      <view class="panel-title order-hd" slot="title">
-        <text class="order-num">单号：SH0221XXSD120</text>
-        <text class="order-status">已关闭</text>
-      </view>
-      <scroll-view class="books-scrollview" scroll-x="true">
-        <view class="order-body">
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
+  <block wx:if="{{!isLoading}}">
+    <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
+      <repeat for="{{orders}}">
+        <panel>
+          <view class="panel-title order-hd" slot="title">
+            <text class="order-num">单号：{{item.orderCode}}</text>
+            <text class="order-status">{{item.orderStatusText}}</text>
           </view>
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
+          <scroll-view class="books-scrollview" scroll-x="true">
+            <view class="order-body">
+              <block wx:for="{{item.bookInfos}}" wx:key="index">
+                <view class="order-cover">
+                  <image src="{{item.smallIcon}}" lazyload="true"></image>
+                </view>
+              </block>
+            </view>
+          </scroll-view>
+          <view class="panel-footer order-footer" slot="footer">
+            <view></view>
+            <view class="order-subinfo">
+              <view class="order-sumup">
+                总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.income}}</text>
+              </view>
+              <view @tap="viewDetail({{item}})">
+                <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
+              </view>
+            </view>
           </view>
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
-        </view>
-      </scroll-view>
-      <view class="panel-footer order-footer" slot="footer">
-        <view></view>
-        <view class="order-subinfo">
-          <view class="order-sumup">
-            总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
-          </view>
-          <paybutton inline="true" bordered="true" size="small" @tap.user="viewDetail">查看详情</paybutton>
-        </view>
-      </view>
-    </panel>
+        </panel>
+      </repeat>
+    </view>
 
-    <panel>
-      <view class="panel-title order-hd" slot="title">
-        <text class="order-num">单号：SH0221XXSD120</text>
-        <text class="order-status">已关闭</text>
-      </view>
-      <scroll-view class="books-scrollview" scroll-x="true">
-        <view class="order-body">
-          <view class="order-cover">
-            <image src="../../images/book2.jpg"></image>
-          </view>
+    <view class="empty-layer-wrap" wx:if="{{orders.length === 0}}">
+      <view class="empty-layer">
+        <image src="../../images/orders_empty_bg.png"></image>
+        <view class="empty-action">
+          <view class="empty-text">暂无订单~</view>
         </view>
-      </scroll-view>
-      <view class="panel-footer order-footer" slot="footer">
-        <view></view>
-        <view class="order-subinfo">
-          <view class="order-sumup">
-            总共<text class="bold">2</text>件商品 预计收入: <text class="bold">￥9.25</text>
-          </view>
-          <paybutton inline="true" bordered="true" size="small" @tap.user="viewDetail">查看详情</paybutton>
-        </view>
-      </view>
-    </panel>
-
-  </view>
-
-  <view class="empty-layer-wrap" wx:if="{{orders.length === 0}}">
-    <view class="empty-layer">
-      <image src="../../images/orders_empty_bg.png"></image>
-      <view class="empty-action">
-        <view class="empty-text">暂无订单~</view>
       </view>
     </view>
-  </view>
+  </block>
 </template>
 
 <script>
   import wepy from 'wepy'
   import Panel from '@/components/panel'
   import Button from '@/components/button'
+  import fetch from '../../service/fetch'
+
+  const ORDER_STATUS_MAP = {
+    0: '线上审核',
+    1: '物流取件',
+    2: '平台取件',
+    3: '验收书籍',
+    4: '书费到账'
+  }
 
   export default class Index extends wepy.page {
     config = {
@@ -188,16 +170,45 @@
     }
 
     data = {
-      orders: [1]
+      isLoading: false,
+      orders: []
     }
 
     methods = {
-      viewDetail () {
-        this.$navigate('/pages/recycle/detail')
+      viewDetail (order) {
+        this.$navigate('/pages/recycle/detail', { order: JSON.stringify(order) })
+      }
+    }
+
+    async loadOrders () {
+      let params = {
+        offset: this.pageNum,
+        limit: 10
+      }
+
+      try {
+        this.isLoading = true
+        let res = await fetch.post('/recover/order/list', params)
+        if (res.datas.Items.length > 0) {
+          let items = res.datas.Items.map(item =>
+            ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
+          )
+          if (this.pageNum > 1) {
+            this.orders = this.orders.concat(items)
+          } else {
+            this.orders = items
+          }
+          this.pageNum++
+        }
+      } finally {
+        this.isLoading = false
+        this.$apply()
       }
     }
 
     onLoad() {
+      this.pageNum = 1
+      this.loadOrders()
     }
   }
 </script>
