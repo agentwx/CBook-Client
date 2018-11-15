@@ -113,7 +113,7 @@
   .order-item {
     .flex-v-center();
     justify-content: space-between;
-    padding: 6rpx 0;
+    padding: 4rpx 0;
     color: #888;
   }
 
