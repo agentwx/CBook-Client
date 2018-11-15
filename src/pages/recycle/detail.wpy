@@ -111,10 +111,14 @@
   }
 
   .order-item {
-    .flex();
+    .flex-v-center();
     justify-content: space-between;
     padding: 6rpx 0;
     color: #888;
+  }
+
+  .copy-text {
+    padding:6rpx 16rpx;
   }
 
   .action-button {
@@ -184,7 +188,7 @@
   <orderpanel class="order-panel">
     <view class="order-item">
       <text>订单编号：{{order.orderCode}}</text>
-      <text @tap="copyOrderNum">复制</text>
+      <text @tap="copyOrderNum" class="copy-text">复制</text>
     </view>
     <view class="order-item">
       <text>创建时间：{{order.createTime}}</text>

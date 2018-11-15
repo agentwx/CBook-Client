@@ -153,8 +153,8 @@
             <text>{{item.name}}</text>
             <text>x{{item.COUNT}}</text>
           </view>
-          <view wx:if="{{ordesource=='normal'}}">￥{{item.price}}</view>
-          <view wx:if="{{ordesource=='recycle'}}">￥{{item.costPrice}}</view>
+          <view wx:if="{{orderSource=='normal'}}">￥{{item.price}}</view>
+          <view wx:if="{{orderSource=='recycle'}}">￥{{item.costPrice}}</view>
         </view>
       </repeat>
     </view>
@@ -225,14 +225,14 @@
     data = {
       modalVisible: false,
       deliveryTime: '',
-      ordesource: 'normal',
+      orderSource: 'normal',
       address: null,
       products: []
     }
 
     computed = {
       totalPrice() {
-        const isn = this.ordesource === 'normal'
+        const isn = this.orderSource === 'normal'
         return this.products
           .reduce((prev, cur) => prev + cur.COUNT * +(isn ? cur.price : cur.costPrice), 0).toFixed(2)
       },
@@ -313,8 +313,8 @@
       this.$navigate('/pages/orderlist/orderlist')
     }
 
-    onLoad({ordesource, products}) {
-      this.ordesource = ordesource
+    onLoad({orderSource, products}) {
+      this.orderSource = orderSource
       this.products = JSON.parse(products)
     }
   }
