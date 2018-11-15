@@ -3,6 +3,7 @@
 
   page {
     background-color: #f7f7f7;
+    padding-bottom: 20rpx;
   }
 
   .delivery-body {
@@ -119,7 +120,6 @@
   .action-button {
     padding-top: 20rpx;
     padding-bottom: 20rpx;
-    margin-bottom: 20rpx;
     background-color: #fff;
     .flex-center();
 
