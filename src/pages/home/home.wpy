@@ -285,7 +285,7 @@
        <text class="iconfont icon-filter"></text>
       </view>
 
-      <view class="filter-sublayer">
+      <view class="filter-sublayer" hidden="{{!filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType=='sort'}}">
           <view class="filter-itemsort" @tap="filterByTag('综合排序')">综合排序</view>
           <view class="filter-itemsort" @tap="filterByTag('人气优先')">人气优先</view>
@@ -329,14 +329,12 @@
             <view class="filter-catelog-item" @tap="filterByTag('中文注音')">中文注音</view>
           </view>
         </view>
-
       </view>
-
     </view>
 
     <view class="filter-mask"
           wx:if="{{filterType=='sort'||filterType=='catelog'}}"
-          @tap="showFilter('none')">
+          @tap="hideFilter">
     </view>
 
   </view>
@@ -412,6 +410,7 @@ export default class Index extends wepy.page {
     isLoading: true,
     isModalSpinShow: false,
     filterBarFixed: false,
+    filterVisible: true,
     filterType: 'none',
     products: []
   }
@@ -424,12 +423,22 @@ export default class Index extends wepy.page {
       this.$navigate('/pages/detail/detail', item)
     },
     showFilter (type) {
-      this.filterType = type
+      if (this.isLoading) return
+
       if ((type === 'sort' || type === 'catelog') && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop
         })
+        setTimeout(() => {
+          this.filterType = type
+          this.$apply()
+        }, 300)
+      } else {
+        this.filterType = type
       }
+
+      this.filterVisible = true
+
       if (type === 'popular' || type === 'new') {
         this.loadByfilterTag(type)
       }
@@ -441,8 +450,13 @@ export default class Index extends wepy.page {
 
   loadByfilterTag (name) {
     this.isModalSpinShow = true
-    this.filterType = 'none'
+    this.filterVisible = false
     this.reloadProducts()
+  }
+
+  hideFilter () {
+    this.filterType = 'none'
+    this.filterVisible = false
   }
 
   getFilterBarTop() {
