@@ -145,7 +145,7 @@
           <text class="username">{{order.orderName}}</text>
           <text class="usertel">{{order.orderMobile}}</text>
         </view>
-        <view class="delivery-address">{{order.orderAddress}}</view>
+        <view class="delivery-address">{{order.orderProvince}} {{order.orderCity}} {{order.orderRegion}}{{order.orderAddress}}</view>
         <view class="delivery-picktime">预约上门取件时间: {{order.appointment}}</view>
       </view>
     </view>

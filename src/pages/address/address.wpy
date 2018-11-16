@@ -163,9 +163,7 @@
     }
 
     onLoad (options) {
-      if (options.actionMode) {
-        this.actionMode = options.actionMode
-      }
+      this.actionMode = options.actionMode
       this.loadData()
     }
   }
