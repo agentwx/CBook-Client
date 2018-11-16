@@ -181,6 +181,7 @@
     &.disabled {
       color: #666;
       background: @color-disabled;
+      pointer-events: none;
     }
   }
 
@@ -199,6 +200,7 @@
     &.disabled {
       color: #666;
       background: @color-disabled;
+      pointer-events: none;
     }
   }
 </style>
@@ -329,7 +331,7 @@
     methods = {
       gotoBuy () {
         const productsToBuy = this.products.filter(product => product.isChecked)
-        this.$navigate('/pages/order/order', {ordesource: 'normal', products: JSON.stringify(productsToBuy)})
+        this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
       },
       goShopping () {
         this.$switch('/pages/home/home')
@@ -398,6 +400,14 @@
           }
         }
       })
+    }
+
+    clear () {
+      store.dispatch({
+        type: 'CLEAR_CART'
+      })
+      this.products = []
+      this.$apply()
     }
 
     onShow() {

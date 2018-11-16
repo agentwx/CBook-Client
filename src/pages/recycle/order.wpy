@@ -219,7 +219,7 @@
         this.queryBookInfo(result)
       },
       nextStep () {
-        this.$navigate('/pages/order/order', {ordesource: 'recycle', products: JSON.stringify(this.products)})
+        this.$navigate('/pages/order/order', {orderSource: 'recycle', products: JSON.stringify(this.products)})
       }
     }
 
@@ -237,6 +237,14 @@
     loadRecycles () {
       const { recycles } = store.getState()
       this.products = recycles.list.map(item => ({...item, COUNT: 1}))
+      this.$apply()
+    }
+
+    clear () {
+      store.dispatch({
+        type: 'CLEAR_RECYCLE'
+      })
+      this.products = []
       this.$apply()
     }
 

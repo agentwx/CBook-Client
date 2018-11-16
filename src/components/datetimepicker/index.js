@@ -1,6 +1,6 @@
-const {dateTimePicker, getMonthDay} = require('./dateTimePicker')
+const {dateTimePicker, getMonthDay, getTimeRange, padZero} = require('./dateTimePicker')
 
-function formateDate (dateArr) {
+function formateDate(dateArr) {
   let date = dateArr.slice(0, 3).join('-')
   let time = dateArr.slice(3).join(':')
   return `${date} ${time}`
@@ -14,7 +14,7 @@ Component({
     },
     fields: {
       type: String,
-      value: 'day'
+      value: 'second'
     },
     startYear: {
       type: Number,
@@ -30,7 +30,19 @@ Component({
     rangeKey: String,
     disabled: {
       type: Boolean,
-      default: false
+      value: false
+    },
+    timeRange: {
+      type: Array,
+      value: [0, 24]
+    },
+    timeStep: {
+      type: Number,
+      value: 1
+    },
+    timeHalf: {
+      type: Boolean,
+      value: false
     },
     suffix: {
       type: Array,
@@ -42,26 +54,27 @@ Component({
     dateTimeArrayDisplay: []
   },
   lifetimes: {
-    attached: function () {
+    ready: function () {
       if (this.data.mode === 'datetime') {
-        const {dateTime, dateTimeArray} = dateTimePicker(this.data.startYear, this.data.endYear, this.data.value)
 
-        if (this.data.fields === 'minute') {
-          dateTime.pop()
-          dateTimeArray.pop()
-        }
+        const {
+          startYear, endYear, value, suffix,
+          fields, timeRange, timeStep, timeHalf
+        } = this.data
 
-        if (this.data.fields === 'hour') {
-          dateTime.pop()
-          dateTime.pop()
-          dateTimeArray.pop()
-          dateTimeArray.pop()
+        const {dateTime, dateTimeArray} = dateTimePicker(startYear, endYear, value, fields)
+
+        if (fields === 'range') {
+          const times = getTimeRange(timeRange[0], timeRange[1], timeStep, timeHalf)
+          dateTimeArray.push(times)
+          dateTime.push(this.getTimeIndex(times))
+          suffix[3] = ''
         }
 
         let dateTimeArrayDisplay = []
 
         dateTimeArray.forEach((items, index) => {
-          dateTimeArrayDisplay.push(items.map(item => item + this.data.suffix[index]))
+          dateTimeArrayDisplay.push(items.map(item => item + suffix[index]))
         })
 
         this.dateTimeArray = dateTimeArray
@@ -78,6 +91,15 @@ Component({
     }
   },
   methods: {
+    getTimeIndex (times) {
+      let hourNow = padZero(new Date().getHours())
+      for (let i = 0; i < times.length; i++) {
+        if (times[i].indexOf(hourNow) === 0) {
+          return i
+        }
+      }
+      return 0
+    },
     change (e) {
       this.setData({dateTime: e.detail.value})
 

@@ -1,14 +1,37 @@
-function padZero(param) {
-  return param < 10 ? '0' + param : '' + param
+function padZero(n) {
+  return n < 10 ? '0' + n : '' + n
 }
 
-function getLoopArray(start, end, suffix = '') {
+function getLoopArray(start, end) {
   let array = []
   start = start || 0
   end = end || 1
   for (let i = start; i <= end; i++) {
-    array.push(padZero(i) + suffix)
+    array.push(padZero(i))
   }
+  return array
+}
+
+function fixEnd(end) {
+  return end === 24 ? '00' : padZero(end)
+}
+
+function getTimeRange(start = 0, end = 24, step = 1, isHalf = false) {
+  let array = []
+  const len = (end - start) / step
+  const r = isHalf ? ':30' : ''
+
+  for (let i = 0; i < len; i++) {
+    let s = padZero(start)
+    let e = (start + step) >= end ? fixEnd(end) : padZero(start + step)
+    if (isHalf) {
+      array.push(`${s}:00 - ${s + r}`, `${s + r} - ${e}:00`)
+    } else {
+      array.push(`${s}:00 - ${e}:00`)
+    }
+    start += step
+  }
+
   return array
 }
 
@@ -53,10 +76,10 @@ function getNowDateArray() {
   return [year, month, date, hour, minu, seco]
 }
 
-function dateTimePicker(startYear, endYear, date) {
+function dateTimePicker(startYear, endYear, date, field = 'second') {
   // 返回默认显示的数组和联动数组的声明
   let dateTime = []
-  let dateTimeArray = [[], [], [], [], [], []]
+  let dateTimeArray = []
   let start = startYear || 1978
   let end = endYear || 2100
   // 默认开始显示数据
@@ -66,9 +89,16 @@ function dateTimePicker(startYear, endYear, date) {
   dateTimeArray[0] = getLoopArray(start, end)
   dateTimeArray[1] = getLoopArray(1, 12)
   dateTimeArray[2] = getMonthDay(defaultDate[0], defaultDate[1])
-  dateTimeArray[3] = getLoopArray(0, 23)
-  dateTimeArray[4] = getLoopArray(0, 59)
-  dateTimeArray[5] = getLoopArray(0, 59)
+  if (field === 'hour') {
+    dateTimeArray[3] = getLoopArray(0, 23)
+  } else if (field === 'minute') {
+    dateTimeArray[3] = getLoopArray(0, 23)
+    dateTimeArray[4] = getLoopArray(0, 59)
+  } else if (field === 'second') {
+    dateTimeArray[3] = getLoopArray(0, 23)
+    dateTimeArray[4] = getLoopArray(0, 59)
+    dateTimeArray[5] = getLoopArray(0, 59)
+  }
 
   dateTimeArray.forEach((current, index) => {
     dateTime.push(current.indexOf(defaultDate[index]))
@@ -82,5 +112,7 @@ function dateTimePicker(startYear, endYear, date) {
 
 module.exports = {
   dateTimePicker: dateTimePicker,
-  getMonthDay: getMonthDay
+  getMonthDay: getMonthDay,
+  getTimeRange: getTimeRange,
+  padZero: padZero
 }

@@ -135,7 +135,7 @@
     <arrowicon name="arrow-right-o" color="#888" style="font-size: 36rpx"/>
   </view>
 
-  <datetimepicker fields="minute" @change="datetimeChange">
+  <datetimepicker fields="range" timeRange="{{timeRange}}" @change="datetimeChange">
     <listitem class="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
@@ -153,8 +153,8 @@
             <text>{{item.name}}</text>
             <text>x{{item.COUNT}}</text>
           </view>
-          <view wx:if="{{orderSource=='normal'}}">￥{{item.price}}</view>
-          <view wx:if="{{orderSource=='recycle'}}">￥{{item.costPrice}}</view>
+          <view wx:if="{{orderSource==='normal'}}">￥{{item.price}}</view>
+          <view wx:if="{{orderSource==='recycle'}}">￥{{item.costPrice}}</view>
         </view>
       </repeat>
     </view>
@@ -195,12 +195,8 @@
   import Panel from '@/components/panel'
   import Modal from '@/components/modal'
   import Button from '@/components/button'
-  import { toast } from '../../utils/util'
+  import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
-
-  import {getStore} from 'wepy-redux'
-
-  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -227,6 +223,7 @@
       deliveryTime: '',
       orderSource: 'normal',
       address: null,
+      timeRange: [8, 22],
       products: []
     }
 
@@ -260,7 +257,7 @@
 
         if (this.orderSource === 'normal') {
           this.createBuyOrder()
-        } else {
+        } else if (this.orderSource === 'recycle') {
           this.createRecycleOrder()
         }
         // this.modalVisible = true
@@ -289,9 +286,7 @@
 
       await fetch.post('/recover/order/create', params)
 
-      store.dispatch({
-        type: 'CLEAR_RECYCLE'
-      })
+      getPrevPage().clear()
 
       this.$navigate('/pages/recycle/list')
     }
@@ -304,17 +299,21 @@
         income: parseFloat(this.totalPrice)
       }
 
-      await fetch.post('/buy/order/create', params)
+      await fetch.post('/recover/order/create', params)
 
-      store.dispatch({
-        type: 'CLEAR_CART'
-      })
+      const prevPage = getPrevPage()
+
+      if (prevPage.route === 'pages/shopcart/shopcart') {
+        prevPage.clear()
+      }
 
       this.$navigate('/pages/orderlist/orderlist')
     }
 
     onLoad({orderSource, products}) {
-      this.orderSource = orderSource
+      if (orderSource) {
+        this.orderSource = orderSource
+      }
       this.products = JSON.parse(products)
     }
   }
