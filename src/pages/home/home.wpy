@@ -39,7 +39,6 @@
     margin-bottom: 20rpx;
     border-radius: 12rpx;
     box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.08);
-    z-index: 50;
 
     image {
       width: 100%;
@@ -54,13 +53,29 @@
 
   .filter-toolbar {
     position: relative;
+    z-index: 5;
+
+    &.fixed {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      box-shadow: 0 10rpx 16rpx rgba(0,0,0,.08);
+
+      .filter-toolbar-inner {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .filter-toolbar-inner {
+    position: relative;
     .flex-v-center();
     justify-content: space-between;
     padding-left: 20rpx;
     padding-right: 20rpx;
     height: 78rpx;
-    background-color: #fff;
-    z-index: 20;
+    z-index: 5;
 
     .filter-itemtype {
       flex: 1;
@@ -90,14 +105,6 @@
         font-size: 28rpx;
       }
     }
-
-    &.fixed {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      box-shadow: 0 10rpx 16rpx rgba(0,0,0,.08);
-    }
   }
 
   .filter-sublayer {
@@ -107,6 +114,7 @@
     right: 0;
     background-color: #fff;
     box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.07);
+    .animation(slide-down .3s ease);
   }
 
   .filter-mask {
@@ -270,21 +278,22 @@
 
   <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="true">
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
-      <view class="filter-itemtype sort {{filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
-       综合排序
-       <text class="iconfont icon-caret-down"></text>
+      <view class="filter-toolbar-inner">
+        <view class="filter-itemtype sort {{filterVisible && filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
+          综合排序
+          <text class="iconfont icon-caret-down"></text>
+        </view>
+        <view class="filter-itemtype {{filterType=='popular' ? 'selected' : ''}}" @tap="showFilter('popular')">
+          人气优先
+        </view>
+        <view class="filter-itemtype {{filterType=='new' ? 'selected' : ''}}" @tap="showFilter('new')">
+          新书优先
+        </view>
+        <view class="filter-itemtype filter {{filterVisible && filterType=='catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
+          筛选
+          <text class="iconfont icon-filter"></text>
+        </view>
       </view>
-      <view class="filter-itemtype {{filterType=='popular' ? 'selected' : ''}}" @tap="showFilter('popular')">
-       人气优先
-      </view>
-      <view class="filter-itemtype {{filterType=='new' ? 'selected' : ''}}" @tap="showFilter('new')">
-       新书优先
-      </view>
-      <view class="filter-itemtype filter {{filterType=='catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
-       筛选
-       <text class="iconfont icon-filter"></text>
-      </view>
-
       <view class="filter-sublayer" hidden="{{!filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType=='sort'}}">
           <view class="filter-itemsort" @tap="filterByTag('综合排序')">综合排序</view>
@@ -333,7 +342,7 @@
     </view>
 
     <view class="filter-mask"
-          wx:if="{{filterType=='sort'||filterType=='catelog'}}"
+          wx:if="{{filterVisible}}"
           @tap="hideFilter">
     </view>
 
@@ -410,7 +419,7 @@ export default class Index extends wepy.page {
     isLoading: true,
     isModalSpinShow: false,
     filterBarFixed: false,
-    filterVisible: true,
+    filterVisible: false,
     filterType: 'none',
     products: []
   }
@@ -427,17 +436,17 @@ export default class Index extends wepy.page {
 
       if ((type === 'sort' || type === 'catelog') && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
         wx.pageScrollTo({
-          scrollTop: this.filterBarTop
+          scrollTop: this.filterBarTop + 1
         })
         setTimeout(() => {
           this.filterType = type
+          this.filterVisible = true
           this.$apply()
         }, 300)
       } else {
         this.filterType = type
+        this.filterVisible = true
       }
-
-      this.filterVisible = true
 
       if (type === 'popular' || type === 'new') {
         this.loadByfilterTag(type)

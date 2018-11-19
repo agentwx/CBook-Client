@@ -265,11 +265,11 @@
     }
 
     async loadProducts (name = '', params = {filter: [], sort: []}) {
-      /*let params = {
+      /* let params = {
         offset: this.pageNum,
         limit: 15,
         name
-      }*/
+      } */
 
       params = {
         offset: this.pageNum,

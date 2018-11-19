@@ -121,6 +121,9 @@
 
     methods = {
       async toggleDefault (item) {
+        if (item.isDefault) {
+          return
+        }
         let params = {
           name: item.name,
           mobile: item.mobile,

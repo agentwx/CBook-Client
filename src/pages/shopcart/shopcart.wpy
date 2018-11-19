@@ -411,6 +411,9 @@
     }
 
     onShow() {
+      if (!this.isEdit) {
+        this.isSelectAll = true
+      }
       this.getProductsFromCart()
     }
   }

@@ -3,8 +3,8 @@
 
   .button {
     .flex-center();
-    padding-left: 30rpx;
-    padding-right: 30rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
     flex-direction: row;
     color: #444;
     font-size: 28rpx;
@@ -163,6 +163,8 @@
 
     &.small {
       height: @small;
+      padding-left: 30rpx;
+      padding-right: 30rpx;
     }
 
   }

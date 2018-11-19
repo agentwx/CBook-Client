@@ -1,6 +1,7 @@
 <style lang="less">
   @import "less/mixin";
   @import 'less/iconfont';
+  @import 'less/animation';
   @import 'less/loading';
 
   page {
@@ -155,7 +156,6 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-
   }
 }
 </script>
