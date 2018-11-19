@@ -21,7 +21,10 @@ Component({
     },
     label: String,
     icon: String,
-    iconType: String,
+    iconType: {
+      type: String,
+      value: 'iconfont'
+    },
     labelWidth: {
       type: String,
       value: ''

@@ -3,10 +3,7 @@
     <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
     <view class="form-item-bd {{isBordered ? 'bordered' : ''}}">
       <icon wx:if="{{icon}}" class="icon-left" type="{{iconType}}" color="#999" name="{{icon}}" size="{{size}}"/>
-      <input wx:if="{{!isPassword}}" type="{{type}}" class="input {{size}}" focus="{{isFocus}}" disabled="{{isDisabled}}"
-             placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" bindinput="input"
-             bindfocus="focus" bindblur="blur" bindconfirm="confirm"/>
-      <input wx:if="{{isPassword}}" password class="input {{size}}" focus="{{focus}}" disabled="{{isDisabled}}"
+      <input type="{{type}}" password="{{isPassword}}" class="input {{size}}" focus="{{isFocus}}" disabled="{{isDisabled}}"
              placeholder="{{placeholder}}" value="{{value}}" maxlength="{{maxlength}}" bindinput="input"
              bindfocus="focus" bindblur="blur" bindconfirm="confirm"/>
       <view class="icon-right" wx:if="{{isShowClear || isShowEye}}">

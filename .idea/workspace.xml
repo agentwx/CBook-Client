@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/components/formitem.wpy" afterPath="$PROJECT_DIR$/src/components/formitem.wpy" />
       <change beforePath="$PROJECT_DIR$/src/components/formitem/index.js" afterPath="$PROJECT_DIR$/src/components/formitem/index.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/formitem/index.less" afterPath="$PROJECT_DIR$/src/components/formitem/index.less" />
       <change beforePath="$PROJECT_DIR$/src/components/formitem/index.wxml" afterPath="$PROJECT_DIR$/src/components/formitem/index.wxml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -15,97 +17,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="picker.wpy" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/components/picker.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="625">
-                    <caret line="106" column="23" lean-forward="false" selection-start-line="106" selection-start-column="23" selection-end-line="106" selection-end-column="23" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="formitem.wpy" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="744">
-                    <caret line="226" column="7" lean-forward="false" selection-start-line="205" selection-start-column="6" selection-end-line="226" selection-end-column="7" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="iconitem.wpy" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/components/iconitem.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="459">
-                    <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="tabhead.wpy" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/components/tabhead.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="421">
-                    <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="tabbar.wpy" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/components/tabbar.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="676">
-                    <caret line="93" column="43" lean-forward="false" selection-start-line="88" selection-start-column="8" selection-end-line="93" selection-end-column="43" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="steps.wpy" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/components/steps.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="744">
-                    <caret line="107" column="7" lean-forward="false" selection-start-line="99" selection-start-column="6" selection-end-line="107" selection-end-column="7" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="regionpicker.wpy" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/components/regionpicker.wpy">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="591">
-                    <caret line="134" column="5" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
-                    <folding>
-                      <element signature="n#style#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="true" />
-                      <element signature="n#style#0;n#view#0;n#view#0;n#view#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -124,11 +35,12 @@
       <file leaf-file-name="index.wxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/formitem/index.wxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+            <state relative-caret-position="68">
+              <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="80" selection-end-line="4" selection-end-column="84" />
               <folding>
                 <element signature="n#style#0;n#view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#text#0;n#view#0;n#view#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#view#0;n#view#0;n#view#0;n#view#0;n#view#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,8 +49,8 @@
       <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/formitem/index.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="65" column="18" lean-forward="true" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+            <state relative-caret-position="206">
+              <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -147,8 +59,8 @@
       <file leaf-file-name="new_address.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/address/new_address.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="175">
+              <caret line="29" column="69" lean-forward="false" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
               <folding>
                 <element signature="e#1373#1396#0" expanded="true" />
               </folding>
@@ -160,17 +72,7 @@
         <entry file="file://$PROJECT_DIR$/src/pages/recycle/detail.wpy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="359">
-              <caret line="169" column="35" lean-forward="true" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/formitem/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="101" column="37" lean-forward="true" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
+              <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -187,11 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>closebutton</find>
-      <find>orderitem</find>
-      <find>order-entry-body</find>
-      <find>goToOrders</find>
-      <find>paybutton</find>
       <find>tabItems</find>
       <find>borderStyle</find>
       <find>isDisabled</find>
@@ -217,6 +114,11 @@
       <find>itemCange</find>
       <find>ctrl-icon</find>
       <find>togglePwdVisible</find>
+      <find>isPassword</find>
+      <find>type</find>
+      <find>focus</find>
+      <find>icon</find>
+      <find>.icon-lef</find>
     </findStrings>
     <replaceStrings>
       <replace>goToOrders4</replace>
@@ -258,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
         <option value="$PROJECT_DIR$/src/components/button/index.js" />
         <option value="$PROJECT_DIR$/src/components/checkbox/index.less" />
         <option value="$PROJECT_DIR$/src/components/checkbox/index.wxml" />
@@ -304,10 +205,11 @@
         <option value="$PROJECT_DIR$/src/components/picker/index.less" />
         <option value="$PROJECT_DIR$/src/components/regionpicker/index.js" />
         <option value="$PROJECT_DIR$/src/components/picker/index.js" />
-        <option value="$PROJECT_DIR$/src/components/formitem/index.less" />
         <option value="$PROJECT_DIR$/src/components/regionpicker/index.less" />
-        <option value="$PROJECT_DIR$/src/components/formitem/index.js" />
         <option value="$PROJECT_DIR$/src/components/formitem/index.wxml" />
+        <option value="$PROJECT_DIR$/src/components/formitem/index.js" />
+        <option value="$PROJECT_DIR$/src/components/formitem/index.less" />
+        <option value="$PROJECT_DIR$/src/components/formitem.wpy" />
         <option value="$PROJECT_DIR$/src/pages/address/new_address.wpy" />
       </list>
     </option>
@@ -372,13 +274,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="formitem" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -432,12 +327,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="79820000" />
+      <workItem from="1542243669812" duration="81140000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207071000" />
+    <option name="totallyTimeSpent" value="208391000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -452,7 +347,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.184514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.184514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -494,30 +389,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/alert/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/panel/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/alert/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modal/index.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -750,8 +621,8 @@
         <state relative-caret-position="591">
           <caret line="134" column="5" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
           <folding>
-            <element signature="n#style#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#view#0;n#view#0;n#view#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#view#0;n#view#0;n#view#0;n#view#0;n#picker#0;n#template#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -825,14 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/address/address.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -856,14 +719,6 @@
           <folding>
             <element signature="n#style#0;n#view#0;n#picker#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="226" column="7" lean-forward="false" selection-start-line="205" selection-start-column="6" selection-end-line="226" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -891,45 +746,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/detail.wpy">
+    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="169" column="35" lean-forward="true" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="65" column="18" lean-forward="true" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="101" column="37" lean-forward="true" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/formitem/index.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        <state relative-caret-position="68">
+          <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="80" selection-end-line="4" selection-end-column="84" />
           <folding>
             <element signature="n#style#0;n#view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#text#0;n#view#0;n#view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#view#0;n#view#0;n#view#0;n#view#0;n#view#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/icon/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/icon/index.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#text#0;n#view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/icon/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/formitem/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="43" column="18" lean-forward="false" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/detail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/address/new_address.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        <state relative-caret-position="175">
+          <caret line="29" column="69" lean-forward="false" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
           <folding>
             <element signature="e#1373#1396#0" expanded="true" />
           </folding>
