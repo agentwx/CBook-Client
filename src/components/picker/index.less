@@ -1,0 +1,43 @@
+@import "../../less/mixin";
+
+picker {
+  flex: 1;
+  width: 100%;
+  border: 2rpx solid #ccc;
+  background-color: #fff;
+  border-radius: 8rpx;
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+.picker {
+  padding: 12rpx 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  .flex-v-center();
+  justify-content: space-between;
+
+  &.large {
+    height: @large;
+    font-size: 32rpx;
+  }
+  &.normal {
+    height: @normal;
+  }
+  &.small {
+    height: @small;
+  }
+
+  .icon {
+    padding: 0;
+
+    .icon-img {
+      width: 20rpx !important;
+      height: 20rpx !important;
+      vertical-align: middle;
+    }
+  }
+}

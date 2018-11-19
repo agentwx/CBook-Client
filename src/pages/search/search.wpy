@@ -19,13 +19,7 @@
     overflow: hidden;
     box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
 
-    .icon-find {
-      font-size: 36rpx;
-      color: #888;
-    }
-
     .clear-search {
-      color: #888;
       padding: 8rpx;
     }
   }
@@ -52,7 +46,6 @@
 
     .ssbl-icon {
       padding: 8rpx;
-      font-size: 40rpx;
     }
   }
 
@@ -154,16 +147,20 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search">
-      <text class="iconfont icon-find"></text>
+      <icon name="find" extraStyle="font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
-      <text class="clear-search iconfont icon-close-circle" hidden="{{isSearchEmpty}}" @tap="clearSearch"></text>
+      <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
+        <icon name="close-circle" color="#888"></icon>
+      </view>
     </view>
   </view>
 
   <view class="search-sublayer" wx:if="{{!isSearchShow}}">
     <view class="ssbl-hd">
       <text class="ssbl-title">历史搜索</text>
-      <text class="ssbl-icon iconfont icon-trash" @tap="clearHistory" wx:if="{{historyTags.length > 0}}"></text>
+      <view class="ssbl-icon" @tap="clearHistory" wx:if="{{historyTags.length > 0}}">
+        <icon name="trash"></icon>
+      </view>
     </view>
     <view class="search-history">
       <repeat for="{{historyTags}}">
@@ -183,7 +180,7 @@
             <view class="product-caption">{{item.name}}</view>
             <view class="product-press">{{item.author}}</view>
             <view class="product-desc">{{item.press}}</view>
-            <raty :value.sync="item.doubanScore"></raty>
+            <raty value="{{item.doubanScore}}"></raty>
             <view class="product-tags">
               <repeat for="{{item.tags}}">
                 <tag>{{item}}</tag>
@@ -208,19 +205,20 @@
 
 <script>
   import wepy from 'wepy'
-  import Raty from '@/components/raty'
-  import Tag from '@/components/tag'
   import fetch from '../../service/fetch'
   import History from '../../service/history'
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '星月童书'
+      navigationBarTitleText: '星月童书',
+      usingComponents: {
+        'raty': '/components/raty/index',
+        'icon': '/components/icon/index',
+        'tag': '/components/tag/index'
+      }
     }
 
     components = {
-      raty: Raty,
-      tag: Tag
     }
 
     history = new History('home_search')

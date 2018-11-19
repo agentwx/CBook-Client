@@ -1,0 +1,70 @@
+@import "../../less/mixin";
+
+.iconSize (@size) {
+  width: @size;
+  height: @size;
+}
+
+.icon {
+  display: inline-block;
+  line-height: 1;
+
+  &.x-large {
+    font-size: 80rpx;
+  }
+
+  &.large {
+    font-size: 64rpx;
+  }
+
+  &.middle {
+    font-size: 56rpx;
+  }
+
+  &.normal {
+    font-size: 40rpx;
+  }
+
+  &.small {
+    font-size: 28rpx;
+  }
+
+  &.x-small {
+    font-size: 20rpx;
+  }
+
+  .iconfont {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  &.img.x-large {
+    .iconSize(80rpx);
+  }
+
+  &.img.large {
+    .iconSize(64rpx);
+  }
+
+  &.img.middle {
+    .iconSize(56rpx);
+  }
+
+  &.img.normal {
+    .iconSize(40rpx);
+  }
+
+  &.img.small {
+    .iconSize(28rpx);
+  }
+
+  &.img.x-small {
+    .iconSize(20rpx);
+  }
+
+  .icon-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

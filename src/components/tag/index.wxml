@@ -1,0 +1,3 @@
+<view class="tag-item {{extraClass}}" style="{{extraStyle}}">
+  <slot></slot>
+</view>

@@ -1,0 +1,4 @@
+<view class="button {{isInline ? 'inline' : ''}} {{isCircled ? 'circled' : ''}} {{isBordered ? 'bordered' : ''}} {{size}} {{type}} {{isDisabled ? 'disabled' : ''}} {{extraClass}}" style="{{extraStyle}}">
+  <icon wx:if="{{icon}}" type="{{iconType}}" name="{{icon}}" size="{{size}}"></icon>
+  <slot></slot>
+</view>

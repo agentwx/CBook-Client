@@ -102,7 +102,7 @@
 </style>
 
 <template>
-  <tabhead :items="tabItems" :tabIndex.sync="tabIndex"></tabhead>
+  <tabhead items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tabhead>
 
   <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
     <panel>
@@ -131,7 +131,7 @@
           <view class="order-sumup">
             总共1件商品 合计 <text class="price">￥9.25</text>
           </view>
-          <paybutton inline="true" bordered="true" size="small">去付款</paybutton>
+          <btn inline="true" bordered="true" size="small">去付款</btn>
         </view>
       </view>
     </panel>
@@ -162,7 +162,7 @@
           <view class="order-sumup">
             总共1件商品 合计 <text class="price">￥9.25</text>
           </view>
-          <paybutton inline="true" bordered="true" size="small">去付款</paybutton>
+          <btn inline="true" bordered="true" size="small">去付款</btn>
         </view>
       </view>
     </panel>
@@ -179,19 +179,19 @@
 
 <script>
   import wepy from 'wepy'
-  import Tabhead from '@/components/tabhead'
   import Panel from '@/components/panel'
-  import Button from '@/components/button'
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '订单列表'
+      navigationBarTitleText: '订单列表',
+      usingComponents: {
+        tabhead: '/components/tabhead/index',
+        btn: '/components/button/index'
+      }
     }
 
     components = {
-      tabhead: Tabhead,
-      panel: Panel,
-      paybutton: Button
+      panel: Panel
     }
 
     data = {
@@ -200,7 +200,11 @@
       orders: [1]
     }
 
-    methods = {}
+    methods = {
+      tabheadChange (e) {
+        this.tabindex = e.detail.value
+      }
+    }
 
     onLoad({tabIndex}) {
       if (tabIndex !== undefined) {

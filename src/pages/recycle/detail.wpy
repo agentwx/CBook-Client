@@ -135,11 +135,11 @@
 
 <template>
   <stepspanel>
-    <steps :stepIndex.sync="stepIndex" :items="stepItems"></steps>
+    <steps stepIndex="{{stepIndex}}" items="{{stepItems}}"></steps>
   </stepspanel>
   <deliverypanel class="delivery-panel">
     <view class="delivery-body">
-      <geoicon name="geo" class="geo-icon"></geoicon>
+      <icon name="geo" extraClass="geo-icon"></icon>
       <view class="delivery-main">
         <view class="delivery-hd">
           <text class="username">{{order.orderName}}</text>
@@ -153,7 +153,7 @@
   <bookspanel>
     <view class="panel-title" slot="title">
       <view class="book-title">
-        <libicon name="library"></libicon>
+        <icon name="library"></icon>
         <text>图书列表</text>
       </view>
     </view>
@@ -195,7 +195,7 @@
     </view>
   </orderpanel>
   <view class="action-button" @tap="callService">
-    <serviceicon name="service" />
+    <icon name="service" />
     <text>召唤客服</text>
   </view>
 </template>
@@ -203,8 +203,6 @@
 <script>
   import wepy from 'wepy'
   import Panel from '@/components/panel'
-  import Steps from '@/components/steps'
-  import Icon from '@/components/icon'
 
   import { toast } from '../../utils/util'
 
@@ -215,7 +213,11 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '回收订单详情'
+      navigationBarTitleText: '回收订单详情',
+      usingComponents: {
+        icon: '/components/icon/index',
+        steps: '/components/steps/index'
+      }
     }
 
     components = {
@@ -223,11 +225,7 @@
       deliverypanel: Panel,
       bookspanel: Panel,
       incomepanel: Panel,
-      orderpanel: Panel,
-      steps: Steps,
-      libicon: Icon,
-      geoicon: Icon,
-      serviceicon: Icon
+      orderpanel: Panel
     }
 
     data = {

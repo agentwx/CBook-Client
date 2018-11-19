@@ -1,0 +1,20 @@
+<picker mode="region"
+        bindchange="change"
+        value="{{value}}"
+        custom-item="{{customItem}}"
+        class="{{isDisabled ? 'disabled' : ''}}"
+        disabled="{{isDisabled}}"
+>
+  <view class="form-item {{isNomargin ? 'nomargin' : ''}} {{extraStyle}}" style="{{extraStyle}}">
+    <view class="form-item-inner {{isUnderline ? 'underline' : ''}}">
+      <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
+      <view class="form-item-bd {{isBordered ? 'bordered' : ''}}">
+        <icon wx:if="{{icon}}" extraClass="icon-left" type="{{iconType}}" color="#999" name="{{icon}}" size="{{size}}"/>
+        <view class="picker {{size}}" style="">
+          <text class="picker-value">{{value}}</text>
+          <icon name="arrow-down" color="#999"></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+</picker>

@@ -108,6 +108,11 @@
 
   .order-entry-body {
     .flex();
+
+    iconitem {
+      flex: 1;
+      .flex-h-center();
+    }
   }
 
   .uc-listitem {
@@ -130,7 +135,7 @@
       <view class="uc-usertype">普通会员</view>
     </view>
     <view class="uc-birth-entry">
-      <birthicon name="baby" />
+      <icon name="baby" />
       <text>出生日期</text>
     </view>
   </view>
@@ -152,44 +157,36 @@
       <text class="to-orders" @tap="goToOrders('0')">全部订单</text>
     </view>
     <view class="order-entry-body">
-      <iconitem1 icon="prepay" iconType="svg" tabIndex="1" @tap.user="goToOrders">待付款</iconitem1>
-      <iconitem2 icon="presend" iconType="svg" tabIndex="2" @tap.user="goToOrders">待发货</iconitem2>
-      <iconitem3 icon="precollect" iconType="svg" tabIndex="3" @tap.user="goToOrders">待收货</iconitem3>
-      <iconitem4 icon="order_done" iconType="svg" tabIndex="4" @tap.user="goToOrders">已完成</iconitem4>
+      <iconitem icon="prepay" iconType="svg" @tap="goToOrders('1')">待付款</iconitem>
+      <iconitem icon="presend" iconType="svg" @tap="goToOrders('2')">待发货</iconitem>
+      <iconitem icon="precollect" iconType="svg" @tap="goToOrders('3')">待收货</iconitem>
+      <iconitem icon="order_done" iconType="svg" @tap="goToOrders('4')">已完成</iconitem>
     </view>
   </panel>
 
   <view class="uc-listitem">
-    <orderitem icon="order" @tap.user="goToRecycleOrders">回收订单</orderitem>
-    <addritem icon="geo" @tap.user="goToAddress">地址管理</addritem>
-    <serviceitem icon="service" @tap.user="callService">联系客服</serviceitem>
+    <listitem icon="order" @tap="goToRecycleOrders">回收订单</listitem>
+    <listitem icon="geo" @tap="goToAddress">地址管理</listitem>
+    <listitem icon="service" @tap="callService">联系客服</listitem>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
   import Panel from '@/components/panel'
-  import Icon from '@/components/icon'
-  import Iconitem from '@/components/iconitem'
-  import Listitem from '@/components/listitem'
-  import Button from '@/components/button'
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '个人中心'
+      navigationBarTitleText: '个人中心',
+      usingComponents: {
+        listitem: '/components/listitem/index',
+        iconitem: '/components/iconitem/index',
+        icon: '/components/icon/index'
+      }
     }
 
     components = {
-      panel: Panel,
-      birthicon: Icon,
-      iconitem1: Iconitem,
-      iconitem2: Iconitem,
-      iconitem3: Iconitem,
-      iconitem4: Iconitem,
-      orderitem: Listitem,
-      addritem: Listitem,
-      serviceitem: Listitem,
-      closebutton: Button
+      panel: Panel
     }
 
     data = {

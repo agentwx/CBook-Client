@@ -31,12 +31,6 @@
     }
 
     methods = {
-      pickRaty (rateIndex, $e) {
-        if (!this.readonly) {
-          this.value = rateIndex + 1
-          this.$emit('onPick', this.value, $e)
-        }
-      }
     }
   }
 </script>

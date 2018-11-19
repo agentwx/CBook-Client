@@ -1,0 +1,169 @@
+@import "../../less/mixin";
+
+.button {
+  .flex-center();
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  flex-direction: row;
+  color: #444;
+  font-size: 28rpx;
+  box-sizing: border-box;
+
+  > .icon {
+    margin-right: 6rpx;
+  }
+
+  &.circled {
+    border-radius: @large;
+  }
+
+  &.inline {
+    display: inline-flex;
+  }
+
+  &.primary {
+    color: #fff;
+    &:not(.bordered) {
+      .g-gradient();
+
+      &:active {
+        .g-darken-gradient();
+      }
+    }
+
+    &.bordered {
+      color: @gcolor;
+      border: 2rpx solid @gcolor;
+
+      &:active {
+        color: darken(@gcolor, 10%);
+        border-color: darken(@gcolor, 10%);
+      }
+    }
+  }
+
+  &.success {
+    color: #fff;
+
+    &:not(.bordered) {
+      background-color: @color-success;
+
+      &:active {
+        background-color: darken(@color-success, 10%);
+      }
+    }
+
+    &.bordered {
+      color: @color-success;
+      border: 2rpx solid @color-success;
+
+      &:active {
+        color: darken(@color-success, 10%);
+        border-color: darken(@color-success, 10%);
+      }
+    }
+  }
+
+  &.info {
+    color: #fff;
+
+    &:not(.bordered) {
+      background-color: @color-info;
+
+      &:active {
+        background-color: darken(@color-info, 10%);
+      }
+    }
+
+    &.bordered {
+      color: @color-info;
+      border: 2rpx solid @color-info;
+
+      &:active {
+        color: darken(@color-info, 10%);
+        border-color: darken(@color-info, 10%);
+      }
+    }
+  }
+
+  &.warning {
+    color: #fff;
+
+    &:not(.bordered) {
+      background-color: @color-warning;
+
+      &:active {
+        background-color: darken(@color-warning, 10%);
+      }
+    }
+
+    &.bordered {
+      color: @color-warning;
+      border: 2rpx solid @color-warning;
+
+      &:active {
+        color: darken(@color-warning, 10%);
+        border-color: darken(@color-warning, 10%);
+      }
+    }
+  }
+
+  &.danger {
+    color: #fff;
+
+    &:not(.bordered) {
+      background-color: @color-danger;
+
+      &:active {
+        background-color: darken(@color-danger, 10%);
+      }
+    }
+
+    &.bordered {
+      color: @color-danger;
+      border: 2rpx solid @color-danger;
+
+      &:active {
+        color: darken(@color-danger, 10%);
+        border-color: darken(@color-danger, 10%);
+      }
+    }
+  }
+
+  &.default {
+    background-color: @color-default;
+    &:active {
+      background-color: darken(@color-default, 10%);
+    }
+  }
+
+  &.plain {
+    background-color: transparent;
+    border: 2rpx solid @color-border;
+
+    &:active {
+      border-color: darken(@color-border, 10%);
+    }
+  }
+
+  &.disabled {
+    background-color: @color-disabled;
+    pointer-events: none;
+  }
+
+  &.large {
+    height: @large;
+    font-size: 32rpx;
+  }
+
+  &.normal {
+    height: @normal;
+  }
+
+  &.small {
+    height: @small;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+  }
+
+}

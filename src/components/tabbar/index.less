@@ -1,0 +1,27 @@
+@import "../../less/mixin";
+
+.tabbar-wrap {
+  .flex();
+  border-width: 2rpx 0 0;
+  border-style: solid;
+  border-top-color: transparent;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tabbar-item {
+  flex: 1;
+  .flex-center();
+  flex-direction: column;
+  padding: 4rpx 0;
+
+  .icon {
+    margin-bottom: 3rpx;
+  }
+
+  > text {
+    font-size: 24rpx;
+  }
+}

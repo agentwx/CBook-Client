@@ -27,8 +27,6 @@ Component({
       value: true
     }
   },
-  data: {
-  },
   computed: {
     isReadonly () {
       return typeof this.data.readonly === 'string'

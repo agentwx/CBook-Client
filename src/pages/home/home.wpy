@@ -17,11 +17,6 @@
     border-radius: 60rpx;
     overflow: hidden;
     box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.1);
-
-    .icon-find {
-      font-size: 36rpx;
-      color: #888;
-    }
   }
 
   .search-input {
@@ -99,10 +94,6 @@
           font-weight: normal;
           color: #27a1f8;
         }
-      }
-
-      .iconfont {
-        font-size: 28rpx;
       }
     }
   }
@@ -267,7 +258,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
-      <text class="iconfont icon-find"></text>
+      <icon name="find" extraStyle=" font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" disabled />
     </view>
   </view>
@@ -281,7 +272,7 @@
       <view class="filter-toolbar-inner">
         <view class="filter-itemtype sort {{filterVisible && filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
           综合排序
-          <text class="iconfont icon-caret-down"></text>
+          <icon size="small" name="caret-down"></icon>
         </view>
         <view class="filter-itemtype {{filterType=='popular' ? 'selected' : ''}}" @tap="showFilter('popular')">
           人气优先
@@ -291,7 +282,7 @@
         </view>
         <view class="filter-itemtype filter {{filterVisible && filterType=='catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
           筛选
-          <text class="iconfont icon-filter"></text>
+          <icon size="small" name="filter"></icon>
         </view>
       </view>
       <view class="filter-sublayer" hidden="{{!filterVisible}}">
@@ -305,7 +296,7 @@
 
         <view class="filter-catelog" wx:if="{{filterType=='catelog'}}">
           <view class="filter-catelog-hd">
-            <iconage name="leaf" type="svg"></iconage>
+            <icon name="leaf" type="svg"></icon>
             年龄（单选）
           </view>
           <view class="filter-catelog-bd">
@@ -316,7 +307,7 @@
             <view class="filter-catelog-item" @tap="filterByTag('8岁以上')">8岁以上</view>
           </view>
           <view class="filter-catelog-hd">
-            <iconcate name="catelog" type="svg"></iconcate>
+            <icon name="catelog" type="svg"></icon>
             分类（可多选）
           </view>
           <view class="filter-catelog-bd">
@@ -328,7 +319,7 @@
             <view class="filter-catelog-item" @tap="filterByTag('启发想象')">启发想象</view>
           </view>
           <view class="filter-catelog-hd">
-            <iconlang name="lang" type="svg"></iconlang>
+            <icon name="lang" type="svg"></icon>
             语言（单选）
           </view>
           <view class="filter-catelog-bd">
@@ -389,8 +380,6 @@
 
 <script>
 import wepy from 'wepy'
-import Tag from '@/components/tag'
-import Icon from '@/components/icon'
 import { getNodeRef } from '../../utils/util'
 import fetch from '../../service/fetch'
 
@@ -404,15 +393,14 @@ export default class Index extends wepy.page {
     enablePullDownRefresh: true,
     usingComponents: {
       'modal-spinner': '/components/modal-spinner/index',
-      'raty': '/components/raty/index'
+      'raty': '/components/raty/index',
+      'icon': '/components/icon/index',
+      'tag': '/components/tag/index',
+      'chkbox': '/components/checkbox/index'
     }
   }
 
   components = {
-    tag: Tag,
-    iconage: Icon,
-    iconcate: Icon,
-    iconlang: Icon
   }
 
   data = {

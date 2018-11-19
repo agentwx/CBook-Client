@@ -1,0 +1,25 @@
+@import "../../less/mixin";
+
+.tabhead {
+  .flex();
+  background-color: #fff;
+  border-bottom: 2rpx solid @color-underline;
+}
+
+.tabhead-item {
+  flex: 1;
+  text-align: center;
+
+  text {
+    display: inline-block;
+    padding: 30rpx 16rpx 24rpx;
+    border-bottom: 6rpx solid transparent;
+  }
+
+  &.active {
+    text {
+      font-weight: bold;
+      border-color: @gcolor;
+    }
+  }
+}

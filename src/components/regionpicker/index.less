@@ -1,0 +1,47 @@
+@import "../../less/mixin";
+@import "../formitem/index";
+
+picker {
+  flex: 1;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8rpx;
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &.bordered {
+    border: 2rpx solid @color-border;
+  }
+}
+
+.picker {
+  flex: 1;
+  width: 100%;
+  padding: 12rpx 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  .flex-v-center();
+  justify-content: space-between;
+
+  &.large {
+    height: @large;
+    font-size: 32rpx;
+  }
+  &.normal {
+    height: @normal;
+  }
+  &.small {
+    height: @small;
+  }
+}
+
+.picker-value {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

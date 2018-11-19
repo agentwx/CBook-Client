@@ -211,8 +211,8 @@
 
   <view class="cart-edit-hd" hidden="{{products.length === 0}}">
     <view class="edit-left" @tap="toggleSelectAll">
-      <topcheckbox class="cart-checkbox" readonly="true" :checked.sync="isSelectAll" />
-      <libicon name="library" class="lib-icon" />
+      <chkbox extraClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
+      <icon name="library" extraClass="lib-icon" />
       <text>图书列表</text>
     </view>
     <view class="edit-right">
@@ -225,7 +225,7 @@
     <repeat for="{{products}}">
       <view class="cart-panel" @tap="toggleSelect({{item}})">
         <view class="cart-col-checkbox cart-checkbox">
-          <itemcheckbox readonly="true" :checked.sync="item.isChecked" />
+          <chkbox readonly="true" checked="{{item.isChecked}}" />
         </view>
         <view class="cart-pd-cover">
           <image src="{{item.smallImageUrl}}" lazyload="true"></image>
@@ -254,13 +254,13 @@
     <image src="../../images/cart-empty-bg.png"></image>
     <view class="empty-action">
       <view class="empty-text">购物车空空如也~</view>
-      <shopbutton type="plain" class="goshop-btn" @tap.user="goShopping">去逛逛</shopbutton>
+      <btn type="plain" extraClass="goshop-btn" @tap="goShopping">去逛逛</btn>
     </view>
   </view>
 
   <view class="cart-action-bar" hidden="{{products.length === 0}}">
     <veiw class="action-left" @tap="toggleSelectAll">
-      <sumcheckbox class="cart-checkbox" readonly="true" :checked.sync="isSelectAll" />
+      <chkbox extraClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
       <text>全选</text>
     </veiw>
     <view class="action-right">
@@ -276,10 +276,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Button from '@/components/button'
-  import Alert from '@/components/alert'
-  import Checkbox from '@/components/checkbox'
-  import Icon from '@/components/icon'
   import { confirm } from '../../utils/util'
 
   import {getStore} from 'wepy-redux'
@@ -288,16 +284,16 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '购物车'
+      navigationBarTitleText: '购物车',
+      usingComponents: {
+        'btn': '/components/button/index',
+        'icon': '/components/icon/index',
+        'chkbox': '/components/checkbox/index',
+        'alert': '/components/alert/index'
+      }
     }
 
     components = {
-      shopbutton: Button,
-      alert: Alert,
-      libicon: Icon,
-      topcheckbox: Checkbox,
-      itemcheckbox: Checkbox,
-      sumcheckbox: Checkbox
     }
 
     data = {

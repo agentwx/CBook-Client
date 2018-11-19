@@ -4,34 +4,62 @@
   .iconSize (@size) {
     width: @size;
     height: @size;
-    font-size: @size;
   }
 
   .icon {
     display: inline-block;
-    vertical-align: middle;
+    line-height: 1;
 
     &.x-large {
-      .iconSize(80rpx);
+      font-size: 80rpx;
     }
 
     &.large {
-      .iconSize(64rpx);
+      font-size: 64rpx;
     }
 
     &.middle {
-      .iconSize(56rpx);
+      font-size: 56rpx;
     }
 
     &.normal {
-      .iconSize(40rpx);
+      font-size: 40rpx;
     }
 
     &.small {
-      .iconSize(28rpx);
+      font-size: 28rpx;
     }
 
     &.x-small {
+      font-size: 20rpx;
+    }
+
+    .iconfont {
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    &.img.x-large {
+      .iconSize(80rpx);
+    }
+
+    &.img.large {
+      .iconSize(64rpx);
+    }
+
+    &.img.middle {
+      .iconSize(56rpx);
+    }
+
+    &.img.normal {
+      .iconSize(40rpx);
+    }
+
+    &.img.small {
+      .iconSize(28rpx);
+    }
+
+    &.img.x-small {
       .iconSize(20rpx);
     }
 
@@ -39,16 +67,14 @@
       display: block;
       width: 100%;
       height: 100%;
-      text-align: center;
-      font-size: inherit;
     }
   }
 </style>
 
 <template>
-  <view class="icon {{size}}" style="{{style}}">
-    <text wx:if="{{type=='iconfont'}}" class="icon-img iconfont icon-{{name}}" style="{{iconColor}}"></text>
-    <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}" mode="{{mode}}"></image>
+  <view class="icon {{type!=='iconfont' ? 'img' : ''}} {{size}}" style="{{style}}">
+    <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
+    <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
   </view>
 </template>
 
@@ -68,10 +94,6 @@
       name: {
         type: String,
         default: ''
-      },
-      mode: {
-        type: String,
-        default: 'aspectFit'
       },
       type: {
         type: String,

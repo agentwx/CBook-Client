@@ -1,0 +1,13 @@
+<picker mode="selector"
+        bindchange="change"
+        bindcolumnchange="columnchange"
+        class="{{isDisabled ? 'disabled' : ''}}"
+        value="{{selectIndex}}"
+        range="{{names}}"
+        disabled="{{isDisabled}}"
+>
+  <view class="picker {{size}} {{extraClass}}" style="{{extraStyle}}">
+    <text>{{names[selectIndex]}}</text>
+    <icon name="arrow-down" color="#999"></icon>
+  </view>
+</picker>

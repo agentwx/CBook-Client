@@ -1,0 +1,6 @@
+<view class="alert-wrap {{extraClass}}" style="{{extraStyle}}">
+  <view class="alert-bd">
+    <slot></slot>
+  </view>
+  <text class="iconfont icon-arrow-right" wx:if="{{isShowArrow}}"></text>
+</view>

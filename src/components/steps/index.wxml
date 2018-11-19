@@ -1,0 +1,8 @@
+<view class="steps-wrap {{extraClass}}" style="{{extraStyle}}">
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="step-item {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'last' : ''}}">
+      <view class="step-dot"></view>
+      <view class="step-text">{{item}}</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,2 @@
+<view class="checkbox {{size}} {{type}} {{isChecked ? 'checked' : ''}} {{isReadonly ? 'readonly' : ''}} {{isDisabled ? 'disabled' : ''}} {{extraClass}}" style="{{extraStyle}}" bindtap="onTap">
+</view>

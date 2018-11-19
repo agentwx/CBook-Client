@@ -123,7 +123,7 @@
   <alert showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</alert>
 
   <view class="address-selection" @tap="selectAddress">
-    <geoicon name="geo" color="#777" size="middle"/>
+    <icon name="geo" color="#777" size="middle"/>
     <view class="addr-slbd" wx:if="{{address !== null}}">
       <view class="addr-sltitle">
         <text class="addr-username">{{address.name}}</text>
@@ -132,11 +132,11 @@
       <view class="addr-text">{{address.province}} {{address.city}} {{address.region}}{{address.address}}</view>
     </view>
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">请选择取件地址...</view>
-    <arrowicon name="arrow-right-o" color="#888" style="font-size: 36rpx"/>
+    <icon name="arrow-right-o" color="#888" extraStyle="font-size: 36rpx"/>
   </view>
 
   <datetimepicker fields="range" timeRange="{{timeRange}}" @change="datetimeChange">
-    <listitem class="timepicker">
+    <listitem extraClass="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
         <text>{{deliveryTime}}</text>
@@ -175,13 +175,13 @@
 
   <modal :visible.sync="modalVisible">
     <view class="modal-container">
-      <chkicon name="check" color="#08affe" size="large"></chkicon>
+      <icon name="check" color="#08affe" size="large"></icon>
       <view class="md-title">提交成功</view>
       <view class="md-subtitle">请准备好你的书箱，交给快递员！</view>
     </view>
     <view slot="footer">
-      <cancelbutton bordered="true" type="plain" size="small" @tap.user="closeModal">取消</cancelbutton>
-      <confirmbutton size="small" @tap.user="confirmOrder">确定</confirmbutton>
+      <btn bordered="true" type="plain" size="small" @tap="closeModal">取消</btn>
+      <btn size="small" @tap="confirmOrder">确定</btn>
     </view>
   </modal>
 
@@ -189,12 +189,8 @@
 
 <script>
   import wepy from 'wepy'
-  import Alert from '@/components/alert'
-  import Icon from '@/components/icon'
-  import Listitem from '@/components/listitem'
   import Panel from '@/components/panel'
   import Modal from '@/components/modal'
-  import Button from '@/components/button'
   import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
 
@@ -202,20 +198,17 @@
     config = {
       navigationBarTitleText: '订单确认',
       usingComponents: {
-        datetimepicker: '/components/datetimepicker/index'
+        datetimepicker: '/components/datetimepicker/index',
+        listitem: '/components/listitem/index',
+        alert: '/components/alert/index',
+        icon: '/components/icon/index',
+        btn: '/components/button/index'
       }
     }
 
     components = {
-      alert: Alert,
-      geoicon: Icon,
-      arrowicon: Icon,
-      chkicon: Icon,
-      listitem: Listitem,
       panel: Panel,
-      modal: Modal,
-      cancelbutton: Button,
-      confirmbutton: Button
+      modal: Modal
     }
 
     data = {

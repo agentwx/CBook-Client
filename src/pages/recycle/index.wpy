@@ -109,14 +109,13 @@
   </view>
 
   <view class="recycle-actions">
-    <scanbutton type="default" icon="scan" size="large" inline="true" @tap.user="scanBarcode">扫描条形码卖书</scanbutton>
-    <maulbutton type="default" icon="pointer" size="large" inline="true" @tap.user="manualInput">手动输入ISBN号</maulbutton>
+    <btn type="default" icon="scan" size="large" inline="true" @tap="scanBarcode">扫描条形码卖书</btn>
+    <btn type="default" icon="pointer" size="large" inline="true" @tap="manualInput">手动输入ISBN号</btn>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-  import Button from '@/components/button'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
 
@@ -126,12 +125,13 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '回收给星月童书'
+      navigationBarTitleText: '回收给星月童书',
+      usingComponents: {
+        'btn': '/components/button/index'
+      }
     }
 
     components = {
-      scanbutton: Button,
-      maulbutton: Button
     }
 
     data = {

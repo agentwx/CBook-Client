@@ -1,5 +1,7 @@
-.raty-wrap.readonly {
- pointer-events: none;
+.raty-wrap {
+  &.readonly {
+    pointer-events: none;
+  }
 }
 
 .raty-item {
@@ -8,8 +10,10 @@
   font-size: 32rpx;
 }
 
-.raty-item.active {
-  color: #faa431;
+.raty-item {
+  &.active {
+    color: #faa431;
+  }
 }
 
 .raty-value {
@@ -17,3 +21,4 @@
   color: #999;
   font-size: 30rpx;
 }
+

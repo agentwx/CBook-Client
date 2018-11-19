@@ -1,0 +1,56 @@
+@import "../../less/mixin";
+
+.checkbox {
+  display: inline-block;
+  border: 2rpx solid @color-border;
+  background-color: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+
+  &.checked {
+    position: relative;
+    .g-gradient();
+    border: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50%;
+      height: 25%;
+      border-style: solid;
+      border-color: #fff;
+      border-width: 0 0 4rpx 4rpx;
+      transform: translate(-50%, -70%) rotate(-45deg);
+    }
+  }
+
+  &.large {
+    width: 60rpx;
+    height: 60rpx;
+  }
+
+  &.normal {
+    width: 36rpx;
+    height: 36rpx;
+  }
+
+  &.small {
+    width: 28rpx;
+    height: 28rpx;
+
+    &:before {
+      border-width: 0 0 2rpx 2rpx;
+    }
+  }
+
+  &.readonly {
+    pointer-events: none;
+  }
+
+  &.disabled {
+    opacity: .7;
+    pointer-events: none;
+  }
+}
