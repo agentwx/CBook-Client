@@ -118,6 +118,7 @@
   import wepy from 'wepy'
   import Button from '@/components/button'
   import fetch from '../../service/fetch'
+  import { toast } from '../../utils/util'
 
   import {getStore} from 'wepy-redux'
 
@@ -148,6 +149,10 @@
     }
 
     async queryBookInfo (isbn) {
+      const isExist = store.getState().recycles.list.find(item => item.isbn === isbn)
+      if (isExist) {
+        return toast.error('该图书已经扫描过')
+      }
       let res = await fetch.post('/bookinfo/base', { isbn })
       store.dispatch({
         type: 'ADD_RECYCLE',

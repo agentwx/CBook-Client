@@ -109,6 +109,10 @@
         if (!this.isbn) {
           return toast.error('请输入书籍的isbn号')
         }
+        const isExist = store.getState().recycles.list.find(item => item.isbn === this.isbn)
+        if (isExist) {
+          return toast.error('该图书已经扫描过')
+        }
         let res = await fetch.post('/bookinfo/base', { isbn: this.isbn })
         store.dispatch({
           type: 'ADD_RECYCLE',
