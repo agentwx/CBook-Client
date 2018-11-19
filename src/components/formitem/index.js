@@ -71,12 +71,12 @@ Component({
       value: 'text'
     },
     password: {
-      type: String,
-      value: ''
+      type: [Boolean, String],
+      value: false
     },
     focus: {
-      type: String,
-      value: 'false'
+      type: [Boolean, String],
+      value: false
     }
   },
   computed: {
@@ -97,6 +97,12 @@ Component({
     },
     isDisabled () {
       return coerce(this.data.disabled)
+    },
+    isPassword () {
+      return coerce(this.data.password)
+    },
+    isFocus () {
+      return coerce(this.data.focus)
     },
     shouldClearShow() {
       return this.data.isShowClear ? this.data.value !== '' : false
