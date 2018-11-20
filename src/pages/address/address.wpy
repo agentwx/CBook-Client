@@ -55,8 +55,14 @@
     margin-bottom: -24rpx;
     margin-left: 24rpx;
 
-    .iconfont {
+    icon {
       margin-right: 6rpx;
+      color: #888;
+      vertical-align: middle;
+    }
+
+    text {
+      vertical-align: middle;
     }
   }
 </style>
