@@ -391,8 +391,6 @@
   </view>
 
   <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
-  <!--<overlay show="{{true}}"></overlay>-->
-  <toast id="van-toast" message="toast" show="{{true}}" mask="{{true}}" type="loading" />
 </template>
 
 <script>
@@ -412,11 +410,7 @@ export default class Index extends wepy.page {
       'modal-spinner': '/components/modal-spinner/index',
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
-      'tag': '/components/tag/index',
-      'toast': '/components/toast/index',
-      'overlay': '/components/overlay/index',
-      'popup': '/components/popup/index',
-      'dialog': '/components/dialog/index'
+      'tag': '/components/tag/index'
     }
   }
 
