@@ -1,0 +1,16 @@
+<view
+  class="loading {{extraClass}}"
+  style="width: {{ size }}; height: {{ size }}; {{extraStyle}};"
+>
+  <view
+    class="loading__spinner loading__spinner--{{ type }}"
+    style="color: {{ color }};"
+  >
+    <view
+      wx:if="{{ type === 'spinner' }}"
+      wx:for="item in 12"
+      wx:key="{{ index }}"
+      class="loading__dot"
+    />
+  </view>
+</view>

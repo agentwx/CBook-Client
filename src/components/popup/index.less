@@ -1,0 +1,145 @@
+@import "../../less/mixin";
+
+.popup {
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  max-height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: #fff;
+  -webkit-overflow-scrolling: touch;
+  animation: ease both;
+
+  &--center {
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  &--top {
+    width: 100%;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+  }
+
+  &--right {
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: auto;
+  }
+
+  &--bottom {
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    right: auto;
+    left: 50%;
+  }
+
+  &--left {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 0;
+  }
+}
+
+@keyframes center-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes center-leave {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scale-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+}
+
+@keyframes scale-leave {
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+}
+
+@keyframes bottom-enter {
+  from {
+    transform: translate3d(-50%, 100%, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes bottom-leave {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 100%, 0);
+  }
+}
+
+@keyframes top-enter {
+  from {
+    transform: translate3d(-50%, -100%, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes top-leave {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, -100%, 0);
+  }
+}
+
+@keyframes left-enter {
+  from {
+    transform: translate3d(-100%, -50%, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes left-leave {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    transform: translate3d(-100%, -50%, 0);
+  }
+}
+
+@keyframes right-enter {
+  from {
+    transform: translate3d(100%, -50%, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes right-leave {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    transform: translate3d(100%, -50%, 0);
+  }
+}

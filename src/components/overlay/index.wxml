@@ -1,0 +1,7 @@
+<transition
+  show="{{ show }}"
+  extra-class="overlay {{extraClass}}"
+  extra-style="z-index: {{ zIndex }}; {{ mask ? 'background-color: rgba(0, 0, 0, .7);' : '' }}; {{ extraStyle }}"
+  catch:touchmove="noop"
+>
+</transition>

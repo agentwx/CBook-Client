@@ -24,7 +24,10 @@ Component({
       type: String,
       value: 'large'
     },
-    iconType: String,
+    iconType: {
+      type: String,
+      value: 'iconfont'
+    },
     inline: {
       type: [Boolean, String],
       value: true

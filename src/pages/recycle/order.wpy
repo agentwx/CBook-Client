@@ -136,7 +136,7 @@
 </style>
 
 <template>
-  <alert showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</alert>
+  <noticebar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</noticebar>
 
   <view class="orders-wrap">
     <repeat for="{{products}}">
@@ -179,7 +179,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Alert from '@/components/alert'
   import Panel from '@/components/panel'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
@@ -190,11 +189,13 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '回收给星月童书'
+      navigationBarTitleText: '回收给星月童书',
+      usingComponents: {
+        noticebar: '/components/noticebar/index'
+      }
     }
 
     components = {
-      alert: Alert,
       panel: Panel
     }
 

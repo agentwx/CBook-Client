@@ -125,9 +125,7 @@
               <view class="order-sumup">
                 总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.income}}</text>
               </view>
-              <view @tap="viewDetail({{item}})">
-                <paybutton inline="true" bordered="true" size="small">查看详情</paybutton>
-              </view>
+              <btn inline="true" bordered="true" size="small" @tap="viewDetail({{item}})">查看详情</btn>
             </view>
           </view>
         </panel>
@@ -148,7 +146,6 @@
 <script>
   import wepy from 'wepy'
   import Panel from '@/components/panel'
-  import Button from '@/components/button'
   import fetch from '../../service/fetch'
 
   const ORDER_STATUS_MAP = {
@@ -161,12 +158,14 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '回收订单'
+      navigationBarTitleText: '回收订单',
+      usingComponents: {
+        btn: '/components/button/index'
+      }
     }
 
     components = {
-      panel: Panel,
-      paybutton: Button
+      panel: Panel
     }
 
     data = {

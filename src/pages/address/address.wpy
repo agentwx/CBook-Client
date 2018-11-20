@@ -57,8 +57,6 @@
 
     .iconfont {
       margin-right: 6rpx;
-      position: relative;
-      top: 2rpx;
     }
   }
 </style>
@@ -72,16 +70,16 @@
       <view class="addr-text">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
       <view class="panel-footer" slot="footer">
         <view class="addr-left" @tap.stop="toggleDefault({{item}})">
-          <checkbox readonly="true" :checked.sync="item.isDefault" />
+          <chkbox readonly="true" checked="{{item.isDefault}}" />
           <text style="margin-left: 10rpx;">设为默认</text>
         </view>
         <view class="addr-right">
           <view class="addr-action-item" @tap.stop="editAddress({{item}})">
-            <text class="iconfont icon-edit"></text>
+            <icon name="edit"></icon>
             <text>编辑</text>
           </view>
           <view class="addr-action-item" @tap.stop="deleteAddress({{item.code}})">
-            <text class="iconfont icon-trash"></text>
+            <icon name="trash"></icon>
             <text>删除</text>
           </view>
         </view>
@@ -97,22 +95,21 @@
 
 <script>
   import wepy from 'wepy'
-  import Icon from '@/components/icon'
   import Panel from '@/components/panel'
-  import Checkbox from '@/components/checkbox'
   import fetch from '../../service/fetch'
   import {toast, confirm, getPrevPage} from '../../utils/util'
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '地址管理'
+      navigationBarTitleText: '地址管理',
+      usingComponents: {
+        icon: '/components/icon/index',
+        chkbox: '/components/checkbox/index'
+      }
     }
 
     components = {
-      editicon: Icon,
-      delicon: Icon,
-      panel: Panel,
-      checkbox: Checkbox
+      panel: Panel
     }
 
     data = {

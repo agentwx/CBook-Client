@@ -120,7 +120,7 @@
 </style>
 <template>
 
-  <alert showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</alert>
+  <noticebar showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</noticebar>
 
   <view class="address-selection" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle"/>
@@ -200,7 +200,7 @@
       usingComponents: {
         datetimepicker: '/components/datetimepicker/index',
         listitem: '/components/listitem/index',
-        alert: '/components/alert/index',
+        noticebar: '/components/noticebar/index',
         icon: '/components/icon/index',
         btn: '/components/button/index'
       }

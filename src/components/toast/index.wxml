@@ -1,0 +1,32 @@
+<overlay
+  wx:if="{{ mask || forbidClick }}"
+  show="{{ show }}"
+  mask="{{ mask }}"
+  z-index="{{ zIndex }}"
+>
+</overlay>
+<transition
+  show="{{ show }}"
+  extra-style="z-index: {{ zIndex }}"
+  extra-class="toast__container"
+>
+  <view
+    class="toast toast--{{ type === 'text' ? 'text' : 'icon' }} toast--{{ position }}"
+    catch:touchmove="noop"
+  >
+    <!-- text only -->
+    <text wx:if="{{ type === 'text' }}">{{ message }}</text>
+
+    <!-- with icon -->
+    <block wx:else>
+      <loading
+        wx:if="{{ type === 'loading' }}"
+        color="white"
+        type="{{ loadingType }}"
+        extra-class="toast__loading"
+      />
+      <icon wx:else class="toast__icon" name="{{ type }}" />
+      <text wx:if="{{ message }}" class="toast__text">{{ message }}</text>
+    </block>
+  </view>
+</transition>

@@ -1,0 +1,10 @@
+<view wx:if="{{show}}" class="notice-bar-wrap {{extraClass}}" style="{{extraStyle}}" bindtap="onTap">
+  <icon wx:if="{{leftIcon !== ''}}" name="{{leftIcon}}" size="small" style="margin-right: 10rpx;"></icon>
+  <view class="notice-bar-bd">
+    <view class="notice-bar-scroller {{isScrollable ? '' : 'ellipsis'}}" animation="{{ animationData }}">
+      <slot></slot>
+    </view>
+  </view>
+  <icon name="arrow-right" extraStyle="font-size: 40rpx;" wx:if="{{isShowArrow}}"></icon>
+  <icon name="close" size="small" wx:if="{{isCloseable}}" bindtap="onClose"></icon>
+</view>

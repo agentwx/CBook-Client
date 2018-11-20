@@ -125,6 +125,9 @@ Component({
         password: !this.data.password
       })
     },
+    change(e) {
+      this.triggerEvent('change', {value: e.detail.value})
+    },
     input(e) {
       this.triggerEvent('input', {value: e.detail.value})
     },

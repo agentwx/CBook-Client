@@ -1,0 +1,8 @@
+<view
+  wx:if="{{ inited }}"
+  class="transition {{extraClass}}"
+  style="animation-name: {{ name }}-{{ type }}; animation-duration: {{ duration }}ms; animation-delay: {{ delay }}ms; {{ display ? '' : 'display: none;' }}; {{ extraStyle }}"
+  bindanimationend="onAnimationEnd"
+>
+  <slot />
+</view>

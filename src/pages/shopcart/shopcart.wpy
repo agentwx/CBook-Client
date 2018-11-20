@@ -205,9 +205,9 @@
   }
 </style>
 <template>
-  <alert>
+  <noticebar>
     <text>书费已抵扣23.8元，共一本，查看抵扣规则</text>
-  </alert>
+  </noticebar>
 
   <view class="cart-edit-hd" hidden="{{products.length === 0}}">
     <view class="edit-left" @tap="toggleSelectAll">
@@ -289,7 +289,7 @@
         'btn': '/components/button/index',
         'icon': '/components/icon/index',
         'chkbox': '/components/checkbox/index',
-        'alert': '/components/alert/index'
+        'noticebar': '/components/noticebar/index'
       }
     }
 

@@ -1,0 +1,11 @@
+<transition
+  name="slide-down"
+  show="{{ show }}"
+  extra-class="notify"
+  extra-style="background-color:{{ backgroundColor }}; color: {{ color }}"
+>
+  <text wx:if="{{text}}">
+    {{text}}
+  </text>
+  <slot wx:else></slot>
+</transition>

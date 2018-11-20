@@ -83,7 +83,7 @@
       margin-right: 30rpx;
       color: #888;
 
-      > .icon {
+      .icon {
         margin-right: 10rpx;
         color: @gcolor;
       }
@@ -289,15 +289,15 @@
 
     <view class="product-flags">
       <view class="flag-item">
-        <iconcheck name="check"></iconcheck>
+        <icon name="check"></icon>
         消毒塑料
       </view>
       <view class="flag-item">
-        <iconcheck name="check"></iconcheck>
+        <icon name="check"></icon>
         正品保证
       </view>
       <view class="flag-item">
-        <iconcheck name="check"></iconcheck>
+        <icon name="check"></icon>
         原价回收
       </view>
     </view>
@@ -305,8 +305,8 @@
   </view>
 
   <view class="detail-action-bar">
-    <iconitem icon="cart" iconSize="middle" class="action-item action-cart" @tap.user="gotoCart">
-      购物车
+    <iconitem icon="cart" iconSize="middle" extraClass="action-item action-cart" @tap="gotoCart">
+      <text>购物车</text>
       <text class="badge">{{cartCount}}</text>
     </iconitem>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
@@ -366,8 +366,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Icon from '@/components/icon'
-  import Iconitem from '@/components/iconitem'
   import fetch from '../../service/fetch'
   import {formatDate} from '../../utils/util'
 
@@ -385,13 +383,13 @@
     config = {
       navigationBarTitleText: '商品详情',
       usingComponents: {
+        iconitem: '/components/iconitem/index',
+        icon: '/components/icon/index',
         raty: '/components/raty/index'
       }
     }
 
     components = {
-      iconcheck: Icon,
-      iconitem: Iconitem
     }
 
     data = {

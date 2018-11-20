@@ -1,0 +1,28 @@
+<button
+  id="{{ id }}"
+  lang="{{ lang }}"
+  class="{{ classes }} {{ extraClass }}"
+  open-type="{{ openType }}"
+  session-from="{{ sessionFrom }}"
+  app-parameter="{{ appParameter }}"
+  send-message-img="{{ sendMessageImg }}"
+  send-message-path="{{ sendMessagePath }}"
+  show-message-card="{{ showMessageCard }}"
+  send-message-title="{{ sendMessageTitle }}"
+  bindtap="onClick"
+  binderror="bindError"
+  bindcontact="bindContact"
+  bindopensetting="bindOpenSetting"
+  bindgetuserinfo="bindGetUserInfo"
+  bindgetphonenumber="bindGetPhoneNumber"
+  style="{{extraStyle}}"
+>
+  <loading
+    wx:if="{{ loading }}"
+    size="40rpx"
+    extra-class="loading-class"
+    color="{{ type === 'default' ? '#c9c9c9' : '' }}"
+  />
+  <icon wx:if="{{icon}}" type="{{iconType}}" name="{{icon}}" size="{{size}}"></icon>
+  <slot wx:else />
+</button>

@@ -36,17 +36,22 @@ function dayAfter(target, offset = 0) {
   return now
 }
 
-function getNodeRef(selector) {
-  return new Promise((resolve, reject) => {
-    try {
-      wx.createSelectorQuery()
-        .select(selector)
-        .boundingClientRect(resolve)
-        .exec()
-    } catch (e) {
-      console.error(e.message)
-      reject(e.message)
+function getNodeRect(selector, scope, all) {
+  return new Promise(resolve => {
+    let query = wx.createSelectorQuery()
+    if (scope) {
+      query = query.in(scope)
     }
+    query[all ? 'selectAll' : 'select'](selector)
+    .boundingClientRect(rect => {
+      if (all && Array.isArray(rect) && rect.length) {
+        resolve(rect)
+      }
+      if (!all) {
+        resolve(rect)
+      }
+    })
+    .exec()
   })
 }
 
@@ -80,6 +85,11 @@ function uuid(len, radix) {
   }
 
   return uuid.join('')
+}
+
+function isObj(x) {
+  const type = typeof x
+  return x !== null && (type === 'object' || type === 'function')
 }
 
 function confirm(msg, title = '', confirmText = '确定', cancelText = '取消') {
@@ -146,15 +156,23 @@ function getPrevPage () {
   return pages[pages.length - 2]
 }
 
+function getCurrentPage () {
+  // eslint-disable-next-line
+  const pages = getCurrentPages()
+  return pages[pages.length - 1]
+}
+
 module.exports = {
   formatDate,
   parseDate,
   dayAfter,
-  getNodeRef,
+  getNodeRect,
   uuid,
   confirm,
   toast,
+  isObj,
   showLoading,
   hideLoading,
-  getPrevPage
+  getPrevPage,
+  getCurrentPage
 }

@@ -54,7 +54,7 @@
       icon: String,
       iconSize: {
         type: String,
-        default: 'middle'
+        default: 'normal'
       },
       hasArrow: {
         type: [Boolean, String],

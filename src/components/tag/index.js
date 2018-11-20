@@ -1,5 +1,6 @@
 Component({
   options: {
+    addGlobalClass: true
   },
   properties: {
     extraClass: {

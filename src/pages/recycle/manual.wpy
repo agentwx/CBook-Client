@@ -51,7 +51,7 @@
   .manual-action {
     .flex();
 
-    .button {
+    btn {
       flex: 1;
     }
   }
@@ -71,15 +71,14 @@
       <input type="text" class="manual-input" value="{{isbn}}" placeholder="请输入书箱的ISBN号" @input="changeIsbn" />
     </view>
     <view class="manual-action">
-      <cancelbutton type="plain" @tap.user="onCancel">取消</cancelbutton>
-      <confirmbutton style="margin-left: 30rpx;" @tap.user="onConfirm">确认</confirmbutton>
+      <btn type="plain" @tap="onCancel">取消</btn>
+      <btn style="margin-left: 30rpx;" @tap="onConfirm">确认</btn>
     </view>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-  import Button from '@/components/button'
   import fetch from '../../service/fetch'
   import { toast, confirm } from '../../utils/util'
 
@@ -89,12 +88,13 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '回收给星月童书 手动输入'
+      navigationBarTitleText: '回收给星月童书 手动输入',
+      usingComponents: {
+        btn: '/components/button/index'
+      }
     }
 
     components = {
-      cancelbutton: Button,
-      confirmbutton: Button
     }
 
     data = {

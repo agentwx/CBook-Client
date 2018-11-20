@@ -126,14 +126,14 @@
     .flex();
     justify-content: space-between;
 
+    > icon {
+      visibility: hidden;
+    }
+
     &.selected {
       color: #27a1f8;
-      &:after {
-        content: "\e92e";
-        font-family: "iconfont";
-        font-size: 36rpx;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+      > icon {
+        visibility: visible;
       }
     }
 
@@ -259,7 +259,7 @@
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
       <icon name="find" extraStyle=" font-size: 36rpx;color: #888;"></icon>
-      <input type="text" class="search-input" placeholder="搜索书名、作者" disabled />
+      <input type="text" class="search-input" placeholder="搜索书名、作者" disabled></input>
     </view>
   </view>
 
@@ -287,11 +287,26 @@
       </view>
       <view class="filter-sublayer" hidden="{{!filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType=='sort'}}">
-          <view class="filter-itemsort" @tap="filterByTag('综合排序')">综合排序</view>
-          <view class="filter-itemsort" @tap="filterByTag('人气优先')">人气优先</view>
-          <view class="filter-itemsort selected" @tap="filterByTag('好评优先')">好评优先</view>
-          <view class="filter-itemsort" @tap="filterByTag('新书优先')">新书优先</view>
-          <view class="filter-itemsort" @tap="filterByTag('智能排序')">智能排序</view>
+          <view class="filter-itemsort" @tap="filterByTag('综合排序')">
+            <text>综合排序</text>
+            <icon name="check-o"></icon>
+          </view>
+          <view class="filter-itemsort" @tap="filterByTag('人气优先')">
+            <text>人气优先</text>
+            <icon name="check-o"></icon>
+          </view>
+          <view class="filter-itemsort selected" @tap="filterByTag('好评优先')">
+            <text>好评优先</text>
+            <icon name="check-o"></icon>
+          </view>
+          <view class="filter-itemsort" @tap="filterByTag('新书优先')">
+            <text>新书优先</text>
+            <icon name="check-o"></icon>
+          </view>
+          <view class="filter-itemsort" @tap="filterByTag('智能排序')">
+            <text>智能排序</text>
+            <icon name="check-o"></icon>
+          </view>
         </view>
 
         <view class="filter-catelog" wx:if="{{filterType=='catelog'}}">
@@ -376,11 +391,13 @@
   </view>
 
   <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
+  <!--<overlay show="{{true}}"></overlay>-->
+  <toast id="van-toast" message="toast" show="{{true}}" mask="{{true}}" type="loading" />
 </template>
 
 <script>
 import wepy from 'wepy'
-import { getNodeRef } from '../../utils/util'
+import { getNodeRect } from '../../utils/util'
 import fetch from '../../service/fetch'
 
 import { getStore } from 'wepy-redux'
@@ -396,7 +413,10 @@ export default class Index extends wepy.page {
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
       'tag': '/components/tag/index',
-      'chkbox': '/components/checkbox/index'
+      'toast': '/components/toast/index',
+      'overlay': '/components/overlay/index',
+      'popup': '/components/popup/index',
+      'dialog': '/components/dialog/index'
     }
   }
 
@@ -457,8 +477,8 @@ export default class Index extends wepy.page {
   }
 
   getFilterBarTop() {
-    getNodeRef('#filter_bar').then(res => {
-      this.filterBarTop = res.top
+    getNodeRect('#filter_bar').then(rect => {
+      this.filterBarTop = rect.top
     })
   }
 

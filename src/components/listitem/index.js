@@ -22,7 +22,7 @@ Component({
     icon: String,
     iconSize: {
       type: String,
-      value: 'middle'
+      value: 'normal'
     },
     hasArrow: {
       type: [Boolean, String],

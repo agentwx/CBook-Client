@@ -1,0 +1,63 @@
+@import "../../less/mixin";
+
+.dialog {
+  width: 85%;
+  font-size: 32rpx;
+  overflow: hidden;
+  border-radius: 8rpx;
+  background-color: #fff;
+
+  &__header {
+    font-weight: 500;
+    padding-top: 50rpx;
+    text-align: center;
+
+    &--isolated {
+      padding: 50rpx 0;
+    }
+  }
+
+  &__message {
+    padding: 50rpx;
+    font-size: 28rpx;
+    line-height: 1.5;
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &--has-title {
+      padding-top: 24rpx;
+      color: @color-gray-darker;
+    }
+  }
+
+  &__footer {
+    display: flex;
+  }
+
+  &__button {
+    flex: 1;
+  }
+
+  &__confirm,
+  &__cancel {
+    border: 0 !important;
+  }
+
+  &__confirm {
+    &,
+    &:active {
+      color: @color-blue !important;
+    }
+  }
+
+  &-bounce-enter {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+
+  &-bounce-leave-active {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+  }
+}
