@@ -4,8 +4,6 @@
   custom-class="notify"
   custom-style="background-color:{{ backgroundColor }}; color: {{ color }}"
 >
-  <text wx:if="{{text}}">
-    {{text}}
-  </text>
+  <text wx:if="{{text}}">{{text}}</text>
   <slot wx:else></slot>
 </transition>

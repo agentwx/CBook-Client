@@ -1,0 +1,11 @@
+<view class="notice {{customClass}}" style="{{customStyle}}" wx:if="{{show}}">
+  <icon wx:if="{{leftIcon !== ''}}" name="{{leftIcon}}" size="small" style="margin-right: 10rpx;"></icon>
+  <view class="notice-messages">
+    <view class="notice-scroller" animation="{{ animationData }}">
+      <block wx:for="{{items}}" wx:key="index">
+        <view class="notice-item" data-index="{{index}}" bindtap="onClick">{{item.text}}</view>
+      </block>
+    </view>
+  </view>
+  <icon name="close" size="small" wx:if="{{isCloseable}}" bindtap="onClose"></icon>
+</view>

@@ -256,6 +256,7 @@
   }
 </style>
 <template>
+  <notice items="{{notices}}"></notice>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
       <icon name="find" customStyle=" font-size: 36rpx;color: #888;"></icon>
@@ -407,6 +408,7 @@ export default class Index extends wepy.page {
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
       'tag': '/components/tag/index',
+      'notice': '/components/notice/index',
       'weui-loading': '/components/weui-loading/index'
     }
   }
@@ -420,7 +422,15 @@ export default class Index extends wepy.page {
     filterBarFixed: false,
     filterVisible: false,
     filterType: 'none',
-    products: []
+    products: [],
+    notices: [
+      {
+        text: '通知大家明天放假'
+      },
+      {
+        text: '春节放假30天'
+      }
+    ]
   }
 
   methods = {
