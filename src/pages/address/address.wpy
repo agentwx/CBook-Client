@@ -65,6 +65,42 @@
       vertical-align: middle;
     }
   }
+
+  .empty-layer-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 100rpx;
+    background-color: #fff;
+  }
+
+  .empty-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70%;
+    max-width: 640rpx;
+    transform: translate(-50%,-50%);
+
+    image {
+      width: 100%;
+      height: 390rpx;
+    }
+
+    .empty-action {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 40rpx;
+      text-align: center;
+    }
+
+    .empty-text {
+      font-size: 32rpx;
+      color: #888;
+    }
+  }
 </style>
 <template>
   <repeat for="{{addressList}}">
@@ -93,6 +129,15 @@
     </panel>
   </repeat>
 
+  <view class="empty-layer-wrap" wx:if="{{!isLoading && addressList.length === 0}}">
+    <view class="empty-layer">
+      <image src="../../images/address_empty_bg.png"></image>
+      <view class="empty-action">
+        <view class="empty-text">暂无地址~</view>
+      </view>
+    </view>
+  </view>
+
   <view class="address-action-button" @tap="newAddress">
     新建地址
   </view>
@@ -119,6 +164,7 @@
     }
 
     data = {
+      isLoading: true,
       addressList: []
     }
 
@@ -163,8 +209,10 @@
     }
 
     async loadData () {
+      this.isLoading = true
       let res = await fetch.post('/user/address/list')
       this.addressList = res.datas.map(item => ({...item, isDefault: item.isDefault === 1}))
+      this.isLoading = false
       this.$apply()
     }
 

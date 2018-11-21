@@ -128,10 +128,12 @@
 
   <view class="uc-userinfo">
     <view class="uc-avatar">
-      <image src="../../images/user_avatar.jpg"></image>
+      <open-data type="userAvatarUrl"></open-data>
     </view>
     <view class="uc-userinfo-main">
-      <view class="uc-username">我的名字</view>
+      <view class="uc-username">
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+      </view>
       <view class="uc-usertype">普通会员</view>
     </view>
     <view class="uc-birth-entry">

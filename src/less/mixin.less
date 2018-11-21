@@ -88,9 +88,11 @@
 }
 
 .g-gradient (@offset: 50%) {
-  background-image: -webkit-linear-gradient(left, @lgcolor, @gcolor @offset);
+  background: -webkit-linear-gradient(left, @lgcolor, @gcolor @offset);
+  background: linear-gradient(left, @lgcolor, @gcolor @offset);
 }
 
 .g-darken-gradient (@offset: 50%) {
-  background-image: -webkit-linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
+  background: -webkit-linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
+  background: linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
 }

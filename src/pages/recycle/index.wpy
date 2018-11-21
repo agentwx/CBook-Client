@@ -135,7 +135,6 @@
     }
 
     data = {
-
     }
 
     methods = {
@@ -161,6 +160,9 @@
         }
       })
       this.$navigate('/pages/recycle/order')
+    }
+
+    onShareAppMessage () {
     }
 
     onLoad() {

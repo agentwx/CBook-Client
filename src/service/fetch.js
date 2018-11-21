@@ -1,6 +1,5 @@
 import wepy from 'wepy'
 import {toast} from '../utils/util'
-import {session} from '../service/auth'
 
 export const serverUrl = 'http://123.206.112.37:9001'
 
@@ -24,7 +23,7 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
 
     if (useToken) {
       defHeaders = Object.assign(defHeaders, {
-        token: 'c52c83dbd4924d139565d5ed226901f7'
+        token: wx.getStorageSync('token')
       })
     }
 

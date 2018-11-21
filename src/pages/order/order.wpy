@@ -285,22 +285,40 @@
     }
 
     async createBuyOrder () {
+      const origTotalPrice = parseFloat(this.totalPrice)
+      const carriage = 6
+      const deduction = 17.5
+      const discount = 1
+      const total = origTotalPrice * discount - deduction + carriage // 总费用 = 总价x折扣 - 星币抵扣 + 运费
+
       let params = {
+        goodsList: this.products.map(item => item.goodsId),
         addressCode: this.address.code,
-        appointment: this.deliveryTime,
-        isbnList: this.products.map(item => item.isbn),
-        income: parseFloat(this.totalPrice)
+        original: origTotalPrice,
+        total,
+        carriage,
+        deduction,
+        discount
       }
 
-      await fetch.post('/recover/order/create', params)
-
-      const prevPage = getPrevPage()
-
-      if (prevPage.route === 'pages/shopcart/shopcart') {
-        prevPage.clear()
+      const res = await fetch.post('/buy/order/create', params)
+      if (!res.datas.package && !res.datas.paySign) {
+        return toast.error('订单创建失败')
       }
-
-      this.$navigate('/pages/orderlist/orderlist')
+      try {
+        await wepy.requestPayment(res.datas)
+        toast.success('支付成功')
+        setTimeout(() => {
+          this.$navigate('/pages/orderlist/orderlist')
+        }, 1000)
+      } catch (e) {
+        this.$navigate('/pages/orderlist/orderlist')
+      } finally {
+        const prevPage = getPrevPage()
+        if (prevPage.route === 'pages/shopcart/shopcart') {
+          prevPage.clear()
+        }
+      }
     }
 
     onLoad({orderSource, products}) {

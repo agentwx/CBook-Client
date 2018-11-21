@@ -15,6 +15,10 @@
     .order-status {
       color: @gcolor;
       font-size: 26rpx;
+
+      &.closed {
+        color: @color-disabled;
+      }
     }
   }
 
@@ -44,7 +48,6 @@
 
   .order-pd-hd {
     .title {
-      font-weight: bold;
       font-size: 30rpx;
       margin-bottom: 6rpx;
     }
@@ -71,6 +74,19 @@
         color: #333;
       }
     }
+  }
+
+  .panel:last-child {
+    margin-bottom: 0;
+  }
+
+  .empty-layer-wrap {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 100rpx;
+    background-color: #fff;
   }
 
   .empty-layer {
@@ -105,88 +121,75 @@
   <tabhead items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tabhead>
 
   <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
-    <panel>
-      <view class="panel-title order-hd" slot="title">
-        <text class="order-num">单号：SH0221XXSD120</text>
-        <text class="order-status">待付款</text>
-      </view>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg"></image>
+    <block wx:for="{{orders}}" wx:key="index">
+      <panel>
+        <view class="panel-title order-hd" slot="title">
+          <text class="order-num">单号：{{item.orderCode}}</text>
+          <text class="order-status {{item.orderStatus == 10 ? 'closed' : ''}}">{{item.orderStatusText}}</text>
         </view>
-        <view class="order-main">
-          <view class="order-pd-hd">
-            <view class="title">父与子全集（全10册）</view>
-            <view class="desc">规格：默认</view>
+        <block wx:for="{{item.bookInfos}}" wx:key="index">
+          <view class="order-body">
+            <view class="order-cover">
+              <image src="{{item.smallIcon}}" lazyload="true"></image>
+            </view>
+            <view class="order-main">
+              <view class="order-pd-hd">
+                <view class="title">{{item.name}}</view>
+                <view class="desc">{{item.author}}</view>
+                <view class="desc">{{item.press}}</view>
+              </view>
+              <view class="order-pd-specs">
+                <text class="price">￥{{item.price}}</text>
+              </view>
+            </view>
           </view>
-          <view class="order-pd-specs">
-            <text class="price">￥9.25</text>
-            <text class="count">x1</text>
-          </view>
-        </view>
-      </view>
-      <view class="panel-footer order-footer" slot="footer">
-        <view></view>
-        <view class="order-subinfo">
-          <view class="order-sumup">
-            总共1件商品 合计 <text class="price">￥9.25</text>
-          </view>
-          <btn inline="true" bordered="true" size="small">去付款</btn>
-        </view>
-      </view>
-    </panel>
-
-    <panel>
-      <view class="panel-title order-hd" slot="title">
-        <text class="order-num">单号：SH0221XXSD120</text>
-        <text class="order-status">待付款</text>
-      </view>
-      <view class="order-body">
-        <view class="order-cover">
-          <image src="../../images/book2.jpg"></image>
-        </view>
-        <view class="order-main">
-          <view class="order-pd-hd">
-            <view class="title">父与子全集（全10册）</view>
-            <view class="desc">规格：默认</view>
-          </view>
-          <view class="order-pd-specs">
-            <text class="price">￥9.25</text>
-            <text class="count">x1</text>
+        </block>
+        <view class="panel-footer order-footer" slot="footer">
+          <view></view>
+          <view class="order-subinfo">
+            <view class="order-sumup">
+              总共{{item.bookInfos.length}}件商品 合计 <text class="price">￥{{item.total}}</text>
+            </view>
+            <btn inline="true" bordered="true" size="small" @tap="payOrder({{item}})" wx:if="{{item.orderStatus==0}}">去付款</btn>
           </view>
         </view>
-      </view>
-      <view class="panel-footer order-footer" slot="footer">
-        <view></view>
-        <view class="order-subinfo">
-          <view class="order-sumup">
-            总共1件商品 合计 <text class="price">￥9.25</text>
-          </view>
-          <btn inline="true" bordered="true" size="small">去付款</btn>
-        </view>
-      </view>
-    </panel>
-
+      </panel>
+    </block>
   </view>
 
-  <view class="empty-layer" wx:if="{{orders.length === 0}}">
-    <image src="../../images/orders_empty_bg.png"></image>
-    <view class="empty-action">
-      <view class="empty-text">暂无订单~</view>
+  <view class="empty-layer-wrap" wx:if="{{!isLoading && orders.length === 0}}">
+    <view class="empty-layer">
+      <image src="../../images/orders_empty_bg.png"></image>
+      <view class="empty-action">
+        <view class="empty-text">暂无订单~</view>
+      </view>
     </view>
   </view>
+
+  <weui-loading show="{{isLoading && pageNum > 1}}"></weui-loading>
 </template>
 
 <script>
   import wepy from 'wepy'
   import Panel from '@/components/panel'
+  import fetch from '../../service/fetch'
+  import { toast } from '../../utils/util'
+
+  const ORDER_STATUS_MAP = {
+    0: '待付款',
+    1: '待发货',
+    2: '待收货',
+    3: '已完成',
+    10: '交易关闭'
+  }
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '订单列表',
       usingComponents: {
-        tabhead: '/components/tabhead/index',
-        btn: '/components/button/index'
+        'tabhead': '/components/tabhead/index',
+        'weui-loading': '/components/weui-loading/index',
+        'btn': '/components/button/index'
       }
     }
 
@@ -195,21 +198,71 @@
     }
 
     data = {
+      isLoading: true,
       tabIndex: 0,
+      pageNum: 1,
       tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
-      orders: [1]
+      orders: []
     }
 
     methods = {
       tabheadChange (e) {
-        this.tabindex = e.detail.value
+        this.tabIndex = e.detail.value
+        this.reloadOrders(this.tabIndex)
+      },
+      async payOrder (item) {
+        let params = {
+
+        }
+        const res = await fetch.post('/buy/order/create', params)
+        if (!res.datas.package && !res.datas.paySign) {
+          return toast.error('支付创建失败')
+        }
+        await wepy.requestPayment(res.datas)
+        this.reloadOrders(this.tabIndex)
+        toast.success('支付成功')
       }
     }
 
-    onLoad({tabIndex}) {
-      if (tabIndex !== undefined) {
-        this.tabIndex = tabIndex
+    async loadOrders (orderType) {
+      let params = {
+        offset: this.pageNum,
+        limit: 15,
+        orderType
       }
+
+      try {
+        this.isLoading = true
+        let res = await fetch.post('/buy/order/list', params, this.pageNum === 1)
+        if (res.datas.Items.length > 0) {
+          let items = res.datas.Items.map(item =>
+            ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
+          )
+          if (this.pageNum > 1) {
+            this.orders = this.orders.concat(items)
+          } else {
+            this.orders = items
+          }
+          this.pageNum++
+        }
+      } finally {
+        this.isLoading = false
+        this.$apply()
+      }
+    }
+
+    async reloadOrders (orderType) {
+      this.pageNum = 1
+      await this.loadOrders(orderType)
+    }
+
+    onReachBottom () {
+      this.loadOrders(this.tabIndex)
+    }
+
+    onLoad({tabIndex}) {
+      this.tabIndex = tabIndex || 0
+      this.reloadOrders(this.tabIndex)
     }
   }
 </script>

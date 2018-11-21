@@ -386,7 +386,7 @@
   </view>
 
   <weui-loading show="{{isLoading}}"></weui-loading>
-  <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
+  <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
 <script>
@@ -404,10 +404,10 @@ export default class Index extends wepy.page {
     enablePullDownRefresh: true,
     usingComponents: {
       'modal-spinner': '/components/modal-spinner/index',
+      'weui-loading': '/components/weui-loading/index',
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
-      'tag': '/components/tag/index',
-      'weui-loading': '/components/weui-loading/index'
+      'tag': '/components/tag/index'
     }
   }
 
@@ -530,9 +530,14 @@ export default class Index extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
+  onShareAppMessage () {
+  }
+
   onLoad() {
     this.getFilterBarTop()
-    this.reloadProducts()
+    this.$parent.ready(() => {
+      this.reloadProducts()
+    })
   }
 }
 </script>

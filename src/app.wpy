@@ -53,6 +53,11 @@
 import './pollyfill'
 import wepy from 'wepy'
 import 'wepy-async-function'
+import {
+  login, isAuthrized, getUserInfo,
+  getWxUserInfo, getOpenIdByCode, getUserToken
+} from './utils/wechat'
+import { showLoading, hideLoading } from './utils/util'
 
 import { setStore } from 'wepy-redux'
 import configStore from './store'
@@ -76,7 +81,8 @@ export default class extends wepy.app {
       'pages/orderlist/orderlist',
       'pages/my/my',
       'pages/address/address',
-      'pages/address/new_address'
+      'pages/address/new_address',
+      'pages/auth/auth'
     ],
     window: {
       navigationBarBackgroundColor: '#fff',
@@ -131,6 +137,12 @@ export default class extends wepy.app {
     userInfo: null
   }
 
+  appReady = false
+  appError = false
+  errMsg = ''
+  readyCallback = null
+  errorCallback = null
+
   constructor () {
     super()
     this.use('requestfix')
@@ -145,16 +157,75 @@ export default class extends wepy.app {
     })
   }
 
-  async getUserInfo() {
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
+  saveToken (token) {
+    wx.setStorageSync('token', token)
+    hideLoading()
+    this.dispatchReady()
+  }
+
+  async getUnionId () {
+    const { encryptedData, iv } = await getUserInfo({withCredentials: true})
+    const res = await getWxUserInfo(encryptedData, iv, this.openId)
+    this.globalData.userInfo = res.datas
+    return res.datas
+  }
+
+  async getToken() {
+    const { unionId } = await this.getUnionId()
+    const tokenData = await getUserToken(unionId, this.openId)
+    this.saveToken(tokenData.datas.token)
+  }
+
+  async wxlogin () {
+    showLoading()
+    const code = await login()
+    const { openid, unionid } = await getOpenIdByCode(code)
+    this.openId = openid
+    if (unionid) {
+      const tokenData = getUserToken(unionid, openid)
+      this.saveToken(tokenData.datas.token)
+    } else {
+      const isAuthored = await isAuthrized()
+      if (isAuthored) {
+        this.getToken()
+      } else {
+        wx.navigateTo({url: '/pages/auth/auth'})
+      }
     }
-    let userInfo = await wepy.getUserInfo() // eslint-disable-line
-    this.globalData.userInfo = userInfo
-    return userInfo
   }
 
   onLaunch() {
+    this.wxlogin()
+  }
+
+  ready (callback) {
+    this.readyCallback = callback
+    if (this.appReady) {
+      this.dispatchReady()
+    }
+  }
+  error (callback) {
+    this.errorCallback = callback
+    if (this.appError) {
+      this.dispatchError()
+    }
+  }
+  dispatchReady () {
+    this.appReady = true
+    if (typeof this.readyCallback === 'function') {
+      this.readyCallback.apply(this, arguments)
+      this.readyCallback = null
+    }
+  }
+  dispatchError () {
+    this.appError = true
+    this.errMsg = arguments.length > 0
+      ? [].slice.call(arguments)
+      : this.errMsg
+    if (typeof this.errorCallback === 'function') {
+      this.errorCallback.apply(this, this.errMsg)
+      this.errorCallback = null
+    }
   }
 }
 </script>

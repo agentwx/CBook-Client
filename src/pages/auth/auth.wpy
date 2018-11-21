@@ -1,0 +1,89 @@
+<style lang="less">
+  @import "../../less/mixin";
+
+  .model {
+    position: fixed;
+    background-color: #fff;
+    width: 70%;
+    padding-top: 10px;
+    border-radius: 5px;
+  }
+
+  .modelTitle {
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+
+  .modelBody {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    color: #a1a1a1
+  }
+
+  .mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button.agree {
+    color: #ffab3a !important;
+    background-color: #fff !important;
+  }
+
+  button.agree:active {
+    background-color: @color-active !important;
+  }
+
+  button.agree:after {
+    border: none;
+  }
+</style>
+
+<template>
+  <view class='mask' hidden="{{!isShow}}">
+    <view class="model">
+      <view class="modelTitle">授权请求</view>
+      <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
+      <view>
+        <button open-type="getUserInfo" class="agree" @getuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '微信登录授权'
+    }
+
+    components = {}
+
+    data = {
+      isShow: true
+    }
+
+    methods = {
+      agreeGetUser() {
+        this.$parent.getToken()
+        this.$back()
+      }
+    }
+
+    onLoad() {
+    }
+  }
+</script>
