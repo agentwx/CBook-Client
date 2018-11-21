@@ -1,0 +1,68 @@
+.hairline-common() {
+  content: ' ';
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+  transform-origin: center; /* cover wechat button:after default transforn-origin */
+}
+
+.hairline(@border-color: #eee) {
+  .hairline-common();
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  transform: scale(0.5);
+  border: 0 solid @border-color;
+}
+
+.hairline-bottom(@border-color: #eee, @left: 0) {
+  .hairline-common();
+  top: auto;
+  left: @left;
+  right: 0;
+  bottom: 0;
+  transform: scaleY(0.5);
+  border-bottom: 1px solid @border-color;
+}
+
+
+.hairline,
+.hairline--top,
+.hairline--left,
+.hairline--right,
+.hairline--bottom,
+.hairline--top-bottom,
+.hairline--surround {
+  position: relative;
+
+  &::after {
+    .hairline();
+  }
+}
+
+.hairline {
+  &--top::after {
+    border-top-width: 1px;
+  }
+
+  &--left::after {
+    border-left-width: 1px;
+  }
+
+  &--right::after {
+    border-right-width: 1px;
+  }
+
+  &--bottom::after {
+    border-bottom-width: 1px;
+  }
+
+  &--top-bottom::after {
+    border-width: 1px 0;
+  }
+
+  &--surround::after {
+    border-width: 1px;
+  }
+}

@@ -391,6 +391,13 @@
   </view>
 
   <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
+
+  <dialog show="{{true}}" mask="{{true}}" closeOnClickOverlay="{{true}}" showCancelButton="{{true}}" useSlot="{{true}}" title="确认信息">
+    <view class="" style="padding: 50px;">
+      sdjfkdsjfkldsjflksdjl
+    </view>
+  </dialog>
+
 </template>
 
 <script>
@@ -410,7 +417,8 @@ export default class Index extends wepy.page {
       'modal-spinner': '/components/modal-spinner/index',
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
-      'tag': '/components/tag/index'
+      'tag': '/components/tag/index',
+      'dialog': '/components/dialog/index'
     }
   }
 

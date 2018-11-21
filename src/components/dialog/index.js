@@ -2,6 +2,9 @@ import {openType} from '../../mixins/open-type'
 
 Component({
   behaviors: [openType],
+  options: {
+    addGlobalClass: true
+  },
   properties: {
     show: Boolean,
     title: String,
