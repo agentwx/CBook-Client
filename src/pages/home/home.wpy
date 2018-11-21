@@ -258,7 +258,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
-      <icon name="find" extraStyle=" font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" customStyle=" font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" disabled></input>
     </view>
   </view>
@@ -385,19 +385,8 @@
     </repeat>
   </view>
 
-  <view class="weui-loadmore" hidden="{{!isLoading}}">
-    <view class="weui-loading"></view>
-    <view class="weui-loadmore__tips">正在加载 ...</view>
-  </view>
-
+  <weui-loading show="{{isLoading}}"></weui-loading>
   <modal-spinner id="spin" wx:if="{{isLoading && isModalSpinShow}}" />
-
-  <dialog show="{{true}}" mask="{{true}}" closeOnClickOverlay="{{true}}" showCancelButton="{{true}}" useSlot="{{true}}" title="确认信息">
-    <view class="" style="padding: 50px;">
-      sdjfkdsjfkldsjflksdjl
-    </view>
-  </dialog>
-
 </template>
 
 <script>
@@ -418,7 +407,7 @@ export default class Index extends wepy.page {
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
       'tag': '/components/tag/index',
-      'dialog': '/components/dialog/index'
+      'weui-loading': '/components/weui-loading/index'
     }
   }
 

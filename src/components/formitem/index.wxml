@@ -1,4 +1,4 @@
-<view class="form-item {{isNomargin ? 'nomargin' : ''}}" style="{{extraStyle}}">
+<view class="form-item {{isNomargin ? 'nomargin' : ''}}" style="{{customStyle}}">
   <view class="form-item-inner {{isUnderline ? 'underline' : ''}}">
     <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
     <view class="form-item-bd {{isBordered ? 'bordered' : ''}}">

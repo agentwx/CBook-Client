@@ -1,4 +1,4 @@
-<view class="modal {{extraClass}}" wx:if="{{isVisible}}" style="{{extraStyle}}">
+<view class="modal {{customClass}}" wx:if="{{isVisible}}" style="{{customStyle}}">
   <view class="modal-dialog {{title !== '' ? 'hasTitle' : ''}}">
     <view class="modal-header" wx:if="{{title !== ''}}">
       <text>{{title}}</text>

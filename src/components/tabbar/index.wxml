@@ -1,4 +1,4 @@
-<view class="tabbar-wrap {{extraClass}}" wx:if="{{tabBar.list.length>0}}" style="{{style}}{{extraStyle}}">
+<view class="tabbar-wrap {{customClass}}" wx:if="{{tabBar.list.length>0}}" style="{{style}}{{customStyle}}">
   <block wx:for="{{tabBar.list}}" wx:key="index">
     <view class="tabbar-item {{tabIndex == index ? 'selected' : ''}}" data-index="{{index}}" style="color:{{tabIndex == index ? tabBar.selectedColor : tabBar.color}}" bindtap="tap">
       <icon size="middle" color="{{tabIndex == index ? tabBar.selectedColor : tabBar.color}}" name="{{tabIndex == index ? item.selectedIcon : item.icon}}"></icon>

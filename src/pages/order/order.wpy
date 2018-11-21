@@ -132,11 +132,11 @@
       <view class="addr-text">{{address.province}} {{address.city}} {{address.region}}{{address.address}}</view>
     </view>
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">请选择取件地址...</view>
-    <icon name="arrow-right-o" color="#888" extraStyle="font-size: 36rpx"/>
+    <icon name="arrow-right-o" color="#888" customStyle="font-size: 36rpx"/>
   </view>
 
   <datetimepicker fields="range" timeRange="{{timeRange}}" @change="datetimeChange">
-    <listitem extraClass="timepicker">
+    <listitem customClass="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
         <text>{{deliveryTime}}</text>

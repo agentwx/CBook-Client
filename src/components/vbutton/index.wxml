@@ -1,7 +1,7 @@
 <button
   id="{{ id }}"
   lang="{{ lang }}"
-  class="{{ classes }} {{ extraClass }}"
+  class="{{ classes }} {{ customClass }}"
   open-type="{{ openType }}"
   session-from="{{ sessionFrom }}"
   app-parameter="{{ appParameter }}"
@@ -15,12 +15,12 @@
   bindopensetting="bindOpenSetting"
   bindgetuserinfo="bindGetUserInfo"
   bindgetphonenumber="bindGetPhoneNumber"
-  style="{{extraStyle}}"
+  style="{{customStyle}}"
 >
   <loading
     wx:if="{{ loading }}"
     size="40rpx"
-    extra-class="loading-class"
+    custom-class="loading-class"
     color="{{ type === 'default' ? '#c9c9c9' : '' }}"
   />
   <icon wx:if="{{icon}}" type="{{iconType}}" name="{{icon}}" size="{{size}}"></icon>

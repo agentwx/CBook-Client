@@ -7,8 +7,8 @@
 </overlay>
 <transition
   show="{{ show }}"
-  extra-style="z-index: {{ zIndex }}"
-  extra-class="toast__container"
+  custom-style="z-index: {{ zIndex }}"
+  custom-class="toast__container"
 >
   <view
     class="toast toast--{{ type === 'text' ? 'text' : 'icon' }} toast--{{ position }}"
@@ -23,7 +23,7 @@
         wx:if="{{ type === 'loading' }}"
         color="white"
         type="{{ loadingType }}"
-        extra-class="toast__loading"
+        custom-class="toast__loading"
       />
       <icon wx:else class="toast__icon" name="{{ type }}" />
       <text wx:if="{{ message }}" class="toast__text">{{ message }}</text>

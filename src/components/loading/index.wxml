@@ -1,6 +1,6 @@
 <view
-  class="loading {{extraClass}}"
-  style="width: {{ size }}; height: {{ size }}; {{extraStyle}};"
+  class="loading {{customClass}}"
+  style="width: {{ size }}; height: {{ size }}; {{customStyle}};"
 >
   <view
     class="loading__spinner loading__spinner--{{ type }}"

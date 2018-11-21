@@ -35,7 +35,7 @@
     <chkbox readonly="true" checked="{{isDefault}}" />
     <text>设为默认地址</text>
   </view>
-  <btn extraClass="address-new-button" @tap="saveAddress">
+  <btn customClass="address-new-button" @tap="saveAddress">
     {{actionMode === 'edit' ? '修改' : '保存'}}
   </btn>
 </template>

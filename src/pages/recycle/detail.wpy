@@ -139,7 +139,7 @@
   </stepspanel>
   <deliverypanel class="delivery-panel">
     <view class="delivery-body">
-      <icon name="geo" extraClass="geo-icon"></icon>
+      <icon name="geo" customClass="geo-icon"></icon>
       <view class="delivery-main">
         <view class="delivery-hd">
           <text class="username">{{order.orderName}}</text>

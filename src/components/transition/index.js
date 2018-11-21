@@ -6,11 +6,11 @@ Component({
     addGlobalClass: true
   },
   properties: {
-    extraStyle: {
+    customStyle: {
       type: String,
       value: ''
     },
-    extraClass: {
+    customClass: {
       type: String,
       value: ''
     },

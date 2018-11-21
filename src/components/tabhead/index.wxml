@@ -1,4 +1,4 @@
-<view class="tabhead {{extraClass}}" wx:if="{{items.length>0}}" style="{{extraStyle}}">
+<view class="tabhead {{customClass}}" wx:if="{{items.length>0}}" style="{{customStyle}}">
   <block wx:for="{{items}}" wx:key="index">
     <view class="tabhead-item {{tabIndex == index ? 'active' : ''}}" data-index="{{index}}" bindtap="onItemTap">
       <text>{{item}}</text>

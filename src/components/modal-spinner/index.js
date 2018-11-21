@@ -8,11 +8,11 @@ Component({
       type: Boolean,
       value: true
     },
-    extraClass: {
+    customClass: {
       type: String,
       value: ''
     },
-    extraStyle: {
+    customStyle: {
       type: String,
       value: ''
     }

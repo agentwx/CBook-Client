@@ -1,4 +1,3 @@
-
 Component({
   options: {
     addGlobalClass: true
@@ -12,13 +11,13 @@ Component({
       type: String,
       value: ''
     },
-    stepIndex: {
-      type: Number,
-      value: 0
+    show: {
+      type: Boolean,
+      value: true
     },
-    items: {
-      type: Array,
-      value: []
+    loadingText: {
+      type: String,
+      value: '正在加载 ...'
     }
   }
 })

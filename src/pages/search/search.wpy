@@ -147,7 +147,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search">
-      <icon name="find" extraStyle="font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" customStyle="font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
       <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
         <icon name="close-circle" color="#888"></icon>

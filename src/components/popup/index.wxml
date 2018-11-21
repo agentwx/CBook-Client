@@ -3,13 +3,13 @@
   mask
   show="{{ show }}"
   z-index="{{ zIndex }}"
-  extra-style="{{ overlayStyle }}"
+  custom-style="{{ overlayStyle }}"
   bind:tap="onClickOverlay"
 />
 <view
   wx:if="{{ inited }}"
-  class="{{extraClass}} popup {{ position ? 'popup--' + position : '' }}"
-  style="z-index: {{ zIndex }}; animation-name: {{ transition || position }}-{{ type }}; animation-duration: {{ duration }}ms; {{ display ? '' : 'display: none;' }}; {{ extraStyle }}"
+  class="{{customClass}} popup {{ position ? 'popup--' + position : '' }}"
+  style="z-index: {{ zIndex }}; animation-name: {{ transition || position }}-{{ type }}; animation-duration: {{ duration }}ms; {{ display ? '' : 'display: none;' }}; {{ customStyle }}"
   bind:animationend="onAnimationEnd"
 >
   <slot />

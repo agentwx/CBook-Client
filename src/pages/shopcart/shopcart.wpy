@@ -211,8 +211,8 @@
 
   <view class="cart-edit-hd" hidden="{{products.length === 0}}">
     <view class="edit-left" @tap="toggleSelectAll">
-      <chkbox extraClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
-      <icon name="library" extraClass="lib-icon" />
+      <chkbox customClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
+      <icon name="library" customClass="lib-icon" />
       <text>图书列表</text>
     </view>
     <view class="edit-right">
@@ -254,13 +254,13 @@
     <image src="../../images/cart-empty-bg.png"></image>
     <view class="empty-action">
       <view class="empty-text">购物车空空如也~</view>
-      <btn type="plain" extraClass="goshop-btn" @tap="goShopping">去逛逛</btn>
+      <btn type="plain" customClass="goshop-btn" @tap="goShopping">去逛逛</btn>
     </view>
   </view>
 
   <view class="cart-action-bar" hidden="{{products.length === 0}}">
     <veiw class="action-left" @tap="toggleSelectAll">
-      <chkbox extraClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
+      <chkbox customClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
       <text>全选</text>
     </veiw>
     <view class="action-right">

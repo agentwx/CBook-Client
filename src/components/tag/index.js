@@ -3,11 +3,11 @@ Component({
     addGlobalClass: true
   },
   properties: {
-    extraClass: {
+    customClass: {
       type: String,
       value: ''
     },
-    extraStyle: {
+    customStyle: {
       type: String,
       value: ''
     }

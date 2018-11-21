@@ -1,8 +1,8 @@
 <transition
   name="slide-down"
   show="{{ show }}"
-  extra-class="notify"
-  extra-style="background-color:{{ backgroundColor }}; color: {{ color }}"
+  custom-class="notify"
+  custom-style="background-color:{{ backgroundColor }}; color: {{ color }}"
 >
   <text wx:if="{{text}}">
     {{text}}

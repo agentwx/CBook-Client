@@ -305,7 +305,7 @@
   </view>
 
   <view class="detail-action-bar">
-    <iconitem icon="cart" iconSize="middle" extraClass="action-item action-cart" @tap="gotoCart">
+    <iconitem icon="cart" iconSize="middle" customClass="action-item action-cart" @tap="gotoCart">
       <text>购物车</text>
       <text class="badge">{{cartCount}}</text>
     </iconitem>

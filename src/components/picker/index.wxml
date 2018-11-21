@@ -6,7 +6,7 @@
         range="{{names}}"
         disabled="{{isDisabled}}"
 >
-  <view class="picker {{size}} {{extraClass}}" style="{{extraStyle}}">
+  <view class="picker {{size}} {{customClass}}" style="{{customStyle}}">
     <text>{{names[selectIndex]}}</text>
     <icon name="arrow-down" color="#999"></icon>
   </view>
