@@ -30,7 +30,7 @@ Component({
     },
     speed: {
       type: Number,
-      value: 40
+      value: 20
     },
     scrollable: {
       type: [Boolean, String],
