@@ -1,6 +1,7 @@
 <style lang="less">
   @import "less/mixin";
   @import 'less/iconfont';
+  @import 'less/animation';
 
   page {
     background-color: #fff;
