@@ -119,9 +119,12 @@
   }
 </style>
 <template>
-
-  <noticebar showArrow="false">卖书运费由平台承担，你在快递上门时告知快递员运费到会即可</noticebar>
-
+  <noticebar
+    wx:if="{{orderSource === 'recycle'}}"
+    showArrow="false"
+  >
+    卖书运费由平台承担，你在快递上门时告知快递员运费到付即可
+  </noticebar>
   <view class="address-selection" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle"/>
     <view class="addr-slbd" wx:if="{{address !== null}}">
@@ -131,11 +134,18 @@
       </view>
       <view class="addr-text">{{address.province}} {{address.city}} {{address.region}}{{address.address}}</view>
     </view>
-    <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">请选择取件地址...</view>
+    <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">
+      {{orderSource === 'recycle' ? '请选择取件地址...' : '请选择收货地址...'}}
+    </view>
     <icon name="arrow-right-o" color="#888" customStyle="font-size: 36rpx"/>
   </view>
 
-  <datetimepicker fields="range" timeRange="{{timeRange}}" @change="datetimeChange">
+  <datetimepicker
+    wx:if="{{orderSource === 'recycle'}}"
+    fields="range"
+    timeRange="{{timeRange}}"
+    @change="datetimeChange"
+  >
     <listitem customClass="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
@@ -240,11 +250,12 @@
         this.$navigate('/pages/address/address', {actionMode: 'select'})
       },
       submitOrder() {
+        const isRecycleOrder = this.orderSource === 'recycle'
         if (!this.address) {
-          return toast.error('请选择取件地址')
+          return toast.error(`请选择${isRecycleOrder ? '取件' : '收货'}地址`)
         }
 
-        if (!this.deliveryTime) {
+        if (isRecycleOrder && !this.deliveryTime) {
           return toast.error('请选择取件时间')
         }
 

@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/images/address_empty_bg.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/pages/auth/auth.wpy" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" afterPath="$PROJECT_DIR$/project.config.json" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox.wpy" afterPath="$PROJECT_DIR$/src/components/checkbox.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/index.less" afterPath="$PROJECT_DIR$/src/components/checkbox/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/weui-loading/index.less" afterPath="$PROJECT_DIR$/src/components/weui-loading/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/less/mixin.less" afterPath="$PROJECT_DIR$/src/less/mixin.less" />
-      <change beforePath="$PROJECT_DIR$/src/pages/address/address.wpy" afterPath="$PROJECT_DIR$/src/pages/address/address.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/my/my.wpy" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
       <change beforePath="$PROJECT_DIR$/src/pages/order/order.wpy" afterPath="$PROJECT_DIR$/src/pages/order/order.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" afterPath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/index.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/manual.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/manual.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/service/fetch.js" afterPath="$PROJECT_DIR$/src/service/fetch.js" />
-      <change beforePath="$PROJECT_DIR$/src/utils/wechat.js" afterPath="$PROJECT_DIR$/src/utils/wechat.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="165" column="23" lean-forward="true" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+            <state relative-caret-position="253">
+              <caret line="184" column="48" lean-forward="false" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
               <folding>
                 <element signature="e#1019#1039#0" expanded="true" />
               </folding>
@@ -55,13 +39,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="false">
+      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="320" column="7" lean-forward="false" selection-start-line="303" selection-start-column="6" selection-end-line="320" selection-end-column="7" />
+            <state relative-caret-position="355">
+              <caret line="148" column="39" lean-forward="true" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
               <folding>
-                <element signature="e#4806#4829#0" expanded="true" />
+                <element signature="e#4979#5002#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,8 +74,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>extraClass</find>
-      <find>extra-class</find>
       <find>extraStyle</find>
       <find>slide-down-enter</find>
       <find>notices</find>
@@ -120,9 +102,10 @@
       <find>fetch.</find>
       <find>reloadProducts</find>
       <find>getWxUserInfo</find>
+      <find>datetimeChange</find>
+      <find>收件</find>
     </findStrings>
     <replaceStrings>
-      <replace>product-press</replace>
       <replace>isModalSpinShow</replace>
       <replace>list</replace>
       <replace>let</replace>
@@ -152,6 +135,7 @@
       <replace>custom-class</replace>
       <replace>customClass</replace>
       <replace>items</replace>
+      <replace>收货</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\MyProject\CBook-Client\src\images</dir>
@@ -205,7 +189,6 @@
         <option value="$PROJECT_DIR$/src/components/checkbox/index.less" />
         <option value="$PROJECT_DIR$/src/components/checkbox.wpy" />
         <option value="$PROJECT_DIR$/src/components/weui-loading/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
         <option value="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
         <option value="$PROJECT_DIR$/src/service/fetch.js" />
         <option value="$PROJECT_DIR$/project.config.json" />
@@ -216,6 +199,7 @@
         <option value="$PROJECT_DIR$/src/pages/recycle/manual.wpy" />
         <option value="$PROJECT_DIR$/src/pages/auth/auth.wpy" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
       </list>
     </option>
   </component>
@@ -339,12 +323,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="142162000" />
+      <workItem from="1542243669812" duration="142757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269413000" />
+    <option name="totallyTimeSpent" value="270008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -816,12 +800,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
+    <entry file="file://$PROJECT_DIR$/src/app.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="320" column="7" lean-forward="false" selection-start-line="303" selection-start-column="6" selection-end-line="320" selection-end-column="7" />
+        <state relative-caret-position="253">
+          <caret line="184" column="48" lean-forward="false" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
           <folding>
-            <element signature="e#4806#4829#0" expanded="true" />
+            <element signature="e#1019#1039#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -834,12 +818,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.wpy">
+    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="165" column="23" lean-forward="true" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+        <state relative-caret-position="355">
+          <caret line="148" column="39" lean-forward="true" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
           <folding>
-            <element signature="e#1019#1039#0" expanded="true" />
+            <element signature="e#4979#5002#0" expanded="true" />
           </folding>
         </state>
       </provider>
