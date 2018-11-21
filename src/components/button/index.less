@@ -9,7 +9,8 @@
   font-size: 28rpx;
   box-sizing: border-box;
 
-  > .icon {
+  icon,
+  loading {
     margin-right: 6rpx;
   }
 
@@ -147,7 +148,7 @@
   }
 
   &.disabled {
-    background-color: @color-disabled;
+    background: @color-disabled !important;
     pointer-events: none;
   }
 

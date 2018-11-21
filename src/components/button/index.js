@@ -47,6 +47,10 @@ Component({
       type: [Boolean, String],
       value: true
     },
+    loading: {
+      type: [Boolean, String],
+      value: false
+    },
     iconType: {
       type: String,
       value: 'iconfont'
@@ -64,6 +68,9 @@ Component({
     },
     isCircled () {
       return coerce(this.data.circled)
+    },
+    isLoading () {
+      return coerce(this.data.loading)
     }
   }
 })
