@@ -315,22 +315,17 @@
       if (!res.datas.package && !res.datas.paySign) {
         return toast.error('订单创建失败')
       }
-      try {
-        await wepy.requestPayment(res.datas)
-        toast.success('支付成功')
-        setTimeout(() => {
-          this.orderCreated = true
-          this.$navigate('/pages/orderlist/orderlist')
-        }, 1500)
-      } catch (e) {
+
+      await wepy.requestPayment(res.datas)
+      toast.success('支付成功')
+      const prevPage = getPrevPage()
+      if (prevPage.route === 'pages/shopcart/shopcart') {
+        prevPage.clear()
+      }
+      setTimeout(() => {
         this.orderCreated = true
         this.$navigate('/pages/orderlist/orderlist')
-      } finally {
-        const prevPage = getPrevPage()
-        if (prevPage.route === 'pages/shopcart/shopcart') {
-          prevPage.clear()
-        }
-      }
+      }, 1500)
     }
 
     onShow () {
