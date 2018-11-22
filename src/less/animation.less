@@ -9,7 +9,11 @@
 
 .keyframes(slide-down, {
   from {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+    -webkit-transform: translate3d(0, -100% ,0);
+    transform: translate3d(0, -100% ,0);
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
   }
 });
