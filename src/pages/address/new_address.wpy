@@ -84,8 +84,8 @@
     config = {
       navigationBarTitleText: '新增地址',
       usingComponents: {
-        btn: '/components/button/index',
-        chkbox: '/components/checkbox/index',
+        'btn': '/components/button/index',
+        'chkbox': '/components/checkbox/index',
         'region-picker': '/components/regionpicker/index',
         'formitem': '/components/formitem/index'
       }
@@ -151,6 +151,7 @@
         } else {
           await fetch.post('/user/address/add', params)
         }
+
         getPrevPage().loadData()
         this.$back()
       }
