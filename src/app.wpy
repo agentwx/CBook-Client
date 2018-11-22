@@ -20,15 +20,6 @@
     font-weight: normal;
   }
 
-  .badge {
-    min-width: 40rpx;
-    height: 40rpx;
-    background-color: #ff0000;
-    color: #fff;
-    border-radius: 40rpx;
-    .flex-center();
-  }
-
   page, view, text, scroll-view, input, textarea, button, form {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

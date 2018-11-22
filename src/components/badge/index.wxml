@@ -1,0 +1,3 @@
+<view class="badge {{customClass}}" style="background-color: {{backgroundColor}};{{customStyle}}">
+  <slot />
+</view>

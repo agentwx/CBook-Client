@@ -307,7 +307,7 @@
   <view class="detail-action-bar">
     <iconitem icon="cart" iconSize="middle" customClass="action-item action-cart" @tap="gotoCart">
       <text>购物车</text>
-      <text class="badge">{{cartCount}}</text>
+      <badge>{{cartCount}}</badge>
     </iconitem>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
@@ -385,7 +385,8 @@
       usingComponents: {
         iconitem: '/components/iconitem/index',
         icon: '/components/icon/index',
-        raty: '/components/raty/index'
+        raty: '/components/raty/index',
+        badge: '/components/badge/index'
       }
     }
 
