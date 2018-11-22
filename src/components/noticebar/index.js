@@ -32,6 +32,10 @@ Component({
       type: Number,
       value: 20
     },
+    additWidth: {
+      type: Number,
+      value: 50
+    },
     scrollable: {
       type: [Boolean, String],
       value: true
@@ -82,11 +86,11 @@ Component({
           }
           this.wrapWidth = rect.width
           const {
-            speed, isScrollable, delay
+            speed, isScrollable, delay, additWidth
           } = this.data
 
           if (isScrollable && this.wrapWidth < this.width) {
-            this.elapse = this.width / speed * 1000
+            this.elapse = (this.width + additWidth) / speed * 1000
             this.animation = wx.createAnimation({
               duration: this.elapse,
               timeingFunction: 'linear',
@@ -119,7 +123,7 @@ Component({
 
       this.timer = setTimeout(() => {
         this.scroll()
-      }, elapse + 500)
+      }, elapse)
     },
     onClose () {
       if (this.data.isCloseable) {
