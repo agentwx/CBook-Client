@@ -81,7 +81,7 @@
   }
 
   .empty-layer-wrap {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     right: 0;
@@ -241,7 +241,7 @@
           if (this.pageNum > 1) {
             this.orders = this.orders.concat(items)
           } else {
-            //this.orders = items
+            this.orders = items
           }
           this.pageNum++
         }
