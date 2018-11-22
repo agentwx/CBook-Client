@@ -104,7 +104,7 @@
     right: 0;
     background-color: #fff;
     box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.07);
-    .animation(slide-down .4s ease);
+    .animation(slide-down .3s ease);
   }
 
   .filter-mask {
