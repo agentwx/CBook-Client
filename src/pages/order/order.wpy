@@ -322,7 +322,7 @@
         toast.success('支付成功')
         setTimeout(() => {
           this.$navigate('/pages/orderlist/orderlist')
-        }, 1000)
+        }, 2000)
       } catch (e) {
         this.$navigate('/pages/orderlist/orderlist')
       } finally {
