@@ -69,7 +69,8 @@
     margin-top: 40rpx;
     margin-bottom: 40rpx;
 
-    > view {
+    > view,
+    .raty-wrap {
       padding: 4rpx 0;
     }
   }

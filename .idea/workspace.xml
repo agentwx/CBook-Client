@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/badge/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/badge/index.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/badge/index.less" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/badge/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
       <change beforePath="$PROJECT_DIR$/src/pages/detail/detail.wpy" afterPath="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/recycle/order.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" afterPath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +53,20 @@
       <file leaf-file-name="detail.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="367" column="25" lean-forward="true" selection-start-line="367" selection-start-column="25" selection-end-line="367" selection-end-column="25" />
+            <state relative-caret-position="274">
+              <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+              <folding>
+                <element signature="e#7342#7365#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shopcart.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -98,6 +106,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+              <folding>
+                <element signature="e#3423#3446#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -109,10 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>title</find>
-      <find>orderStatus</find>
-      <find>order-status</find>
-      <find>closed</find>
       <find>eslint-disabled-line</find>
       <find>user/weapp/userinfo</find>
       <find>navigate</find>
@@ -139,6 +155,10 @@
       <find>slot</find>
       <find>empty-layer-wrap</find>
       <find>b</find>
+      <find>-left</find>
+      <find>action-left</find>
+      <find>desc</find>
+      <find>product-info</find>
     </findStrings>
     <replaceStrings>
       <replace>list</replace>
@@ -184,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/dialog/index.less" />
-        <option value="$PROJECT_DIR$/src/less/ellipsis.less" />
         <option value="$PROJECT_DIR$/src/less/hairline.less" />
         <option value="$PROJECT_DIR$/src/components/dialog/index.wxml" />
         <option value="$PROJECT_DIR$/src/components/dialog/index.js" />
@@ -234,6 +252,8 @@
         <option value="$PROJECT_DIR$/src/components/badge/index.less" />
         <option value="$PROJECT_DIR$/src/components/badge/index.wxml" />
         <option value="$PROJECT_DIR$/src/components/badge/index.js" />
+        <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
         <option value="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
       </list>
     </option>
@@ -292,19 +312,6 @@
               <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="badge" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -358,12 +365,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="150172000" />
+      <workItem from="1542243669812" duration="151076000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277423000" />
+    <option name="totallyTimeSpent" value="278327000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -420,14 +427,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/notify/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mixins/transition.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-89">
@@ -557,16 +556,6 @@
           <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#view#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-922">
-          <caret line="180" column="9" lean-forward="true" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
-          <folding>
-            <element signature="e#3307#3330#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -847,11 +836,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="e#3423#3446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="367" column="25" lean-forward="true" selection-start-line="367" selection-start-column="25" selection-end-line="367" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="274">
+          <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+          <folding>
+            <element signature="e#7342#7365#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

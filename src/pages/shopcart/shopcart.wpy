@@ -18,6 +18,11 @@
         margin-right: 10rpx;
         font-size: 40rpx;
       }
+
+      chkbox {
+        position: relative;
+        top: -2rpx;
+      }
     }
   }
 
@@ -142,6 +147,11 @@
     .action-left {
       padding-left: 20rpx;
       .flex-v-center();
+
+      chkbox {
+        position: relative;
+        top: -2rpx;
+      }
     }
 
     .action-right {
