@@ -3,6 +3,15 @@
 
   page {
     background-color: #f7f7f7;
+    padding-top: 96rpx;
+  }
+
+  .order-tabhead {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
   }
 
   .order-hd {
@@ -118,7 +127,7 @@
 </style>
 
 <template>
-  <tabhead items="{{tabItems}}" tabIndex="{{tabIndex}}" custom-style="z-index:10;" @change="tabheadChange"></tabhead>
+  <tabhead custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tabhead>
 
   <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
     <block wx:for="{{orders}}" wx:key="index">

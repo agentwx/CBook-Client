@@ -98,6 +98,12 @@
     &:active {
       .g-darken-gradient(50%);
     }
+
+    &.disabled {
+      color: #666;
+      background: @color-disabled;
+      pointer-events: none;
+    }
   }
 
   .float-action-bar {
@@ -176,7 +182,7 @@
       <view class="income">预计收入￥{{totalPrice}}</view>
       <view class="hint">请继续扫描哦~</view>
     </view>
-    <view class="action-button" @tap="nextStep">下一步({{totalCount}})</view>
+    <view class="action-button {{totalCount === 0 ? 'disabled' : ''}}" @tap="nextStep">下一步({{totalCount}})</view>
   </view>
 </template>
 
