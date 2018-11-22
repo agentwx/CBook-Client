@@ -214,7 +214,7 @@
       font-size: 26rpx;
       color: #888;
       margin-top: 6rpx;
-      margin-bottom: 14rpx;
+      margin-bottom: 12rpx;
     }
 
     .product-tags {
