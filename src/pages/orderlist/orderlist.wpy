@@ -69,7 +69,16 @@
   .order-pd-specs {
     .flex();
     justify-content: space-between;
-    font-size: 30rpx;
+
+    .price {
+      font-size: 30rpx;
+    }
+  }
+
+  .create-time {
+    font-size: 26rpx;
+    color: #999;
+    margin-top: 4rpx;
   }
 
   .order-subinfo {
@@ -136,25 +145,27 @@
           <text class="order-num">单号：{{item.orderCode}}</text>
           <text class="order-status {{item.orderStatus == 10 ? 'closed' : ''}}">{{item.orderStatusText}}</text>
         </view>
-        <block wx:for="{{item.bookInfos}}" wx:key="index">
+        <block wx:for="{{item.bookInfos}}" wx:for-item="book" wx:key="index">
           <view class="order-body">
             <view class="order-cover">
-              <image src="{{item.smallIcon}}" lazyload="true"></image>
+              <image src="{{book.smallIcon}}" lazyload="true"></image>
             </view>
             <view class="order-main">
               <view class="order-pd-hd">
-                <view class="title">{{item.name}}</view>
-                <view class="desc">{{item.author}}</view>
-                <view class="desc">{{item.press}}</view>
+                <view class="title">{{book.name}}</view>
+                <view class="desc">{{book.author}}</view>
+                <view class="desc">{{book.press}}</view>
               </view>
               <view class="order-pd-specs">
-                <text class="price">￥{{item.price}}</text>
+                <text class="price">￥{{book.price}}</text>
               </view>
             </view>
           </view>
         </block>
         <view class="panel-footer order-footer" slot="footer">
-          <view></view>
+          <view class="create-time">
+            {{item.createTime}}
+          </view>
           <view class="order-subinfo">
             <view class="order-sumup">
               总共{{item.bookInfos.length}}件商品 合计 <text class="price">￥{{item.total}}</text>
@@ -175,7 +186,7 @@
     </view>
   </view>
 
-  <weui-loading visible="{{isLoading && pageNum > 1}}"></weui-loading>
+  <weui-loading fixed-bottom="true" visible="{{isLoading && pageNum > 1}}"></weui-loading>
 </template>
 
 <script>
@@ -236,7 +247,7 @@
     async loadOrders (orderType) {
       let params = {
         offset: this.pageNum,
-        limit: 15,
+        limit: 5,
         orderType
       }
 

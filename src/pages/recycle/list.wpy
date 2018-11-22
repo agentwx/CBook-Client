@@ -51,6 +51,12 @@
     }
   }
 
+  .create-time {
+    font-size: 26rpx;
+    color: #999;
+    margin-top: 4rpx;
+  }
+
   .order-subinfo {
     text-align: right;
 
@@ -102,45 +108,45 @@
 </style>
 
 <template>
-  <block wx:if="{{!isLoading}}">
-    <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
-      <repeat for="{{orders}}">
-        <panel :params.sync="item" @tap.user="viewDetail">
-          <view class="panel-title order-hd" slot="title">
-            <text class="order-num">单号：{{item.orderCode}}</text>
-            <text class="order-status">{{item.orderStatusText}}</text>
-          </view>
-          <scroll-view class="books-scrollview" scroll-x="true">
-            <view class="order-body">
-              <block wx:for="{{item.bookInfos}}" wx:key="index">
-                <view class="order-cover">
-                  <image src="{{item.smallIcon}}" lazyload="true"></image>
-                </view>
-              </block>
-            </view>
-          </scroll-view>
-          <view class="panel-footer order-footer" slot="footer">
-            <view></view>
-            <view class="order-subinfo">
-              <view class="order-sumup">
-                总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.income}}</text>
-              </view>
-              <btn inline="true" bordered="true" size="small">查看详情</btn>
-            </view>
-          </view>
-        </panel>
-      </repeat>
-    </view>
-
-    <view class="empty-layer-wrap" wx:if="{{orders.length === 0}}">
-      <view class="empty-layer">
-        <image src="../../images/orders_empty_bg.png"></image>
-        <view class="empty-action">
-          <view class="empty-text">暂无订单~</view>
+  <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
+    <repeat for="{{orders}}">
+      <panel :params.sync="item" @tap.user="viewDetail">
+        <view class="panel-title order-hd" slot="title">
+          <text class="order-num">单号：{{item.orderCode}}</text>
+          <text class="order-status">{{item.orderStatusText}}</text>
         </view>
+        <scroll-view class="books-scrollview" scroll-x="true">
+          <view class="order-body">
+            <block wx:for="{{item.bookInfos}}" wx:key="index">
+              <view class="order-cover">
+                <image src="{{item.smallIcon}}" lazyload="true"></image>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+        <view class="panel-footer order-footer" slot="footer">
+          <view class="create-time">{{item.createTime}}</view>
+          <view class="order-subinfo">
+            <view class="order-sumup">
+              总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.income}}</text>
+            </view>
+            <btn inline="true" bordered="true" size="small">查看详情</btn>
+          </view>
+        </view>
+      </panel>
+    </repeat>
+  </view>
+
+  <view class="empty-layer-wrap" wx:if="{{!isLoading && orders.length === 0}}">
+    <view class="empty-layer">
+      <image src="../../images/orders_empty_bg.png"></image>
+      <view class="empty-action">
+        <view class="empty-text">暂无订单~</view>
       </view>
     </view>
-  </block>
+  </view>
+
+  <weui-loading fixed-bottom="true" visible="{{isLoading && pageNum > 1}}"></weui-loading>
 </template>
 
 <script>
@@ -160,7 +166,8 @@
     config = {
       navigationBarTitleText: '回收订单',
       usingComponents: {
-        btn: '/components/button/index'
+        'btn': '/components/button/index',
+        'weui-loading': '/components/weui-loading/index'
       }
     }
 
@@ -169,7 +176,8 @@
     }
 
     data = {
-      isLoading: false,
+      isLoading: true,
+      pageNum: 1,
       orders: []
     }
 
@@ -182,12 +190,12 @@
     async loadOrders () {
       let params = {
         offset: this.pageNum,
-        limit: 10
+        limit: 5
       }
 
       try {
         this.isLoading = true
-        let res = await fetch.post('/recover/order/list', params)
+        let res = await fetch.post('/recover/order/list', params, this.pageNum === 1)
         if (res.datas.Items.length > 0) {
           let items = res.datas.Items.map(item =>
             ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
@@ -205,9 +213,17 @@
       }
     }
 
-    onLoad() {
+    reloadOrders () {
       this.pageNum = 1
       this.loadOrders()
+    }
+
+    onReachBottom () {
+      this.loadOrders()
+    }
+
+    onLoad() {
+      this.reloadOrders()
     }
   }
 </script>
