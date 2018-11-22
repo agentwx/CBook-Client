@@ -184,14 +184,13 @@
     提交订单
   </view>
 
-  <modal :visible.sync="modalVisible">
+  <modal :visible.sync="modalVisible" showClose="false">
     <view class="modal-container">
       <icon name="check" color="#08affe" size="large"></icon>
       <view class="md-title">提交成功</view>
       <view class="md-subtitle">请准备好你的书箱，交给快递员！</view>
     </view>
     <view slot="footer">
-      <btn bordered="true" type="plain" size="small" @tap="closeModal">取消</btn>
       <btn size="small" @tap="confirmOrder">确定</btn>
     </view>
   </modal>
@@ -265,11 +264,10 @@
         } else if (this.orderSource === 'recycle') {
           this.createRecycleOrder()
         }
-        // this.modalVisible = true
       },
       confirmOrder() {
         this.modalVisible = false
-        this.$navigate('/pages/orderlist/orderlist')
+        this.$navigate('/pages/recycle/list')
       },
       datetimeChange (e) {
         this.deliveryTime = e.detail.value
@@ -290,10 +288,10 @@
       }
 
       await fetch.post('/recover/order/create', params)
-
       getPrevPage().clear()
-
-      this.$navigate('/pages/recycle/list')
+      this.modalVisible = true
+      this.orderCreated = true
+      this.$apply()
     }
 
     async createBuyOrder () {
@@ -321,9 +319,11 @@
         await wepy.requestPayment(res.datas)
         toast.success('支付成功')
         setTimeout(() => {
+          this.orderCreated = true
           this.$navigate('/pages/orderlist/orderlist')
-        }, 2000)
+        }, 1500)
       } catch (e) {
+        this.orderCreated = true
         this.$navigate('/pages/orderlist/orderlist')
       } finally {
         const prevPage = getPrevPage()
@@ -333,10 +333,17 @@
       }
     }
 
-    onLoad({orderSource, products}) {
+    onShow () {
+      if (this.orderCreated) {
+        this.$switch('/pages/home/home')
+      }
+    }
+
+    onLoad ({orderSource, products}) {
       if (orderSource) {
         this.orderSource = orderSource
       }
+      this.orderCreated = false
       this.products = JSON.parse(products)
     }
   }
