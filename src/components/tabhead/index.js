@@ -22,7 +22,7 @@ Component({
   },
   lifetimes: {
     ready () {
-      this.triggerEvent('change', {value: this.data.tabIndex})
+      // this.triggerEvent('change', {value: this.data.tabIndex})
     }
   },
   methods: {

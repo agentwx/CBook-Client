@@ -7,7 +7,6 @@
 
   .home-search-wrap {
     padding: 30rpx 20rpx;
-    background-color: #fff;
   }
 
   .home-search {
@@ -105,7 +104,7 @@
     right: 0;
     background-color: #fff;
     box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.07);
-    .animation(slide-down .3s ease);
+    .animation(slide-down .4s ease);
   }
 
   .filter-mask {
@@ -175,11 +174,6 @@
     }
   }
 
-
-  .product-listview {
-    padding-bottom: 30rpx;
-  }
-
   .product-panel {
     .flex();
     padding: 20rpx;
@@ -220,11 +214,11 @@
       font-size: 26rpx;
       color: #888;
       margin-top: 6rpx;
-      margin-bottom: 16rpx;
+      margin-bottom: 14rpx;
     }
 
     .product-tags {
-      margin-top: 20rpx;
+      margin-top: 16rpx;
     }
   }
 
@@ -271,8 +265,7 @@
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
       <view class="filter-toolbar-inner">
         <view class="filter-itemtype sort {{filterVisible && filterType=='sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
-          综合排序
-          <icon size="small" name="caret-down"></icon>
+          综合排序<icon size="x-small" name="caret-down"></icon>
         </view>
         <view class="filter-itemtype {{filterType=='popular' ? 'selected' : ''}}" @tap="showFilter('popular')">
           人气优先
@@ -281,8 +274,7 @@
           新书优先
         </view>
         <view class="filter-itemtype filter {{filterVisible && filterType=='catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
-          筛选
-          <icon size="small" name="filter"></icon>
+          筛选<icon size="x-small" name="filter"></icon>
         </view>
       </view>
       <view class="filter-sublayer" hidden="{{!filterVisible}}">
@@ -385,7 +377,7 @@
     </repeat>
   </view>
 
-  <weui-loading show="{{isLoading}}"></weui-loading>
+  <weui-loading visible="{{isLoading}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 

@@ -162,9 +162,6 @@
       this.$navigate('/pages/recycle/order')
     }
 
-    onShareAppMessage () {
-    }
-
     onLoad() {
     }
   }

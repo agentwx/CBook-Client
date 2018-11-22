@@ -105,7 +105,7 @@
   <block wx:if="{{!isLoading}}">
     <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
       <repeat for="{{orders}}">
-        <panel>
+        <panel :params.sync="item" @tap.user="viewDetail">
           <view class="panel-title order-hd" slot="title">
             <text class="order-num">单号：{{item.orderCode}}</text>
             <text class="order-status">{{item.orderStatusText}}</text>
@@ -125,7 +125,7 @@
               <view class="order-sumup">
                 总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.income}}</text>
               </view>
-              <btn inline="true" bordered="true" size="small" @tap="viewDetail({{item}})">查看详情</btn>
+              <btn inline="true" bordered="true" size="small">查看详情</btn>
             </view>
           </view>
         </panel>

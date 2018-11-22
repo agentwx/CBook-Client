@@ -1,6 +1,6 @@
 import fetch, { serverUrl } from '../service/fetch'
 
-function isAuthrized () {
+function isAuthorized () {
   return new Promise(resolve => {
     wx.getSetting({
       success: (res) => {
@@ -107,4 +107,4 @@ function uploadFile (url, filePath, params, header) {
   })
 }
 
-module.exports = {isAuthrized, login, getUserInfo, getOpenIdByCode, getUserToken, getWxUserInfo, uploadFile}
+module.exports = {isAuthorized, login, getUserInfo, getOpenIdByCode, getUserToken, getWxUserInfo, uploadFile}

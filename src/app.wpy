@@ -54,10 +54,10 @@ import './pollyfill'
 import wepy from 'wepy'
 import 'wepy-async-function'
 import {
-  login, isAuthrized, getUserInfo,
+  login, isAuthorized, getUserInfo,
   getWxUserInfo, getOpenIdByCode, getUserToken
 } from './utils/wechat'
-import { showLoading, hideLoading } from './utils/util'
+import { toast } from './utils/util'
 
 import { setStore } from 'wepy-redux'
 import configStore from './store'
@@ -138,10 +138,7 @@ export default class extends wepy.app {
   }
 
   appReady = false
-  appError = false
-  errMsg = ''
   readyCallback = null
-  errorCallback = null
 
   constructor () {
     super()
@@ -159,25 +156,47 @@ export default class extends wepy.app {
 
   saveToken (token) {
     wx.setStorageSync('token', token)
-    hideLoading()
     this.dispatchReady()
   }
 
   async getUnionId () {
-    const { encryptedData, iv } = await getUserInfo({withCredentials: true})
-    const res = await getWxUserInfo(encryptedData, iv, this.openId)
-    this.globalData.userInfo = res.datas
-    return res.datas
+    try {
+      const {encryptedData, iv} = await getUserInfo({withCredentials: true})
+      const res = await getWxUserInfo(encryptedData, iv, this.openId)
+      this.globalData.userInfo = res.datas
+      return res.datas
+    } catch (errMsg) {
+      toast.error(errMsg)
+      return {}
+    }
   }
 
   async getToken() {
     const { unionId } = await this.getUnionId()
-    const tokenData = await getUserToken(unionId, this.openId)
-    this.saveToken(tokenData.datas.token)
+    if (!unionId) {
+      wx.showModal({
+        content: '抱歉，未找到您的unionId',
+        showCancel: false,
+        success: res => {
+          this.doAuthorize()
+        }
+      })
+    } else {
+      const tokenData = await getUserToken(unionId, this.openId)
+      this.saveToken(tokenData.datas.token)
+    }
+  }
+
+  async doAuthorize () {
+    const isAuthored = await isAuthorized()
+    if (isAuthored) {
+      this.getToken()
+    } else {
+      wx.navigateTo({url: '/pages/auth/auth'})
+    }
   }
 
   async wxlogin () {
-    showLoading()
     const code = await login()
     const { openid, unionid } = await getOpenIdByCode(code)
     this.openId = openid
@@ -185,12 +204,7 @@ export default class extends wepy.app {
       const tokenData = getUserToken(unionid, openid)
       this.saveToken(tokenData.datas.token)
     } else {
-      const isAuthored = await isAuthrized()
-      if (isAuthored) {
-        this.getToken()
-      } else {
-        wx.navigateTo({url: '/pages/auth/auth'})
-      }
+      this.doAuthorize()
     }
   }
 
@@ -204,27 +218,11 @@ export default class extends wepy.app {
       this.dispatchReady()
     }
   }
-  error (callback) {
-    this.errorCallback = callback
-    if (this.appError) {
-      this.dispatchError()
-    }
-  }
   dispatchReady () {
     this.appReady = true
     if (typeof this.readyCallback === 'function') {
       this.readyCallback.apply(this, arguments)
       this.readyCallback = null
-    }
-  }
-  dispatchError () {
-    this.appError = true
-    this.errMsg = arguments.length > 0
-      ? [].slice.call(arguments)
-      : this.errMsg
-    if (typeof this.errorCallback === 'function') {
-      this.errorCallback.apply(this, this.errMsg)
-      this.errorCallback = null
     }
   }
 }

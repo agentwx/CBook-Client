@@ -7,7 +7,6 @@
 
   .home-search-wrap {
     padding: 30rpx 20rpx;
-    background-color: #fff;
   }
 
   .home-search {
