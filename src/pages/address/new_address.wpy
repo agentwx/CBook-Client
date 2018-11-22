@@ -26,10 +26,45 @@
 </style>
 <template>
   <view class="address-new-wrap">
-    <formitem label="联系人" labelWidth="4em" bordered="false" nomargin="true" underline="true" value="{{name}}" data-field="name" @input="itemChange"></formitem>
-    <formitem label="手机号" labelWidth="4em" bordered="false" nomargin="true" underline="true" value="{{mobile}}" data-field="mobile" @input="itemChange"></formitem>
-    <region-picker label="收货地址" labelWidth="4em" bordered="false" nomargin="true" underline="true" value="{{region}}" data-field="region" @change="itemChange"></region-picker>
-    <formitem label="详细地址" labelWidth="4em" bordered="false" nomargin="true" value="{{address}}" data-field="address" @input="itemChange"></formitem>
+    <formitem
+      label="联系人"
+      labelWidth="4em"
+      bordered="false"
+      nomargin="true"
+      underline="true"
+      value="{{name}}"
+      data-field="name"
+      @input="itemChange">
+    </formitem>
+    <formitem
+      label="手机号"
+      labelWidth="4em"
+      bordered="false"
+      nomargin="true"
+      underline="true"
+      value="{{mobile}}"
+      data-field="mobile"
+      @input="itemChange">
+    </formitem>
+    <region-picker
+      label="收货地址"
+      labelWidth="4em"
+      bordered="false"
+      nomargin="true"
+      underline="true"
+      value="{{region}}"
+      data-field="region"
+      @change="itemChange">
+    </region-picker>
+    <formitem
+      label="详细地址"
+      labelWidth="4em"
+      bordered="false"
+      nomargin="true"
+      value="{{address}}"
+      data-field="address"
+      @input="itemChange">
+    </formitem>
   </view>
   <view class="address-defset" @tap="toggleDefault">
     <chkbox readonly="true" checked="{{isDefault}}" />
