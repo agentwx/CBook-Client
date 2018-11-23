@@ -97,7 +97,7 @@ function confirm(msg, title = '', confirmText = '确定', cancelText = '取消')
     wx.showModal({
       title: title,
       content: msg,
-      confirmColor: '#a08257',
+      confirmColor: '#4b0',
       confirmText: confirmText,
       cancelText: cancelText,
       success: function (res) {

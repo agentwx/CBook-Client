@@ -201,7 +201,7 @@
   import wepy from 'wepy'
   import Panel from '@/components/panel'
   import Modal from '@/components/modal'
-  import { toast, confirm, getPrevPage } from '../../utils/util'
+  import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
 
   export default class Index extends wepy.page {
@@ -324,13 +324,15 @@
           this.$navigate('/pages/orderlist/orderlist')
         }, 1500)
       } catch (e) {
-        const isOk = await confirm('您确定要放弃支付吗?', '', '确定', '继续支付')
+        this.orderCreated = true
+        this.$navigate('/pages/orderlist/orderlist')
+        /* const isOk = await confirm('您确定要放弃支付吗?', '', '确定', '继续支付')
         if (isOk) {
           this.orderCreated = true
           this.$navigate('/pages/orderlist/orderlist')
         } else {
           this.createBuyOrder()
-        }
+        } */
       } finally {
         const prevPage = getPrevPage()
         if (prevPage.route === 'pages/shopcart/shopcart') {
