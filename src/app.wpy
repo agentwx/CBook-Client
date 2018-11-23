@@ -1,4 +1,5 @@
 <style lang="less">
+  @import "less/font";
   @import "less/mixin";
   @import 'less/iconfont';
   @import 'less/animation';
@@ -23,6 +24,7 @@
   page, view, text, scroll-view, input, textarea, button, form {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    .light-font();
   }
 
   /*wetoast style override*/
