@@ -325,11 +325,11 @@
         }, 1500)
       } catch (e) {
         this.orderCreated = true
-        this.$navigate('/pages/orderlist/orderlist')
+        this.$navigate('/pages/orderlist/orderlist', {tabIndex: 1})
         /* const isOk = await confirm('您确定要放弃支付吗?', '', '确定', '继续支付')
         if (isOk) {
           this.orderCreated = true
-          this.$navigate('/pages/orderlist/orderlist')
+          this.$navigate('/pages/orderlist/orderlist', {tabIndex: 1})
         } else {
           this.createBuyOrder()
         } */
