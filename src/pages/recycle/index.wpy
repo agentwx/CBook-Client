@@ -38,10 +38,6 @@
       font-size: 24rpx;
       margin-top: 6rpx;
       .flex-v-center();
-
-      .iconfont {
-        font-size: 36rpx;
-      }
     }
   }
 
@@ -73,7 +69,7 @@
         <view class="intro-text">看收购价</view>
         <view class="intro-refuses">
           <text>什么书不收</text>
-          <text class="iconfont icon-arrow-down"></text>
+          <icon name="arrow-down"></icon>
         </view>
       </view>
     </view>
@@ -97,7 +93,7 @@
         <view class="intro-text">书款到账</view>
         <view class="intro-refuses">
           <text>什么是审核</text>
-          <text class="iconfont icon-arrow-down"></text>
+          <icon name="arrow-down"></icon>
         </view>
       </view>
     </view>
@@ -127,6 +123,7 @@
     config = {
       navigationBarTitleText: '回收给星月童书',
       usingComponents: {
+        'icon': '/components/icon/index',
         'btn': '/components/button/index'
       }
     }
