@@ -25,9 +25,9 @@ function getTimeRange(start = 0, end = 24, step = 1, isHalf = false) {
     let s = padZero(start)
     let e = (start + step) >= end ? fixEnd(end) : padZero(start + step)
     if (isHalf) {
-      array.push(`${s}:00 - ${s + r}`, `${s + r} - ${e}:00`)
+      array.push(`${s}:00-${s + r}`, `${s + r}-${e}:00`)
     } else {
-      array.push(`${s}:00 - ${e}:00`)
+      array.push(`${s}:00-${e}:00`)
     }
     start += step
   }
