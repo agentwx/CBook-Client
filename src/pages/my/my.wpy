@@ -154,9 +154,9 @@
   </view>
 
   <panel class="order-entry-panel">
-    <view class="panel-title" slot="title">
+    <view class="panel-title" slot="title" @tap="goToOrders('0')">
       <text>买书订单</text>
-      <text class="to-orders" @tap="goToOrders('0')">全部订单</text>
+      <text class="to-orders">全部订单</text>
     </view>
     <view class="order-entry-body">
       <iconitem icon="prepay" iconType="svg" @tap="goToOrders('1')">待付款</iconitem>
