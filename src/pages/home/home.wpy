@@ -475,13 +475,10 @@ export default class Index extends wepy.page {
     try {
       this.isLoading = true
       let res = await fetch.post('/sales/list', params, false)
-      if (res.datas.Items.length > 0) {
-        if (this.pageNum > 1) {
-          this.products = this.products.concat(res.datas.Items)
-        } else {
-          this.products = res.datas.Items
-        }
-        store.dispatch({type: 'ADD_PRODUCTS', payload: {products: res.datas.Items}})
+      let items = res.datas.Items || []
+      this.products = this.products.concat(items)
+      store.dispatch({type: 'ADD_PRODUCTS', payload: {products: items}})
+      if (items.length > 0) {
         this.pageNum++
       }
     } finally {

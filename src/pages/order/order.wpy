@@ -201,7 +201,7 @@
   import wepy from 'wepy'
   import Panel from '@/components/panel'
   import Modal from '@/components/modal'
-  import { toast, getPrevPage } from '../../utils/util'
+  import { toast, confirm, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
 
   export default class Index extends wepy.page {
@@ -295,16 +295,16 @@
     }
 
     async createBuyOrder () {
-      const origTotalPrice = parseFloat(this.totalPrice)
+      const original = parseFloat(this.totalPrice)
       const carriage = 6
       const deduction = 17.5
       const discount = 1
-      const total = origTotalPrice * discount - deduction + carriage // 总费用 = 总价x折扣 - 星币抵扣 + 运费
+      const total = original * discount - deduction + carriage // 最终支付金额 = 总价x折扣 - 星币抵扣 + 运费
 
       let params = {
         goodsList: this.products.map(item => item.goodsId),
         addressCode: this.address.code,
-        original: origTotalPrice,
+        original,
         total,
         carriage,
         deduction,
@@ -312,20 +312,31 @@
       }
 
       const res = await fetch.post('/buy/order/create', params)
-      if (!res.datas.package && !res.datas.paySign) {
+      if (!res.datas.package || !res.datas.paySign) {
         return toast.error('订单创建失败')
       }
 
-      await wepy.requestPayment(res.datas)
-      toast.success('支付成功')
-      const prevPage = getPrevPage()
-      if (prevPage.route === 'pages/shopcart/shopcart') {
-        prevPage.clear()
+      try {
+        await wepy.requestPayment(res.datas)
+        toast.success('支付成功')
+        setTimeout(() => {
+          this.orderCreated = true
+          this.$navigate('/pages/orderlist/orderlist')
+        }, 1500)
+      } catch (e) {
+        const isOk = await confirm('您确定要放弃支付吗?', '', '确定', '继续支付')
+        if (isOk) {
+          this.orderCreated = true
+          this.$navigate('/pages/orderlist/orderlist')
+        } else {
+          this.createBuyOrder()
+        }
+      } finally {
+        const prevPage = getPrevPage()
+        if (prevPage.route === 'pages/shopcart/shopcart') {
+          prevPage.clear()
+        }
       }
-      setTimeout(() => {
-        this.orderCreated = true
-        this.$navigate('/pages/orderlist/orderlist')
-      }, 1500)
     }
 
     onShow () {

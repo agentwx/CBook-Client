@@ -170,7 +170,7 @@
             <view class="order-sumup">
               总共{{item.bookInfos.length}}件商品 合计 <text class="price">￥{{item.total}}</text>
             </view>
-            <btn inline="true" bordered="true" size="small" @tap="payOrder({{item}})" wx:if="{{item.orderStatus==0}}">去付款</btn>
+            <btn inline="true" bordered="true" size="small" @tap="payOrder({{item.orderCode}})" wx:if="{{item.orderStatus==0}}">去付款</btn>
           </view>
         </view>
       </panel>
@@ -230,12 +230,9 @@
         this.tabIndex = e.detail.value
         this.reloadOrders(this.tabIndex)
       },
-      async payOrder (item) {
-        let params = {
-
-        }
-        const res = await fetch.post('/buy/order/create', params)
-        if (!res.datas.package && !res.datas.paySign) {
+      async payOrder (orderCode) {
+        const res = await fetch.post('/buy/order/payinfo', { orderCode })
+        if (!res.datas.package || !res.datas.paySign) {
           return toast.error('支付创建失败')
         }
         await wepy.requestPayment(res.datas)
@@ -244,25 +241,35 @@
       }
     }
 
-    async loadOrders (orderType) {
+    async loadOrders (tabIndex) {
       let params = {
         offset: this.pageNum,
         limit: 5,
-        orderType
+        filter: tabIndex === 0
+          ? []
+          : [{key: 'orderStatus', values: [tabIndex - 1]}]
       }
 
       try {
         this.isLoading = true
         let res = await fetch.post('/buy/order/list', params, this.pageNum === 1)
-        if (res.datas.Items.length > 0) {
-          let items = res.datas.Items.map(item =>
-            ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
-          )
-          if (this.pageNum > 1) {
-            this.orders = this.orders.concat(items)
-          } else {
-            this.orders = items
-          }
+        let items = res.datas.Items || []
+
+        items = items.map(item =>
+          ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
+        )
+
+        if (this.pageNum > 1) {
+          this.orders = this.orders.concat(items)
+        } else {
+          this.orders = items
+          wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 0
+          })
+        }
+
+        if (items.length > 0) {
           this.pageNum++
         }
       } finally {
@@ -280,8 +287,8 @@
       this.loadOrders(this.tabIndex)
     }
 
-    onLoad({tabIndex}) {
-      this.tabIndex = tabIndex || 0
+    onLoad({ tabIndex }) {
+      this.tabIndex = Number(tabIndex) || 0
       this.reloadOrders(this.tabIndex)
     }
   }

@@ -44,11 +44,11 @@
 import './pollyfill'
 import wepy from 'wepy'
 import 'wepy-async-function'
+import { toast } from './utils/util'
 import {
   login, isAuthorized, getUserInfo,
   getWxUserInfo, getOpenIdByCode, getUserToken
 } from './utils/wechat'
-import { toast } from './utils/util'
 
 import { setStore } from 'wepy-redux'
 import configStore from './store'
@@ -137,17 +137,28 @@ export default class extends wepy.app {
     this.use('promisify')
   }
 
+  onLaunch() {
+    this.wxlogin()
+  }
+
   sleep (s) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       setTimeout(() => {
-        resolve('promise resolved')
+        resolve()
       }, s * 1000)
     })
   }
 
-  saveToken (token) {
-    wx.setStorageSync('token', token)
-    this.dispatchReady()
+  async wxlogin () {
+    const code = await login()
+    const { openid, unionid } = await getOpenIdByCode(code)
+    this.openId = openid
+    if (unionid) {
+      const tokenData = getUserToken(unionid, openid)
+      this.saveToken(tokenData.datas.token)
+    } else {
+      this.doAuthorize()
+    }
   }
 
   async getUnionId () {
@@ -187,20 +198,9 @@ export default class extends wepy.app {
     }
   }
 
-  async wxlogin () {
-    const code = await login()
-    const { openid, unionid } = await getOpenIdByCode(code)
-    this.openId = openid
-    if (unionid) {
-      const tokenData = getUserToken(unionid, openid)
-      this.saveToken(tokenData.datas.token)
-    } else {
-      this.doAuthorize()
-    }
-  }
-
-  onLaunch() {
-    this.wxlogin()
+  saveToken (token) {
+    wx.setStorageSync('token', token)
+    this.dispatchReady()
   }
 
   ready (callback) {

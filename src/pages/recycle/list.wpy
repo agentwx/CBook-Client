@@ -196,15 +196,12 @@
       try {
         this.isLoading = true
         let res = await fetch.post('/recover/order/list', params, this.pageNum === 1)
-        if (res.datas.Items.length > 0) {
-          let items = res.datas.Items.map(item =>
-            ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
-          )
-          if (this.pageNum > 1) {
-            this.orders = this.orders.concat(items)
-          } else {
-            this.orders = items
-          }
+        let items = res.datas.Items || []
+        items = items.map(item =>
+          ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
+        )
+        this.orders = this.orders.concat(items)
+        if (items.length > 0) {
           this.pageNum++
         }
       } finally {
