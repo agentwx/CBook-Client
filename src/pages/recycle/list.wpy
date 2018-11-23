@@ -200,7 +200,11 @@
           let items = res.datas.Items.map(item =>
             ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
           )
-          this.orders = this.orders.concat(items)
+          if (this.pageNum > 1) {
+            this.orders = this.orders.concat(items)
+          } else {
+            this.orders = items
+          }
           this.pageNum++
         }
       } finally {
