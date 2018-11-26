@@ -79,6 +79,7 @@
       .light-font();
       color: #777;
       font-size: 26rpx;
+      margin-top: 4rpx;
     }
 
     .pd-now-price {
