@@ -130,7 +130,7 @@
     padding: 40rpx 50rpx;
     border-radius: 16px;
     background-color: #fff;
-    box-shadow: 0 0 24px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px rgba(0,0,0,.25);
   }
 
   .manual-hd {

@@ -2,77 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/button.wpy" afterPath="$PROJECT_DIR$/src/components/button.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/button/index.less" afterPath="$PROJECT_DIR$/src/components/button/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/buttongroup.wpy" afterPath="$PROJECT_DIR$/src/components/buttongroup.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/index.js" afterPath="$PROJECT_DIR$/src/components/check-box/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/index.json" afterPath="$PROJECT_DIR$/src/components/check-box/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/index.less" afterPath="$PROJECT_DIR$/src/components/check-box/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/index.wxml" afterPath="$PROJECT_DIR$/src/components/check-box/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker.wpy" afterPath="$PROJECT_DIR$/src/components/datetimepicker.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker/dateTimePicker.js" afterPath="$PROJECT_DIR$/src/components/datetime-picker/dateTimePicker.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker/index.js" afterPath="$PROJECT_DIR$/src/components/datetime-picker/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker/index.json" afterPath="$PROJECT_DIR$/src/components/datetime-picker/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker/index.wxml" afterPath="$PROJECT_DIR$/src/components/datetime-picker/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/datetimepicker/index.wxss" afterPath="$PROJECT_DIR$/src/components/datetime-picker/index.wxss" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem.wpy" afterPath="$PROJECT_DIR$/src/components/formitem.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem/index.js" afterPath="$PROJECT_DIR$/src/components/form-item/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem/index.json" afterPath="$PROJECT_DIR$/src/components/form-item/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem/index.less" afterPath="$PROJECT_DIR$/src/components/form-item/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/formitem/index.wxml" afterPath="$PROJECT_DIR$/src/components/form-item/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/iconitem/index.js" afterPath="$PROJECT_DIR$/src/components/icon-item/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/iconitem/index.json" afterPath="$PROJECT_DIR$/src/components/icon-item/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/iconitem/index.less" afterPath="$PROJECT_DIR$/src/components/icon-item/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/iconitem/index.wxml" afterPath="$PROJECT_DIR$/src/components/icon-item/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/listitem/index.js" afterPath="$PROJECT_DIR$/src/components/list-item/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/listitem/index.json" afterPath="$PROJECT_DIR$/src/components/list-item/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/listitem/index.less" afterPath="$PROJECT_DIR$/src/components/list-item/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/listitem/index.wxml" afterPath="$PROJECT_DIR$/src/components/list-item/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/noticebar/index.js" afterPath="$PROJECT_DIR$/src/components/notice-bar/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/noticebar/index.json" afterPath="$PROJECT_DIR$/src/components/notice-bar/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/noticebar/index.less" afterPath="$PROJECT_DIR$/src/components/notice-bar/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/noticebar/index.wxml" afterPath="$PROJECT_DIR$/src/components/notice-bar/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel.wpy" afterPath="$PROJECT_DIR$/src/components/panel.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel/index.js" afterPath="$PROJECT_DIR$/src/components/panel/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel/index.less" afterPath="$PROJECT_DIR$/src/components/panel/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel/index.wxml" afterPath="$PROJECT_DIR$/src/components/panel/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/picker.wpy" afterPath="$PROJECT_DIR$/src/components/picker.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/picker/index.less" afterPath="$PROJECT_DIR$/src/components/picker/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/regionpicker.wpy" afterPath="$PROJECT_DIR$/src/components/regionpicker.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/regionpicker/index.js" afterPath="$PROJECT_DIR$/src/components/region-picker/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/regionpicker/index.json" afterPath="$PROJECT_DIR$/src/components/region-picker/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/regionpicker/index.less" afterPath="$PROJECT_DIR$/src/components/region-picker/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/regionpicker/index.wxml" afterPath="$PROJECT_DIR$/src/components/region-picker/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/swipe-cell/index.js" afterPath="$PROJECT_DIR$/src/components/swipe-cell/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar.wpy" afterPath="$PROJECT_DIR$/src/components/tabbar.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar/index.js" afterPath="$PROJECT_DIR$/src/components/tab-bar/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar/index.json" afterPath="$PROJECT_DIR$/src/components/tab-bar/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar/index.less" afterPath="$PROJECT_DIR$/src/components/tab-bar/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabbar/index.wxml" afterPath="$PROJECT_DIR$/src/components/tab-bar/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead.wpy" afterPath="$PROJECT_DIR$/src/components/tabhead.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead/index.js" afterPath="$PROJECT_DIR$/src/components/tab-head/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead/index.json" afterPath="$PROJECT_DIR$/src/components/tab-head/index.json" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead/index.less" afterPath="$PROJECT_DIR$/src/components/tab-head/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabhead/index.wxml" afterPath="$PROJECT_DIR$/src/components/tab-head/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/src/components/tag/index.less" afterPath="$PROJECT_DIR$/src/components/tag/index.less" />
-      <change beforePath="$PROJECT_DIR$/src/less/font.less" afterPath="$PROJECT_DIR$/src/less/font.less" />
-      <change beforePath="$PROJECT_DIR$/src/less/mixin.less" afterPath="$PROJECT_DIR$/src/less/mixin.less" />
-      <change beforePath="$PROJECT_DIR$/src/mixins/transition.js" afterPath="$PROJECT_DIR$/src/mixins/transition.js" />
-      <change beforePath="$PROJECT_DIR$/src/pages/address/address.wpy" afterPath="$PROJECT_DIR$/src/pages/address/address.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/address/new_address.wpy" afterPath="$PROJECT_DIR$/src/pages/address/new_address.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/detail/detail.wpy" afterPath="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/my/my.wpy" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/order/order.wpy" afterPath="$PROJECT_DIR$/src/pages/order/order.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" afterPath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/detail.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/detail.wpy" />
       <change beforePath="$PROJECT_DIR$/src/pages/recycle/index.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/list.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/list.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/order.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/search/search.wpy" afterPath="$PROJECT_DIR$/src/pages/search/search.wpy" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" afterPath="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -99,11 +29,11 @@
       <file leaf-file-name="index.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="492" column="52" lean-forward="true" selection-start-line="492" selection-start-column="52" selection-end-line="492" selection-end-column="52" />
+            <state relative-caret-position="206">
+              <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#btn#1;n#view#3;n#view#0;n#transition#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#10023#10046#0" expanded="true" />
+                <element signature="e#10024#10047#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,7 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>order-delete</find>
       <find>to-orders</find>
       <find>press</find>
       <find>pdintro-content</find>
@@ -162,6 +91,7 @@
       <find>pd-now-price</find>
       <find>pd-count</find>
       <find>pd-orig-price</find>
+      <find>manual-panel</find>
     </findStrings>
     <replaceStrings>
       <replace>timeHalf</replace>
@@ -381,12 +311,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="206157000" />
+      <workItem from="1542243669812" duration="206333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="333408000" />
+    <option name="totallyTimeSpent" value="333584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -869,11 +799,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="492" column="52" lean-forward="true" selection-start-line="492" selection-start-column="52" selection-end-line="492" selection-end-column="52" />
+        <state relative-caret-position="206">
+          <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#btn#1;n#view#3;n#view#0;n#transition#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#10023#10046#0" expanded="true" />
+            <element signature="e#10024#10047#0" expanded="true" />
           </folding>
         </state>
       </provider>
