@@ -7,7 +7,6 @@
     border-radius: 40rpx;
     background-color: #f2f3f7;
     color: #888;
-    .light-font();
     font-size: 24rpx;
     margin-right: 10rpx;
     margin-bottom: 10rpx;
