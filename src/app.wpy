@@ -8,6 +8,7 @@
     background-color: #fff;
     color: #444;
     font-size: 28rpx;
+    line-height: 1.42;
     font-family: -apple-system-font, 'Helvetica Neue', Helvetica, 'Microsoft YaHei', sans-serif;
   }
 
@@ -39,20 +40,6 @@
     border-top: 1rpx solid @color-border;
     display: flex;
     justify-content: space-between;
-  }
-
-  /*wetoast style override*/
-  .wetoast__bd {
-    min-height: auto !important;
-    min-width: auto !important;
-    padding: 8px 20px !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-
-  .wetoast__bd__title {
-    margin: 0 !important;
-    font-size: 28rpx !important;
   }
 </style>
 
