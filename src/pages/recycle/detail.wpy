@@ -89,8 +89,8 @@
 
   .delivery-panel,
   .income-panel {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .income-item {
