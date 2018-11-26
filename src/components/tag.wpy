@@ -2,13 +2,11 @@
   @import "../less/mixin";
 
   .tag-item {
-    .inline-flex-center();
-    height: 46rpx;
-    padding-left: 16rpx;
-    padding-right: 16rpx;
-    border-radius: 640rpx;
+    display: inline-block;
+    padding: 8rpx 16rpx;
+    border-radius: 40rpx;
     background-color: #f2f3f7;
-    color: #999;
+    color: #777;
     .light-font();
     font-size: 24rpx;
     margin-right: 10rpx;
@@ -17,9 +15,7 @@
 </style>
 
 <template>
-  <view class="tag-item" style="{{style}}">
-    <slot></slot>
-  </view>
+  <view class="tag-item" style="{{style}}"><slot></slot></view>
 </template>
 
 <script>

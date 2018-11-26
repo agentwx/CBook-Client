@@ -1,3 +1,1 @@
-<view class="tag-item {{customClass}}" style="{{customStyle}}">
-  <slot></slot>
-</view>
+<view class="tag-item {{customClass}}" style="{{customStyle}}"><slot></slot></view>
