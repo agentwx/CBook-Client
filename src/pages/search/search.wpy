@@ -91,7 +91,6 @@
 
     .product-caption {
       font-size: 30rpx;
-      color: #333;
       margin-bottom: 10rpx;
     }
 
