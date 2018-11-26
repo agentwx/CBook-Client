@@ -33,7 +33,7 @@
     padding-left: 40rpx;
     padding-right: 40rpx;
     border-radius: 8rpx;
-    border: 2rpx solid @gcolor;
+    border: 1rpx solid @gcolor;
     background-color: #fff;
     margin-bottom: 6rpx;
 

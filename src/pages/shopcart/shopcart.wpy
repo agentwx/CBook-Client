@@ -19,7 +19,7 @@
         font-size: 40rpx;
       }
 
-      chkbox {
+      check-box {
         position: relative;
         top: -2rpx;
       }
@@ -36,8 +36,10 @@
   }
 
   .cart-panel {
-    padding: 20rpx;
     .flex();
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    margin-bottom: 30rpx;
   }
 
   .cart-col-checkbox {
@@ -64,17 +66,23 @@
 
     .pd-title {
       font-size: 30rpx;
-      font-weight: bold;
       margin-bottom: 6rpx;
     }
 
+    .pd-desc {
+      .light-font();
+      color: #999;
+      font-size: 24rpx;
+    }
+
     .pd-orig-price {
-      color: #888;
+      .light-font();
+      color: #777;
       font-size: 26rpx;
     }
 
     .pd-now-price {
-      font-size: 36rpx;
+      font-size: 32rpx;
 
       > .unit {
         font-size: 26rpx;
@@ -96,7 +104,7 @@
     .pd-count {
       position: relative;
       margin-left: 20rpx;
-      top: 6rpx;
+      top: 4rpx;
     }
   }
 
@@ -148,7 +156,7 @@
       padding-left: 20rpx;
       .flex-v-center();
 
-      chkbox {
+      check-box {
         position: relative;
         top: -2rpx;
       }
@@ -213,57 +221,70 @@
       pointer-events: none;
     }
   }
+
+  .cart-delete {
+    width: 120rpx;
+    height: 100%;
+    .flex-center();
+    color: #fff;
+    background-color: #ff0000;
+  }
 </style>
 <template>
   <block wx:if="{{products.length > 0}}">
-    <noticebar>
+    <notice-bar>
       <text>书费已抵扣23.8元，共一本，查看抵扣规则</text>
-    </noticebar>
+    </notice-bar>
 
     <view class="cart-edit-hd">
       <view class="edit-left" @tap="toggleSelectAll">
-        <chkbox customClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
-        <icon name="library" customClass="lib-icon" />
+        <check-box custom-class="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
+        <icon name="library" custom-class="lib-icon" />
         <text>图书列表</text>
       </view>
       <view class="edit-right">
-        <view class="edit-btn" wx:if="{{!isEdit}}" @tap="editCart">编辑</view>
-        <view class="edit-btn" wx:if="{{isEdit}}" @tap="quitEditCart">完成</view>
+        <view class="edit-btn" wx:if="{{!isEdit}}" @tap="startEditCart">编辑</view>
+        <view class="edit-btn" wx:if="{{isEdit}}" @tap="endEditCart">完成</view>
       </view>
     </view>
 
     <view class="cart-list">
       <repeat for="{{products}}">
-        <view class="cart-panel" @tap="toggleSelect({{item}})">
-          <view class="cart-col-checkbox cart-checkbox">
-            <chkbox readonly="true" checked="{{item.isChecked}}" />
-          </view>
-          <view class="cart-pd-cover">
-            <image src="{{item.smallImageUrl}}" lazyload="true"></image>
-          </view>
-          <view class="cart-pd-main">
-            <view class="pd-head">
-              <view class="pd-title">{{item.name}}</view>
-              <view class="pd-orig-price">原价：￥{{item.costPrice}}</view>
+        <swipe-cell right-width="60">
+          <view class="cart-panel" @tap="toggleSelect({{item}})">
+            <view class="cart-col-checkbox cart-checkbox">
+              <check-box readonly="true" checked="{{item.isChecked}}" />
             </view>
-            <view class="cart-pd-footer">
-              <view class="cart-pdft">
-                <view class="pd-now-price">
-                  <text class="unit">￥</text>
-                  <text>{{item.price}}</text>
-                </view>
-                <text class="pd-count">x{{item.COUNT}}</text>
+            <view class="cart-pd-cover">
+              <image src="{{item.smallImageUrl}}" lazyload="true"></image>
+            </view>
+            <view class="cart-pd-main">
+              <view class="pd-head">
+                <view class="pd-title">{{item.name}}</view>
+                <view class="pd-desc">{{item.author}}</view>
+                <view class="pd-desc">{{item.press}}</view>
+                <view class="pd-orig-price">原价：￥{{item.costPrice}}</view>
               </view>
-              <view class="cart-pd-from">星币价</view>
+              <view class="cart-pd-footer">
+                <view class="cart-pdft">
+                  <view class="pd-now-price">
+                    <text class="unit">￥</text>
+                    <text>{{item.price}}</text>
+                  </view>
+                  <text class="pd-count">x{{item.COUNT}}</text>
+                </view>
+                <view class="cart-pd-from">星币价</view>
+              </view>
             </view>
           </view>
-        </view>
+          <view slot="right" class="cart-delete" @tap="deleteCartItem({{item.goodsId}})">删除</view>
+        </swipe-cell>
       </repeat>
     </view>
 
     <view class="cart-action-bar">
       <veiw class="action-left" @tap="toggleSelectAll">
-        <chkbox customClass="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
+        <check-box custom-class="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
         <text>全选</text>
       </veiw>
       <view class="action-right">
@@ -281,7 +302,7 @@
       <image src="../../images/cart-empty-bg.png"></image>
       <view class="empty-action">
         <view class="empty-text">购物车空空如也~</view>
-        <btn type="plain" customClass="goshop-btn" @tap="goShopping">去逛逛</btn>
+        <btn type="plain" custom-class="goshop-btn" @tap="goShopping">去逛逛</btn>
       </view>
     </view>
   </block>
@@ -291,7 +312,7 @@
   import wepy from 'wepy'
   import { confirm } from '../../utils/util'
 
-  import {getStore} from 'wepy-redux'
+  import { getStore } from 'wepy-redux'
 
   const store = getStore()
 
@@ -301,8 +322,9 @@
       usingComponents: {
         'btn': '/components/button/index',
         'icon': '/components/icon/index',
-        'chkbox': '/components/checkbox/index',
-        'noticebar': '/components/noticebar/index'
+        'check-box': '/components/check-box/index',
+        'notice-bar': '/components/notice-bar/index',
+        'swipe-cell': '/components/swipe-cell/index'
       }
     }
 
@@ -334,6 +356,12 @@
           this.setProductsChecked(false)
           this.$apply()
         }
+      },
+      isSelectAll (newValue) {
+        if (newValue === true) {
+          this.setProductsChecked(newValue)
+          this.$apply()
+        }
       }
     }
 
@@ -347,7 +375,9 @@
       },
       toggleSelectAll () {
         this.isSelectAll = !this.isSelectAll
-        this.setProductsChecked(this.isSelectAll)
+        if (!this.isSelectAll) {
+          this.setProductsChecked(false)
+        }
       },
       toggleSelect (item) {
         this.products = this.products.map(product => {
@@ -364,12 +394,13 @@
           this.isSelectAll = !notAll
         }
       },
-      editCart () {
+      startEditCart () {
         this.isEdit = true
         this.isSelectAll = false
       },
-      quitEditCart () {
+      endEditCart () {
         this.isEdit = false
+        this.isSelectAll = true
       },
       async deleteCart () {
         const isOK = await confirm('确定要删除吗?')
@@ -389,6 +420,26 @@
           }
           this.$apply()
         }
+      },
+      async deleteCartItem (goodsId) {
+        const isOK = await confirm('确定要删除吗?')
+        if (isOK) {
+          this.products = this.products.filter(product => {
+            const isHit = product.goodsId === goodsId
+            if (isHit) {
+              store.dispatch({
+                type: 'REMOVE_CART',
+                payload: { ID: product.goodsId }
+              })
+            }
+            return !isHit
+          })
+          if (this.products.length === 0) {
+            this.isSelectAll = false
+            this.isEdit = false
+          }
+          this.$apply()
+        }
       }
     }
 
@@ -397,8 +448,7 @@
     }
 
     getProductsFromCart () {
-      let {products, shopcart} = store.getState()
-
+      let { products, shopcart } = store.getState()
       products = products.list
       this.products = shopcart.list.map(item => {
         for (let i = 0; i < products.length; i++) {

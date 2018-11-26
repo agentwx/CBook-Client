@@ -5,6 +5,6 @@
       <slot></slot>
     </view>
   </view>
-  <icon name="arrow-right" customStyle="font-size: 40rpx;" wx:if="{{isShowArrow}}"></icon>
+  <icon name="arrow-right" custom-style="font-size: 40rpx;" wx:if="{{isShowArrow}}"></icon>
   <icon name="close" size="small" wx:if="{{isCloseable}}" bindtap="onClose"></icon>
 </view>

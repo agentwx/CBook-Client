@@ -16,6 +16,7 @@
   }
 
   .addr-text {
+    .light-font();
     font-size: 26rpx;
     color: #888;
   }
@@ -104,15 +105,17 @@
 </style>
 <template>
   <repeat for="{{addressList}}">
-    <panel @tap.user="selectAddress" :params.sync="item">
+    <panel @tap="selectAddress({{item}})">
       <view class="addr-title">
         <text class="addr-username">{{item.name}}</text>
         <text class="addr-usertel">{{item.mobile}}</text>
       </view>
-      <view class="addr-text">{{item.province}}{{item.city}}{{item.region}}{{item.address}}</view>
+      <view class="addr-text">
+        {{item.province}}{{item.city}}{{item.region}}{{item.address}}
+      </view>
       <view class="panel-footer" slot="footer">
         <view class="addr-left" @tap.stop="toggleDefault({{item}})">
-          <chkbox readonly="true" checked="{{item.isDefault}}" />
+          <check-box readonly="true" checked="{{item.isDefault}}" />
           <text style="margin-left: 10rpx;">设为默认</text>
         </view>
         <view class="addr-right">
@@ -146,7 +149,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
   import fetch from '../../service/fetch'
   import {toast, confirm, getPrevPage} from '../../utils/util'
 
@@ -154,13 +156,13 @@
     config = {
       navigationBarTitleText: '地址管理',
       usingComponents: {
-        icon: '/components/icon/index',
-        chkbox: '/components/checkbox/index'
+        'icon': '/components/icon/index',
+        'panel': '/components/panel/index',
+        'check-box': '/components/check-box/index'
       }
     }
 
     components = {
-      panel: Panel
     }
 
     data = {

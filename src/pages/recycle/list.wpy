@@ -5,8 +5,10 @@
     background-color: #f7f7f7;
   }
 
-  .panel:last-child {
-    margin-bottom: 0;
+  panel:last-child {
+    .panel {
+      margin-bottom: 0;
+    }
   }
 
   .orders-scrollview {
@@ -51,9 +53,12 @@
     }
   }
 
+  .order-footer {
+    color: #777;
+  }
+
   .create-time {
     font-size: 26rpx;
-    color: #999;
     margin-top: 4rpx;
   }
 
@@ -62,7 +67,6 @@
 
     .order-sumup {
       margin-bottom: 16rpx;
-      color: #777;
 
       .bold {
         color: #333;
@@ -110,7 +114,7 @@
 <template>
   <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
     <repeat for="{{orders}}">
-      <panel :params.sync="item" @tap.user="viewDetail">
+      <panel @tap="viewDetail({{item}})">
         <view class="panel-title order-hd" slot="title">
           <text class="order-num">单号：{{item.orderCode}}</text>
           <text class="order-status">{{item.orderStatusText}}</text>
@@ -151,7 +155,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
   import fetch from '../../service/fetch'
 
   const ORDER_STATUS_MAP = {
@@ -167,12 +170,12 @@
       navigationBarTitleText: '回收订单',
       usingComponents: {
         'btn': '/components/button/index',
+        'panel': '/components/panel/index',
         'weui-loading': '/components/weui-loading/index'
       }
     }
 
     components = {
-      panel: Panel
     }
 
     data = {

@@ -41,8 +41,9 @@
     }
 
     .desc {
-      color: #999;
-      font-size: 26rpx;
+      .light-font();
+      color: #888;
+      font-size: 24rpx;
       margin-bottom: 6rpx;
     }
   }
@@ -144,7 +145,7 @@
 </style>
 
 <template>
-  <noticebar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</noticebar>
+  <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
 
   <view class="orders-wrap">
     <repeat for="{{products}}">
@@ -188,7 +189,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
 
@@ -200,12 +200,12 @@
     config = {
       navigationBarTitleText: '回收给星月童书',
       usingComponents: {
-        noticebar: '/components/noticebar/index'
+        'notice-bar': '/components/notice-bar/index',
+        'panel': '/components/panel/index'
       }
     }
 
     components = {
-      panel: Panel
     }
 
     computed = {

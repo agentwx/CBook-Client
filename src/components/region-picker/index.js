@@ -67,6 +67,9 @@ Component({
     },
     isNomargin () {
       return coerce(this.data.nomargin)
+    },
+    valueStr () {
+      return this.data.value.join(' ')
     }
   },
   methods: {

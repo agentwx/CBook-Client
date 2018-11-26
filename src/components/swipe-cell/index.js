@@ -6,7 +6,8 @@ const THRESHOLD = 0.15
 Component({
   behaviors: [computedBehavior, touch],
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
+    multipleSlots: true
   },
   properties: {
     customClass: {

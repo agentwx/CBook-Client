@@ -5,7 +5,7 @@
     position: relative;
     .flex();
     background-color: #fff;
-    border-bottom: 2rpx solid @color-underline;
+    border-bottom: 1rpx solid @color-underline;
   }
 
   .tabhead-item {

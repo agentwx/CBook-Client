@@ -5,7 +5,7 @@
     padding-top: 40rpx;
   }
 
-  .intro-item {
+  .intro-item-bd {
     padding: 12rpx 30rpx;
     .flex-center();
 
@@ -36,8 +36,66 @@
     .intro-refuses {
       color: @gcolor;
       font-size: 24rpx;
-      margin-top: 6rpx;
+      padding-top: 6rpx;
+      padding-bottom: 6rpx;
       .flex-v-center();
+
+      icon {
+        -webkit-transition: -webkit-transform .3s ease;
+        transition: transform .3s ease;
+      }
+    }
+  }
+
+  .explain-dropdown {
+    display: none;
+    position: relative;
+    border: 1rpx solid #ccc;
+    background-color: #fff;
+    margin: 0 40rpx 30rpx 40rpx;
+    padding: 20rpx;
+    border-radius: 10rpx;
+
+    > view {
+      .light-font();
+      font-size: 24rpx;
+      line-height: 1.42;
+      padding-left: 24rpx;
+      text-indent: -20rpx;
+      margin: 10rpx 0;
+
+      &:before {
+        content: '•';
+        color: @gcolor;
+        margin-right: 10rpx;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      right: 25%;
+      top: 0;
+      width: 16rpx;
+      height: 16rpx;
+      background-color: #fff;
+      border-width: 1rpx;
+      border-style: solid;
+      border-color: #ccc #ccc transparent transparent;
+      -webkit-transform: translateY(-50%) rotate(-45deg);
+      transform: translateY(-50%) rotate(-45deg);
+    }
+  }
+
+  .intro-item.show {
+    .intro-refuses {
+      icon {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+    }
+    .explain-dropdown {
+      display: block;
     }
   }
 
@@ -56,75 +114,383 @@
       margin-bottom: 30rpx;
     }
   }
+
+
+  .manual-layer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+  }
+
+  .manual-panel {
+    margin: 50rpx 40rpx;
+    padding: 40rpx 50rpx;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 0 24px rgba(0,0,0,.1);
+  }
+
+  .manual-hd {
+    text-align: center;
+    margin-top: 30rpx;
+    margin-bottom: 40rpx;
+    font-size: 30rpx;
+
+    .title {
+      color: #888;
+      margin-bottom: 12rpx;
+    }
+
+    .text {
+      font-weight: bold;
+      margin-bottom: 6rpx;
+    }
+  }
+
+  .manual-hint-img {
+    text-align: center;
+
+    image {
+      width: 100%;
+      height: 242rpx;
+      max-width: 560rpx;
+    }
+  }
+
+  .manual-field {
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+  }
+
+  .manual-input {
+    padding: 12rpx 24px;
+    background-color: #eee;
+    text-align: center;
+    border-radius: 16rpx;
+    height: 84rpx;
+  }
+
+  .manual-action {
+    .flex();
+
+    btn {
+      flex: 1;
+    }
+  }
+
+
+  .orders-wrap {
+    margin-top: 30rpx;
+  }
+
+  .order-panel {
+    .flex();
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    margin-bottom: 30rpx;
+  }
+
+  .order-cover {
+    width: 160rpx;
+    height: 196rpx;
+    margin-right: 30rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .order-main {
+    flex: 1;
+    .flex-h-center();
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .order-pd-hd {
+    .title {
+      font-size: 30rpx;
+      margin-bottom: 6rpx;
+    }
+
+    .desc {
+      .light-font();
+      color: #888;
+      font-size: 24rpx;
+      margin-bottom: 6rpx;
+    }
+  }
+
+  .order-pd-specs {
+    .price {
+      font-size: 30rpx;
+    }
+
+    .discount {
+      margin-left: 30rpx;
+      color: #777;
+      font-size: 26rpx;
+    }
+  }
+
+  .order-delete {
+    width: 120rpx;
+    height: 100%;
+    .flex-center();
+    color: #fff;
+    background-color: #ff0000;
+  }
+
+  .recycle-action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100rpx;
+    background-color: #fff;
+    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    .flex();
+  }
+
+  .recycle-info-tip {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 24rpx;
+
+    .income {
+      font-size: 30rpx;
+    }
+
+    .hint {
+      color: #999;
+      font-size: 24rpx;
+    }
+  }
+
+  .action-button {
+    .g-gradient(50%);
+    .flex-center();
+    color: #fff;
+    font-size: 32rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+
+    &:active {
+      .g-darken-gradient(50%);
+    }
+
+    &.disabled {
+      color: #666;
+      background: @color-disabled;
+      pointer-events: none;
+    }
+  }
+
+  .float-action-bar {
+    position: fixed;
+    right: 40rpx;
+    bottom: 200rpx;
+  }
+
+  .float-button {
+    padding: 20rpx;
+    margin-top: 40rpx;
+    border-radius: 50%;
+    box-shadow: 0 0 32rpx rgba(8,175,254,.4);
+    background-color: #fdfdfd;
+
+    &:active {
+      background-color: darken(#fdfdfd, 10%);
+    }
+
+    > text {
+      display: inline-block;
+      width: 2.5em;
+      height: 2.5em;
+      text-align: center;
+      font-size: 24rpx;
+      line-height: 1.2;
+    }
+
+    &.primary {
+      color: #fff;
+      background-color: @gcolor;
+
+      &:active {
+        background-color: darken(@gcolor, 10%);
+      }
+    }
+  }
 </style>
 
 <template>
-  <view class="recycle-intro">
-    <view class="intro-item">
-      <view class="intro-img">
-        <image src="../../images/recycle_1.png"></image>
-      </view>
-      <view class="intro-aside">
-        <view class="intro-text">手机扫码</view>
-        <view class="intro-text">看收购价</view>
-        <view class="intro-refuses">
-          <text>什么书不收</text>
-          <icon name="arrow-down"></icon>
+  <block wx:if="{{totalCount === 0}}">
+    <view class="recycle-intro">
+      <view class="intro-item {{expItem1 ? 'show' : ''}}">
+        <view class="intro-item-bd">
+          <view class="intro-img">
+            <image src="../../images/recycle_1.png"></image>
+          </view>
+          <view class="intro-aside">
+            <view class="intro-text">手机扫码</view>
+            <view class="intro-text">看收购价</view>
+            <view class="intro-refuses" @tap="toggleExpItem1()">
+              <text>什么书不收</text>
+              <icon name="arrow-down"></icon>
+            </view>
+          </view>
+        </view>
+        <view class="explain-dropdown">
+          <view>扫码提示不收或在安排快递前线上审核显示拒绝的就是暂时不收的。</view>
+          <view>不收有影响阅读的破损、污渍、老化、异味的书。</view>
+          <view>不收盗版、非卖品、非法出版物。</view>
         </view>
       </view>
-    </view>
 
-    <view class="intro-item">
-      <view class="intro-img">
-        <image src="../../images/recycle_2.png"></image>
-      </view>
-      <view class="intro-aside">
-        <view class="intro-text">快递免费</view>
-        <view class="intro-text">上门取件</view>
-      </view>
-    </view>
-
-    <view class="intro-item">
-      <view class="intro-img">
-        <image src="../../images/recycle_3.png"></image>
-      </view>
-      <view class="intro-aside">
-        <view class="intro-text">审核通过</view>
-        <view class="intro-text">书款到账</view>
-        <view class="intro-refuses">
-          <text>什么是审核</text>
-          <icon name="arrow-down"></icon>
+      <view class="intro-item">
+        <view class="intro-item-bd">
+          <view class="intro-img">
+            <image src="../../images/recycle_2.png"></image>
+          </view>
+          <view class="intro-aside">
+            <view class="intro-text">快递免费</view>
+            <view class="intro-text">上门取件</view>
+          </view>
         </view>
       </view>
+
+      <view class="intro-item {{expItem2 ? 'show' : ''}}">
+        <view class="intro-item-bd">
+          <view class="intro-img">
+            <image src="../../images/recycle_3.png"></image>
+          </view>
+          <view class="intro-aside">
+            <view class="intro-text">审核通过</view>
+            <view class="intro-text">书款到账</view>
+            <view class="intro-refuses" @tap="toggleExpItem2()">
+              <text>什么是审核</text>
+              <icon name="arrow-down"></icon>
+            </view>
+          </view>
+        </view>
+        <view class="explain-dropdown">
+          <view>明月童书在收到时会进行品相审核，这一步会把书籍的品相分为全新、品相良好、品相中等、品相不合格，其中品相中等的收购价比全新和品相良好的要低20%，品相不合格的书会被拒收。</view>
+          <view>卖家可以自付运费取回被拒的书（首次取回免费）。</view>
+        </view>
+      </view>
+
     </view>
 
-  </view>
+    <view class="recycle-hint">
+      《暂不支持提现，具体查看买卖规则》
+    </view>
 
-  <view class="recycle-hint">
-    《暂不支持提现，具体查看买卖规则》
-  </view>
+    <view class="recycle-actions">
+      <btn type="default" icon="scan" size="large" inline="true" @tap="scanBarcode">扫描条形码卖书</btn>
+      <btn type="default" icon="pointer" size="large" inline="true" @tap="manualInput">手动输入ISBN号</btn>
+    </view>
+  </block>
+  <block wx:else>
+    <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
+    <view class="orders-wrap">
+      <repeat for="{{products}}">
+        <swipe-cell right-width="60">
+          <view class="order-panel">
+            <view class="order-cover">
+              <image src="{{item.smallImageUrl}}" layload="true"></image>
+            </view>
+            <view class="order-main">
+              <view class="order-pd-hd">
+                <view class="title">{{item.name}}</view>
+                <view class="desc">{{item.author}}</view>
+                <view class="desc">{{item.press}}</view>
+              </view>
+              <view class="order-pd-specs">
+                <text class="price">￥{{item.costPrice}}</text>
+              </view>
+            </view>
+          </view>
+          <view slot="right" class="order-delete" @tap="deleteOrder({{item.isbn}})">删除</view>
+        </swipe-cell>
+      </repeat>
+    </view>
 
-  <view class="recycle-actions">
-    <btn type="default" icon="scan" size="large" inline="true" @tap="scanBarcode">扫描条形码卖书</btn>
-    <btn type="default" icon="pointer" size="large" inline="true" @tap="manualInput">手动输入ISBN号</btn>
-  </view>
+    <view class="float-action-bar">
+      <view class="float-button" @tap="manualInput">
+        <text>手动输入</text>
+      </view>
+      <view class="float-button primary" @tap="scanBarcode">
+        <text>扫码卖书</text>
+      </view>
+    </view>
+
+    <view class="recycle-action-bar">
+      <view class="recycle-info-tip">
+        <view class="income">预计收入￥{{totalPrice}}</view>
+        <view class="hint">请继续扫描哦~</view>
+      </view>
+      <view class="action-button {{totalCount === 0 ? 'disabled' : ''}}" @tap="nextStep">下一步({{totalCount}})</view>
+    </view>
+  </block>
+
+  <transition custom-class="manual-layer" show="{{manualShow}}">
+    <view class="manual-panel">
+      <view class="manual-hd">
+        <view class="title">添加书箱</view>
+        <view class="text">请输入13位或10位ISBN码</view>
+        <view class="text">不含“-”符号</view>
+      </view>
+      <view class="manual-hint-img">
+        <image src="../../images/manual_hint.png"></image>
+      </view>
+      <view class="manual-field">
+        <input type="text" class="manual-input" value="{{isbn}}" placeholder="请输入书箱的ISBN号" @input="changeIsbn" />
+      </view>
+      <view class="manual-action">
+        <btn type="plain" @tap="onCancel">取消</btn>
+        <btn style="margin-left: 30rpx;" @tap="onConfirm">确认</btn>
+      </view>
+    </view>
+  </transition>
 </template>
 
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
-  import { toast } from '../../utils/util'
+  import { toast, confirm } from '../../utils/util'
 
-  import {getStore} from 'wepy-redux'
+  import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
 
+  @connect({
+    products ({ recycles }) {
+      return recycles.list
+    },
+    totalPrice ({ recycles }) {
+      return recycles.list.reduce((prev, cur) => prev + cur.costPrice, 0)
+    },
+    totalCount ({ recycles }) {
+      return recycles.list.length
+    }
+  })
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '回收给星月童书',
       usingComponents: {
         'icon': '/components/icon/index',
-        'btn': '/components/button/index'
+        'btn': '/components/button/index',
+        'panel': '/components/panel/index',
+        'notice-bar': '/components/notice-bar/index',
+        'swipe-cell': '/components/swipe-cell/index',
+        'transition': '/components/transition/index'
       }
     }
 
@@ -132,15 +498,63 @@
     }
 
     data = {
+      expItem1: false,
+      expItem2: false,
+      manualShow: false,
+      isbn: null
     }
 
     methods = {
+      toggleExpItem1 () {
+        this.expItem1 = !this.expItem1
+      },
+      toggleExpItem2 () {
+        this.expItem2 = !this.expItem2
+      },
       async scanBarcode () {
         const { result } = await wepy.scanCode()
         this.queryBookInfo(result)
       },
       manualInput () {
-        this.$navigate('/pages/recycle/manual')
+        this.manualShow = true
+      },
+      onCancel () {
+        this.manualShow = false
+        this.isbn = null
+      },
+      async onConfirm () {
+        if (!this.isbn) {
+          return toast.error('请输入书籍的isbn号')
+        }
+        await this.queryBookInfo(this.isbn)
+        this.manualShow = false
+        this.isbn = null
+      },
+      async deleteOrder (isbn) {
+        const isOk = await confirm('确定要删除吗?')
+        if (isOk) {
+          const products = this.products.filter(item => item.isbn !== isbn)
+          store.dispatch({
+            type: 'CLEAR_RECYCLE'
+          })
+          store.dispatch({
+            type: 'ADD_RECYCLES',
+            payload: {
+              products: products
+            }
+          })
+        }
+      },
+      changeIsbn (e) {
+        this.isbn = e.detail.value
+      },
+      nextStep () {
+        this.$navigate('/pages/order/order', {orderSource: 'recycle', products: JSON.stringify(this.products)})
+      },
+      clear () {
+        store.dispatch({
+          type: 'CLEAR_RECYCLE'
+        })
       }
     }
 
@@ -153,13 +567,9 @@
       store.dispatch({
         type: 'ADD_RECYCLE',
         payload: {
-          product: res.datas
+          product: {...res.datas, COUNT: 1}
         }
       })
-      this.$navigate('/pages/recycle/order')
-    }
-
-    onLoad() {
     }
   }
 </script>

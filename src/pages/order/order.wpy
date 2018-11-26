@@ -72,6 +72,7 @@
   }
 
   .order-book {
+    .light-font();
     padding: 6rpx 0;
     .flex();
     justify-content: space-between;
@@ -120,12 +121,12 @@
   }
 </style>
 <template>
-  <noticebar
+  <notice-bar
     wx:if="{{orderSource === 'recycle'}}"
     showArrow="false"
   >
     卖书运费由平台承担，你在快递上门时告知快递员运费到付即可
-  </noticebar>
+  </notice-bar>
   <view class="address-selection" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle"/>
     <view class="addr-slbd" wx:if="{{address !== null}}">
@@ -138,22 +139,22 @@
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">
       {{orderSource === 'recycle' ? '请选择取件地址...' : '请选择收货地址...'}}
     </view>
-    <icon name="arrow-right-o" color="#888" customStyle="font-size: 36rpx"/>
+    <icon name="arrow-right-o" color="#888" custom-style="font-size: 36rpx"/>
   </view>
 
-  <datetimepicker
+  <datetime-picker
     wx:if="{{orderSource === 'recycle'}}"
     fields="range"
     timeRange="{{timeRange}}"
     @change="datetimeChange"
   >
-    <listitem customClass="timepicker">
+    <list-item custom-class="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
         <text>{{deliveryTime}}</text>
       </view>
-    </listitem>
-  </datetimepicker>
+    </list-item>
+  </datetime-picker>
 
   <panel>
     <view class="panel-title" slot="title">图书列表</view>
@@ -184,7 +185,7 @@
     提交订单
   </view>
 
-  <modal :visible.sync="modalVisible" showClose="false">
+  <modal visible="{{modalVisible}}" show-close="false">
     <view class="modal-container">
       <icon name="check" color="#08affe" size="large"></icon>
       <view class="md-title">提交成功</view>
@@ -199,8 +200,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
-  import Modal from '@/components/modal'
   import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
 
@@ -208,17 +207,17 @@
     config = {
       navigationBarTitleText: '订单确认',
       usingComponents: {
-        datetimepicker: '/components/datetimepicker/index',
-        listitem: '/components/listitem/index',
-        noticebar: '/components/noticebar/index',
-        icon: '/components/icon/index',
-        btn: '/components/button/index'
+        'datetime-picker': '/components/datetime-picker/index',
+        'list-item': '/components/list-item/index',
+        'notice-bar': '/components/notice-bar/index',
+        'icon': '/components/icon/index',
+        'btn': '/components/button/index',
+        'panel': '/components/panel/index',
+        'modal': '/components/modal/index'
       }
     }
 
     components = {
-      panel: Panel,
-      modal: Modal
     }
 
     data = {
@@ -288,7 +287,7 @@
       }
 
       await fetch.post('/recover/order/create', params)
-      getPrevPage().clear()
+      getPrevPage().clear({})
       this.modalVisible = true
       this.orderCreated = true
       this.$apply()
@@ -336,7 +335,7 @@
       } finally {
         const prevPage = getPrevPage()
         if (prevPage.route === 'pages/shopcart/shopcart') {
-          prevPage.clear()
+          prevPage.clear({})
         }
       }
     }

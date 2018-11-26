@@ -9,9 +9,9 @@
     <view class="form-item-inner {{isUnderline ? 'underline' : ''}}">
       <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
       <view class="form-item-bd {{isBordered ? 'bordered' : ''}}">
-        <icon wx:if="{{icon}}" customClass="icon-left" type="{{iconType}}" color="#999" name="{{icon}}" size="{{size}}"/>
+        <icon wx:if="{{icon}}" custom-class="icon-left" type="{{iconType}}" color="#999" name="{{icon}}" size="{{size}}"/>
         <view class="picker {{size}}" style="">
-          <text class="picker-value">{{value}}</text>
+          <text class="picker-value">{{valueStr}}</text>
           <icon name="arrow-down" color="#999"></icon>
         </view>
       </view>

@@ -161,11 +161,11 @@
   .filter-catelog-item {
     display: inline-block;
     padding: 8rpx 24rpx;
-    border: 2rpx solid #ddd;
+    border: 1rpx solid @color-border;
     border-radius: 60rpx;
     margin: 0 16rpx 16rpx 0;
     color: #666;
-    font-size: 26rpx;
+    font-size: 24rpx;
 
     &.selected {
       background-color: #daeaf6;
@@ -206,12 +206,14 @@
     }
 
     .product-press {
-      font-size: 26rpx;
-      color: #777;
+      .light-font();
+      font-size: 24rpx;
+      color: #888;
     }
 
     .product-desc {
-      font-size: 26rpx;
+      .light-font();
+      font-size: 24rpx;
       color: #888;
       margin-top: 6rpx;
       margin-bottom: 12rpx;
@@ -242,7 +244,7 @@
     .split {
       width: 0;
       display: inline-block;
-      border-left: 2rpx solid #ddd;
+      border-left: 1rpx solid #ddd;
       margin-left: 16rpx;
       margin-right: 16rpx;
       height: 30rpx;
@@ -252,7 +254,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
-      <icon name="find" customStyle=" font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" custom-style=" font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" disabled></input>
     </view>
   </view>

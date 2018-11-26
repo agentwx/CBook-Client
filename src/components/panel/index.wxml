@@ -1,11 +1,7 @@
 <view class="panel {{customClass}}" style="{{customStyle}}">
-  <view class="panel-title">
-    <slot name="title"></slot>
-  </view>
+  <slot name="title"></slot>
   <view class="panel-body">
     <slot></slot>
   </view>
-  <view class="panel-footer">
-    <slot name="footer"></slot>
-  </view>
+  <slot name="footer"></slot>
 </view>

@@ -52,9 +52,9 @@
     display: inline-block;
     padding: 8rpx 20rpx;
     border-radius: 60rpx;
-    border: 2rpx solid @color-border;
+    border: 1rpx solid @color-border;
     color: #888;
-    font-size: 26rpx;
+    font-size: 24rpx;
     margin-right: 16rpx;
     margin-bottom: 20rpx;
 
@@ -96,12 +96,14 @@
     }
 
     .product-press {
-      font-size: 26rpx;
-      color: #777;
+      .light-font();
+      font-size: 24rpx;
+      color: #888;
     }
 
     .product-desc {
-      font-size: 26rpx;
+      .light-font();
+      font-size: 24rpx;
       color: #888;
       margin-top: 6rpx;
       margin-bottom: 12rpx;
@@ -132,7 +134,7 @@
     .split {
       width: 0;
       display: inline-block;
-      border-left: 2rpx solid #ddd;
+      border-left: 1rpx solid #ddd;
       margin-left: 16rpx;
       margin-right: 16rpx;
       height: 30rpx;
@@ -142,7 +144,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search">
-      <icon name="find" customStyle="font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" custom-style="font-size: 36rpx;color: #888;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
       <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
         <icon name="close-circle" color="#888"></icon>

@@ -34,7 +34,7 @@
 
       &.bordered {
         color: @gcolor;
-        border: 2rpx solid @gcolor;
+        border: 1rpx solid @gcolor;
 
         &:active {
           color: darken(@gcolor, 10%);
@@ -56,7 +56,7 @@
 
       &.bordered {
         color: @color-success;
-        border: 2rpx solid @color-success;
+        border: 1rpx solid @color-success;
 
         &:active {
           color: darken(@color-success, 10%);
@@ -78,7 +78,7 @@
 
       &.bordered {
         color: @color-info;
-        border: 2rpx solid @color-info;
+        border: 1rpx solid @color-info;
 
         &:active {
           color: darken(@color-info, 10%);
@@ -100,7 +100,7 @@
 
       &.bordered {
         color: @color-warning;
-        border: 2rpx solid @color-warning;
+        border: 1rpx solid @color-warning;
 
         &:active {
           color: darken(@color-warning, 10%);
@@ -122,7 +122,7 @@
 
       &.bordered {
         color: @color-danger;
-        border: 2rpx solid @color-danger;
+        border: 1rpx solid @color-danger;
 
         &:active {
           color: darken(@color-danger, 10%);
@@ -140,7 +140,7 @@
 
     &.plain {
       background-color: transparent;
-      border: 2rpx solid @color-border;
+      border: 1rpx solid @color-border;
 
       &:active {
         border-color: darken(@color-border, 10%);

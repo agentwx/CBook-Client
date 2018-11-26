@@ -112,8 +112,8 @@
       flex: none;
       padding-left: 30rpx;
       padding-right: 30rpx;
-      border-right: 2rpx solid #efefef;
-      border-top: 2rpx solid #efefef;
+      border-right: 1rpx solid #efefef;
+      border-top: 1rpx solid #efefef;
       color: #666;
       font-size: 24rpx;
 
@@ -141,7 +141,7 @@
 
       &.cash-buy {
         color: @gcolor;
-        border-top: 2rpx solid #efefef;
+        border-top: 1rpx solid #efefef;
 
         &:active {
           background-color: @color-active;
@@ -169,7 +169,7 @@
     font-size: 32rpx;
     padding-bottom: 30rpx;
     margin: 0 20rpx 30rpx;
-    border-bottom: 2rpx solid @color-underline;
+    border-bottom: 1rpx solid @color-underline;
   }
 
   .pdintro-subtitle {
@@ -189,6 +189,7 @@
   }
 
   .pdintro-content {
+    .light-font();
     font-size: 26rpx;
     line-height: 1.5;
     text-indent: 2em;
@@ -306,10 +307,10 @@
   </view>
 
   <view class="detail-action-bar">
-    <iconitem icon="cart" iconSize="middle" customClass="action-item action-cart" @tap="gotoCart">
+    <icon-item icon="cart" iconSize="middle" custom-class="action-item action-cart" @tap="gotoCart">
       <text>购物车</text>
       <badge>{{cartCount}}</badge>
-    </iconitem>
+    </icon-item>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
         <text class="unit">￥</text>
@@ -379,15 +380,14 @@
       return state.shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
     }
   })
-
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '商品详情',
       usingComponents: {
-        iconitem: '/components/iconitem/index',
-        icon: '/components/icon/index',
-        raty: '/components/raty/index',
-        badge: '/components/badge/index'
+        'icon-item': '/components/icon-item/index',
+        'icon': '/components/icon/index',
+        'raty': '/components/raty/index',
+        'badge': '/components/badge/index'
       }
     }
 

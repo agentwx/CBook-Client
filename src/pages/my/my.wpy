@@ -49,7 +49,7 @@
     .uc-usertype {
       display: inline-block;
       padding: 2rpx 16rpx;
-      border: 2rpx solid #fff;
+      border: 1rpx solid #fff;
       border-radius: 60rpx;
       font-size: 24rpx;
     }
@@ -92,7 +92,7 @@
       left: 100%;
       top: 60rpx;
       bottom: 60rpx;
-      border-left: 2rpx solid #eee;
+      border-left: 1rpx solid #eee;
     }
   }
 
@@ -104,12 +104,13 @@
   .to-orders {
     font-weight: normal;
     font-size: 28rpx;
+    padding: 6rpx 0 6rpx 16rpx;
   }
 
   .order-entry-body {
     .flex();
 
-    iconitem {
+    icon-item {
       flex: 1;
       .flex-h-center();
     }
@@ -153,42 +154,41 @@
     </view>
   </view>
 
-  <panel class="order-entry-panel">
+  <panel custom-class="order-entry-panel">
     <view class="panel-title" slot="title" @tap="goToOrders('0')">
       <text>买书订单</text>
       <text class="to-orders">全部订单</text>
     </view>
     <view class="order-entry-body">
-      <iconitem icon="prepay" iconType="svg" @tap="goToOrders('1')">待付款</iconitem>
-      <iconitem icon="presend" iconType="svg" @tap="goToOrders('2')">待发货</iconitem>
-      <iconitem icon="precollect" iconType="svg" @tap="goToOrders('3')">待收货</iconitem>
-      <iconitem icon="order_done" iconType="svg" @tap="goToOrders('4')">已完成</iconitem>
+      <icon-item icon="prepay" iconType="svg" @tap="goToOrders('1')">待付款</icon-item>
+      <icon-item icon="presend" iconType="svg" @tap="goToOrders('2')">待发货</icon-item>
+      <icon-item icon="precollect" iconType="svg" @tap="goToOrders('3')">待收货</icon-item>
+      <icon-item icon="order_done" iconType="svg" @tap="goToOrders('4')">已完成</icon-item>
     </view>
   </panel>
 
   <view class="uc-listitem">
-    <listitem icon="order" @tap="goToRecycleOrders">回收订单</listitem>
-    <listitem icon="geo" @tap="goToAddress">地址管理</listitem>
-    <listitem icon="service" @tap="callService">联系客服</listitem>
+    <list-item icon="order" @tap="goToRecycleOrders">回收订单</list-item>
+    <list-item icon="geo" @tap="goToAddress">地址管理</list-item>
+    <list-item icon="service" @tap="callService">联系客服</list-item>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '个人中心',
       usingComponents: {
-        listitem: '/components/listitem/index',
-        iconitem: '/components/iconitem/index',
-        icon: '/components/icon/index'
+        'list-item': '/components/list-item/index',
+        'icon-item': '/components/icon-item/index',
+        'panel': '/components/panel/index',
+        'icon': '/components/icon/index'
       }
     }
 
     components = {
-      panel: Panel
     }
 
     data = {

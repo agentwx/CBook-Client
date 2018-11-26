@@ -8,11 +8,11 @@ export const transition = function(showDefaultValue) {
       },
       duration: {
         type: Number,
-        value: 300
+        value: 400
       },
       delay: {
         type: Number,
-        value: 300
+        value: 0
       }
     },
 

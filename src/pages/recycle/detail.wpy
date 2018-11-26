@@ -60,7 +60,8 @@
     }
 
     .desc {
-      font-size: 26rpx;
+      .light-font();
+      font-size: 24rpx;
       color: #999;
     }
   }
@@ -70,7 +71,7 @@
     justify-content: space-between;
 
     .price {
-      font-size: 30 rpx;
+      font-size: 30rpx;
     }
 
     .status {
@@ -135,12 +136,12 @@
 </style>
 
 <template>
-  <stepspanel>
+  <panel>
     <steps stepIndex="{{stepIndex}}" items="{{stepItems}}"></steps>
-  </stepspanel>
-  <deliverypanel class="delivery-panel">
+  </panel>
+  <panel custom-class="delivery-panel">
     <view class="delivery-body">
-      <icon name="geo" customClass="geo-icon"></icon>
+      <icon name="geo" custom-class="geo-icon"></icon>
       <view class="delivery-main">
         <view class="delivery-hd">
           <text class="username">{{order.orderName}}</text>
@@ -150,8 +151,8 @@
         <view class="delivery-picktime">预约上门取件时间: {{order.appointment}}</view>
       </view>
     </view>
-  </deliverypanel>
-  <bookspanel>
+  </panel>
+  <panel>
     <view class="panel-title" slot="title">
       <view class="book-title">
         <icon name="library"></icon>
@@ -175,8 +176,8 @@
         </view>
       </view>
     </repeat>
-  </bookspanel>
-  <incomepanel class="income-panel">
+  </panel>
+  <panel custom-class="income-panel">
     <view class="income-item">
       <text>预计收入</text>
       <text>￥{{order.income}}</text>
@@ -185,8 +186,8 @@
       <text>实际收入</text>
       <text>￥{{order.income}}</text>
     </view>-->
-  </incomepanel>
-  <orderpanel class="order-panel">
+  </panel>
+  <panel custom-class="order-panel">
     <view class="order-item">
       <text>订单编号：{{order.orderCode}}</text>
       <text @tap="copyOrderNum" class="copy-text">复制</text>
@@ -194,7 +195,7 @@
     <view class="order-item">
       <text>创建时间：{{order.createTime}}</text>
     </view>
-  </orderpanel>
+  </panel>
   <view class="action-button" @tap="callService">
     <icon name="service" />
     <text>召唤客服</text>
@@ -203,7 +204,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
 
   import { toast } from '../../utils/util'
 
@@ -217,16 +217,12 @@
       navigationBarTitleText: '回收订单详情',
       usingComponents: {
         icon: '/components/icon/index',
-        steps: '/components/steps/index'
+        steps: '/components/steps/index',
+        panel: '/components/panel/index'
       }
     }
 
     components = {
-      stepspanel: Panel,
-      deliverypanel: Panel,
-      bookspanel: Panel,
-      incomepanel: Panel,
-      orderpanel: Panel
     }
 
     data = {

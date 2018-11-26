@@ -3,7 +3,7 @@
 
   .tabbar-wrap {
     .flex();
-    border-width: 2rpx 0 0;
+    border-width: 1rpx 0 0;
     border-style: solid;
     border-top-color: transparent;
     position: fixed;

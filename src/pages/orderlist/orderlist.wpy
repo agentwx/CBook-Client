@@ -3,7 +3,7 @@
 
   page {
     background-color: #f7f7f7;
-    padding-top: 96rpx;
+    padding-top: 95rpx;
   }
 
   .order-tabhead {
@@ -62,7 +62,9 @@
     }
 
     .desc {
-      color: #999;
+      .light-font();
+      font-size: 24rpx;
+      color: #888;
     }
   }
 
@@ -75,9 +77,12 @@
     }
   }
 
+  .order-footer {
+    color: #777;
+  }
+
   .create-time {
     font-size: 26rpx;
-    color: #999;
     margin-top: 4rpx;
   }
 
@@ -86,7 +91,6 @@
 
     .order-sumup {
       margin-bottom: 16rpx;
-      color: #777;
 
       .price {
         color: #333;
@@ -94,8 +98,10 @@
     }
   }
 
-  .panel:last-child {
-    margin-bottom: 0;
+  panel:last-child {
+    .panel {
+      margin-bottom: 0;
+    }
   }
 
   .empty-layer-wrap {
@@ -136,7 +142,7 @@
 </style>
 
 <template>
-  <tabhead custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tabhead>
+  <tab-head custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tab-head>
 
   <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
     <block wx:for="{{orders}}" wx:key="index">
@@ -191,7 +197,6 @@
 
 <script>
   import wepy from 'wepy'
-  import Panel from '@/components/panel'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
 
@@ -207,14 +212,14 @@
     config = {
       navigationBarTitleText: '订单列表',
       usingComponents: {
-        'tabhead': '/components/tabhead/index',
+        'tab-head': '/components/tab-head/index',
         'weui-loading': '/components/weui-loading/index',
-        'btn': '/components/button/index'
+        'btn': '/components/button/index',
+        'panel': '/components/panel/index'
       }
     }
 
     components = {
-      panel: Panel
     }
 
     data = {

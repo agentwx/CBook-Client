@@ -17,7 +17,7 @@
     padding-bottom: 10rpx;
 
     &.underline {
-      border-bottom: 2rpx solid @color-underline;
+      border-bottom: 1rpx solid @color-underline;
     }
   }
 
@@ -73,7 +73,7 @@
     }
 
     &.bordered {
-      border: 2rpx solid @color-border;
+      border: 1rpx solid @color-border;
     }
   }
 </style>
