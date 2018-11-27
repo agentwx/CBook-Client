@@ -16,6 +16,10 @@
     vertical-align: top;
   }
 
+  .input-placeholder {
+    color: #999;
+  }
+
   .iconfont {
     font-size: 32rpx;
     line-height: 1;

@@ -19,6 +19,10 @@ Component({
       type: String,
       value: ''
     },
+    placeholderClass: {
+      type: String,
+      value: 'input-placeholder'
+    },
     label: String,
     icon: String,
     iconType: {

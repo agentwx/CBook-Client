@@ -118,7 +118,7 @@
 
       .badge {
         position: absolute;
-        right: 10rpx;
+        left: 65%;
         top: -10rpx;
       }
     }
@@ -307,7 +307,7 @@
   <view class="detail-action-bar">
     <icon-item icon="cart" iconSize="middle" custom-class="action-item action-cart" @tap="gotoCart">
       <text>购物车</text>
-      <badge>{{cartCount}}</badge>
+      <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
     </icon-item>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
