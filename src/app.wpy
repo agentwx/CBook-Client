@@ -60,23 +60,6 @@ const initialState = wx.getStorageSync('APP_INIT_STATE') || {}
 const store = configStore(initialState)
 setStore(store)
 
-const { recycles, shopcart } = initialState
-
-if (recycles && recycles.list.length > 0) {
-  wx.setTabBarBadge({
-    index: 1,
-    text: recycles.list.length.toString()
-  })
-}
-
-if (shopcart && shopcart.list.length > 0) {
-  const total = shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
-  wx.setTabBarBadge({
-    index: 2,
-    text: total.toString()
-  })
-}
-
 store.subscribe(() => {
   let state = store.getState()
   wx.setStorageSync('APP_INIT_STATE', state)
@@ -165,6 +148,23 @@ export default class extends wepy.app {
 
   onLaunch() {
     this.wxlogin()
+
+    const { recycles, shopcart } = initialState
+
+    if (recycles && recycles.list.length > 0) {
+      wx.setTabBarBadge({
+        index: 1,
+        text: recycles.list.length.toString()
+      })
+    }
+
+    if (shopcart && shopcart.list.length > 0) {
+      const total = shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
+      wx.setTabBarBadge({
+        index: 2,
+        text: total.toString()
+      })
+    }
   }
 
   sleep (s) {

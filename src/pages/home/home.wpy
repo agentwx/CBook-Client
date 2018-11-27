@@ -529,14 +529,26 @@ export default class Index extends wepy.page {
 
   onShow () {
     const { recycles, shopcart } = store.getState()
+    const recycleCount = recycles.list.length
+    const cartCount = shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
 
-    if (recycles.list.length === 0) {
+    if (recycleCount > 0) {
+      wx.setTabBarBadge({
+        index: 1,
+        text: recycleCount.toString()
+      })
+    } else {
       wx.removeTabBarBadge({
         index: 1
       })
     }
 
-    if (shopcart.list.length === 0) {
+    if (cartCount > 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: cartCount.toString()
+      })
+    } else {
       wx.removeTabBarBadge({
         index: 2
       })
