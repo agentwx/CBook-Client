@@ -329,6 +329,12 @@
       }
     }
   }
+
+  .search-hint-btn {
+    border: none !important;
+    margin-top: -20rpx !important;
+    margin-bottom: 0 !important;
+  }
 </style>
 
 <template>
@@ -394,7 +400,7 @@
     </view>
 
     <view class="recycle-actions">
-      <btn type="default" icon="scan" size="large" inline="true" @tap="scanBarcode">扫描条形码卖书</btn>
+      <btn icon="scan" size="large" inline="true" @tap="scanBarcode">扫描条形码卖书</btn>
       <btn type="default" icon="pointer" size="large" inline="true" @tap="manualInput">手动输入ISBN号</btn>
     </view>
   </block>
@@ -531,7 +537,7 @@
       },
       async onConfirm () {
         if (!this.isbn) {
-          return toast.error('请输入书籍的isbn号')
+          return toast.error('请输入书籍的ISBN号')
         }
         await this.queryBookInfo(this.isbn)
         this.manualShow = false

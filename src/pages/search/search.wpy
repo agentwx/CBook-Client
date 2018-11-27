@@ -6,10 +6,18 @@
   }
 
   .home-search-wrap {
+    .flex-v-center();
     padding: 30rpx 20rpx;
   }
 
+  .search-cancel {
+    color: @gcolor;
+    padding: 20rpx 30rpx;
+    margin-right: -20rpx;
+  }
+
   .home-search {
+    flex: 1;
     .flex-v-center();
     padding-left: 30rpx;
     padding-right: 20rpx;
@@ -145,11 +153,12 @@
   <view class="home-search-wrap">
     <view class="home-search">
       <icon name="find" custom-style="font-size: 36rpx;color: #888;"></icon>
-      <input type="text" class="search-input" placeholder="搜索书名、作者" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
+      <input type="text" class="search-input" placeholder="搜索书名、作者、图书的ISBN号" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="搜索" />
       <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
         <icon name="close-circle" color="#888"></icon>
       </view>
     </view>
+    <view class="search-cancel" @tap="cancelSearch">取消</view>
   </view>
 
   <view class="search-sublayer" wx:if="{{!isSearchShow}}">
@@ -198,17 +207,27 @@
       </view>
     </repeat>
   </view>
+
+  <weui-loading visible="{{isLoading}}"></weui-loading>
+  <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
+  import { toast } from '../../utils/util'
   import History from '../../service/history'
+  import { getStore } from 'wepy-redux'
+
+  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '星月童书',
+      enablePullDownRefresh: true,
       usingComponents: {
+        'modal-spinner': '/components/modal-spinner/index',
+        'weui-loading': '/components/weui-loading/index',
         'raty': '/components/raty/index',
         'icon': '/components/icon/index',
         'tag': '/components/tag/index'
@@ -221,7 +240,9 @@
     history = new History('home_search')
 
     data = {
+      isLoading: false,
       isSearchShow: false,
+      isModalSpinShow: false,
       searchVal: '',
       historyTags: [],
       products: []
@@ -243,15 +264,18 @@
       onSearchChange (e) {
         this.searchVal = e.detail.value
       },
-      doSearch (e) {
-        this.loadProducts(e.detail.value)
+      doSearch () {
+        this.reloadProducts()
       },
       doSearchByTag (name) {
-        this.loadProducts(name)
+        this.reloadProducts(name)
+      },
+      cancelSearch () {
+        this.searchVal = ''
+        this.$switch('/pages/home/home')
       },
       clearSearch () {
         this.searchVal = ''
-        this.loadProducts()
       },
       clearHistory () {
         this.history.clear()
@@ -259,31 +283,59 @@
       }
     }
 
-    async loadProducts (name = '', params = {filter: [], sort: []}) {
-      /* let params = {
+    async loadProducts (key) {
+      let params = {
         offset: this.pageNum,
-        limit: 15,
-        name
-      } */
-
-      params = {
-        offset: this.pageNum,
-        limit: 15,
-        ...params
+        limit: 10,
+        key
       }
 
-      this.searchVal = name
-      this.isSearchShow = true
+      if (key === '') {
+        return toast.error('请输入搜索关键字')
+      }
 
-      let res = await fetch.post('/sales/list', params)
-      this.products = res.datas.Items
-      this.history.add(name)
-      this.historyTags = this.history.getAll()
-      this.$apply()
+      try {
+        this.searchVal = key
+        this.isSearchShow = true
+        this.isLoading = true
+        let res = await fetch.post('/sales/search', params, false)
+        let items = res.datas.Items || []
+        this.products = this.products.concat(items)
+        this.history.add(key)
+        this.historyTags = this.history.getAll()
+        store.dispatch({
+          type: 'ADD_PRODUCTS',
+          payload: {products: items}
+        })
+        if (items.length > 0) {
+          this.pageNum++
+        }
+      } finally {
+        this.isLoading = false
+        this.isModalSpinShow = false
+        this.$apply()
+      }
+    }
+
+    async reloadProducts (key = this.searchVal) {
+      this.pageNum = 1
+      await this.loadProducts(key)
+    }
+
+    onReachBottom () {
+      this.loadProducts(this.searchVal)
+    }
+
+    async onPullDownRefresh () {
+      this.isModalSpinShow = true
+      await this.reloadProducts()
+      wx.stopPullDownRefresh()
+    }
+
+    onShareAppMessage () {
     }
 
     onLoad() {
-      this.pageNum = 1
       this.historyTags = this.history.getAll()
     }
   }
