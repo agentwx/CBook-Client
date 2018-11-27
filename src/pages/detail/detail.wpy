@@ -119,8 +119,8 @@
 
       .badge {
         position: absolute;
-        right: 0;
-        top: -20rpx;
+        right: 10rpx;
+        top: -10rpx;
       }
     }
 
