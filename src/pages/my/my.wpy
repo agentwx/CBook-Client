@@ -176,6 +176,9 @@
 
 <script>
   import wepy from 'wepy'
+  import { getStore } from 'wepy-redux'
+
+  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -213,6 +216,22 @@
 
     toOrders (tabIndex) {
       this.$navigate('/pages/orderlist/orderlist', { tabIndex })
+    }
+
+    onShow () {
+      const { recycles, shopcart } = store.getState()
+
+      if (recycles.list.length === 0) {
+        wx.removeTabBarBadge({
+          index: 1
+        })
+      }
+
+      if (shopcart.list.length === 0) {
+        wx.removeTabBarBadge({
+          index: 2
+        })
+      }
     }
 
     onLoad() {

@@ -527,6 +527,22 @@ export default class Index extends wepy.page {
   onShareAppMessage () {
   }
 
+  onShow () {
+    const { recycles, shopcart } = store.getState()
+
+    if (recycles.list.length === 0) {
+      wx.removeTabBarBadge({
+        index: 1
+      })
+    }
+
+    if (shopcart.list.length === 0) {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
+  }
+
   onLoad() {
     this.getFilterBarTop()
     store.dispatch({

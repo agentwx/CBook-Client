@@ -366,16 +366,7 @@
         }
       },
       totalCount () {
-        if (this.totalCount > 0) {
-          wx.setTabBarBadge({
-            index: 2,
-            text: this.totalCount.toString()
-          })
-        } else {
-          wx.removeTabBarBadge({
-            index: 2
-          })
-        }
+        this.setBadge()
       }
     }
 
@@ -485,11 +476,27 @@
       this.$apply()
     }
 
+    setBadge () {
+      if (this.totalCount > 0) {
+        wx.setTabBarBadge({
+          index: 2,
+          text: this.totalCount.toString()
+        })
+      } else {
+        wx.removeTabBarBadge({
+          index: 2
+        })
+      }
+    }
+
     onShow() {
       if (!this.isEdit) {
         this.isSelectAll = true
       }
       this.getProductsFromCart()
+      wx.nextTick(() => {
+        this.setBadge()
+      })
       store.dispatch({
         type: 'ADD_CART_PRODUCTS',
         payload: {

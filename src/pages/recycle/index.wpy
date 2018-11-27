@@ -507,16 +507,7 @@
 
     watch = {
       totalCount () {
-        if (this.totalCount > 0) {
-          wx.setTabBarBadge({
-            index: 1,
-            text: this.totalCount.toString()
-          })
-        } else {
-          wx.removeTabBarBadge({
-            index: 1
-          })
-        }
+        this.setBadge()
       }
     }
 
@@ -585,6 +576,25 @@
         payload: {
           product: {...res.datas, COUNT: 1}
         }
+      })
+    }
+
+    setBadge () {
+      if (this.totalCount > 0) {
+        wx.setTabBarBadge({
+          index: 1,
+          text: this.totalCount.toString()
+        })
+      } else {
+        wx.removeTabBarBadge({
+          index: 1
+        })
+      }
+    }
+
+    onShow () {
+      wx.nextTick(() => {
+        this.setBadge()
       })
     }
   }
