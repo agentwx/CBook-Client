@@ -62,12 +62,12 @@ function getOpenIdByCode (code) {
   })
 }
 
-function getWxUserInfo (encryptedData, iv, openid) {
-  return fetch.post('/user/weapp/userinfo', { encryptedData, iv, openid }, false, false)
+function getWxUserInfo (openid, encryptedData, iv) {
+  return fetch.post('/user/weapp/userinfo', { openid, encryptedData, iv }, false, false)
 }
 
-function getUserToken (unionid, openid, channel = 'weapp') {
-  return fetch.post('/user/login', { unionid, openid, channel }, false, false)
+function getUserToken (openid, unionid, channel = 'weapp') {
+  return fetch.post('/user/login', { openid, unionid, channel }, false, false)
 }
 
 function uploadFile (url, filePath, params, header) {

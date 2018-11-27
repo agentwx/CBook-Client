@@ -180,7 +180,7 @@ export default class extends wepy.app {
     const { openid, unionid } = await getOpenIdByCode(code)
     this.openId = openid
     if (unionid) {
-      const tokenData = getUserToken(unionid, openid)
+      const tokenData = getUserToken(openid, unionid)
       this.saveToken(tokenData.datas.token)
     } else {
       this.doAuthorize()
@@ -189,8 +189,8 @@ export default class extends wepy.app {
 
   async getUnionId () {
     try {
-      const {encryptedData, iv} = await getUserInfo({withCredentials: true})
-      const res = await getWxUserInfo(encryptedData, iv, this.openId)
+      const { encryptedData, iv } = await getUserInfo({withCredentials: true})
+      const res = await getWxUserInfo(this.openId, encryptedData, iv)
       this.globalData.userInfo = res.datas
       return res.datas
     } catch (errMsg) {
@@ -210,7 +210,7 @@ export default class extends wepy.app {
         }
       })
     } else {
-      const tokenData = await getUserToken(unionId, this.openId)
+      const tokenData = await getUserToken(this.openId, unionId)
       this.saveToken(tokenData.datas.token)
     }
   }
