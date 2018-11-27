@@ -363,6 +363,18 @@
           this.setProductsChecked(newValue)
           this.$apply()
         }
+      },
+      totalCount () {
+        if (this.totalCount > 0) {
+          wx.setTabBarBadge({
+            index: 2,
+            text: this.totalCount.toString()
+          })
+        } else {
+          wx.removeTabBarBadge({
+            index: 2
+          })
+        }
       }
     }
 
@@ -449,8 +461,10 @@
     }
 
     getProductsFromCart () {
-      let { products, shopcart } = store.getState()
-      products = products.list
+      let { products, shopcart, cartProducts } = store.getState()
+
+      products = cartProducts.list.concat(products.list)
+
       this.products = shopcart.list.map(item => {
         for (let i = 0; i < products.length; i++) {
           if (item.ID === products[i].goodsId) {
@@ -475,6 +489,12 @@
         this.isSelectAll = true
       }
       this.getProductsFromCart()
+      store.dispatch({
+        type: 'ADD_CART_PRODUCTS',
+        payload: {
+          products: this.products
+        }
+      })
     }
   }
 </script>

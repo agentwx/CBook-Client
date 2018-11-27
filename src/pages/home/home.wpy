@@ -478,7 +478,10 @@ export default class Index extends wepy.page {
       let res = await fetch.post('/sales/list', params, false)
       let items = res.datas.Items || []
       this.products = this.products.concat(items)
-      store.dispatch({type: 'ADD_PRODUCTS', payload: {products: items}})
+      store.dispatch({
+        type: 'ADD_PRODUCTS',
+        payload: { products: items }
+      })
       if (items.length > 0) {
         this.pageNum++
       }
@@ -525,6 +528,9 @@ export default class Index extends wepy.page {
 
   onLoad() {
     this.getFilterBarTop()
+    store.dispatch({
+      type: 'CLEAR_PRODUCTS'
+    })
     this.$parent.ready(() => {
       this.reloadProducts()
     })
