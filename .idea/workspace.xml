@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/form-item/index.js" afterPath="$PROJECT_DIR$/src/components/form-item/index.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/form-item/index.wxml" afterPath="$PROJECT_DIR$/src/components/form-item/index.wxml" />
+      <change beforePath="$PROJECT_DIR$/src/components/formitem.wpy" afterPath="$PROJECT_DIR$/src/components/formitem.wpy" />
       <change beforePath="$PROJECT_DIR$/src/pages/search/search.wpy" afterPath="$PROJECT_DIR$/src/pages/search/search.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -16,21 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="detail.wpy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="161" column="24" lean-forward="false" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="shopcart.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="395" column="34" lean-forward="false" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
+            <state relative-caret-position="102">
+              <caret line="393" column="10" lean-forward="true" selection-start-line="393" selection-start-column="10" selection-end-line="393" selection-end-column="10" />
               <folding>
                 <element signature="e#6707#6730#0" expanded="true" />
               </folding>
@@ -41,8 +34,8 @@
       <file leaf-file-name="home.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="257" column="113" lean-forward="false" selection-start-line="257" selection-start-column="96" selection-end-line="257" selection-end-column="113" />
+            <state relative-caret-position="144">
+              <caret line="256" column="26" lean-forward="false" selection-start-line="256" selection-start-column="26" selection-end-line="256" selection-end-column="26" />
               <folding>
                 <element signature="e#9752#9775#0" expanded="true" />
               </folding>
@@ -50,11 +43,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/search/search.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="175">
+              <caret line="167" column="226" lean-forward="false" selection-start-line="167" selection-start-column="214" selection-end-line="167" selection-end-column="226" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formitem.wpy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="87" column="63" lean-forward="true" selection-start-line="87" selection-start-column="63" selection-end-line="87" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/form-item/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="52" column="19" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.wxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/form-item/index.wxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="114" lean-forward="false" selection-start-line="6" selection-start-column="83" selection-end-line="6" selection-end-column="114" />
               <folding />
             </state>
           </provider>
@@ -71,9 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>detail-swiper</find>
-      <find>onReachBottom</find>
-      <find>loadProducts</find>
       <find>isModalSpinShow</find>
       <find>isLoading</find>
       <find>toast</find>
@@ -101,6 +121,9 @@
       <find>onSearchChange</find>
       <find>isSearchEmpty</find>
       <find>clear-search</find>
+      <find>confirmType</find>
+      <find>confirm</find>
+      <find>confirm-type</find>
     </findStrings>
     <replaceStrings>
       <replace>timeHalf</replace>
@@ -191,13 +214,13 @@
         <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
         <option value="$PROJECT_DIR$/project.config.json" />
         <option value="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
-        <option value="$PROJECT_DIR$/src/components/form-item/index.wxml" />
-        <option value="$PROJECT_DIR$/src/components/form-item/index.js" />
-        <option value="$PROJECT_DIR$/src/components/formitem.wpy" />
         <option value="$PROJECT_DIR$/src/pages/home/home.wpy" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
         <option value="$PROJECT_DIR$/src/components/badge/index.less" />
         <option value="$PROJECT_DIR$/src/pages/search/search.wpy" />
+        <option value="$PROJECT_DIR$/src/components/form-item/index.wxml" />
+        <option value="$PROJECT_DIR$/src/components/form-item/index.js" />
+        <option value="$PROJECT_DIR$/src/components/formitem.wpy" />
       </list>
     </option>
   </component>
@@ -261,19 +284,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="badge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CBook-Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CBook-Client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -327,12 +337,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="233718000" />
+      <workItem from="1542243669812" duration="234078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360969000" />
+    <option name="totallyTimeSpent" value="361329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -733,42 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/form-item/index.wxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="6" column="165" lean-forward="true" selection-start-line="6" selection-start-column="165" selection-end-line="6" selection-end-column="165" />
-          <folding>
-            <element signature="n#style#0;n#view#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="117" column="24" lean-forward="false" selection-start-line="117" selection-start-column="24" selection-end-line="117" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/form-item/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="257" column="113" lean-forward="false" selection-start-line="257" selection-start-column="96" selection-end-line="257" selection-end-column="113" />
-          <folding>
-            <element signature="e#9752#9775#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -798,16 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="395" column="34" lean-forward="false" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
-          <folding>
-            <element signature="e#6707#6730#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -816,10 +780,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="393" column="10" lean-forward="true" selection-start-line="393" selection-start-column="10" selection-end-line="393" selection-end-column="10" />
+          <folding>
+            <element signature="e#6707#6730#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="256" column="26" lean-forward="false" selection-start-line="256" selection-start-column="26" selection-end-line="256" selection-end-column="26" />
+          <folding>
+            <element signature="e#9752#9775#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/search/search.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        <state relative-caret-position="175">
+          <caret line="167" column="226" lean-forward="false" selection-start-line="167" selection-start-column="214" selection-end-line="167" selection-end-column="226" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/form-item/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="52" column="19" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/form-item/index.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="114" lean-forward="false" selection-start-line="6" selection-start-column="83" selection-end-line="6" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/formitem.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="87" column="63" lean-forward="true" selection-start-line="87" selection-start-column="63" selection-end-line="87" selection-end-column="63" />
           <folding />
         </state>
       </provider>

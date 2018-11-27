@@ -49,6 +49,14 @@ Component({
       type: String,
       value: ''
     },
+    type: {
+      type: String,
+      value: 'text'
+    },
+    confirmType: {
+      type: String,
+      value: 'done'
+    },
     bordered: {
       type: [Boolean, String],
       value: true
@@ -72,10 +80,6 @@ Component({
     disabled: {
       type: [Boolean, String],
       value: false
-    },
-    type: {
-      type: String,
-      value: 'text'
     },
     password: {
       type: [Boolean, String],

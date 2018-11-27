@@ -84,10 +84,10 @@
       <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
         <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
         <input wx:if="{{!password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
-               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
+               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm"/>
         <input wx:if="{{password}}" password class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
-               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
+               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm"/>
         <view class="icon-right" wx:if="{{showClear || showEye}}">
           <view class="ctrl-icon iconfont icon-close-circle" wx:if="{{showClear}}" @tap="clearField"
@@ -116,6 +116,14 @@
       placeholderClass: {
         type: String,
         default: 'input-placeholder'
+      },
+      type: {
+        type: String,
+        default: 'text'
+      },
+      confirmType: {
+        type: String,
+        default: 'done'
       },
       label: String,
       icon: String,
@@ -166,10 +174,6 @@
         type: [Boolean, String],
         default: false,
         coerce: coerce
-      },
-      type: {
-        type: String,
-        default: 'text'
       },
       password: {
         type: String,
