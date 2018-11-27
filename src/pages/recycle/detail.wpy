@@ -56,6 +56,7 @@
 
   .book-hd {
     .title {
+      .word-break();
       margin-bottom: 6rpx;
     }
 

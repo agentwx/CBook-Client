@@ -91,6 +91,7 @@
 
     .product-caption {
       font-size: 30rpx;
+      .word-break();
       margin-bottom: 10rpx;
     }
 

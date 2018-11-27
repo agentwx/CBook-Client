@@ -215,6 +215,7 @@
   .order-pd-hd {
     .title {
       font-size: 30rpx;
+      .word-break();
       margin-bottom: 6rpx;
     }
 
