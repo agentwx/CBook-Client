@@ -76,8 +76,6 @@ export default class extends wepy.app {
       'pages/search/search',
       'pages/detail/detail',
       'pages/recycle/index',
-      'pages/recycle/order',
-      'pages/recycle/manual',
       'pages/recycle/list',
       'pages/recycle/detail',
       'pages/shopcart/shopcart',

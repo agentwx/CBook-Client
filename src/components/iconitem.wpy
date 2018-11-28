@@ -15,6 +15,10 @@
     &.inline {
       .inline-flex();
     }
+
+    > .icon {
+      margin-bottom: 6rpx;
+    }
   }
 </style>
 <template>

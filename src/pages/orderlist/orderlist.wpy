@@ -16,14 +16,14 @@
 
   .order-hd {
     font-weight: normal;
+    font-size: 26rpx;
 
     .order-num {
-      color: #666;
+      color: #777;
     }
 
     .order-status {
       color: @gcolor;
-      font-size: 26rpx;
 
       &.closed {
         color: @color-disabled;
@@ -57,7 +57,6 @@
 
   .order-pd-hd {
     .title {
-      font-size: 30rpx;
       .word-break();
       margin-bottom: 6rpx;
     }

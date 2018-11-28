@@ -6,10 +6,6 @@
     padding-bottom: 102rpx;
   }
 
-  .detail-swiper-wrap {
-    padding-top: 20rpx;
-  }
-
   .detail-swiper {
     height: 500rpx;
   }

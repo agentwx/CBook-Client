@@ -40,12 +40,13 @@
 
     .clear-search {
       padding: 8rpx;
+      margin-top: 4rpx;
     }
   }
 
   .search-input {
     width: 100%;
-    padding: 20rpx 30rpx 20rpx 16rpx;
+    padding: 20rpx 0 20rpx 16rpx;
     height: 80rpx;
   }
 
@@ -160,6 +161,16 @@
       height: 30rpx;
     }
   }
+
+  .search-empty {
+    .flex-center();
+    color: #999;
+    margin-top: 160rpx;
+
+    icon {
+      margin-right: 20rpx;
+    }
+  }
 </style>
 <template>
   <view class="home-search-wrap">
@@ -220,6 +231,11 @@
     </repeat>
   </view>
 
+  <view class="search-empty" wx:if="{{isLoading === false && isSearchShow && products.length === 0}}">
+    <icon name="empty" size="large"></icon>
+    <text>抱歉，未查询到相关内容!</text>
+  </view>
+
   <weui-loading visible="{{isLoading}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
@@ -252,7 +268,7 @@
     history = new History('home_search')
 
     data = {
-      isLoading: false,
+      isLoading: null,
       isSearchShow: false,
       isModalSpinShow: false,
       searchVal: '',
@@ -275,7 +291,6 @@
       },
       onSearchChange (e) {
         this.searchVal = e.detail.value
-        console.log(this.searchVal)
       },
       doSearch () {
         this.reloadProducts()
@@ -312,7 +327,11 @@
         this.isLoading = true
         let res = await fetch.post('/sales/search', params, false)
         let items = res.datas.Items || []
-        this.products = this.products.concat(items)
+        if (this.pageNum === 1) {
+          this.products = items
+        } else {
+          this.products = this.products.concat(items)
+        }
         this.history.add(key)
         this.historyTags = this.history.getAll()
         store.dispatch({

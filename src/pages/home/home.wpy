@@ -250,6 +250,16 @@
       height: 30rpx;
     }
   }
+
+  .search-empty {
+    .flex-center();
+    color: #999;
+    margin-top: 160rpx;
+
+    icon {
+      margin-right: 20rpx;
+    }
+  }
 </style>
 <template>
   <view class="home-search-wrap">
@@ -379,6 +389,11 @@
     </repeat>
   </view>
 
+  <view class="search-empty" wx:if="{{isLoading === false && products.length === 0}}">
+    <icon name="empty" size="large"></icon>
+    <text>抱歉，未查询到相关内容!</text>
+  </view>
+
   <weui-loading visible="{{isLoading}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
@@ -478,7 +493,11 @@ export default class Index extends wepy.page {
       this.isLoading = true
       let res = await fetch.post('/sales/list', params, false)
       let items = res.datas.Items || []
-      this.products = this.products.concat(items)
+      if (this.pageNum === 1) {
+        this.products = items
+      } else {
+        this.products = this.products.concat(items)
+      }
       store.dispatch({
         type: 'ADD_PRODUCTS',
         payload: { products: items }

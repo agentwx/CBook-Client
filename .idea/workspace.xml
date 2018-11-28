@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="" />
+    <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/components/icon-item/index.less" afterPath="$PROJECT_DIR$/src/components/icon-item/index.less" />
+      <change beforePath="$PROJECT_DIR$/src/components/iconitem.wpy" afterPath="$PROJECT_DIR$/src/components/iconitem.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/less/iconfont.less" afterPath="$PROJECT_DIR$/src/less/iconfont.less" />
+      <change beforePath="$PROJECT_DIR$/src/pages/detail/detail.wpy" afterPath="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/home.wpy" afterPath="$PROJECT_DIR$/src/pages/home/home.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/my/my.wpy" afterPath="$PROJECT_DIR$/src/pages/my/my.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" afterPath="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/recycle/list.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/list.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/recycle/order.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
+      <change beforePath="$PROJECT_DIR$/src/pages/search/search.wpy" afterPath="$PROJECT_DIR$/src/pages/search/search.wpy" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,6 +26,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="83" column="20" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="shopcart.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
           <provider selected="true" editor-type-id="text-editor">
@@ -29,21 +51,89 @@
       <file leaf-file-name="home.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="256" column="26" lean-forward="false" selection-start-line="256" selection-start-column="26" selection-end-line="256" selection-end-column="26" />
+            <state relative-caret-position="251">
+              <caret line="255" column="16" lean-forward="true" selection-start-line="255" selection-start-column="16" selection-end-line="255" selection-end-column="16" />
               <folding>
-                <element signature="e#9752#9775#0" expanded="true" />
+                <element signature="e#10053#10076#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recycle/list.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+              <folding>
+                <element signature="e#3047#3070#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="orderlist.wpy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manual.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recycle/manual.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="119" column="30" lean-forward="false" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9065">
+              <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="244" column="28" lean-forward="false" selection-start-line="244" selection-start-column="28" selection-end-line="244" selection-end-column="28" />
+              <folding>
+                <element signature="e#3586#3609#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/search/search.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-32">
-              <caret line="298" column="20" lean-forward="true" selection-start-line="298" selection-start-column="20" selection-end-line="298" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="393">
+              <caret line="172" column="3" lean-forward="false" selection-start-line="172" selection-start-column="3" selection-end-line="172" selection-end-column="3" />
+              <folding>
+                <element signature="e#5471#5494#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my.wpy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+              <folding>
+                <element signature="e#3659#3682#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,12 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isModalSpinShow</find>
-      <find>isLoading</find>
-      <find>toast</find>
-      <find>home-search</find>
-      <find>doSearch</find>
-      <find>isbn</find>
       <find>recycle-intro</find>
       <find>search-hint-btn</find>
       <find>recycle-hint</find>
@@ -82,13 +166,19 @@
       <find>isSearchShow</find>
       <find>doSearchByTag</find>
       <find>search-cancel</find>
-      <find>clearSearch</find>
       <find>onSearchChange</find>
       <find>isSearchEmpty</find>
-      <find>clear-search</find>
       <find>confirmType</find>
       <find>confirm</find>
       <find>confirm-type</find>
+      <find>detail-swiper-wrap</find>
+      <find>clearSearch</find>
+      <find>clear-search</find>
+      <find>isLoading</find>
+      <find>.order-pd-hd</find>
+      <find>uc-assets-item</find>
+      <find>order-num</find>
+      <find>.order-hd</find>
     </findStrings>
     <replaceStrings>
       <replace>timeHalf</replace>
@@ -135,9 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/badge/index.wxml" />
-        <option value="$PROJECT_DIR$/src/components/badge/index.js" />
-        <option value="$PROJECT_DIR$/src/components/noticebar/index.js" />
         <option value="$PROJECT_DIR$/src/components/weui-loading/index.js" />
         <option value="$PROJECT_DIR$/src/components/weui-loading/index.wxml" />
         <option value="$PROJECT_DIR$/src/components/weui-loading/index.less" />
@@ -157,7 +244,6 @@
         <option value="$PROJECT_DIR$/src/components/region-picker/index.js" />
         <option value="$PROJECT_DIR$/src/components/region-picker/index.wxml" />
         <option value="$PROJECT_DIR$/src/pages/address/new_address.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/recycle/list.wpy" />
         <option value="$PROJECT_DIR$/src/components/tab-head/index.less" />
         <option value="$PROJECT_DIR$/src/components/tabhead.wpy" />
         <option value="$PROJECT_DIR$/src/components/panel.wpy" />
@@ -169,23 +255,27 @@
         <option value="$PROJECT_DIR$/src/store/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/utils/wechat.js" />
         <option value="$PROJECT_DIR$/src/less/mixin.less" />
-        <option value="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
         <option value="$PROJECT_DIR$/src/pages/recycle/detail.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/my/my.wpy" />
         <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
         <option value="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
         <option value="$PROJECT_DIR$/src/components/button/index.less" />
         <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
         <option value="$PROJECT_DIR$/project.config.json" />
-        <option value="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/home/home.wpy" />
-        <option value="$PROJECT_DIR$/src/app.wpy" />
         <option value="$PROJECT_DIR$/src/components/badge/index.less" />
-        <option value="$PROJECT_DIR$/src/pages/search/search.wpy" />
         <option value="$PROJECT_DIR$/src/components/form-item/index.wxml" />
         <option value="$PROJECT_DIR$/src/components/form-item/index.js" />
         <option value="$PROJECT_DIR$/src/components/formitem.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/recycle/order.wpy" />
+        <option value="$PROJECT_DIR$/src/app.wpy" />
+        <option value="$PROJECT_DIR$/src/less/iconfont.less" />
+        <option value="$PROJECT_DIR$/src/pages/search/search.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/home/home.wpy" />
+        <option value="$PROJECT_DIR$/src/components/icon-item/index.less" />
+        <option value="$PROJECT_DIR$/src/components/iconitem.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/my/my.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/recycle/list.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
       </list>
     </option>
   </component>
@@ -302,12 +392,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
-      <workItem from="1542243669812" duration="234312000" />
+      <workItem from="1542243669812" duration="238154000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361563000" />
+    <option name="totallyTimeSpent" value="365405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -364,48 +454,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/swipe-cell/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/list-item/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/checkbox.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/swipe-cell/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="4" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/swipe-cell/index.wxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#view#0;n#view#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/modal/index.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -444,14 +492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/font.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -592,14 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/products.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="27" column="16" lean-forward="false" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -642,30 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="38" column="20" lean-forward="false" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/list.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-644">
-          <caret line="68" column="27" lean-forward="false" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="58" column="12" lean-forward="true" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/recycle/detail.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -673,14 +681,6 @@
           <folding>
             <element signature="e#4078#4101#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="230" column="14" lean-forward="true" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,39 +708,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding>
-            <element signature="n#style#0;n#btn#1;n#view#3;n#view#0;n#transition#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#10154#10177#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding>
-            <element signature="e#939#959#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/badge/index.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="161" column="24" lean-forward="false" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -751,16 +722,6 @@
           <caret line="393" column="10" lean-forward="false" selection-start-line="393" selection-start-column="10" selection-end-line="393" selection-end-column="10" />
           <folding>
             <element signature="e#6707#6730#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="256" column="26" lean-forward="false" selection-start-line="256" selection-start-column="26" selection-end-line="256" selection-end-column="26" />
-          <folding>
-            <element signature="e#9752#9775#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -789,10 +750,144 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/detail/detail.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6460">
+          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/manual.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="119" column="30" lean-forward="false" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9065">
+          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/order.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="244" column="28" lean-forward="false" selection-start-line="244" selection-start-column="28" selection-end-line="244" selection-end-column="28" />
+          <folding>
+            <element signature="e#3586#3609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/font.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-460">
+          <caret line="4" column="186" lean-forward="false" selection-start-line="4" selection-start-column="186" selection-end-line="4" selection-end-column="186" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/iconfont.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding>
+            <element signature="e#249#9866#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="83" column="20" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/search/search.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-32">
-          <caret line="298" column="20" lean-forward="true" selection-start-line="298" selection-start-column="20" selection-end-line="298" selection-end-column="20" />
+        <state relative-caret-position="393">
+          <caret line="172" column="3" lean-forward="false" selection-start-line="172" selection-start-column="3" selection-end-line="172" selection-end-column="3" />
+          <folding>
+            <element signature="e#5471#5494#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/icon-item/index.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/icon-item/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/iconitem.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/home/home.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="255" column="16" lean-forward="true" selection-start-line="255" selection-start-column="16" selection-end-line="255" selection-end-column="16" />
+          <folding>
+            <element signature="e#10053#10076#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/my/my.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="90" column="25" lean-forward="true" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
+          <folding>
+            <element signature="e#3659#3682#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/list.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <element signature="e#3047#3070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>

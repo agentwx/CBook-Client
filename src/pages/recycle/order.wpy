@@ -146,7 +146,6 @@
 
 <template>
   <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
-
   <view class="orders-wrap">
     <repeat for="{{products}}">
       <panel>

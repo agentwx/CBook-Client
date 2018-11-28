@@ -92,7 +92,7 @@
       left: 100%;
       top: 60rpx;
       bottom: 60rpx;
-      border-left: 1rpx solid #eee;
+      border-left: 1rpx solid @color-border;
     }
   }
 
