@@ -79,6 +79,8 @@
   }
 
   .order-ft {
+    white-space: nowrap;
+
     text {
       font-weight: bold;
     }

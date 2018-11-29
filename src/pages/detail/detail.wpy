@@ -280,6 +280,9 @@
 <template>
   <view class="detail-swiper-wrap">
     <swiper class="detail-swiper" autoplay="true" interval="5000" duration="300" indicatorDots="true" circular="true">
+      <swiper-item class="swiper-item">
+        <image mode="aspectFit" src="{{product.smallImageUrl}}" lazyload="true"></image>
+      </swiper-item>
       <repeat for="{{product.imags}}">
         <swiper-item class="swiper-item">
           <image src="{{item}}" lazyload="true"></image>
@@ -399,7 +402,7 @@
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
-  import {formatDate} from '../../utils/util'
+  import { toast, formatDate } from '../../utils/util'
 
   import { connect, getStore } from 'wepy-redux'
 
@@ -425,6 +428,8 @@
     }
 
     data = {
+      canBuy: false,
+      errMsg: '',
       product: {}
     }
 
@@ -439,23 +444,37 @@
         this.$switch('/pages/shopcart/shopcart')
       },
       gotoBuy () {
-        let products = [Object.assign(this.product, {COUNT: 1})]
-        this.$navigate('/pages/order/order', {products: JSON.stringify(products)})
+        if (this.canBuy) {
+          let products = [Object.assign(this.product, {COUNT: 1})]
+          this.$navigate('/pages/order/order', {products: JSON.stringify(products)})
+        } else {
+          toast.error(this.errMsg)
+        }
       },
       addToCart () {
-        store.dispatch({
-          type: 'ADD_CART',
-          payload: {
-            ID: this.product.goodsId
-          }
-        })
+        if (this.canBuy) {
+          store.dispatch({
+            type: 'ADD_CART',
+            payload: {
+              ID: this.product.goodsId
+            }
+          })
+        } else {
+          toast.error(this.errMsg)
+        }
       }
     }
 
     async loadData (isbn) {
-      let res = await fetch.post('/bookinfo/detail', {isbn})
-      this.product = {...this.product, ...res.datas}
-      this.$apply()
+      try {
+        let res = await fetch.post('/bookinfo/detail', {isbn})
+        this.product = {...this.product, ...res.datas}
+        this.$apply()
+      } catch (msg) {
+        this.canBuy = false
+        this.errMsg = msg
+        this.$apply()
+      }
     }
 
     onLoad(params) {

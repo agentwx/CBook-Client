@@ -1,11 +1,12 @@
 <view
-  class="swipe-cell"
+  class="swipe-cell {{customClass}}"
   data-key="cell"
   bindtap="onClick"
   bindtouchstart="startDrag"
   bindtouchmove="onDrag"
   bindtouchend="endDrag"
   bindtouchcancel="endDrag"
+  style="{{customStyle}}"
 >
   <view
     style="{{ wrapperStyle }}"

@@ -41,7 +41,7 @@
 
   .panel-footer {
     padding-top: 24rpx;
-    border-top: 1rpx solid @color-border;
+    border-top: 1rpx solid @color-underline;
     display: flex;
     justify-content: space-between;
   }
@@ -178,14 +178,18 @@ export default class extends wepy.app {
   }
 
   async wxlogin () {
-    const code = await login()
-    const { openid, unionid } = await getOpenIdByCode(code)
-    this.openId = openid
-    if (unionid) {
-      const tokenData = getUserToken(openid, unionid)
-      this.saveToken(tokenData.datas.token)
-    } else {
-      this.doAuthorize()
+    try {
+      const code = await login()
+      const {openid, unionid} = await getOpenIdByCode(code)
+      this.openId = openid
+      if (unionid) {
+        const tokenData = getUserToken(openid, unionid)
+        this.saveToken(tokenData.datas.token)
+      } else {
+        this.doAuthorize()
+      }
+    } catch (msg) {
+      toast.error(msg)
     }
   }
 

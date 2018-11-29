@@ -1,7 +1,7 @@
 <view wx:if="{{show}}" class="notice-bar-wrap {{customClass}}" style="{{customStyle}}" bindtap="onTap">
   <icon wx:if="{{leftIcon !== ''}}" name="{{leftIcon}}" size="small" style="margin-right: 10rpx;"></icon>
   <view class="notice-bar-bd">
-    <view class="notice-bar-scroller {{isScrollable ? '' : 'ellipsis'}}" animation="{{ animationData }}">
+    <view class="notice-bar-scroller {{inited ? 'inited' : ''}} {{isScrollable ? '' : 'ellipsis'}}" animation="{{ animationData }}">
       <slot></slot>
     </view>
   </view>

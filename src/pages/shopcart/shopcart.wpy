@@ -8,7 +8,7 @@
   .cart-edit-hd {
     .flex-v-center();
     justify-content: space-between;
-    padding: 40rpx 20rpx 0;
+    padding: 20rpx 20rpx 0;
     font-size: 32rpx;
 
     .edit-left {
@@ -225,11 +225,16 @@
   }
 
   .cart-delete {
-    width: 120rpx;
+    width: 130rpx;
     height: 100%;
     .flex-center();
     color: #fff;
     background-color: #ff0000;
+  }
+
+  .hint-del {
+    overflow: visible !important;
+    .animation(swipe-hint 2.5s 1s cubic-bezier(0.18, 0.89, 0.32, 1));
   }
 </style>
 <template>
@@ -252,7 +257,7 @@
 
     <view class="cart-list">
       <repeat for="{{products}}">
-        <swipe-cell right-width="60">
+        <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="cart-panel" @tap="toggleSelect({{item}})">
             <view class="cart-col-checkbox cart-checkbox">
               <check-box readonly="true" checked="{{item.isChecked}}" />
@@ -349,6 +354,17 @@
         return this.products
           .filter(product => product.isChecked)
           .reduce((prev, cur) => prev + cur.COUNT, 0)
+      },
+      isHintDel () {
+        if (this.products.length > 0) {
+          const hintdel = wx.getStorageSync('hintdel.cart')
+          if (!hintdel) {
+            wx.setStorageSync('hintdel.cart', true)
+          }
+          return !hintdel
+        } else {
+          return false
+        }
       }
     }
 

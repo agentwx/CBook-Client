@@ -34,7 +34,7 @@ Component({
     },
     additWidth: {
       type: Number,
-      value: 50
+      value: 16
     },
     scrollable: {
       type: [Boolean, String],
@@ -61,7 +61,8 @@ Component({
     }
   },
   data: {
-    show: true
+    show: true,
+    inited: false
   },
   lifetimes: {
     ready () {
@@ -102,6 +103,11 @@ Component({
             })
             this.scroll()
           }
+
+          this.setData({
+            inited: true
+          })
+
         })
       })
     },

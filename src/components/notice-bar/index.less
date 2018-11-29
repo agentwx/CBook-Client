@@ -21,6 +21,11 @@
 .notice-bar-scroller {
   position: absolute;
   white-space: nowrap;
+  visibility: hidden;
+
+  &.inited {
+    visibility: visible;
+  }
 
   .ellipsis {
     width: 100%;

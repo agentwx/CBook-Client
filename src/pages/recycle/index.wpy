@@ -50,7 +50,7 @@
   .explain-dropdown {
     display: none;
     position: relative;
-    border: 1rpx solid #ccc;
+    border: 1rpx solid @color-border;
     background-color: #fff;
     margin: 0 40rpx 30rpx 40rpx;
     padding: 20rpx;
@@ -81,7 +81,7 @@
       background-color: #fff;
       border-width: 1rpx;
       border-style: solid;
-      border-color: #ccc #ccc transparent transparent;
+      border-color: @color-border @color-border transparent transparent;
       -webkit-transform: translateY(-50%) rotate(-45deg);
       transform: translateY(-50%) rotate(-45deg);
     }
@@ -183,7 +183,7 @@
 
 
   .orders-wrap {
-    margin-top: 30rpx;
+    margin-top: 20rpx;
   }
 
   .order-panel {
@@ -240,7 +240,7 @@
   }
 
   .order-delete {
-    width: 120rpx;
+    width: 130rpx;
     height: 100%;
     .flex-center();
     color: #fff;
@@ -335,6 +335,11 @@
     margin-top: -20rpx !important;
     margin-bottom: 0 !important;
   }
+
+  .hint-del {
+    overflow: visible !important;
+    .animation(swipe-hint 2.5s 1s cubic-bezier(0.18, 0.89, 0.32, 1));
+  }
 </style>
 
 <template>
@@ -408,7 +413,7 @@
     <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
     <view class="orders-wrap">
       <repeat for="{{products}}">
-        <swipe-cell right-width="60">
+        <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="order-panel">
             <view class="order-cover">
               <image src="{{item.smallImageUrl}}" layload="true"></image>
@@ -509,6 +514,20 @@
       expItem2: false,
       manualShow: false,
       isbn: null
+    }
+
+    computed = {
+      isHintDel () {
+        if (store.getState().recycles.list.length > 0) {
+          const hintdel = wx.getStorageSync('hintdel.recycle')
+          if (!hintdel) {
+            wx.setStorageSync('hintdel.recycle', true)
+          }
+          return !hintdel
+        } else {
+          return false
+        }
+      }
     }
 
     watch = {

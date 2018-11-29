@@ -99,6 +99,10 @@
   .order-entry-panel {
     margin-top: 36rpx;
     margin-bottom: 0;
+
+    .panel-title {
+      margin-bottom: 0;
+    }
   }
 
   .to-orders {
@@ -117,6 +121,8 @@
   }
 
   .uc-listitem {
+    margin-bottom: 20rpx;
+
     .icon {
       color: @gcolor;
     }
