@@ -107,8 +107,8 @@
       flex: none;
       padding-left: 30rpx;
       padding-right: 30rpx;
-      border-right: 1rpx solid #efefef;
-      border-top: 1rpx solid #efefef;
+      border-right: 1rpx solid @color-light-gray;
+      border-top: 1rpx solid @color-light-gray;
       color: #666;
       font-size: 24rpx;
 
@@ -136,7 +136,7 @@
 
       &.cash-buy {
         color: @gcolor;
-        border-top: 1rpx solid #efefef;
+        border-top: 1rpx solid @color-light-gray;
 
         &:active {
           background-color: @color-active;

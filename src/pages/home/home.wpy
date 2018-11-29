@@ -158,7 +158,7 @@
 
     icon {
       position: relative;
-      margin-right: 10rpx;
+      margin-right: 6rpx;
       top: -4rpx;
     }
   }
@@ -169,12 +169,12 @@
 
   .filter-catelog-item {
     display: inline-block;
-    padding: 8rpx 24rpx;
+    padding: 10rpx 24rpx;
     border: 1rpx solid @color-border;
     border-radius: 60rpx;
     margin: 0 16rpx 16rpx 0;
     color: #666;
-    font-size: 24rpx;
+    font-size: 26rpx;
 
     &.selected {
       //background-color: #daeaf6;
@@ -182,6 +182,36 @@
       color: @gcolor;
     }
   }
+
+  .filter-catelog-action {
+    .flex();
+    box-shadow:0 -16rpx 36rpx rgba(0, 0, 0, 0.04);
+
+    > view {
+      flex: 1;
+      height: 90rpx;
+      .flex-center();
+      font-size: 30rpx;
+    }
+
+    .filter-btn-reset {
+      border-top: 1rpx solid @color-light-gray;
+
+      &:active {
+        background-color: @color-active;
+      }
+    }
+
+    .filter-btn-ok {
+      color: #fff;
+      .g-gradient();
+
+      &:active {
+        .g-darken-gradient();
+      }
+    }
+  }
+
 
   .product-panel {
     .flex();
@@ -301,51 +331,53 @@
       <view class="filter-sublayer" hidden="{{!filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
           <block wx:for="{{sortTypes}}" wx:key="index">
-            <view class="filter-itemsort {{sortType === (index + 1) ? 'selected' : ''}}"
-                  @tap="filterBySort({{index + 1}})">
-              <text>{{item}}</text>
+            <view class="filter-itemsort {{item.checked ? 'selected' : ''}}" @tap="filterBySort({{item.value}})">
+              <text>{{item.name}}</text>
               <icon name="check-o"></icon>
             </view>
           </block>
         </view>
 
-        <view class="filter-catelog" wx:if="{{filterType === 'catelog'}}">
-          <view class="filter-catelog-hd">
-            <icon name="leaf" type="svg"></icon>
-            年龄（单选）
+        <view class="filter-catelog-wrapper" wx:if="{{filterType === 'catelog'}}">
+          <view class="filter-catelog">
+            <view class="filter-catelog-hd">
+              <icon name="leaf" type="svg"></icon>
+              <text>年龄</text>
+            </view>
+            <view class="filter-catelog-bd">
+              <block wx:for="{{ageTypes}}" wx:key="index">
+              <view class="filter-catelog-item {{item.checked ? 'selected' : ''}}"
+                    @tap="filterByTag('ageTypes', {{item.value}})">{{item.name}}</view>
+              </block>
+            </view>
+            <view class="filter-catelog-hd">
+              <icon name="catelog" type="svg"></icon>
+              <text>分类</text>
+            </view>
+            <view class="filter-catelog-bd">
+              <block wx:for="{{tags}}" wx:key="index">
+                <view class="filter-catelog-item {{item.checked ? 'selected' : ''}}" @tap="filterByTag('tags', {{item.value}})">{{item.name}}</view>
+              </block>
+            </view>
+            <view class="filter-catelog-hd">
+              <icon name="lang" type="svg"></icon>
+              <text>语言</text>
+            </view>
+            <view class="filter-catelog-bd">
+              <block wx:for="{{languageTypes}}" wx:key="index">
+                <view class="filter-catelog-item  {{item.checked ? 'selected' : ''}}" @tap="filterByTag('languageTypes', {{item.value}})">{{item.name}}</view>
+              </block>
+            </view>
           </view>
-          <view class="filter-catelog-bd">
-            <block wx:for="{{ageTypes}}" wx:key="index">
-            <view class="filter-catelog-item {{ageType === index ? 'selected' : ''}}"
-                  @tap="filterByTag('ageType', {{index}})">{{item}}</view>
-            </block>
-          </view>
-          <view class="filter-catelog-hd">
-            <icon name="catelog" type="svg"></icon>
-            分类（可多选）
-          </view>
-          <view class="filter-catelog-bd">
-            <block wx:for="{{tagList}}" wx:key="index">
-              <view class="filter-catelog-item {{item.checked ? 'selected' : ''}}" @tap="filterByTag('tags', {{index}})">{{item.name}}</view>
-            </block>
-          </view>
-          <view class="filter-catelog-hd">
-            <icon name="lang" type="svg"></icon>
-            语言（单选）
-          </view>
-          <view class="filter-catelog-bd">
-            <block wx:for="{{languageTypes}}" wx:key="index">
-              <view class="filter-catelog-item {{languageType === index ? 'selected' : ''}}" @tap="filterByTag('languageType', {{index}})">{{item}}</view>
-            </block>
+          <view class="filter-catelog-action">
+            <view class="filter-btn-reset" @tap="resetFilter">重置</view>
+            <view class="filter-btn-ok" @tap="searchFilter">确定</view>
           </view>
         </view>
       </view>
     </view>
 
-    <view class="filter-mask"
-          wx:if="{{filterVisible}}"
-          @tap="hideFilter">
-    </view>
+    <view class="filter-mask" wx:if="{{filterVisible}}" @tap="hideFilter"></view>
 
   </view>
 
@@ -385,7 +417,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <weui-loading visible="{{isLoading}}"></weui-loading>
+  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
@@ -416,23 +448,56 @@ export default class Index extends wepy.page {
 
   data = {
     isLoading: true,
+    isEmpty: false,
+    pageNum: 1,
     isModalSpinShow: false,
     filterBarFixed: false,
     filterVisible: false,
-    sortTypes: ['综合排序', '人气优先', '好评优先', '新书优先', '智能排序'],
-    ageTypes: ['不分类', '0-2岁', '3-5岁', '6-8岁', '8岁以上'],
-    tagList: [
+    sortTypes: [
+      {checked: false, value: 1, name: '综合排序'},
+      {checked: false, value: 2, name: '人气优先'},
+      {checked: false, value: 3, name: '好评优先'},
+      {checked: false, value: 4, name: '新书优先'},
+      {checked: true, value: 5, name: '智能排序'}
+    ],
+    ageTypes: [
+      {checked: false, value: 0, name: '不分类'},
+      {checked: true, value: 1, name: '0-2岁'},
+      {checked: false, value: 2, name: '3-5岁'},
+      {checked: false, value: 3, name: '6-8岁'},
+      {checked: false, value: 4, name: '8岁以上'}
+    ],
+    tags: [
       {checked: false, value: 1, name: '课外阅读'},
       {checked: false, value: 2, name: '亲子关系'},
       {checked: false, value: 3, name: '历史文学'}
     ],
-    languageTypes: ['不分类', '中文', '中文注音', '英文', '中英文'],
+    languageTypes: [
+      {checked: false, value: 0, name: '不分类'},
+      {checked: true, value: 1, name: '中文'},
+      {checked: false, value: 2, name: '中文注音'},
+      {checked: false, value: 3, name: '英文'},
+      {checked: false, value: 4, name: '中英文'}
+    ],
     sortType: 5,
-    ageType: 1,
-    tags: [],
-    languageType: 1,
+    ageValue: 1,
+    tagValue: 0,
+    langValue: 1,
     filterType: null,
     products: []
+  }
+
+  watch = {
+    sortType (newVal) {
+      this.sortTypes = this.sortTypes.map(item => {
+        if (item.value === newVal) {
+          item.checked = true
+        } else {
+          item.checked = false
+        }
+        return item
+      })
+    }
   }
 
   methods = {
@@ -469,42 +534,33 @@ export default class Index extends wepy.page {
       }
 
       if (type === 'sort' && !showDrop) {
-        this.loadByfilterSort()
+        this.hideFilterAndSearch()
       }
     },
-    filterBySort (type) {
+    filterBySort (value) {
       this.filterType = 'sort'
-      this.sortType = type
-      this.loadByfilterSort()
+      this.sortType = value
+      this.hideFilterAndSearch()
     },
     filterByTag (type, value) {
-      this.loadByfilterTag(type, value)
+      this[type] = this[type].map(item => {
+        if (item.value === value) {
+          item.checked = !item.checked
+        }
+        return item
+      })
+    },
+    resetFilter () {
+      this.ageTypes = this.ageTypes.map(item => ({...item, checked: item.value === this.ageValue}))
+      this.tags = this.tags.map(item => ({...item, checked: item.value === this.tagValue}))
+      this.languageTypes = this.languageTypes.map(item => ({...item, checked: item.value === this.langValue}))
+    },
+    searchFilter () {
+      this.hideFilterAndSearch()
     }
   }
 
-  loadByfilterSort () {
-    this.isModalSpinShow = true
-    this.filterVisible = false
-    this.reloadProducts()
-  }
-
-  loadByfilterTag (type, value) {
-    switch (type) {
-      case 'ageType':
-        this.ageType = value
-        break
-      case 'tags':
-        this.tagList = this.tagList.map((item, i) => {
-          if (i === value) {
-            item.checked = !item.checked
-          }
-          return item
-        })
-        break
-      case 'languageType':
-        this.languageType = value
-        break
-    }
+  hideFilterAndSearch () {
     this.isModalSpinShow = true
     this.filterVisible = false
     this.reloadProducts()
@@ -521,18 +577,21 @@ export default class Index extends wepy.page {
   }
 
   async loadProducts (params) {
+    const filterChecked = list =>
+      list.filter(item => item.checked).map(item => item.value)
+
     let filter = [
       {
         key: 'ageType',
-        values: [this.ageType]
+        values: filterChecked(this.ageTypes)
       },
       {
         key: 'tags',
-        values: this.tagList.filter(item => item.checked).map(item => item.value)
+        values: filterChecked(this.tags)
       },
       {
         key: 'languageType',
-        values: [this.languageType]
+        values: filterChecked(this.languageTypes)
       }
     ]
 
@@ -564,6 +623,9 @@ export default class Index extends wepy.page {
       })
       if (items.length > 0) {
         this.pageNum++
+        this.isEmpty = false
+      } else {
+        this.isEmpty = true
       }
     } finally {
       this.isLoading = false

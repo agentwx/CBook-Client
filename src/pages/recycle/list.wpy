@@ -143,7 +143,7 @@
     </view>
   </view>
 
-  <weui-loading fixed-bottom="true" visible="{{isLoading && pageNum > 1}}"></weui-loading>
+  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
 </template>
 
 <script>
@@ -173,6 +173,7 @@
 
     data = {
       isLoading: true,
+      isEmpty: false,
       pageNum: 1,
       orders: []
     }
@@ -199,6 +200,9 @@
         this.orders = this.orders.concat(items)
         if (items.length > 0) {
           this.pageNum++
+          this.isEmpty = false
+        } else {
+          this.isEmpty = true
         }
       } finally {
         this.isLoading = false

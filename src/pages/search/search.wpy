@@ -236,7 +236,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <weui-loading visible="{{isLoading}}"></weui-loading>
+  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
@@ -269,6 +269,8 @@
 
     data = {
       isLoading: null,
+      isEmpty: false,
+      pageNum: 1,
       isSearchShow: false,
       isModalSpinShow: false,
       searchVal: '',
@@ -340,6 +342,9 @@
         })
         if (items.length > 0) {
           this.pageNum++
+          this.isEmpty = false
+        } else {
+          this.isEmpty = true
         }
       } finally {
         this.isLoading = false

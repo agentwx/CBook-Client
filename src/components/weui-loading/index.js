@@ -22,6 +22,10 @@ Component({
       type: Boolean,
       value: true
     },
+    empty: {
+      type: Boolean,
+      value: false
+    },
     fixedBottom: {
       type: [Boolean, String],
       value: false
@@ -29,6 +33,10 @@ Component({
     loadingText: {
       type: String,
       value: '正在加载 ...'
+    },
+    emptyText: {
+      type: String,
+      value: '没有更多数据~'
     }
   },
   computed: {

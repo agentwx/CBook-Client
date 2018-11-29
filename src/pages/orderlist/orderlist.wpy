@@ -192,7 +192,7 @@
     </view>
   </view>
 
-  <weui-loading fixed-bottom="true" visible="{{isLoading && pageNum > 1}}"></weui-loading>
+  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
 </template>
 
 <script>
@@ -224,8 +224,9 @@
 
     data = {
       isLoading: true,
-      tabIndex: 0,
+      isEmpty: false,
       pageNum: 1,
+      tabIndex: 0,
       tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
       orders: []
     }
@@ -276,6 +277,9 @@
 
         if (items.length > 0) {
           this.pageNum++
+          this.isEmpty = false
+        } else {
+          this.isEmpty = true
         }
       } finally {
         this.isLoading = false

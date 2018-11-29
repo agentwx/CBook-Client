@@ -167,6 +167,16 @@ export default class extends wepy.app {
         text: total.toString()
       })
     }
+
+    wepy.getSystemInfo().then(res => {
+      const SDKVersion = parseFloat(res.SDKVersion.replace(/\./g, ''))
+      if (SDKVersion < 223) {
+        wx.showModal({
+          content: '您当前版本的微信不能满足本小程序要求，请升级!',
+          showCancel: false
+        })
+      }
+    })
   }
 
   sleep (s) {
