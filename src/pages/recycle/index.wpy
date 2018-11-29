@@ -513,10 +513,11 @@
       expItem1: false,
       expItem2: false,
       manualShow: false,
+      isHintDel: false,
       isbn: null
     }
 
-    computed = {
+    /* computed = {
       isHintDel () {
         if (store.getState().recycles.list.length > 0) {
           const hintdel = wx.getStorageSync('hintdel.recycle')
@@ -528,7 +529,7 @@
           return false
         }
       }
-    }
+    } */
 
     watch = {
       totalCount () {
@@ -602,6 +603,10 @@
           product: {...res.datas, COUNT: 1}
         }
       })
+      wx.nextTick(() => {
+        this.setHintDel()
+        this.$apply()
+      })
     }
 
     setBadge () {
@@ -617,7 +622,22 @@
       }
     }
 
+    setHintDel () {
+      let isHintDel = false
+      if (this.products.length > 0) {
+        const hintdel = wx.getStorageSync('hintdel.recycle')
+        if (!hintdel) {
+          wx.setStorageSync('hintdel.recycle', true)
+        }
+        isHintDel = !hintdel
+      } else {
+        isHintDel = false
+      }
+      this.isHintDel = isHintDel
+    }
+
     onShow () {
+      this.setHintDel()
       wx.nextTick(() => {
         this.setBadge()
       })

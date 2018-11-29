@@ -341,6 +341,7 @@
     data = {
       isEdit: false,
       isSelectAll: true,
+      isHintDel: false,
       products: []
     }
 
@@ -354,17 +355,6 @@
         return this.products
           .filter(product => product.isChecked)
           .reduce((prev, cur) => prev + cur.COUNT, 0)
-      },
-      isHintDel () {
-        if (this.products.length > 0) {
-          const hintdel = wx.getStorageSync('hintdel.cart')
-          if (!hintdel) {
-            wx.setStorageSync('hintdel.cart', true)
-          }
-          return !hintdel
-        } else {
-          return false
-        }
       }
     }
 
@@ -505,11 +495,26 @@
       }
     }
 
+    setHintDel () {
+      let isHintDel = false
+      if (this.products.length > 0) {
+        const hintdel = wx.getStorageSync('hintdel.cart')
+        if (!hintdel) {
+          wx.setStorageSync('hintdel.cart', true)
+        }
+        isHintDel = !hintdel
+      } else {
+        isHintDel = false
+      }
+      this.isHintDel = isHintDel
+    }
+
     onShow() {
       if (!this.isEdit) {
         this.isSelectAll = true
       }
       this.getProductsFromCart()
+      this.setHintDel()
       wx.nextTick(() => {
         this.setBadge()
       })
