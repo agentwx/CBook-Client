@@ -121,8 +121,6 @@
   }
 
   .uc-listitem {
-    margin-bottom: 20rpx;
-
     .icon {
       color: @gcolor;
     }
