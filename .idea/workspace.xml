@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/recycle/index.wpy" afterPath="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
-    </list>
+    <list default="true" id="bbce70f2-9388-47e2-a56d-cf96f5dccc52" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="shopcart.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="965">
-              <caret line="502" column="38" lean-forward="true" selection-start-line="502" selection-start-column="38" selection-end-line="502" selection-end-column="38" />
+            <state relative-caret-position="132">
+              <caret line="348" column="21" lean-forward="true" selection-start-line="348" selection-start-column="21" selection-end-line="348" selection-end-column="21" />
               <folding>
                 <element signature="e#6892#6915#0" expanded="true" />
               </folding>
@@ -40,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.wpy" pinned="false" current-in-tab="true">
+      <file leaf-file-name="order.wpy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="354" column="31" lean-forward="false" selection-start-line="354" selection-start-column="31" selection-end-line="354" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="519" column="13" lean-forward="true" selection-start-line="519" selection-start-column="13" selection-end-line="519" selection-end-column="13" />
+            <state relative-caret-position="206">
+              <caret line="533" column="12" lean-forward="false" selection-start-line="533" selection-start-column="12" selection-end-line="533" selection-end-column="12" />
               <folding>
                 <element signature="e#10366#10389#0" expanded="true" />
               </folding>
@@ -63,8 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filter-catelog-item</find>
-      <find>.filter-toolbar-wrap</find>
       <find>filter-toolbar</find>
       <find>filter-toolbar-inner</find>
       <find>scale</find>
@@ -90,9 +96,11 @@
       <find>swiper-item</find>
       <find>custom</find>
       <find>hintDel</find>
-      <find>console</find>
       <find>console.log</find>
       <find>isHintDel</find>
+      <find>console</find>
+      <find>orderCreated</find>
+      <find>orderBuyed</find>
     </findStrings>
     <replaceStrings>
       <replace>timeHalf</replace>
@@ -175,7 +183,6 @@
         <option value="$PROJECT_DIR$/src/pages/recycle/list.wpy" />
         <option value="$PROJECT_DIR$/src/pages/orderlist/orderlist.wpy" />
         <option value="$PROJECT_DIR$/src/pages/home/home.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
         <option value="$PROJECT_DIR$/src/components/tab-head/index.less" />
         <option value="$PROJECT_DIR$/src/components/panel/index.less" />
@@ -190,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/pages/detail/detail.wpy" />
         <option value="$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy" />
         <option value="$PROJECT_DIR$/src/pages/recycle/index.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/order/order.wpy" />
       </list>
     </option>
   </component>
@@ -314,12 +322,12 @@
       <updated>1541729501910</updated>
       <workItem from="1541729503250" duration="127251000" />
       <workItem from="1542243669812" duration="252559000" />
-      <workItem from="1543453247169" duration="9916000" />
+      <workItem from="1543453247169" duration="10385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="389726000" />
+    <option name="totallyTimeSpent" value="390195000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -783,31 +791,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
+    <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4163">
-          <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="206">
+          <caret line="533" column="12" lean-forward="false" selection-start-line="533" selection-start-column="12" selection-end-line="533" selection-end-column="12" />
+          <folding>
+            <element signature="e#10366#10389#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/shopcart/shopcart.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="965">
-          <caret line="502" column="38" lean-forward="true" selection-start-line="502" selection-start-column="38" selection-end-line="502" selection-end-column="38" />
+        <state relative-caret-position="132">
+          <caret line="348" column="21" lean-forward="true" selection-start-line="348" selection-start-column="21" selection-end-line="348" selection-end-column="21" />
           <folding>
             <element signature="e#6892#6915#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/recycle/index.wpy">
+    <entry file="file://$PROJECT_DIR$/src/pages/order/order.wpy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="519" column="13" lean-forward="true" selection-start-line="519" selection-start-column="13" selection-end-line="519" selection-end-column="13" />
-          <folding>
-            <element signature="e#10366#10389#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="384">
+          <caret line="354" column="31" lean-forward="false" selection-start-line="354" selection-start-column="31" selection-end-line="354" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
