@@ -469,6 +469,7 @@
       try {
         let res = await fetch.post('/bookinfo/detail', {isbn})
         this.product = {...this.product, ...res.datas}
+        this.canBuy = true
         this.$apply()
       } catch (msg) {
         this.canBuy = false
