@@ -91,6 +91,7 @@
 
       &.sort {
         text-align: left;
+        margin-right: 24rpx;
       }
 
       &.filter {
@@ -155,8 +156,10 @@
     .flex-v-center();
     margin-bottom: 30rpx;
 
-    .icon {
+    icon {
+      position: relative;
       margin-right: 10rpx;
+      top: -4rpx;
     }
   }
 

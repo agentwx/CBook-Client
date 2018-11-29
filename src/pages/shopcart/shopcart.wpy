@@ -515,7 +515,7 @@
       }
       this.getProductsFromCart()
       this.setHintDel()
-      wx.nextTick(() => {
+      setTimeout(() => {
         this.setBadge()
       })
       store.dispatch({

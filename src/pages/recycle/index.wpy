@@ -589,7 +589,7 @@
           product: {...res.datas, COUNT: 1}
         }
       })
-      wx.nextTick(() => {
+      setTimeout(() => {
         this.setHintDel()
         this.$apply()
       })
@@ -624,7 +624,7 @@
 
     onShow () {
       this.setHintDel()
-      wx.nextTick(() => {
+      setTimeout(() => {
         this.setBadge()
       })
     }
