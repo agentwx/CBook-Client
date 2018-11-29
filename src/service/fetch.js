@@ -1,5 +1,5 @@
 import wepy from 'wepy'
-import {toast} from '../utils/util'
+import { toast } from '../utils/util'
 
 export const serverUrl = 'http://123.206.112.37:9001'
 
