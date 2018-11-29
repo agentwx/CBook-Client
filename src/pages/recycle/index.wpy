@@ -517,20 +517,6 @@
       isbn: null
     }
 
-    /* computed = {
-      isHintDel () {
-        if (store.getState().recycles.list.length > 0) {
-          const hintdel = wx.getStorageSync('hintdel.recycle')
-          if (!hintdel) {
-            wx.setStorageSync('hintdel.recycle', true)
-          }
-          return !hintdel
-        } else {
-          return false
-        }
-      }
-    } */
-
     watch = {
       totalCount () {
         this.setBadge()
