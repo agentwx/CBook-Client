@@ -270,7 +270,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
-      <icon name="find" custom-style=" font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" custom-style=" font-size: 36rpx;color: #999;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者、图书的ISBN号" placeholder-class="input-placeholder" disabled></input>
     </view>
   </view>

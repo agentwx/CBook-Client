@@ -175,10 +175,10 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search">
-      <icon name="find" custom-style="font-size: 36rpx;color: #888;"></icon>
+      <icon name="find" custom-style="font-size: 36rpx;color: #999;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者、图书的ISBN号" placeholder-class="input-placeholder" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="search" />
       <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
-        <icon name="close-circle" color="#888"></icon>
+        <icon name="close-circle" color="#999"></icon>
       </view>
     </view>
     <view class="search-cancel {{!isSearchShow ? 'open' : ''}}" @tap="cancelSearch">取消</view>
