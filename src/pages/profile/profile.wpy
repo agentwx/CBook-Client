@@ -1,0 +1,143 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    background-color: #f5f5f5;
+  }
+
+  .profile {
+    padding: 40rpx 0 60rpx;
+    background-color: #fff;
+    .flex-v-center();
+    flex-direction: column;
+
+    .avatar {
+      width: 140rpx;
+      height: 140rpx;
+      border-radius: 50%;
+      overflow: hidden;
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .nickname {
+      color: #888;
+      margin-top: 16rpx;
+    }
+  }
+
+  .list-item-inner {
+    .flex();
+    justify-content: space-between;
+
+    text {
+      color: #888;
+    }
+  }
+
+  .profile-listitem {
+    margin-bottom: 20rpx;
+  }
+
+  .delete-button {
+    padding: 24rpx 0;
+    text-align: center;
+    color: #888;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+
+    &:active {
+      background-color: @color-active;
+    }
+  }
+
+  .profile-action {
+    margin-top: 60rpx;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+</style>
+<template>
+  <view class="profile">
+    <view class="avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="nickname">
+      <open-data type="userNickName" lang="zh_CN"></open-data>
+    </view>
+  </view>
+
+  <view class="profile-listitem">
+    <list-item bordered="true">
+      <view class="list-item-inner">
+        <text class="label">性别</text>
+        <text class="value">保密</text>
+      </view>
+    </list-item>
+    <list-item>
+      <view class="list-item-inner">
+        <text class="label">地区</text>
+        <text class="value">上海</text>
+      </view>
+    </list-item>
+  </view>
+
+  <view class="profile-listitem">
+    <list-item bordered="true">
+      <view class="list-item-inner">
+        <text class="label">宝宝昵称</text>
+        <text class="value">饺子</text>
+      </view>
+    </list-item>
+    <list-item bordered="true">
+      <view class="list-item-inner">
+        <text class="label">宝宝生日</text>
+        <text class="value">2018-10-12</text>
+      </view>
+    </list-item>
+    <list-item>
+      <view class="list-item-inner">
+        <text class="label">亲子关系</text>
+        <text class="value">父女</text>
+      </view>
+    </list-item>
+  </view>
+
+  <view class="delete-button">删除宝贝信息</view>
+
+  <view class="profile-action">
+    <btn @tap="addRelative">添加宝贝信息</btn>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '宝贝信息',
+      usingComponents: {
+        'list-item': '/components/list-item/index',
+        'btn': '/components/button/index'
+      }
+    }
+
+    components = {
+    }
+
+    data = {
+    }
+
+    methods = {
+      addRelative () {
+        this.$navigate('/pages/profile/add')
+      }
+    }
+
+    onLoad() {
+    }
+  }
+</script>

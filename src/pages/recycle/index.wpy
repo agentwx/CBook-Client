@@ -1,5 +1,6 @@
 <style lang="less">
   @import '../../less/mixin';
+  @import '../../less/ellipsis';
 
   .recycle-intro {
     padding-top: 40rpx;
@@ -183,14 +184,22 @@
 
 
   .orders-wrap {
-    margin-top: 20rpx;
+    margin-top: 30rpx;
   }
 
   .order-panel {
     .flex();
-    padding-left: 30rpx;
-    padding-right: 30rpx;
-    margin-bottom: 30rpx;
+    position: relative;
+    padding: 20rpx;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 20rpx;
+      right: 20rpx;
+      bottom: 0;
+      border-bottom: 1rpx solid @color-underline;
+    }
   }
 
   .order-cover {
@@ -206,6 +215,8 @@
   }
 
   .order-main {
+    width: 100%;
+    overflow: hidden;
     flex: 1;
     .flex-h-center();
     flex-direction: column;
@@ -215,14 +226,15 @@
   .order-pd-hd {
     .title {
       font-size: 30rpx;
-      .word-break();
-      margin-bottom: 6rpx;
+      font-weight: bold;
+      .ellipsis();
     }
 
     .desc {
       .light-font();
       color: #888;
       font-size: 24rpx;
+      .ellipsis();
       margin-bottom: 6rpx;
     }
   }
@@ -422,7 +434,6 @@
               <view class="order-pd-hd">
                 <view class="title">{{item.name}}</view>
                 <view class="desc">{{item.author}}</view>
-                <view class="desc">{{item.press}}</view>
               </view>
               <view class="order-pd-specs">
                 <text class="price">￥{{item.costPrice}}</text>

@@ -1,5 +1,6 @@
 <style lang="less">
   @import '../../less/mixin';
+  @import '../../less/ellipsis';
 
   page {
     height: 100%;
@@ -72,6 +73,15 @@
     padding-right: 20rpx;
     height: 78rpx;
     z-index: 5;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 20rpx;
+      right: 20rpx;
+      bottom: 0;
+      border-bottom: 1rpx solid @color-underline;
+    }
 
     &.expand {
       background-color: #fff;
@@ -214,8 +224,18 @@
 
 
   .product-panel {
+    position: relative;
     .flex();
     padding: 20rpx;
+
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      left: 20rpx;
+      right: 20rpx;
+      bottom: 0;
+      border-bottom: 1rpx solid @color-underline;
+    }
   }
 
   .product-cover {
@@ -237,42 +257,47 @@
     .flex();
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
 
     .product-caption {
       font-size: 30rpx;
-      .word-break();
-      margin-bottom: 10rpx;
+      font-weight: bold;
+      .ellipsis();
+      margin-bottom: 6rpx;
     }
 
     .product-press {
       .light-font();
-      font-size: 24rpx;
-      color: #888;
+      .ellipsis();
+      font-size: 26rpx;
+      color: #666;
     }
 
     .product-desc {
       .light-font();
       font-size: 24rpx;
       color: #888;
-      margin-top: 6rpx;
-      margin-bottom: 12rpx;
+      margin-bottom: 6rpx;
     }
 
     .product-tags {
-      margin-top: 16rpx;
+      margin-top: 8rpx;
     }
   }
 
   .product-subinfo {
     .flex-v-center();
+    padding-bottom: 10rpx;
 
     .product-price {
       font-size: 32rpx;
+      font-weight: bold;
       color: #eb5a21;
 
       .unit {
+        font-weight: normal;
         font-size: 24rpx;
-        margin-right: 6rpx;
       }
     }
 
@@ -417,7 +442,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <weui-loading visible="{{products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
@@ -449,6 +474,7 @@ export default class Index extends wepy.page {
   data = {
     isLoading: true,
     isEmpty: false,
+    inited: false,
     pageNum: 1,
     isModalSpinShow: false,
     filterBarFixed: false,
@@ -629,6 +655,7 @@ export default class Index extends wepy.page {
       }
     } finally {
       this.isLoading = false
+      this.inited = true
       this.isModalSpinShow = false
       this.$apply()
     }

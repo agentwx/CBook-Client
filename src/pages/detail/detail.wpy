@@ -8,6 +8,7 @@
 
   .detail-swiper {
     height: 500rpx;
+    pointer-events: none;
   }
 
   .swiper-item {
@@ -43,9 +44,11 @@
     .now-price {
       color: #eb5a21;
       font-size: 40rpx;
+      font-weight: bold;
       margin-right: 16rpx;
 
       .unit {
+        font-weight: normal;
         font-size: 26rpx;
       }
     }
@@ -97,6 +100,7 @@
     .flex();
 
     .action-item {
+      line-height: 1.2;
       .flex-center();
       flex-direction: column;
       height: 100rpx;
@@ -131,7 +135,7 @@
       }
 
       .buy-text {
-        font-size: 32rpx;
+        font-size: 30rpx;
       }
 
       &.cash-buy {
@@ -156,13 +160,13 @@
 
 
   .detail-pdintro-wrap {
-    margin-top: 60rpx;
+    margin-top: 30rpx;
   }
 
   .pdintro-title {
     text-align: center;
-    font-size: 32rpx;
-    margin: 0 20rpx 70rpx;
+    font-size: 36rpx;
+    margin: 0 20rpx 50rpx;
   }
 
   .pdintro-subtitle {
@@ -172,11 +176,11 @@
     > .text {
       position: relative;
       display: inline-block;
-      padding: 10rpx 40rpx;
+      padding: 8rpx 30rpx;
       font-size: 30rpx;
       border-top-left-radius: 12rpx;
       border-bottom-right-radius: 12rpx;
-      background-color: @color-default;
+      background-color: #e8e8e8;
 
       &:before {
         content: '';
@@ -198,6 +202,7 @@
     image {
       width: 100%;
       margin-bottom: 20rpx;
+      border: 1rpx dashed #31b3ed;
     }
 
     &:last-child {
@@ -209,14 +214,20 @@
     color:#777;
     font-size: 26rpx;
     .light-font();
-    margin-bottom: 16rpx;
+    padding-top: 10rpx;
+    padding-bottom: 16rpx;
   }
 
   .pdintro-content {
-    .light-font();
-    font-size: 26rpx;
-    line-height: 1.5;
-    text-indent: 2em;
+
+    .text {
+      .light-font();
+      font-size: 26rpx;
+      line-height: 1.6;
+      text-indent: 2em;
+      letter-spacing: 2rpx;
+      margin-bottom: 6rpx;
+    }
   }
 
 
@@ -279,15 +290,15 @@
 </style>
 <template>
   <view class="detail-swiper-wrap">
-    <swiper class="detail-swiper" autoplay="true" interval="5000" duration="300" indicatorDots="true" circular="true">
+    <swiper class="detail-swiper" autoplay="false" interval="5000" duration="300" circular="true">
       <swiper-item class="swiper-item">
         <image mode="aspectFit" src="{{product.smallImageUrl}}" lazyload="true"></image>
       </swiper-item>
-      <repeat for="{{product.imags}}">
+      <!--<repeat for="{{product.imags}}">
         <swiper-item class="swiper-item">
           <image src="{{item}}" lazyload="true"></image>
         </swiper-item>
-      </repeat>
+      </repeat>-->
     </swiper>
   </view>
   <view>
@@ -332,6 +343,8 @@
 
   </view>
 
+  <view class="spliter"></view>
+
   <view class="detail-action-bar">
     <icon-item icon="cart" iconSize="middle" custom-class="action-item action-cart" @tap="gotoCart">
       <text>购物车</text>
@@ -360,7 +373,9 @@
     </view>
     <view class="pdintro-body">
       <view class="pdintro-content">
-        {{product.contentBrief}}
+        <repeat for="{{contentBriefs}}">
+          <view class="text">{{item}}</view>
+        </repeat>
       </view>
     </view>
     <view class="pdintro-subtitle">
@@ -369,7 +384,9 @@
     <view class="pdintro-body">
       <view class="pdintro-author">{{product.author}}</view>
       <view class="pdintro-content">
-        {{product.authorBrief}}
+        <repeat for="{{authorBriefs}}">
+          <view class="text">{{item}}</view>
+        </repeat>
       </view>
     </view>
     <view class="pdintro-subtitle">
@@ -430,7 +447,9 @@
     data = {
       canBuy: false,
       errMsg: '',
-      product: {}
+      product: {},
+      contentBriefs: [],
+      authorBriefs: []
     }
 
     computed = {
@@ -469,6 +488,8 @@
       try {
         let res = await fetch.post('/bookinfo/detail', {isbn})
         this.product = {...this.product, ...res.datas}
+        this.contentBriefs = res.datas.contentBrief.split(/\n|<br>/g)
+        this.authorBriefs = res.datas.authorBrief.split(/\n|<br>/g)
         this.canBuy = true
         this.$apply()
       } catch (msg) {

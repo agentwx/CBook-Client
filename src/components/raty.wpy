@@ -19,7 +19,7 @@
     .raty-value {
       margin-left: 16rpx;
       color: #999;
-      font-size: 30rpx;
+      font-size: 28rpx;
     }
   }
 </style>

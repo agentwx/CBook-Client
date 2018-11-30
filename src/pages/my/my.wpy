@@ -53,12 +53,6 @@
       border-radius: 60rpx;
       font-size: 24rpx;
     }
-
-    .uc-birth-entry {
-      .flex-v-center();
-      align-self: flex-end;
-      margin-bottom: 10rpx;
-    }
   }
 
   .uc-assets-panel {
@@ -97,8 +91,9 @@
   }
 
   .order-entry-panel {
-    margin-top: 36rpx;
-    margin-bottom: 0;
+    margin-top: 36rpx !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 
     .panel-title {
       margin-bottom: 0;
@@ -141,10 +136,6 @@
       </view>
       <view class="uc-usertype">普通会员</view>
     </view>
-    <view class="uc-birth-entry">
-      <icon name="baby" />
-      <text>出生日期</text>
-    </view>
   </view>
 
   <view class="uc-assets-panel">
@@ -171,11 +162,16 @@
     </view>
   </panel>
 
+  <view class="spliter"></view>
+
   <view class="uc-listitem">
     <list-item icon="order" @tap="goToRecycleOrders">回收订单</list-item>
     <list-item icon="geo" @tap="goToAddress">地址管理</list-item>
+    <list-item icon="user-profile" @tap="goToProfile">个人资料</list-item>
     <list-item icon="service" @tap="callService">联系客服</list-item>
   </view>
+
+  <view class="spliter"></view>
 </template>
 
 <script>
@@ -210,6 +206,9 @@
       },
       goToAddress () {
         this.$navigate('/pages/address/address')
+      },
+      goToProfile () {
+        this.$navigate('/pages/profile/profile')
       },
       callService () {
         wx.makePhoneCall({

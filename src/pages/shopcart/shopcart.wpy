@@ -1,5 +1,6 @@
 <style lang="less">
   @import '../../less/mixin';
+  @import '../../less/ellipsis';
 
   page {
     padding-bottom: 100rpx;
@@ -8,7 +9,7 @@
   .cart-edit-hd {
     .flex-v-center();
     justify-content: space-between;
-    padding: 20rpx 20rpx 0;
+    padding: 30rpx 20rpx 0;
     font-size: 32rpx;
 
     .edit-left {
@@ -37,9 +38,17 @@
 
   .cart-panel {
     .flex();
-    padding-left: 20rpx;
-    padding-right: 20rpx;
-    margin-bottom: 30rpx;
+    position: relative;
+    padding: 20rpx;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 20rpx;
+      right: 20rpx;
+      bottom: 0;
+      border-bottom: 1rpx solid @color-underline;
+    }
   }
 
   .cart-col-checkbox {
@@ -59,6 +68,8 @@
   }
 
   .cart-pd-main {
+    width: 100%;
+    overflow: hidden;
     flex: 1;
     .flex();
     flex-direction: column;
@@ -66,21 +77,22 @@
 
     .pd-title {
       font-size: 30rpx;
-      .word-break();
-      margin-bottom: 6rpx;
+      font-weight: bold;
+      .ellipsis();
     }
 
     .pd-desc {
       .light-font();
       color: #999;
       font-size: 24rpx;
+      .ellipsis();
     }
 
     .pd-orig-price {
       .light-font();
       color: #777;
       font-size: 26rpx;
-      margin-top: 4rpx;
+      margin-top: 10rpx;
     }
 
     .pd-now-price {
@@ -178,7 +190,6 @@
   .cart-summary {
     font-size: 30rpx;
     font-weight: bold;
-    margin-bottom: 6rpx;
   }
 
   .cart-hint {
@@ -269,7 +280,6 @@
               <view class="pd-head">
                 <view class="pd-title">{{item.name}}</view>
                 <view class="pd-desc">{{item.author}}</view>
-                <view class="pd-desc">{{item.press}}</view>
                 <view class="pd-orig-price">原价：￥{{item.costPrice}}</view>
               </view>
               <view class="cart-pd-footer">

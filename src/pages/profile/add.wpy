@@ -1,0 +1,79 @@
+<style lang="less">
+  @import '../../less/mixin';
+
+  page {
+    background-color: #f5f5f5;
+  }
+
+  .list-item-inner {
+    .flex();
+    justify-content: space-between;
+
+    text {
+      color: #888;
+    }
+  }
+
+  .profile-listitem {
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .profile-action {
+    margin-top: 60rpx;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+</style>
+<template>
+  <view class="profile-listitem">
+    <list-item bordered="true">
+      <view class="list-item-inner">
+        <text class="label">宝宝昵称</text>
+        <text class="value">饺子</text>
+      </view>
+    </list-item>
+    <list-item bordered="true">
+      <view class="list-item-inner">
+        <text class="label">宝宝生日</text>
+        <text class="value">2018-10-12</text>
+      </view>
+    </list-item>
+    <list-item>
+      <view class="list-item-inner">
+        <text class="label">亲子关系</text>
+        <text class="value">父女</text>
+      </view>
+    </list-item>
+  </view>
+
+  <view class="profile-action">
+    <btn>添加</btn>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '添加宝贝信息',
+      usingComponents: {
+        'list-item': '/components/list-item/index',
+        'btn': '/components/button/index'
+      }
+    }
+
+    components = {
+    }
+
+    data = {
+    }
+
+    methods = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
