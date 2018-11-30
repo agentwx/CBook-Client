@@ -341,7 +341,7 @@
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
       <view class="filter-toolbar-inner {{filterVisible ? 'expand' : ''}}">
         <view class="filter-itemtype sort {{filterVisible && filterType === 'sort' ? 'selected' : ''}}" @tap="showFilter('sort', 0, true)">
-          综合排序<icon size="x-small" name="caret-down"></icon>
+          {{sortName}}<icon size="x-small" name="caret-down"></icon>
         </view>
         <view class="filter-itemtype {{sortType === 2 ? 'selected' : ''}}" @tap="showFilter('sort', 2, false)">
           人气优先
@@ -480,11 +480,11 @@ export default class Index extends wepy.page {
     filterBarFixed: false,
     filterVisible: false,
     sortTypes: [
-      {checked: false, value: 1, name: '综合排序'},
+      {checked: true, value: 1, name: '综合排序'},
       {checked: false, value: 2, name: '人气优先'},
       {checked: false, value: 3, name: '好评优先'},
       {checked: false, value: 4, name: '新书优先'},
-      {checked: true, value: 5, name: '智能排序'}
+      {checked: false, value: 5, name: '智能排序'}
     ],
     ageTypes: [
       {checked: false, value: 0, name: '不分类'},
@@ -505,12 +505,18 @@ export default class Index extends wepy.page {
       {checked: false, value: 3, name: '英文'},
       {checked: false, value: 4, name: '中英文'}
     ],
-    sortType: 5,
+    sortType: 1,
     ageValue: 1,
     tagValue: 0,
     langValue: 1,
     filterType: null,
     products: []
+  }
+
+  computed = {
+    sortName () {
+      return this.sortTypes.find(item => item.value === this.sortType).name
+    }
   }
 
   watch = {
