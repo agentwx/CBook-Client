@@ -236,7 +236,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <weui-loading visible="{{products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 

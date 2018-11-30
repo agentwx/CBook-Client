@@ -111,6 +111,7 @@
     right: 0;
     top: 0;
     background-color: #fff;
+    z-index: -1;
   }
 
   .empty-layer {
@@ -192,7 +193,7 @@
     </view>
   </view>
 
-  <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
 </template>
 
 <script>

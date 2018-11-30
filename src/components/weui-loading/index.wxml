@@ -1,4 +1,4 @@
-<view class="weui-loadmore {{isFixedBottom ? 'fixed-bottom' : ''}} {{customClass}}" style="visibility: {{visible ? 'visible' : 'hidden'}};{{customStyle}}" hidden="{{!show}}">
+<view class="weui-loadmore {{isFixedBottom ? 'fixed-bottom' : ''}} {{customClass}}" style="visibility: {{visible || empty ? 'visible' : 'hidden'}};{{customStyle}}" hidden="{{!show}}">
   <block wx:if="{{empty}}">
     <view class="weui-empty__tips">{{emptyText}}</view>
   </block>
