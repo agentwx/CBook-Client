@@ -1,0 +1,11 @@
+<view class="slider {{ disabled ? 'slider--disabled' : '' }} {{customClass}}" bindtap="onClick" style="{{customStyle}}">
+  <view class="slider__bar" style="{{ barStyle }}">
+    <view
+      class="slider__button"
+      bindtouchstart="onTouchStart"
+      catchtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+      bindtouchcancel="onTouchEnd"
+    />
+  </view>
+</view>

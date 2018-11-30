@@ -1,0 +1,14 @@
+<view class="progress {{customClass}}" style="{{customStyle}}">
+  <view
+    class="progress__portion {{ showPivot && text ? 'progress__portion--with-pivot' : '' }}"
+    style="{{ portionStyle }}"
+  >
+    <view
+      wx:if="{{ showPivot && text }}"
+      style="{{ pivotStyle }}"
+      class="progress__pivot"
+    >
+      {{ text }}
+    </view>
+  </view>
+</view>
