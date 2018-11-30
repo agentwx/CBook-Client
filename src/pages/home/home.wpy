@@ -163,13 +163,14 @@
   }
 
   .filter-catelog-hd {
-    .flex-v-center();
     margin-bottom: 20rpx;
 
     icon {
-      position: relative;
       margin-right: 6rpx;
-      top: -4rpx;
+    }
+
+    icon, text {
+      vertical-align: middle;
     }
   }
 
