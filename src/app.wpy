@@ -26,7 +26,7 @@
     font-weight: normal;
   }
 
-  page, view, text, scroll-view, input, textarea, button, form {
+  page, view, text, scroll-view, input, textarea, button, form, image {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
