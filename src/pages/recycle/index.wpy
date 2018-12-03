@@ -127,7 +127,7 @@
   }
 
   .manual-panel {
-    margin: 50rpx 40rpx;
+    margin: 100rpx 40rpx 0;
     padding: 40rpx 50rpx;
     border-radius: 16px;
     background-color: #fff;

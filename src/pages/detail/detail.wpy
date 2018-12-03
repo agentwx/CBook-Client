@@ -116,6 +116,12 @@
       color: #666;
       font-size: 24rpx;
 
+      &.shake {
+        .icon-item {
+          .animation(tada 1s);
+        }
+      }
+
       .badge {
         position: absolute;
         left: 65%;
@@ -171,7 +177,7 @@
 
   .pdintro-subtitle {
     margin: 0 20rpx 20rpx;
-    border-bottom: 1rpx solid @color-border;
+    border-bottom: 1rpx solid @color-underline;
 
     > .text {
       position: relative;
@@ -180,7 +186,7 @@
       font-size: 30rpx;
       border-top-left-radius: 12rpx;
       border-bottom-right-radius: 12rpx;
-      background-color: #e8e8e8;
+      background-color: @active-color;
 
       &:before {
         content: '';
@@ -346,10 +352,10 @@
   <view class="spliter"></view>
 
   <view class="detail-action-bar">
-    <icon-item icon="cart" iconSize="middle" custom-class="action-item action-cart" @tap="gotoCart">
-      <text>购物车</text>
+    <view class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="gotoCart">
+      <icon-item icon="cart" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
       <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
-    </icon-item>
+    </view>
     <view class="action-item action-buy cash-buy" @tap="gotoBuy">
       <view>
         <text class="unit">￥</text>
@@ -446,6 +452,7 @@
 
     data = {
       canBuy: false,
+      buyTriggered: false,
       errMsg: '',
       product: {},
       contentBriefs: [],
@@ -455,6 +462,18 @@
     computed = {
       publishDateStr () {
         return formatDate(this.product.publishDate, 'yyyy年MM月dd日')
+      }
+    }
+
+    watch = {
+      cartCount (value, oValue) {
+        if (value > oValue && !this.buyTriggered) {
+          this.buyTriggered = true
+          setTimeout(() => {
+            this.buyTriggered = false
+            this.$apply()
+          }, 1000)
+        }
       }
     }
 
