@@ -16,12 +16,22 @@
   border: 0 solid @border-color;
 }
 
-.hairline-bottom(@border-color: #eee, @left: 0) {
+.hairline-bottom(@border-color: #eee, @left: 0, @right: 0) {
   .hairline-common();
   top: auto;
   left: @left;
-  right: 0;
+  right: @right;
   bottom: 0;
+  transform: scaleY(0.5);
+  border-bottom: 1px solid @border-color;
+}
+
+.hairline-top(@border-color: #eee, @left: 0, @right: 0) {
+  .hairline-common();
+  top: 0;
+  left: @left;
+  right: @right;
+  bottom: auto;
   transform: scaleY(0.5);
   border-bottom: 1px solid @border-color;
 }

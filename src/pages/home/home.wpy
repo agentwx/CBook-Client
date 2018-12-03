@@ -75,12 +75,8 @@
     z-index: 5;
 
     &:after {
-      content: '';
-      position: absolute;
-      left: 20rpx;
-      right: 20rpx;
-      bottom: 0;
-      border-bottom: 1rpx solid @color-underline;
+      margin-left: 40rpx;
+      margin-right: 40rpx;
     }
 
     &.expand {
@@ -219,13 +215,9 @@
     .flex();
     padding: 20rpx;
 
-    &:not(:last-child):after {
-      content: '';
-      position: absolute;
-      left: 20rpx;
-      right: 20rpx;
-      bottom: 0;
-      border-bottom: 1rpx solid @color-underline;
+    &:after {
+      margin-left: 40rpx;
+      margin-right: 40rpx;
     }
   }
 
@@ -330,7 +322,7 @@
 
   <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="true">
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
-      <view class="filter-toolbar-inner {{filterVisible ? 'expand' : ''}}">
+      <view class="filter-toolbar-inner hairline--bottom {{filterVisible ? 'expand' : ''}}">
         <view class="filter-itemtype sort {{filterVisible && filterType === 'sort' ? 'selected' : ''}}" @tap="showFilter('sort', 0, true)">
           {{sortName}}<icon size="x-small" name="caret-down"></icon>
         </view>
@@ -399,7 +391,7 @@
 
   <view class="product-listview">
     <repeat for="{{products}}">
-      <view class="product-panel" @tap="viewDetail({{item}})">
+      <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="viewDetail({{item}})">
         <view class="product-cover">
           <image src="{{item.smallImageUrl}}" lazyload="true"></image>
         </view>
@@ -540,7 +532,8 @@ export default class Index extends wepy.page {
 
       if (showDrop && this.products.length > 0 && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
         wx.pageScrollTo({
-          scrollTop: this.filterBarTop + 1
+          scrollTop: this.filterBarTop + 1,
+          duration: this.isIOS ? 300 : 0
         })
         setTimeout(() => {
           this.filterType = type
@@ -549,7 +542,7 @@ export default class Index extends wepy.page {
           }
           this.filterVisible = true
           this.$apply()
-        }, 300)
+        }, this.isIOS ? 300 : 0)
       } else {
         if (showDrop && type === this.filterType) {
           this.filterVisible = !this.filterVisible
@@ -726,7 +719,7 @@ export default class Index extends wepy.page {
     }
   }
 
-  onLoad() {
+  async onLoad() {
     this.getFilterBarTop()
     store.dispatch({
       type: 'CLEAR_PRODUCTS'
@@ -734,6 +727,8 @@ export default class Index extends wepy.page {
     this.$parent.ready(() => {
       this.reloadProducts()
     })
+    const sysInfo = await wepy.getSystemInfo()
+    this.isIOS = /IOS/i.test(sysInfo.system)
   }
 }
 </script>

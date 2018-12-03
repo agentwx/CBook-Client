@@ -42,12 +42,8 @@
     padding: 20rpx;
 
     &:after {
-      content: '';
-      position: absolute;
-      left: 20rpx;
-      right: 20rpx;
-      bottom: 0;
-      border-bottom: 1rpx solid @color-underline;
+      margin-left: 40rpx;
+      margin-right: 40rpx;
     }
   }
 
@@ -271,7 +267,7 @@
     <view class="cart-list">
       <repeat for="{{products}}">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
-          <view class="cart-panel" @tap="toggleSelect({{item}})">
+          <view class="cart-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="toggleSelect({{item}})">
             <view class="cart-col-checkbox cart-checkbox">
               <check-box readonly="true" checked="{{item.isChecked}}" />
             </view>

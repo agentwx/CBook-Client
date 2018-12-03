@@ -34,14 +34,8 @@
 
   .order-body {
     .flex();
-    padding-top: 10rpx;
-    padding-bottom: 10rpx;
-  }
-
-  .panel {
-    .order-body:not(:last-child) {
-      border-bottom: 1rpx solid @color-underline;
-    }
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
   }
 
   .order-cover {
@@ -110,12 +104,6 @@
     }
   }
 
-  panel:last-child {
-    .panel {
-      margin-bottom: 0;
-    }
-  }
-
   .empty-layer-wrap {
     position: fixed;
     left: 0;
@@ -165,7 +153,7 @@
           <text class="order-status {{item.orderStatus == 10 ? 'closed' : ''}}">{{item.orderStatusText}}</text>
         </view>
         <block wx:for="{{item.bookInfos}}" wx:for-item="book" wx:key="index">
-          <view class="order-body">
+          <view class="order-body {{index < item.bookInfos.length - 1 ? 'hairline--bottom' : ''}}">
             <view class="order-cover">
               <image src="{{book.smallIcon}}" lazyload="true"></image>
             </view>

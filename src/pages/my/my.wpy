@@ -168,7 +168,7 @@
     <list-item icon="order" @tap="goToRecycleOrders">回收订单</list-item>
     <list-item icon="geo" @tap="goToAddress">地址管理</list-item>
     <list-item icon="user-profile" @tap="goToProfile">个人资料</list-item>
-    <list-item icon="service" @tap="callService">联系客服</list-item>
+    <list-item icon="service" bordered="false" @tap="callService">联系客服</list-item>
   </view>
 
   <view class="spliter"></view>

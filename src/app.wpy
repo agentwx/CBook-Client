@@ -1,8 +1,9 @@
 <style lang="less">
   @import "less/font";
   @import "less/mixin";
-  @import 'less/iconfont';
-  @import 'less/animation';
+  @import "less/hairline";
+  @import "less/iconfont";
+  @import "less/animation";
 
   page {
     background-color: #fff;
@@ -40,10 +41,14 @@
   }
 
   .panel-footer {
+    position: relative;
     padding-top: 24rpx;
-    border-top: 1rpx solid @color-underline;
     display: flex;
     justify-content: space-between;
+
+    &:after {
+      .hairline-top();
+    }
   }
 
   .spliter {

@@ -1,4 +1,5 @@
 @import "../../less/mixin";
+@import "../../less/hairline";
 
 .list-item {
   position: relative;
@@ -8,12 +9,7 @@
 
   &.bordered {
     &:after {
-      content: '';
-      position: absolute;
-      left: 20rpx;
-      right: 20rpx;
-      bottom: 0;
-      border-bottom: 1rpx solid @color-underline;
+      .hairline-bottom(@border-color, 30rpx, 30rpx);
     }
   }
 

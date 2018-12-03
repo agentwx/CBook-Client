@@ -1,7 +1,7 @@
 <transition
   show="{{ show }}"
   custom-class="overlay {{customClass}}"
-  custom-style="z-index: {{ zIndex }}; {{ mask ? 'background-color: rgba(0, 0, 0, .7);' : '' }}; {{ customStyle }}"
+  custom-style="z-index: {{ zIndex }}; {{ mask ? 'background-color: rgba(0, 0, 0, .6);' : '' }}; {{ customStyle }}"
   catch:touchmove="noop"
 >
 </transition>

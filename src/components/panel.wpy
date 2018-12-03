@@ -1,5 +1,6 @@
 <style lang="less">
   @import "../less/mixin";
+  @import "../less/hairline";
 
   .panel {
     background-color: #fff;
@@ -25,10 +26,14 @@
   }
 
   .panel-footer {
+    position: relative;
     padding-top: 24rpx;
-    border-top: 1rpx solid @color-underline;
     display: flex;
     justify-content: space-between;
+
+    &:after {
+      .hairline-top();
+    }
   }
 </style>
 <template>

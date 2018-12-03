@@ -56,7 +56,7 @@
           disabled="{{disabled}}"
   >
     <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
-      <view class="form-item-inner {{underline ? 'underline' : ''}}">
+      <view class="form-item-inner {{underline ? 'hairline--bottom' : ''}}">
         <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
         <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
           <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>

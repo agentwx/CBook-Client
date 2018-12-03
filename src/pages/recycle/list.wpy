@@ -5,12 +5,6 @@
     background-color: #f7f7f7;
   }
 
-  panel:last-child {
-    .panel {
-      margin-bottom: 0;
-    }
-  }
-
   .orders-scrollview {
     width: 100%;
     overflow: hidden;

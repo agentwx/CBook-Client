@@ -1,14 +1,17 @@
 <style lang="less">
   @import "../less/mixin";
 
-  .tabhead {
+  .tab-head {
     position: relative;
     .flex();
     background-color: #fff;
-    border-bottom: 1rpx solid @color-border;
+
+    &:after {
+      z-index: -1;
+    }
   }
 
-  .tabhead-item {
+  .tab-head-item {
     flex: 1;
     text-align: center;
 
@@ -28,9 +31,9 @@
 </style>
 
 <template>
-  <view class="tabhead" wx:if="{{items.length>0}}" style="{{style}}">
+  <view class="tab-head hairline--bottom" wx:if="{{items.length>0}}" style="{{style}}">
     <repeat for="{{items}}">
-      <view class="tabhead-item {{tabIndex == index ? 'active' : ''}}" @tap="tap('{{index}}')">
+      <view class="tab-head-item {{tabIndex == index ? 'active' : ''}}" @tap="tap('{{index}}')">
         <text>{{item}}</text>
       </view>
     </repeat>
