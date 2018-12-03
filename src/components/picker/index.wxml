@@ -3,11 +3,12 @@
         bindcolumnchange="columnchange"
         class="{{isDisabled ? 'disabled' : ''}}"
         value="{{selectIndex}}"
-        range="{{names}}"
+        range="{{items}}"
         disabled="{{isDisabled}}"
 >
-  <view class="picker {{size}} {{customClass}}" style="{{customStyle}}">
-    <text>{{names[selectIndex]}}</text>
+  <view class="picker {{size}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+    <text>{{items[selectIndex]}}</text>
     <icon name="arrow-down" color="#999"></icon>
   </view>
+  <slot wx:else></slot>
 </picker>

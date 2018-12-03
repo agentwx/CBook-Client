@@ -55,9 +55,7 @@
   }
 
   .profile-action {
-    margin-top: 60rpx;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 60rpx 10% 20rpx;
   }
 </style>
 <template>
@@ -71,13 +69,13 @@
   </view>
 
   <view class="profile-listitem">
-    <list-item>
+    <list-item show-arrow="false">
       <view class="list-item-inner">
         <text class="label">性别</text>
         <text class="value">{{gender}}</text>
       </view>
     </list-item>
-    <list-item bordered="false">
+    <list-item bordered="false" show-arrow="false">
       <view class="list-item-inner">
         <text class="label">地区</text>
         <text class="value">{{location}}</text>
@@ -85,42 +83,54 @@
     </list-item>
   </view>
 
-  <view class="profile-listitem">
-    <list-item>
-      <view class="list-item-inner">
-        <text class="label">宝宝昵称</text>
-        <text class="value">饺子</text>
-      </view>
-    </list-item>
-    <list-item>
-      <view class="list-item-inner">
-        <text class="label">宝宝生日</text>
-        <text class="value">2018-10-12</text>
-      </view>
-    </list-item>
-    <list-item bordered="false">
-      <view class="list-item-inner">
-        <text class="label">亲子关系</text>
-        <text class="value">父女</text>
-      </view>
-    </list-item>
-  </view>
+  <repeat for="{{relationships}}">
+    <view class="profile-listitem" @tap="editRelationship({{item}})">
+      <list-item>
+        <view class="list-item-inner">
+          <text class="label">宝宝昵称</text>
+          <text class="value">{{item.nickName}}</text>
+        </view>
+      </list-item>
+      <list-item>
+        <view class="list-item-inner">
+          <text class="label">宝宝生日</text>
+          <text class="value">{{item.birthday}}</text>
+        </view>
+      </list-item>
+      <list-item bordered="false">
+        <view class="list-item-inner">
+          <text class="label">亲子关系</text>
+          <text class="value">{{item.relationshipStr}}</text>
+        </view>
+      </list-item>
+    </view>
 
-  <view class="delete-button">删除宝贝信息</view>
+    <view class="delete-button" wx:if="{{index > 0}}" @tap="deleteRelationship({{item.code}})">删除宝贝信息</view>
+  </repeat>
 
   <view class="profile-action">
-    <btn @tap="addRelative">添加宝贝信息</btn>
+    <btn @tap="addProfile">添加宝贝信息</btn>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
+  import fetch from '../../service/fetch'
+  import { toast, confirm } from '../../utils/util'
 
   const GENDER_MAP = {
     0: '未知',
     1: '男',
     2: '女'
+  }
+
+  const relationshipsMap = {
+    0: '未知',
+    1: '父子',
+    2: '父女',
+    3: '母子',
+    4: '母女'
   }
 
   @connect({
@@ -144,15 +154,37 @@
     }
 
     data = {
+      relationships: []
     }
 
     methods = {
-      addRelative () {
+      addProfile () {
         this.$navigate('/pages/profile/add')
+      },
+      editRelationship (item) {
+        this.$navigate('/pages/profile/add', {actionMode: 'edit', params: JSON.stringify(item)})
+      },
+      async deleteRelationship (code) {
+        const isOK = await confirm('确定要删除吗?')
+        if (isOK) {
+          await fetch.post('/user/children/delete', {code})
+          toast.success('删除成功')
+          this.loadData()
+        }
+      },
+      loadRelationships () {
+        this.loadData()
       }
     }
 
+    async loadData () {
+      let res = await fetch.post('/user/children/list')
+      this.relationships = res.datas.map(item => ({...item, relationshipStr: relationshipsMap[item.relationship]}))
+      this.$apply()
+    }
+
     onLoad() {
+      this.loadData()
     }
   }
 </script>

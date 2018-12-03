@@ -27,39 +27,62 @@
 </style>
 <template>
   <view class="profile-listitem">
-    <list-item>
-      <view class="list-item-inner">
-        <text class="label">宝宝昵称</text>
-        <text class="value">饺子</text>
-      </view>
-    </list-item>
-    <list-item>
-      <view class="list-item-inner">
-        <text class="label">宝宝生日</text>
-        <text class="value">2018-10-12</text>
-      </view>
-    </list-item>
-    <list-item bordered="false">
-      <view class="list-item-inner">
-        <text class="label">亲子关系</text>
-        <text class="value">父女</text>
-      </view>
-    </list-item>
+    <form-item
+      label="宝宝昵称"
+      bordered="false"
+      nomargin="true"
+      underline="true"
+      text-align="right"
+      size="medium"
+      value="{{nickName}}"
+      @input="nickNameChange">
+    </form-item>
+    <datetime-picker
+      mode="date"
+      fields="day"
+      value="{{birthday}}"
+      @change="birthdayChange"
+    >
+      <list-item>
+        <view class="list-item-inner">
+          <text class="label">宝宝生日</text>
+          <text class="value">{{birthday === '' ? '请选择' : birthday}}</text>
+        </view>
+      </list-item>
+    </datetime-picker>
+    <picker
+      range="{{relationships}}"
+      value="{{relationship}}"
+      use-slot="true"
+      @change="relationChange"
+    >
+      <list-item bordered="false">
+        <view class="list-item-inner">
+          <text class="label">亲子关系</text>
+          <text class="value">{{relationship === '' ? '请选择' : relationshipStr}}</text>
+        </view>
+      </list-item>
+    </picker>
   </view>
 
   <view class="profile-action">
-    <btn>添加</btn>
+    <btn @tap="save">{{actionMode === 'edit' ? '修改' : '添加'}}</btn>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import { toast, getPrevPage } from '../../utils/util'
+  import fetch from '../../service/fetch'
 
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '添加宝贝信息',
       usingComponents: {
         'list-item': '/components/list-item/index',
+        'form-item': '/components/form-item/index',
+        'datetime-picker': '/components/datetime-picker/index',
+        'picker': '/components/picker/index',
         'btn': '/components/button/index'
       }
     }
@@ -68,12 +91,74 @@
     }
 
     data = {
+      actionMode: 'add',
+      code: null,
+      nickName: '',
+      birthday: '',
+      relationship: '',
+      relationships: [
+        {text: '未知', value: 0},
+        {text: '父子', value: 1},
+        {text: '父女', value: 2},
+        {text: '母子', value: 3},
+        {text: '母女', value: 4}
+      ]
+    }
+
+    computed = {
+      relationshipStr () {
+        let item = this.relationships.find(item => item.value === this.relationship)
+        if (item) {
+          return item.text
+        }
+      }
     }
 
     methods = {
+      nickNameChange (e) {
+        this.nickName = e.detail.value
+      },
+      birthdayChange (e) {
+        this.birthday = e.detail.value
+      },
+      relationChange (e) {
+        this.relationship = e.detail.value.value
+      },
+      async save () {
+        if (this.nickName.trim() === '') {
+          return toast.error('请填写宝宝昵称')
+        }
+        if (this.birthday === '') {
+          return toast.error('请选择宝宝生日')
+        }
+        if (this.relationship === '') {
+          return toast.error('请选择亲子关系')
+        }
+        let params = {nickName: this.nickName, birthday: this.birthday, relationship: this.relationship}
+        if (this.actionMode === 'add') {
+          await fetch.post('/user/children/add', params)
+          toast.success('添加成功')
+        } else {
+          await fetch.post('/user/children/update', {...params, code: this.code})
+          toast.success('修改成功')
+        }
+        getPrevPage().loadRelationships({})
+        this.$back()
+      }
     }
 
-    onLoad() {
+    onLoad({actionMode, params}) {
+      if (actionMode === 'edit') {
+        params = JSON.parse(params)
+        this.actionMode = actionMode
+        this.code = params.code
+        this.nickName = params.nickName
+        this.birthday = params.birthday
+        this.relationship = params.relationship
+        wx.setNavigationBarTitle({
+          title: '修改宝贝信息'
+        })
+      }
     }
   }
 </script>

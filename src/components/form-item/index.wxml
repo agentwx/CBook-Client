@@ -5,10 +5,10 @@
       <icon wx:if="{{icon}}" class="icon-left" type="{{iconType}}" color="#999" name="{{icon}}" size="{{size}}"/>
       <input wx:if="{{!isPassword}}" type="{{type}}" class="input {{size}}" focus="{{isFocus}}" disabled="{{isDisabled}}"
              placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" bindchange="change" bindinput="input"
-             bindfocus="focus" bindblur="blur" bindconfirm="confirm"/>
+             bindfocus="focus" bindblur="blur" bindconfirm="confirm" style="text-align:{{textAlign}}" />
       <input wx:if="{{isPassword}}" password class="input {{size}}" focus="{{isFocus}}" disabled="{{isDisabled}}"
              placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" bindchange="change" bindinput="input"
-             bindfocus="focus" bindblur="blur" bindconfirm="confirm"/>
+             bindfocus="focus" bindblur="blur" bindconfirm="confirm" style="text-align:{{textAlign}}"/>
       <view class="icon-right" wx:if="{{isShowClear || isShowEye}}">
         <view class="ctrl-icon iconfont icon-close-circle" wx:if="{{isShowClear}}" bindtap="clearField"
               style="display: {{shouldClearShow ? '' : 'none'}}">

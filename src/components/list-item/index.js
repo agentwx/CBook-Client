@@ -24,7 +24,7 @@ Component({
       type: String,
       value: 'middle'
     },
-    hasArrow: {
+    showArrow: {
       type: [Boolean, String],
       value: true
     },
@@ -39,8 +39,8 @@ Component({
     isBordered () {
       return coerce(this.data.bordered)
     },
-    isHasArrow () {
-      return coerce(this.data.hasArrow)
+    isShowArrow () {
+      return coerce(this.data.showArrow)
     }
   }
 })

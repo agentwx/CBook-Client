@@ -1,24 +1,18 @@
 @import "../../less/mixin";
 
-picker {
+.picker {
   flex: 1;
   width: 100%;
-  border: 1rpx solid #ccc;
-  background-color: #fff;
-  border-radius: 8rpx;
-
-  &.disabled {
-    opacity: 0.7;
-    pointer-events: none;
-  }
-}
-
-.picker {
   padding: 12rpx 24rpx;
   font-size: 28rpx;
   box-sizing: border-box;
   .flex-v-center();
   justify-content: space-between;
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
 
   &.large {
     height: @large;

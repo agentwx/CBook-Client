@@ -1,7 +1,7 @@
-<view class="list-item {{isBordered ? 'bordered' : ''}} {{customClass}}" style="{{customStyle}}">
+<view class="list-item {{isShowArrow ? 'enabled' : ''}} {{isBordered ? 'bordered' : ''}} {{customClass}}" style="{{customStyle}}">
   <icon wx:if="{{icon}}" name="{{icon}}" size="{{iconSize}}" custom-style="margin-right:10rpx;"></icon>
   <view class="list-item-bd">
     <slot></slot>
   </view>
-  <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{isHasArrow}}"></text>
+  <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{isShowArrow}}"></text>
 </view>

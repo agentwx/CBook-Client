@@ -26,8 +26,10 @@
       margin-right: 10rpx;
     }
 
-    &:active {
-      background-color: @color-active;
+    &.enabled {
+      &:active {
+        background-color: @color-active;
+      }
     }
 
     .list-arrow {
@@ -38,12 +40,12 @@
   }
 </style>
 <template>
-  <view class="list-item {{bordered ? 'bordered' : ''}}" style="{{style}}" @tap="tap">
+  <view class="list-item {{showArrow ? 'enabled' : ''}} {{bordered ? 'bordered' : ''}}" style="{{style}}" @tap="tap">
     <icon wx:if="{{icon}}" :name="icon" :size="iconSize" class="list-item-icon"></icon>
     <view class="list-item-bd">
       <slot></slot>
     </view>
-    <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{hasArrow}}"></text>
+    <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{showArrow}}"></text>
   </view>
 </template>
 <script>
@@ -64,7 +66,7 @@
         type: String,
         default: 'middle'
       },
-      hasArrow: {
+      showArrow: {
         type: [Boolean, String],
         default: true,
         coerce: coerce

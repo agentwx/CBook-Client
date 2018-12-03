@@ -57,6 +57,10 @@ Component({
       type: String,
       value: 'done'
     },
+    textAlign: {
+      type: String,
+      value: 'left'
+    },
     bordered: {
       type: [Boolean, String],
       value: true
