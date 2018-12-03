@@ -384,9 +384,7 @@
         </view>
       </transition>
     </view>
-
     <overlay show="{{filterVisible}}" mask="true" @tap="hideFilter"></overlay>
-
   </view>
 
   <view class="product-listview">
