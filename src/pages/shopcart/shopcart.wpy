@@ -79,6 +79,7 @@
       font-size: 30rpx;
       font-weight: bold;
       .ellipsis();
+      margin-bottom: 2rpx;
     }
 
     .pd-desc {
@@ -117,8 +118,9 @@
     .flex();
     .pd-count {
       position: relative;
-      margin-left: 20rpx;
+      margin-left: 30rpx;
       top: 4rpx;
+      color: #888;
     }
   }
 

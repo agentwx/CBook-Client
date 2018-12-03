@@ -1,5 +1,6 @@
 <style lang="less">
   @import '../../less/mixin';
+  @import '../../less/ellipsis';
 
   page {
     background-color: #f7f7f7;
@@ -33,7 +34,14 @@
 
   .order-body {
     .flex();
-    padding-top: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+  }
+
+  .panel {
+    .order-body:not(:last-child) {
+      border-bottom: 1rpx solid @color-underline;
+    }
   }
 
   .order-cover {
@@ -49,6 +57,8 @@
   }
 
   .order-main {
+    width: 100%;
+    overflow: hidden;
     flex: 1;
     .flex-h-center();
     flex-direction: column;
@@ -57,7 +67,9 @@
 
   .order-pd-hd {
     .title {
-      .word-break();
+      font-size: 30rpx;
+      font-weight: bold;
+      .ellipsis();
       margin-bottom: 6rpx;
     }
 

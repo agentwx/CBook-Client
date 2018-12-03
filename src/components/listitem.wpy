@@ -71,7 +71,7 @@
       },
       bordered: {
         type: [Boolean, String],
-        default: false,
+        default: true,
         coerce: coerce
       }
     }

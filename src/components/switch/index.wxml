@@ -1,0 +1,9 @@
+<view
+  style="{{ style }}"
+  class="{{ classes }}"
+  bindtap="onClick"
+>
+  <view class="switch__node node-class">
+    <loading wx:if="{{ loading }}" size="100%" custom-class="switch__loading" />
+  </view>
+</view>

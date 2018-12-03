@@ -1,0 +1,18 @@
+<view class="stepper {{ classes }}" style="{{customStyle}}">
+  <view
+    class="minus-class stepper__minus {{ minusDisabled ? 'stepper__minus--disabled' : '' }}"
+    bind:tap="onMinus"
+  />
+  <input
+    type="{{ integer ? 'number' : 'digit' }}"
+    class="input-class stepper__input {{ disabled || disableInput ? 'stepper__input--disabled' : '' }}"
+    value="{{ value }}"
+    disabled="{{ disabled || disableInput }}"
+    bindinput="onInput"
+    bind:blur="onBlur"
+  />
+  <view
+    class="plus-class stepper__plus {{ plusDisabled ? 'stepper__plus--disabled' : '' }}"
+    bind:tap="onPlus"
+  />
+</view>

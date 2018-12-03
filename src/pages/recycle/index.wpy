@@ -228,6 +228,7 @@
       font-size: 30rpx;
       font-weight: bold;
       .ellipsis();
+      margin-bottom: 2rpx;
     }
 
     .desc {

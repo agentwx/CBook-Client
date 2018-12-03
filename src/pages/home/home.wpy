@@ -121,16 +121,6 @@
     right: 0;
     background-color: #fff;
     box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.07);
-    .animation(scale-down .35s ease);
-  }
-
-  .filter-mask {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,.5);
   }
 
   .filter-itemsort-wrap{
@@ -273,17 +263,17 @@
       .ellipsis();
       font-size: 26rpx;
       color: #666;
+      margin-bottom: 2rpx;
     }
 
     .product-desc {
       .light-font();
       font-size: 24rpx;
       color: #888;
-      margin-bottom: 6rpx;
     }
 
     .product-tags {
-      margin-top: 8rpx;
+      margin-top: 6rpx;
     }
   }
 
@@ -354,7 +344,7 @@
           筛选<icon size="x-small" name="filter"></icon>
         </view>
       </view>
-      <view class="filter-sublayer" hidden="{{!filterVisible}}">
+      <transition custom-class="filter-sublayer" name="fade-down" show="{{filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
           <block wx:for="{{sortTypes}}" wx:key="index">
             <view class="filter-itemsort {{item.checked ? 'selected' : ''}}" @tap="filterBySort({{item.value}})">
@@ -400,10 +390,10 @@
             <view class="filter-btn-ok" @tap="searchFilter">确定</view>
           </view>
         </view>
-      </view>
+      </transition>
     </view>
 
-    <view class="filter-mask" wx:if="{{filterVisible}}" @tap="hideFilter"></view>
+    <overlay show="{{filterVisible}}" mask="true" @tap="hideFilter"></overlay>
 
   </view>
 
@@ -463,6 +453,8 @@ export default class Index extends wepy.page {
     usingComponents: {
       'modal-spinner': '/components/modal-spinner/index',
       'weui-loading': '/components/weui-loading/index',
+      'transition': '/components/transition/index',
+      'overlay': '/components/overlay/index',
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
       'tag': '/components/tag/index'
@@ -473,6 +465,12 @@ export default class Index extends wepy.page {
   }
 
   data = {
+    actions: [
+      { name: '选项' },
+      { name: '分享', subname: '描述信息', openType: 'share' },
+      { loading: true },
+      { name: '禁用选项', disabled: true }
+    ],
     isLoading: true,
     isEmpty: false,
     inited: false,
@@ -559,11 +557,15 @@ export default class Index extends wepy.page {
           this.$apply()
         }, 300)
       } else {
+        if (showDrop && type === this.filterType) {
+          this.filterVisible = !this.filterVisible
+        } else {
+          this.filterVisible = true
+        }
         this.filterType = type
         if (!showDrop) {
           this.sortType = value
         }
-        this.filterVisible = true
       }
 
       if (type === 'sort' && !showDrop) {

@@ -136,17 +136,17 @@
       .ellipsis();
       font-size: 26rpx;
       color: #666;
+      margin-bottom: 2rpx;
     }
 
     .product-desc {
       .light-font();
       font-size: 24rpx;
       color: #888;
-      margin-bottom: 6rpx;
     }
 
     .product-tags {
-      margin-top: 8rpx;
+      margin-top: 6rpx;
     }
   }
 

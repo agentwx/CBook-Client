@@ -1,5 +1,6 @@
 <style lang="less">
   @import '../../less/mixin';
+  @import '../../less/ellipsis';
 
   page {
     padding-bottom: 100rpx;
@@ -52,7 +53,7 @@
 
     .addr-text {
       font-size: 24rpx;
-      color: #888
+      color: #666
     }
   }
 
@@ -72,17 +73,42 @@
   }
 
   .order-book {
-    .light-font();
-    padding: 6rpx 0;
+    padding: 8rpx 0;
     .flex();
     justify-content: space-between;
+
+    .book-name {
+      flex: 1;
+      font-weight: bold;
+      .ellipsis();
+      margin-right: 30rpx;
+    }
+
+    .book-count {
+      width: 60rpx;
+      margin-right: 30rpx;
+    }
+
+    .book-price {
+      width: 100rpx;
+      text-align: right;
+    }
   }
 
   .order-ft {
+    .flex-v-center();
     white-space: nowrap;
 
     text {
       font-weight: bold;
+    }
+
+    .trade-unit {
+      font-size: 24rpx;
+    }
+
+    .trade-amount {
+      font-size: 32rpx;
     }
   }
 
@@ -150,7 +176,7 @@
     timeRange="{{timeRange}}"
     @change="datetimeChange"
   >
-    <list-item custom-class="timepicker">
+    <list-item bordered="false" custom-class="timepicker">
       <view class="timepicker-bd">
         <text class="tm-hd">取件时间</text>
         <text>{{deliveryTime}}</text>
@@ -163,22 +189,23 @@
     <view class="order-body">
       <repeat for="{{products}}">
         <view class="order-book">
-          <view>
-            <text>{{item.name}}</text>
-            <text>x{{item.COUNT}}</text>
-          </view>
-          <view wx:if="{{orderSource==='normal'}}">￥{{item.price}}</view>
-          <view wx:if="{{orderSource==='recycle'}}">￥{{item.costPrice}}</view>
+          <view class="book-name">{{item.name}}</view>
+          <view class="book-count">x{{item.COUNT}}</view>
+          <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{item.price}}</view>
+          <view wx:if="{{orderSource==='recycle'}}" class="book-price">￥{{item.costPrice}}</view>
         </view>
       </repeat>
     </view>
     <view class="panel-footer" slot="footer">
-      <view class="order-ft">总共
-        <text>{{totalCount}}</text>
-        本图书
+      <view class="order-ft">
+        总共 <text>{{totalCount}}</text> 本图书
       </view>
-      <view class="order-ft">预计收入
-        <text>￥{{totalPrice}}</text>
+      <view class="order-ft">
+        {{orderSource==='recycle' ? '预计收入' : '合计'}}
+        <view>
+          <text class="trade-unit">￥</text>
+          <text class="trade-amount">{{totalPrice}}</text>
+        </view>
       </view>
     </view>
   </panel>

@@ -21,7 +21,7 @@
   }
 
   .detail-pdinfo-wrap {
-    padding: 30rpx 20rpx;
+    padding: 30rpx 20rpx 40rpx;
   }
 
   .detail-title {
@@ -160,7 +160,7 @@
 
 
   .detail-pdintro-wrap {
-    margin-top: 30rpx;
+    margin-top: 36rpx;
   }
 
   .pdintro-title {
@@ -394,7 +394,7 @@
     </view>
     <view class="pdintro-body">
       <repeat for="{{product.imags}}">
-        <image src="{{item}}" mode="widthFix" lazyload="true"></image>
+        <image src="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
       </repeat>
     </view>
   </view>
@@ -481,6 +481,12 @@
         } else {
           toast.error(this.errMsg)
         }
+      },
+      previewImage (url) {
+        wx.previewImage({
+          current: url,
+          urls: this.product.imags
+        })
       }
     }
 

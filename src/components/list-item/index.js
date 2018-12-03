@@ -30,7 +30,7 @@ Component({
     },
     bordered: {
       type: [Boolean, String],
-      value: false
+      value: true
     }
   },
   data: {

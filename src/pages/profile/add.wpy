@@ -27,19 +27,19 @@
 </style>
 <template>
   <view class="profile-listitem">
-    <list-item bordered="true">
+    <list-item>
       <view class="list-item-inner">
         <text class="label">宝宝昵称</text>
         <text class="value">饺子</text>
       </view>
     </list-item>
-    <list-item bordered="true">
+    <list-item>
       <view class="list-item-inner">
         <text class="label">宝宝生日</text>
         <text class="value">2018-10-12</text>
       </view>
     </list-item>
-    <list-item>
+    <list-item bordered="false">
       <view class="list-item-inner">
         <text class="label">亲子关系</text>
         <text class="value">父女</text>
