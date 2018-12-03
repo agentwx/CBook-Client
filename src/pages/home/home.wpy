@@ -465,12 +465,6 @@ export default class Index extends wepy.page {
   }
 
   data = {
-    actions: [
-      { name: '选项' },
-      { name: '分享', subname: '描述信息', openType: 'share' },
-      { loading: true },
-      { name: '禁用选项', disabled: true }
-    ],
     isLoading: true,
     isEmpty: false,
     inited: false,
