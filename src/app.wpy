@@ -147,10 +147,6 @@ export default class extends wepy.app {
     }
   }
 
-  globalData = {
-    userInfo: null
-  }
-
   appReady = false
   readyCallback = null
 
@@ -165,15 +161,15 @@ export default class extends wepy.app {
 
     const { recycles, shopcart } = initialState
 
-    if (recycles && recycles.list.length > 0) {
+    if (recycles && recycles.length > 0) {
       wx.setTabBarBadge({
         index: 1,
-        text: recycles.list.length.toString()
+        text: recycles.length.toString()
       })
     }
 
-    if (shopcart && shopcart.list.length > 0) {
-      const total = shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
+    if (shopcart && shopcart.length > 0) {
+      const total = shopcart.reduce((prev, cur) => prev + cur.COUNT, 0)
       wx.setTabBarBadge({
         index: 2,
         text: total.toString()
@@ -217,9 +213,14 @@ export default class extends wepy.app {
 
   async getUnionId () {
     try {
-      const { encryptedData, iv } = await getUserInfo({withCredentials: true})
+      const { encryptedData, iv } = await getUserInfo({withCredentials: true, lang: 'zh_CN'})
       const res = await getWxUserInfo(this.openId, encryptedData, iv)
-      this.globalData.userInfo = res.datas
+      store.dispatch({
+        type: 'ADD_USER_INFO',
+        payload: {
+          data: res.datas
+        }
+      })
       return res.datas
     } catch (errMsg) {
       toast.error(errMsg)

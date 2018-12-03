@@ -492,13 +492,13 @@
 
   @connect({
     products ({ recycles }) {
-      return recycles.list
+      return recycles
     },
     totalPrice ({ recycles }) {
-      return recycles.list.reduce((prev, cur) => prev + cur.costPrice, 0)
+      return recycles.reduce((prev, cur) => prev + cur.costPrice, 0)
     },
     totalCount ({ recycles }) {
-      return recycles.list.length
+      return recycles.length
     }
   })
   export default class Index extends wepy.page {
@@ -586,7 +586,7 @@
     }
 
     async queryBookInfo (isbn) {
-      const isExist = store.getState().recycles.list.find(item => item.isbn === isbn)
+      const isExist = store.getState().recycles.find(item => item.isbn === isbn)
       if (isExist) {
         return toast.error('该图书已经扫描过')
       }

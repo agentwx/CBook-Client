@@ -469,9 +469,9 @@
     getProductsFromCart () {
       let { products, shopcart, cartProducts } = store.getState()
 
-      products = cartProducts.list.concat(products.list)
+      products = cartProducts.concat(products)
 
-      this.products = shopcart.list.map(item => {
+      this.products = shopcart.map(item => {
         for (let i = 0; i < products.length; i++) {
           if (item.ID === products[i].goodsId) {
             products[i].COUNT = item.COUNT

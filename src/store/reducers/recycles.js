@@ -8,27 +8,21 @@ function addProduct (list, product) {
   return list
 }
 
-const defaultState = {
-  list: []
-}
+const defaultState = []
 
 export default handleActions({
   ADD_RECYCLE (state, { payload: { product } }) {
-    return {
-      ...state,
-      list: addProduct(state.list, product)
-    }
+    return [
+      ...addProduct(state, product)
+    ]
   },
   ADD_RECYCLES (state, { payload: { products } }) {
-    return {
+    return [
       ...state,
-      list: [...state.list, ...products]
-    }
+      ...products
+    ]
   },
   CLEAR_RECYCLE (state) {
-    return {
-      ...state,
-      list: []
-    }
+    return []
   }
 }, defaultState)

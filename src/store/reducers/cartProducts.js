@@ -1,20 +1,15 @@
 import { handleActions } from 'redux-actions'
 
-const defaultState = {
-  list: []
-}
+const defaultState = []
 
 export default handleActions({
   ADD_CART_PRODUCTS (state, { payload: { products } }) {
-    return {
+    return [
       ...state,
-      list: [...products]
-    }
+      ...products
+    ]
   },
   CLEAR_CART_PRODUCTS (state) {
-    return {
-      ...state,
-      list: []
-    }
+    return []
   }
 }, defaultState)

@@ -74,13 +74,13 @@
     <list-item>
       <view class="list-item-inner">
         <text class="label">性别</text>
-        <text class="value">保密</text>
+        <text class="value">{{gender}}</text>
       </view>
     </list-item>
     <list-item bordered="false">
       <view class="list-item-inner">
         <text class="label">地区</text>
-        <text class="value">上海</text>
+        <text class="value">{{location}}</text>
       </view>
     </list-item>
   </view>
@@ -115,7 +115,22 @@
 
 <script>
   import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
 
+  const GENDER_MAP = {
+    0: '未知',
+    1: '男',
+    2: '女'
+  }
+
+  @connect({
+    gender ({userInfo}) {
+      return GENDER_MAP[userInfo.gender]
+    },
+    location ({userInfo}) {
+      return `${userInfo.province} ${userInfo.city}`
+    }
+  })
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '宝贝信息',

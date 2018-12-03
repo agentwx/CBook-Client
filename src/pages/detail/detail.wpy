@@ -433,7 +433,7 @@
 
   @connect({
     cartCount (state) {
-      return state.shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
+      return state.shopcart.reduce((prev, cur) => prev + cur.COUNT, 0)
     }
   })
   export default class Index extends wepy.page {

@@ -223,8 +223,8 @@
 
     onShow () {
       const { recycles, shopcart } = store.getState()
-      const recycleCount = recycles.list.length
-      const cartCount = shopcart.list.reduce((prev, cur) => prev + cur.COUNT, 0)
+      const recycleCount = recycles.length
+      const cartCount = shopcart.reduce((prev, cur) => prev + cur.COUNT, 0)
 
       if (recycleCount > 0) {
         wx.setTabBarBadge({

@@ -109,7 +109,7 @@
         if (!this.isbn) {
           return toast.error('请输入书籍的isbn号')
         }
-        const isExist = store.getState().recycles.list.find(item => item.isbn === this.isbn)
+        const isExist = store.getState().recycles.find(item => item.isbn === this.isbn)
         if (isExist) {
           return toast.error('该图书已经扫描过')
         }

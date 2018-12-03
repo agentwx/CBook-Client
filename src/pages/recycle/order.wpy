@@ -250,7 +250,7 @@
 
     loadRecycles () {
       const { recycles } = store.getState()
-      this.products = recycles.list.map(item => ({...item, COUNT: 1}))
+      this.products = recycles.map(item => ({...item, COUNT: 1}))
       this.$apply()
     }
 

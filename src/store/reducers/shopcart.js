@@ -22,33 +22,25 @@ function reduceCart (list, { ID }) {
   return list
 }
 
-const defaultState = {
-  list: []
-}
+const defaultState = []
 
 export default handleActions({
   ADD_CART (state, { payload }) {
-    return {
-      ...state,
-      list: addCart(state.list, payload)
-    }
+    return [
+      ...addCart(state, payload)
+    ]
   },
   REDUCE_CART (state, { payload }) {
-    return {
-      ...state,
-      list: reduceCart(state.list, payload)
-    }
+    return [
+      ...reduceCart(state, payload)
+    ]
   },
   REMOVE_CART (state, { payload: { ID } }) {
-    return {
-      ...state,
-      list: state.list.filter(cart => cart.ID !== ID)
-    }
+    return [
+      ...state.filter(cart => cart.ID !== ID)
+    ]
   },
   CLEAR_CART (state) {
-    return {
-      ...state,
-      list: []
-    }
+    return []
   }
 }, defaultState)

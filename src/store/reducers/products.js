@@ -8,27 +8,21 @@ function addProduct (list, product) {
   return list
 }
 
-const defaultState = {
-  list: []
-}
+const defaultState = []
 
 export default handleActions({
   ADD_PRODUCT (state, { payload: { product } }) {
-    return {
-      ...state,
-      list: addProduct(state.list, product)
-    }
+    return [
+      ...addProduct(state, product)
+    ]
   },
   ADD_PRODUCTS (state, { payload: { products } }) {
-    return {
+    return [
       ...state,
-      list: [...state.list, ...products]
-    }
+      ...products
+    ]
   },
   CLEAR_PRODUCTS (state) {
-    return {
-      ...state,
-      list: []
-    }
+    return []
   }
 }, defaultState)
