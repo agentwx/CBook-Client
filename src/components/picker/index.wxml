@@ -1,6 +1,6 @@
 <picker mode="selector"
         bindchange="change"
-        bindcolumnchange="columnchange"
+        bindcolumnchange="columnChange"
         class="{{isDisabled ? 'disabled' : ''}}"
         value="{{selectIndex}}"
         range="{{items}}"

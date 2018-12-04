@@ -122,7 +122,7 @@
         this.birthday = e.detail.value
       },
       relationChange (e) {
-        this.relationship = e.detail.value.value
+        this.relationship = e.detail.value
       },
       async save () {
         if (this.nickName.trim() === '') {

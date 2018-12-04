@@ -53,6 +53,10 @@ Component({
     nomargin: {
       type: [Boolean, String],
       value: false
+    },
+    useSlot: {
+      type: [Boolean, String],
+      value: false
     }
   },
   computed: {
@@ -67,6 +71,9 @@ Component({
     },
     isNomargin () {
       return coerce(this.data.nomargin)
+    },
+    isUseSlot () {
+      return coerce(this.data.useSlot)
     },
     valueStr () {
       return this.data.value.join(' ')

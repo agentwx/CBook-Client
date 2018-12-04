@@ -41,14 +41,14 @@
 <template>
   <picker mode="selector"
           @change="change"
-          @columnchange="columnchange"
+          @columnchange="columnChange"
           class="{{disabled ? 'disabled' : ''}}"
           value="{{selectIndex}}"
           range="{{items}}"
           disabled="{{disabled}}"
   >
     <view class="picker {{size}} {{className}}" style="{{style}}" wx:if="{{!useSlot}}">
-      <text>{{names[selectIndex]}}</text>
+      <text>{{items[selectIndex]}}</text>
       <icon name="angle-down-black.png"></icon>
     </view>
     <slot wx:else></slot>
@@ -82,11 +82,6 @@
         type: Array,
         default: []
       },
-      selectIndex: {
-        type: [Number, String],
-        coerce: v => +v,
-        default: 0
-      },
       value: {
         type: [String, Number]
       },
@@ -105,30 +100,38 @@
     components = {
       icon: Icon
     }
+
+    data = {
+      selectIndex: 0
+    }
+
     computed = {
       items () {
-        return this.range.map(item => typeof item === 'object' ? item.text : item)
+        return this.data.range.map(item => item.text)
       }
     }
-    data = {
+
+    watch = {
+      value (val) {
+        this.setSelectIndex(val)
+      }
     }
+
     methods = {
-      change ($event) {
-        let value = this.range[$event.detail.value]
-        this.$emit('change', value, $event.detail.value)
+      change (e) {
+        const { value } = e.detail
+        const valueObj = this.range[value]
+        this.$emit('change', valueObj.value, valueObj.text, value, e)
       },
-      columnchange ($event) {
-        this.$emit('columnchange', $event.detail.column, $event.detail.value)
+      columnChange (e) {
+        const {column, value} = e.detail
+        this.$emit('columnchange', column, value)
       }
     }
-    onLoad () {
-      if (this.value) {
-        const index = this.range.findIndex(item => typeof item === 'object'
-          ? item.value === this.value
-          : item === this.value
-        )
-        this.selectIndex = index < 0 ? 0 : index
-      }
+
+    setSelectIndex (value) {
+      const index = this.range.findIndex(item => item.value === value)
+      this.selectIndex = index < 0 ? 0 : index
     }
   }
 </script>

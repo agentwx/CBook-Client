@@ -27,12 +27,11 @@ Component({
       type: Array,
       value: []
     },
-    selectIndex: {
-      type: Number,
-      value: 0
-    },
     value: {
-      type: [String, Number]
+      type: [String, Number],
+      observer (value) {
+        this.setSelectIndex(value)
+      }
     },
     disabled: {
       type: Boolean,
@@ -43,6 +42,9 @@ Component({
       value: false
     }
   },
+  data: {
+    selectIndex: 0
+  },
   computed: {
     isDisabled () {
       return coerce(this.data.disabled)
@@ -51,27 +53,22 @@ Component({
       return coerce(this.data.useSlot)
     },
     items () {
-      return this.data.range.map(item => typeof item === 'object' ? item.text : item)
-    }
-  },
-  ready () {
-    const {value, range} = this.data
-    if (value) {
-      const index = range.findIndex(item => typeof item === 'object'
-          ? item.value === value
-          : item === value
-      )
-      this.setData({
-        selectIndex: index < 0 ? 0 : index
-      })
+      return this.data.range.map(item => item.text)
     }
   },
   methods: {
-    change (e) {
-      const {value} = e.detail
-      this.triggerEvent('change', {value: this.data.range[value], selectIndex: value})
+    setSelectIndex (value) {
+      const index = this.data.range.findIndex(item => item.value === value)
+      this.setData({
+        selectIndex: index < 0 ? 0 : index
+      })
     },
-    columnchange (e) {
+    change (e) {
+      const { value } = e.detail
+      const valueObj = this.data.range[value]
+      this.triggerEvent('change', {value: valueObj.value, text: valueObj.text, selectedIndex: value})
+    },
+    columnChange (e) {
       const {column, value} = e.detail
       this.triggerEvent('columnchange', {column: column, value: value})
     }

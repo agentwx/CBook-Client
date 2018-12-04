@@ -55,7 +55,7 @@
           class="{{disabled ? 'disabled' : ''}}"
           disabled="{{disabled}}"
   >
-    <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}">
+    <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}" wx:if="{{!useSlot}}">
       <view class="form-item-inner {{underline ? 'hairline--bottom' : ''}}">
         <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
         <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
@@ -67,6 +67,7 @@
         </view>
       </view>
     </view>
+    <slot wx:else></slot>
   </picker>
 </template>
 
@@ -123,6 +124,11 @@
         coerce: coerce
       },
       nomargin: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      useSlot: {
         type: [Boolean, String],
         default: false,
         coerce: coerce
