@@ -145,7 +145,7 @@
   }
 
   .filter-catelog {
-    padding: 20rpx 20rpx 0;
+    padding: 30rpx 20rpx 0;
   }
 
   .filter-catelog-hd {
@@ -161,7 +161,7 @@
   }
 
   .filter-catelog-bd {
-    margin-bottom: 40rpx;
+    margin-bottom: 30rpx;
   }
 
   .filter-catelog-item {
@@ -247,10 +247,10 @@
       font-size: 30rpx;
       font-weight: bold;
       .ellipsis();
-      margin-bottom: 6rpx;
+      margin-bottom: 10rpx;
     }
 
-    .product-press {
+    .product-desc {
       .light-font();
       .ellipsis();
       font-size: 26rpx;
@@ -258,20 +258,13 @@
       margin-bottom: 4rpx;
     }
 
-    .product-desc {
-      .light-font();
-      font-size: 24rpx;
-      color: #888;
-    }
-
     .product-tags {
       margin-top: 6rpx;
     }
   }
 
-  .product-subinfo {
+  .product-priceInfo {
     .flex-v-center();
-    padding-bottom: 10rpx;
 
     .product-price {
       font-size: 32rpx;
@@ -309,6 +302,7 @@
   }
 </style>
 <template>
+  <view>{{aaa}}</view>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
       <icon name="find" custom-style=" font-size: 36rpx;color: #999;"></icon>
@@ -349,7 +343,7 @@
         <view class="filter-catelog-wrapper" wx:if="{{filterType === 'catelog'}}">
           <view class="filter-catelog">
             <view class="filter-catelog-hd">
-              <icon name="leaf" type="svg"></icon>
+              <icon name="leaf" size="middle" type="svg"></icon>
               <text>年龄</text>
             </view>
             <view class="filter-catelog-bd">
@@ -359,7 +353,7 @@
               </block>
             </view>
             <view class="filter-catelog-hd">
-              <icon name="catelog" type="svg"></icon>
+              <icon name="catelog" size="middle" type="svg"></icon>
               <text>分类</text>
             </view>
             <view class="filter-catelog-bd">
@@ -368,7 +362,7 @@
               </block>
             </view>
             <view class="filter-catelog-hd">
-              <icon name="lang" type="svg"></icon>
+              <icon name="lang" size="middle" type="svg"></icon>
               <text>语言</text>
             </view>
             <view class="filter-catelog-bd">
@@ -396,22 +390,23 @@
         <view class="product-panel-body">
           <view class="product-maininfo">
             <view class="product-caption">{{item.name}}</view>
-            <view class="product-press">{{item.author}}</view>
-            <!--<view class="product-desc">{{item.press}}</view>-->
+            <view class="product-desc">{{item.author}}</view>
+          </view>
+          <view class="product-subInfo">
             <raty value="{{item.doubanScore}}"></raty>
             <view class="product-tags">
-              <repeat for="{{item.tags}}">
-                <tag>{{item}}</tag>
-              </repeat>
+              <tag wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
+              <tag wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
+              <tag wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
             </view>
-          </view>
-          <view class="product-subinfo">
-            <view class="product-price">
-              <text class="unit">￥</text>
-              <text>{{item.price}}</text>
+            <view class="product-priceInfo">
+              <view class="product-price">
+                <text class="unit">￥</text>
+                <text>{{item.price}}</text>
+              </view>
+              <view class="split"></view>
+              <view class="product-tax">书费价 ￥{{item.costPrice}}</view>
             </view>
-            <view class="split"></view>
-            <view class="product-tax">书费价 ￥{{item.costPrice}}</view>
           </view>
         </view>
       </view>

@@ -1,0 +1,3 @@
+<view class="flyer {{customClass}}" wx:if="{{show}}" style="left:{{startX}}px;top:{{startY}}px;{{customStyle}}" animation="{{animationData}}">
+  <slot></slot>
+</view>

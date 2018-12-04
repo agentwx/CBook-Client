@@ -6,12 +6,8 @@
     padding-bottom: 102rpx;
   }
 
-  .detail-swiper {
+  .detail-image-wrap {
     height: 500rpx;
-    pointer-events: none;
-  }
-
-  .swiper-item {
     .flex-center();
 
     > image {
@@ -20,12 +16,8 @@
     }
   }
 
-  .detail-pdinfo-wrap {
-    padding: 30rpx 20rpx 40rpx;
-  }
-
   .detail-title {
-    margin-bottom: 20rpx;
+    padding: 30rpx 20rpx 16rpx;
     font-size: 32rpx;
     font-weight: bold;
     word-break: break-all;
@@ -35,6 +27,7 @@
   .detail-salesInfo {
     .flex();
     justify-content: space-between;
+    padding: 0 20rpx 30rpx;
   }
 
   .sale-price {
@@ -64,17 +57,16 @@
   }
 
   .product-info {
-    margin-top: 40rpx;
-    margin-bottom: 40rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
 
-    > view,
-    .raty-wrap {
-      padding: 4rpx 0;
+    > view {
+      padding: 24rpx 0;
     }
   }
 
   .product-flags {
-    margin-top: 40rpx;
+    padding: 20rpx 20rpx;
 
     .flag-item {
       display: inline-flex;
@@ -234,6 +226,11 @@
       letter-spacing: 2rpx;
       margin-bottom: 6rpx;
     }
+
+    .expander {
+      white-space: nowrap;
+      color: @gcolor;
+    }
   }
 
 
@@ -293,24 +290,18 @@
       }
     }
   }
+
+  .fly-dot {
+    width: 36rpx;
+    height: 36rpx;
+    background-color: #ff0000;
+    border-radius: 50%;
+  }
+
 </style>
 <template>
-  <view class="detail-swiper-wrap">
-    <swiper class="detail-swiper" autoplay="false" interval="5000" duration="300" circular="true">
-      <swiper-item class="swiper-item">
-        <image mode="aspectFit" src="{{product.smallImageUrl}}" lazyload="true"></image>
-      </swiper-item>
-      <!--<repeat for="{{product.imags}}">
-        <swiper-item class="swiper-item">
-          <image src="{{item}}" lazyload="true"></image>
-        </swiper-item>
-      </repeat>-->
-    </swiper>
-  </view>
-  <view>
-    <repeat for="{{products}}">
-      <text>{{item.goodsId}}</text>
-    </repeat>
+  <view class="detail-image-wrap">
+    <image mode="aspectFit" src="{{product.smallImageUrl}}" lazyload="true"></image>
   </view>
   <view class="detail-pdinfo-wrap">
     <view class="detail-title">{{product.name}}</view>
@@ -325,12 +316,18 @@
       <view class="sales-count">已售{{product.sales}}份</view>
     </view>
 
+    <view class="spliter"></view>
+
     <view class="product-info">
-      <view>作者：{{product.author}}</view>
-      <view>出版社：{{product.press}}</view>
-      <view>出版时间：{{publishDateStr}}</view>
-      <raty value="{{product.doubanScore}}"></raty>
+      <view class="hairline--bottom">作者：{{product.author}}</view>
+      <view class="hairline--bottom">出版社：{{product.press}}</view>
+      <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
+      <view class="hairline--bottom">
+        <raty value="{{product.doubanScore}}"></raty>
+      </view>
     </view>
+
+    <view class="spliter"></view>
 
     <view class="product-flags">
       <view class="flag-item">
@@ -352,7 +349,7 @@
   <view class="spliter"></view>
 
   <view class="detail-action-bar">
-    <view class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="gotoCart">
+    <view id="cart" class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="gotoCart">
       <icon-item icon="cart" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
       <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
     </view>
@@ -363,7 +360,7 @@
       </view>
       <view class="buy-text">直接买</view>
     </view>
-    <view class="action-item action-buy coin-buy" @tap="addToCart">
+    <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
       <view>
         <text class="unit">￥</text>
         <text class="price">29.8</text>
@@ -380,7 +377,10 @@
     <view class="pdintro-body">
       <view class="pdintro-content">
         <repeat for="{{contentBriefs}}">
-          <view class="text">{{item}}</view>
+          <view class="text">
+            {{item}}
+            <text class="expander" wx:if="{{shouldContentExpand && index === contentBriefs.length - 1}}" @tap="toggleExpand('content')">{{contentBriefExpand ? '收起' : '展开'}}</text>
+          </view>
         </repeat>
       </view>
     </view>
@@ -391,7 +391,10 @@
       <view class="pdintro-author">{{product.author}}</view>
       <view class="pdintro-content">
         <repeat for="{{authorBriefs}}">
-          <view class="text">{{item}}</view>
+          <view class="text">
+            {{item}}
+            <text class="expander" wx:if="{{shouldAuthorExpand && index === authorBriefs.length - 1}}" @tap="toggleExpand('author')">{{authorBriefExpand ? '收起' : '展开'}}</text>
+          </view>
         </repeat>
       </view>
     </view>
@@ -420,16 +423,28 @@
       </view>
     </scroll-view>
   </view>
+
+  <flyer startX="{{startX}}" startY="{{startY}}" endX="{{endX}}" endY="{{endY}}" show="{{showFly}}" @complete="flyComplete">
+    <view class="fly-dot"></view>
+  </flyer>
 </template>
 
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
-  import { toast, formatDate } from '../../utils/util'
+  import { toast, formatDate, getNodeRect } from '../../utils/util'
 
   import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
+
+  const getDisplayText = (str, expand, maxLength) => {
+    if (expand === true) {
+      return str.split(/\n|<br>/g)
+    } else {
+      return str.substring(0, maxLength).replace(/[<br>]+$/, '').split(/\n|<br>/g)
+    }
+  }
 
   @connect({
     cartCount (state) {
@@ -443,7 +458,8 @@
         'icon-item': '/components/icon-item/index',
         'icon': '/components/icon/index',
         'raty': '/components/raty/index',
-        'badge': '/components/badge/index'
+        'badge': '/components/badge/index',
+        'flyer': '/components/flyer/index'
       }
     }
 
@@ -453,31 +469,56 @@
     data = {
       canBuy: false,
       buyTriggered: false,
+      contentBriefExpand: false,
+      authorBriefExpand: false,
+      contentMaxLength: 100,
+      authorMaxLength: 100,
       errMsg: '',
       product: {},
-      contentBriefs: [],
-      authorBriefs: []
+      contentBriefStr: '',
+      authorBriefStr: '',
+      startX: 0,
+      startY: 0,
+      endX: 0,
+      endY: 0,
+      showFly: false
     }
 
     computed = {
       publishDateStr () {
         return formatDate(this.product.publishDate, 'yyyy年MM月dd日')
+      },
+      shouldContentExpand () {
+        return this.contentBriefStr.length > this.contentMaxLength
+      },
+      shouldAuthorExpand () {
+        return this.authorBriefStr.length > this.authorMaxLength
+      },
+      contentBriefs () {
+        return getDisplayText(this.contentBriefStr, this.contentBriefExpand, this.contentMaxLength)
+      },
+      authorBriefs () {
+        return getDisplayText(this.authorBriefStr, this.authorBriefExpand, this.authorMaxLength)
       }
     }
 
     watch = {
       cartCount (value, oValue) {
         if (value > oValue && !this.buyTriggered) {
-          this.buyTriggered = true
-          setTimeout(() => {
-            this.buyTriggered = false
-            this.$apply()
-          }, 1000)
+          this.startFly()
         }
       }
     }
 
     methods = {
+      toggleExpand (target) {
+        if (target === 'content') {
+          this.contentBriefExpand = !this.contentBriefExpand
+        }
+        if (target === 'author') {
+          this.authorBriefExpand = !this.authorBriefExpand
+        }
+      },
       gotoCart () {
         this.$switch('/pages/shopcart/shopcart')
       },
@@ -512,15 +553,33 @@
           current: url,
           urls: this.product.imags
         })
+      },
+      flyComplete () {
+        this.showFly = false
+        this.buyTriggered = true
+        setTimeout(() => {
+          this.buyTriggered = false
+          this.$apply()
+        }, 1000)
       }
+    }
+
+    async startFly () {
+      const res = await Promise.all([getNodeRect('#cart-btn'), getNodeRect('#cart')])
+      this.startX = res[0].left + res[0].width / 2 - 9
+      this.startY = res[0].top + res[0].height / 2 - 9
+      this.endX = res[1].left + res[1].width / 2 - 9
+      this.endY = res[1].top + res[1].height / 2 - 9
+      this.showFly = true
+      this.$apply()
     }
 
     async loadData (isbn) {
       try {
         let res = await fetch.post('/bookinfo/detail', {isbn})
         this.product = {...this.product, ...res.datas}
-        this.contentBriefs = res.datas.contentBrief.split(/\n|<br>/g)
-        this.authorBriefs = res.datas.authorBrief.split(/\n|<br>/g)
+        this.contentBriefStr = res.datas.contentBrief
+        this.authorBriefStr = res.datas.authorBrief
         this.canBuy = true
         this.$apply()
       } catch (msg) {

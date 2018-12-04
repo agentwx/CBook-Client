@@ -97,12 +97,13 @@
 
     .panel-title {
       margin-bottom: 0;
+      padding-bottom: 20rpx;
     }
   }
 
   .to-orders {
-    font-weight: normal;
     font-size: 28rpx;
+    font-weight: normal;
     padding: 6rpx 0 6rpx 16rpx;
   }
 
@@ -110,6 +111,7 @@
     .flex();
 
     icon-item {
+      font-size: 26rpx;
       flex: 1;
       .flex-h-center();
     }
@@ -150,7 +152,7 @@
   </view>
 
   <panel custom-class="order-entry-panel">
-    <view class="panel-title" slot="title" @tap="goToOrders('0')">
+    <view class="panel-title hairline--bottom" slot="title" @tap="goToOrders('0')">
       <text>买书订单</text>
       <text class="to-orders">全部订单</text>
     </view>
