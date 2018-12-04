@@ -100,8 +100,8 @@
   }
 
   .product-cover {
-    width: 240rpx;
-    height: 294rpx;
+    width: 200rpx;
+    height: 254rpx;
     margin-left: 10rpx;
     margin-right: 30rpx;
     overflow: hidden;
@@ -133,7 +133,7 @@
       .ellipsis();
       font-size: 26rpx;
       color: #666;
-      margin-bottom: 2rpx;
+      margin-bottom: 4rpx;
     }
 
     .product-desc {
@@ -222,7 +222,7 @@
           <view class="product-maininfo">
             <view class="product-caption">{{item.name}}</view>
             <view class="product-press">{{item.author}}</view>
-            <view class="product-desc">{{item.press}}</view>
+            <!--<view class="product-desc">{{item.press}}</view>-->
             <raty value="{{item.doubanScore}}"></raty>
             <view class="product-tags">
               <repeat for="{{item.tags}}">
@@ -259,9 +259,6 @@
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
   import History from '../../service/history'
-  import { getStore } from 'wepy-redux'
-
-  const store = getStore()
 
   export default class Index extends wepy.page {
     config = {
@@ -350,10 +347,6 @@
         }
         this.history.add(key)
         this.historyTags = this.history.getAll()
-        store.dispatch({
-          type: 'ADD_PRODUCTS',
-          payload: {products: items}
-        })
         if (items.length > 0) {
           this.pageNum++
           this.isEmpty = false

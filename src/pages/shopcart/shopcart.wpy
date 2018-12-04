@@ -430,6 +430,10 @@
                 type: 'REMOVE_CART',
                 payload: { ID: product.goodsId }
               })
+              store.dispatch({
+                type: 'REMOVE_CART_PRODUCT',
+                payload: { ID: product.goodsId }
+              })
             }
             return !product.isChecked
           })
@@ -450,6 +454,10 @@
                 type: 'REMOVE_CART',
                 payload: { ID: product.goodsId }
               })
+              store.dispatch({
+                type: 'REMOVE_CART_PRODUCT',
+                payload: { ID: product.goodsId }
+              })
             }
             return !isHit
           })
@@ -467,16 +475,14 @@
     }
 
     getProductsFromCart () {
-      let { products, shopcart, cartProducts } = store.getState()
-
-      products = cartProducts.concat(products)
+      let { shopcart, cartProducts } = store.getState()
 
       this.products = shopcart.map(item => {
-        for (let i = 0; i < products.length; i++) {
-          if (item.ID === products[i].goodsId) {
-            products[i].COUNT = item.COUNT
-            products[i].isChecked = this.isSelectAll
-            return products[i]
+        for (let i = 0; i < cartProducts.length; i++) {
+          if (item.ID === cartProducts[i].goodsId) {
+            cartProducts[i].COUNT = item.COUNT
+            cartProducts[i].isChecked = this.isSelectAll
+            return cartProducts[i]
           }
         }
       })
@@ -485,6 +491,9 @@
     clear () {
       store.dispatch({
         type: 'CLEAR_CART'
+      })
+      store.dispatch({
+        type: 'CLEAR_CART_PRODUCTS'
       })
       this.products = []
       this.$apply()
@@ -525,12 +534,6 @@
       this.setHintDel()
       wx.nextTick(() => {
         this.setBadge()
-      })
-      store.dispatch({
-        type: 'ADD_CART_PRODUCTS',
-        payload: {
-          products: this.products
-        }
       })
     }
   }

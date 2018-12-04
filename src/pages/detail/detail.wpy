@@ -339,7 +339,7 @@
       </view>
       <view class="flag-item">
         <icon name="check"></icon>
-        正品保证
+        官方直营
       </view>
       <view class="flag-item">
         <icon name="check"></icon>
@@ -495,6 +495,12 @@
             type: 'ADD_CART',
             payload: {
               ID: this.product.goodsId
+            }
+          })
+          store.dispatch({
+            type: 'ADD_CART_PRODUCT',
+            payload: {
+              product: this.product
             }
           })
         } else {

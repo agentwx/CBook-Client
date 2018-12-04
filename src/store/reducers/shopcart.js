@@ -40,7 +40,7 @@ export default handleActions({
       ...state.filter(cart => cart.ID !== ID)
     ]
   },
-  CLEAR_CART (state) {
+  CLEAR_CART () {
     return []
   }
 }, defaultState)

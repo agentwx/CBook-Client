@@ -222,8 +222,8 @@
   }
 
   .product-cover {
-    width: 240rpx;
-    height: 294rpx;
+    width: 200rpx;
+    height: 254rpx;
     margin-left: 10rpx;
     margin-right: 30rpx;
     overflow: hidden;
@@ -255,7 +255,7 @@
       .ellipsis();
       font-size: 26rpx;
       color: #666;
-      margin-bottom: 2rpx;
+      margin-bottom: 4rpx;
     }
 
     .product-desc {
@@ -397,7 +397,7 @@
           <view class="product-maininfo">
             <view class="product-caption">{{item.name}}</view>
             <view class="product-press">{{item.author}}</view>
-            <view class="product-desc">{{item.press}}</view>
+            <!--<view class="product-desc">{{item.press}}</view>-->
             <raty value="{{item.doubanScore}}"></raty>
             <view class="product-tags">
               <repeat for="{{item.tags}}">
@@ -470,28 +470,29 @@ export default class Index extends wepy.page {
       {checked: false, value: 5, name: '智能排序'}
     ],
     ageTypes: [
-      {checked: false, value: 0, name: '不分类'},
-      {checked: true, value: 1, name: '0-2岁'},
+      {checked: true, value: 0, name: '全部'},
+      {checked: false, value: 1, name: '0-2岁'},
       {checked: false, value: 2, name: '3-5岁'},
       {checked: false, value: 3, name: '6-8岁'},
       {checked: false, value: 4, name: '8岁以上'}
     ],
     tags: [
+      {checked: true, value: 0, name: '全部'},
       {checked: false, value: 1, name: '课外阅读'},
       {checked: false, value: 2, name: '亲子关系'},
       {checked: false, value: 3, name: '历史文学'}
     ],
     languageTypes: [
-      {checked: false, value: 0, name: '不分类'},
-      {checked: true, value: 1, name: '中文'},
+      {checked: true, value: 0, name: '全部'},
+      {checked: false, value: 1, name: '中文'},
       {checked: false, value: 2, name: '中文注音'},
       {checked: false, value: 3, name: '英文'},
       {checked: false, value: 4, name: '中英文'}
     ],
     sortType: 1,
-    ageValue: 1,
+    ageValue: 0,
     tagValue: 0,
-    langValue: 1,
+    langValue: 0,
     filterType: null,
     products: []
   }
@@ -564,8 +565,19 @@ export default class Index extends wepy.page {
     },
     filterByTag (type, value) {
       this[type] = this[type].map(item => {
-        if (item.value === value) {
-          item.checked = !item.checked
+        if (value === 0) {
+          if (item.value === 0) {
+            item.checked = true
+          } else {
+            item.checked = false
+          }
+        } else {
+          if (item.value === 0) {
+            item.checked = false
+          }
+          if (item.value === value) {
+            item.checked = !item.checked
+          }
         }
         return item
       })
@@ -598,7 +610,7 @@ export default class Index extends wepy.page {
 
   async loadProducts (params) {
     const filterChecked = list =>
-      list.filter(item => item.checked).map(item => item.value)
+      list.filter(item => item.checked && item.value > 0).map(item => item.value)
 
     let filter = [
       {
@@ -637,10 +649,6 @@ export default class Index extends wepy.page {
       } else {
         this.products = this.products.concat(items)
       }
-      store.dispatch({
-        type: 'ADD_PRODUCTS',
-        payload: { products: items }
-      })
       if (items.length > 0) {
         this.pageNum++
         this.isEmpty = false
@@ -719,9 +727,6 @@ export default class Index extends wepy.page {
 
   async onLoad() {
     this.getFilterBarTop()
-    store.dispatch({
-      type: 'CLEAR_PRODUCTS'
-    })
     this.$parent.ready(() => {
       this.reloadProducts()
     })

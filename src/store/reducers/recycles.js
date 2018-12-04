@@ -22,7 +22,7 @@ export default handleActions({
       ...products
     ]
   },
-  CLEAR_RECYCLE (state) {
+  CLEAR_RECYCLE () {
     return []
   }
 }, defaultState)
