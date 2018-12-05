@@ -96,8 +96,10 @@ Component({
     },
     animateByCss () {
       const { startX, startY, endX, endY, duration } = this.data
-      this.animation.translate3d(0, endY - startY, 0).step()
-      this.innerAnimation.translate3d(endX - startX, 0, 0).step()
+      const offsetX = endX - startX
+      const offsetY = endY - startY
+      this.animation.translate3d(0, offsetX, 0).step()
+      this.innerAnimation.translate3d(offsetY, 0, 0).step()
       this.setData({
         animationData: this.animation.export(),
         innerAnimationData: this.innerAnimation.export()
@@ -107,29 +109,39 @@ Component({
           animationData: null,
           innerAnimationData: null
         })
-        this.triggerEvent('complete', {value: {x: endX, y: endY}})
+        this.triggerEvent('complete', {value: {offsetX, offsetY, startX, startY, endX, endY}})
       }, duration)
     },
     animateByJs () {
       if (this.parabola) return
+
+      const {
+        startX, startY, endX, endY,
+        duration, curvature, autoStart
+      } = this.data
+
       this.parabola = new Parabola({
-        startX: this.data.startX,
-        startY: this.data.startY,
-        endX: this.data.endX,
-        endY: this.data.endY,
-        curvature: this.data.curvature,
-        duration: this.data.duration,
-        autoStart: this.data.autoStart,
-        complete: (x, y) => {
+        startX,
+        startY,
+        endX,
+        endY,
+        duration,
+        curvature,
+        autoStart,
+        complete: (offsetX, offsetY) => {
           this.parabola = null
-          this.triggerEvent('complete', {value: {x, y}})
+          this.triggerEvent('complete', {
+            value: {offsetX, offsetY, startX, startY, endX, endY}
+          })
         },
-        step: (x, y) => {
+        step: (x, y, offsetX, offsetY) => {
           this.animation.translate3d(x, y).step()
           this.setData({
             animationData: this.animation.export()
           })
-          this.triggerEvent('step', {value: {x, y}})
+          this.triggerEvent('step', {
+            value: {x, y, offsetX, offsetY, startX, startY, endX, endY}
+          })
         }
       })
     }

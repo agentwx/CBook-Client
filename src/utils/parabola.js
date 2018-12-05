@@ -68,11 +68,9 @@ export default class Parabola {
     let y
     if (now > this.end) {
       // 运行结束
-      x = this.driftX
-      y = this.driftY
       this.stop()
       if (typeof opts.complete === 'function') {
-        opts.complete.call(this, x, y)
+        opts.complete.call(this, this.driftX, this.driftY)
       }
     } else {
       // x 每一步的X轴的位置
@@ -81,7 +79,7 @@ export default class Parabola {
       y = this.curvature * x * x + this.b * x
 
       if (typeof opts.step === 'function') {
-        opts.step.call(this, x, y)
+        opts.step.call(this, x, y, this.driftX, this.driftY)
       }
     }
     return this
