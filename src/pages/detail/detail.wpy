@@ -455,10 +455,10 @@
       navigationBarTitleText: '商品详情',
       usingComponents: {
         'icon-item': '/components/icon-item/index',
+        'flyer-group': '/components/flyer-group/index',
         'icon': '/components/icon/index',
         'raty': '/components/raty/index',
-        'badge': '/components/badge/index',
-        'flyer-group': '/components/flyer-group/index'
+        'badge': '/components/badge/index'
       }
     }
 
