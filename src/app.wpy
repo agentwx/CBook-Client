@@ -1,9 +1,9 @@
 <style lang="less">
-  @import "less/font";
-  @import "less/mixin";
-  @import "less/hairline";
-  @import "less/iconfont";
-  @import "less/animation";
+  @import "styles/font";
+  @import "styles/mixin";
+  @import "styles/hairline";
+  @import "styles/iconfont";
+  @import "styles/animation";
 
   page {
     background-color: #fff;

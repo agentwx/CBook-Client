@@ -1,5 +1,5 @@
 <style lang="less">
-  @import '../../less/mixin';
+  @import '../../styles/mixin';
 
   .manual-panel {
     margin: 50rpx 40rpx;

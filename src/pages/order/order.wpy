@@ -1,6 +1,6 @@
 <style lang="less">
-  @import '../../less/mixin';
-  @import '../../less/ellipsis';
+  @import '../../styles/mixin';
+  @import '../../styles/ellipsis';
 
   page {
     padding-bottom: 100rpx;
