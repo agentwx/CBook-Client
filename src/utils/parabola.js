@@ -1,4 +1,3 @@
-
 // 兼容浏览器和小程序环境
 let window = typeof wx !== 'undefined' && !!wx.getSystemInfo ? {} : window
 
@@ -18,16 +17,16 @@ const cancelAnimationFrame =
     return clearTimeout(id)
   }
 
-function now() {
+function now () {
   return +new Date()
 }
 
 export default class Parabola {
-  constructor(...args) {
+  constructor (...args) {
     this.initialize.apply(this, args)
   }
 
-  initialize(options) {
+  initialize (options) {
     this.options = {...defaultSetting, ...options}
     let opts = this.options
     this.timerId = null
@@ -62,7 +61,7 @@ export default class Parabola {
    * @param {Data} now 当前时间 .
    * @return {Object} this
    */
-  step(now) {
+  step (now) {
     let opts = this.options
     let x
     let y
@@ -85,14 +84,14 @@ export default class Parabola {
     return this
   }
 
-  setOptions(options = {}) {
+  setOptions (options = {}) {
     this.reset()
     this.options = {...this.options, ...options}
     this.initialize(this.options)
     return this
   }
 
-  start() {
+  start () {
     let self = this
     // 设置起止时间
     this.begin = now()
@@ -114,7 +113,7 @@ export default class Parabola {
     return this
   }
 
-  reset(x = 0, y = 0) {
+  reset (x = 0, y = 0) {
     this.stop()
     if (typeof this.options.step === 'function') {
       this.options.step.call(this, x, y)
@@ -122,7 +121,7 @@ export default class Parabola {
     return this
   }
 
-  stop() {
+  stop () {
     if (!!this.timerId) {
       cancelAnimationFrame(this.timerId)
     }

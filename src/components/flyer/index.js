@@ -109,7 +109,9 @@ Component({
           animationData: null,
           innerAnimationData: null
         })
-        this.triggerEvent('complete', {value: {offsetX, offsetY, startX, startY, endX, endY}})
+        this.triggerEvent('complete', {
+          value: {offsetX, offsetY, startX, startY, endX, endY}
+        })
       }, duration)
     },
     animateByJs () {
