@@ -363,6 +363,10 @@
         return this.products
           .filter(product => product.isChecked)
           .reduce((prev, cur) => prev + cur.COUNT, 0)
+      },
+      cartCount () {
+        return this.products
+          .reduce((prev, cur) => prev + cur.COUNT, 0)
       }
     }
 
@@ -379,7 +383,7 @@
           this.$apply()
         }
       },
-      totalCount () {
+      cartCount () {
         this.setBadge()
       }
     }
@@ -500,10 +504,10 @@
     }
 
     setBadge () {
-      if (this.totalCount > 0) {
+      if (this.cartCount > 0) {
         wx.setTabBarBadge({
           index: 2,
-          text: this.totalCount.toString()
+          text: this.cartCount.toString()
         })
       } else {
         wx.removeTabBarBadge({

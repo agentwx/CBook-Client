@@ -349,11 +349,11 @@
   <view class="spliter"></view>
 
   <view class="detail-action-bar">
-    <view id="cart" class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="gotoCart">
+    <view id="cart" class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="goToCart">
       <icon-item icon="cart" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
       <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
     </view>
-    <view class="action-item action-buy cash-buy" @tap="gotoBuy">
+    <view class="action-item action-buy cash-buy" @tap="goToBuy">
       <view>
         <text class="unit">￥</text>
         <text class="price">{{product.price}}</text>
@@ -424,7 +424,15 @@
     </scroll-view>
   </view>
 
-  <flyer startX="{{startX}}" startY="{{startY}}" endX="{{endX}}" endY="{{endY}}" show="{{showFly}}" @complete="flyComplete">
+  <flyer
+    useCss="{{false}}"
+    startX="{{startX}}"
+    startY="{{startY}}"
+    endX="{{endX}}"
+    endY="{{endY}}"
+    show="{{showFly}}"
+    @complete="flyComplete"
+  >
     <view class="fly-dot"></view>
   </flyer>
 </template>
@@ -433,7 +441,6 @@
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast, formatDate, getNodeRect } from '../../utils/util'
-
   import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
@@ -442,7 +449,7 @@
     if (expand === true) {
       return str.split(/\n|<br>/g)
     } else {
-      return str.substring(0, maxLength).replace(/[<br>]+$/, '').split(/\n|<br>/g)
+      return str.substring(0, maxLength).replace(/[<br>，,.。：:;；]+$/, '').split(/\n|<br>/g)
     }
   }
 
@@ -504,7 +511,7 @@
 
     watch = {
       cartCount (value, oValue) {
-        if (value > oValue && !this.buyTriggered) {
+        if (value > oValue) {
           this.startFly()
         }
       }
@@ -519,10 +526,10 @@
           this.authorBriefExpand = !this.authorBriefExpand
         }
       },
-      gotoCart () {
+      goToCart () {
         this.$switch('/pages/shopcart/shopcart')
       },
-      gotoBuy () {
+      goToBuy () {
         if (this.canBuy) {
           let products = [Object.assign(this.product, {COUNT: 1})]
           this.$navigate('/pages/order/order', {products: JSON.stringify(products)})
@@ -556,20 +563,22 @@
       },
       flyComplete () {
         this.showFly = false
-        this.buyTriggered = true
-        setTimeout(() => {
-          this.buyTriggered = false
-          this.$apply()
-        }, 1000)
+        if (!this.buyTriggered) {
+          this.buyTriggered = true
+          setTimeout(() => {
+            this.buyTriggered = false
+            this.$apply()
+          }, 1000)
+        }
       }
     }
 
     async startFly () {
-      const res = await Promise.all([getNodeRect('#cart-btn'), getNodeRect('#cart')])
-      this.startX = res[0].left + res[0].width / 2 - 9
-      this.startY = res[0].top + res[0].height / 2 - 9
-      this.endX = res[1].left + res[1].width / 2 - 9
-      this.endY = res[1].top + res[1].height / 2 - 9
+      const nodes = await Promise.all([getNodeRect('#cart-btn'), getNodeRect('#cart')])
+      this.startX = nodes[0].left + nodes[0].width / 2 - 9
+      this.startY = nodes[0].top + nodes[0].height / 2 - 9
+      this.endX = nodes[1].left + nodes[1].width / 2 - 9
+      this.endY = nodes[1].top + nodes[1].height / 2 - 9
       this.showFly = true
       this.$apply()
     }
