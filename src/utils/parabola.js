@@ -66,7 +66,7 @@ export default class Parabola {
     let opts = this.options
     let x
     let y
-    if (now > this.end) {
+    if (now >= this.end) {
       // 运行结束
       this.stop()
       if (typeof opts.complete === 'function') {

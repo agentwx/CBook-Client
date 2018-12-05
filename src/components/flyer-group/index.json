@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "flyer": "/components/flyer/index"
+  }
+}

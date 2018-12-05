@@ -424,17 +424,9 @@
     </scroll-view>
   </view>
 
-  <flyer
-    useCss="{{false}}"
-    startX="{{startX}}"
-    startY="{{startY}}"
-    endX="{{endX}}"
-    endY="{{endY}}"
-    show="{{showFly}}"
-    @complete="flyComplete"
-  >
+  <flyer-group id="J_flyer" @complete="flyComplete">
     <view class="fly-dot"></view>
-  </flyer>
+  </flyer-group>
 </template>
 
 <script>
@@ -466,7 +458,7 @@
         'icon': '/components/icon/index',
         'raty': '/components/raty/index',
         'badge': '/components/badge/index',
-        'flyer': '/components/flyer/index'
+        'flyer-group': '/components/flyer-group/index'
       }
     }
 
@@ -483,12 +475,7 @@
       errMsg: '',
       product: {},
       contentBriefStr: '',
-      authorBriefStr: '',
-      startX: 0,
-      startY: 0,
-      endX: 0,
-      endY: 0,
-      showFly: false
+      authorBriefStr: ''
     }
 
     computed = {
@@ -562,7 +549,6 @@
         })
       },
       flyComplete () {
-        this.showFly = false
         if (!this.buyTriggered) {
           this.buyTriggered = true
           setTimeout(() => {
@@ -575,12 +561,11 @@
 
     async startFly () {
       const nodes = await Promise.all([getNodeRect('#cart-btn'), getNodeRect('#cart')])
-      this.startX = nodes[0].left + nodes[0].width / 2 - 9
-      this.startY = nodes[0].top + nodes[0].height / 2 - 9
-      this.endX = nodes[1].left + nodes[1].width / 2 - 9
-      this.endY = nodes[1].top + nodes[1].height / 2 - 9
-      this.showFly = true
-      this.$apply()
+      const startX = nodes[0].left + nodes[0].width / 2 - 9
+      const startY = nodes[0].top + nodes[0].height / 2 - 9
+      const endX = nodes[1].left + nodes[1].width / 2 - 9
+      const endY = nodes[1].top + nodes[1].height / 2 - 9
+      this.$wxpage.selectComponent('#J_flyer').start(startX, startY, endX, endY)
     }
 
     async loadData (isbn) {

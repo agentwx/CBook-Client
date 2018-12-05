@@ -1,0 +1,17 @@
+<block wx:for="{{group}}" wx:key="unique">
+  <flyer
+    use-css="{{item.useCss}}"
+    start-x="{{item.startX}}"
+    start-y="{{item.startY}}"
+    end-x="{{item.endX}}"
+    end-y="{{item.endY}}"
+    duration="{{item.duration}}"
+    curvature="{{item.curvature}}"
+    show="{{true}}"
+    custom-class="{{customClass}}"
+    custom-style="{{customStyle}}"
+    bindcomplete="onComplete"
+  >
+    <slot></slot>
+  </flyer>
+</block>
