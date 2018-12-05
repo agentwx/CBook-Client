@@ -51,12 +51,12 @@
 </style>
 
 <template>
-  <view class='mask' hidden="{{!isShow}}">
+  <view class="mask" hidden="{{!isShow}}">
     <view class="model">
       <view class="modelTitle">授权请求</view>
       <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
       <view>
-        <button open-type="getUserInfo" class="agree" @getuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+        <button open-type="getUserInfo" class="agree" @getuserinfo="onGetUserInfo" @tap="onClick" lang="zh_CN">去设置</button>
       </view>
     </view>
   </view>
@@ -77,7 +77,10 @@
     }
 
     methods = {
-      agreeGetUser() {
+      onClick () {
+        this.isShow = false
+      },
+      onGetUserInfo () {
         this.$parent.getToken()
         this.$back()
       }
