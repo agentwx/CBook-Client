@@ -333,15 +333,15 @@
     <view class="product-flags">
       <view class="flag-item">
         <icon name="check"></icon>
-        消毒塑料
+        <text>消毒塑封</text>
       </view>
       <view class="flag-item">
         <icon name="check"></icon>
-        官方直营
+        <text>官方直营</text>
       </view>
       <view class="flag-item">
         <icon name="check"></icon>
-        原价回收
+        <text>原价回收</text>
       </view>
     </view>
 
