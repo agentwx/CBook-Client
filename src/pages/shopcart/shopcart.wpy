@@ -32,6 +32,8 @@
   }
 
   .cart-list {
+    width: 100%;
+    overflow: hidden;
     padding-top: 20rpx;
     padding-bottom: 20rpx;
   }
