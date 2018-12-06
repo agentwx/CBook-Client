@@ -84,7 +84,7 @@
     </list-item>
   </view>
 
-  <repeat for="{{relationships}}">
+  <repeat for="{{relationships}}" key="index">
     <view class="profile-listitem" @tap="editRelationship({{item}})">
       <list-item>
         <view class="list-item-inner">

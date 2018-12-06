@@ -160,7 +160,7 @@
         <text>图书列表</text>
       </view>
     </view>
-    <repeat for="{{order.bookInfos}}">
+    <repeat for="{{order.bookInfos}}" key="index">
       <view class="book-body">
         <view class="book-cover">
           <image src="{{item.smallIcon}}" lazyload="true"></image>

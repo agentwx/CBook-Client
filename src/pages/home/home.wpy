@@ -382,7 +382,7 @@
   </view>
 
   <view class="product-listview">
-    <repeat for="{{products}}">
+    <repeat for="{{products}}" key="index">
       <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="viewDetail({{item}})">
         <view class="product-cover">
           <image src="{{item.smallImageUrl}}" lazyload="true"></image>

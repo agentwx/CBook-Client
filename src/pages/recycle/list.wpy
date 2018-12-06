@@ -101,7 +101,7 @@
 
 <template>
   <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
-    <repeat for="{{orders}}">
+    <repeat for="{{orders}}" key="index">
       <panel @tap="viewDetail({{item}})">
         <view class="panel-title order-hd" slot="title">
           <text class="order-num">单号：{{item.orderCode}}</text>

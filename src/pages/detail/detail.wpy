@@ -377,7 +377,7 @@
     </view>
     <view class="pdintro-body">
       <view class="pdintro-content">
-        <repeat for="{{contentBriefs}}">
+        <repeat for="{{contentBriefs}}" key="index">
           <view class="text">
             {{item}}
             <text class="expander" wx:if="{{shouldContentExpand && index === contentBriefs.length - 1}}" @tap="toggleExpand('content')">{{contentBriefExpand ? '收起' : '展开'}}</text>
@@ -391,7 +391,7 @@
     <view class="pdintro-body">
       <view class="pdintro-author">{{product.author}}</view>
       <view class="pdintro-content">
-        <repeat for="{{authorBriefs}}">
+        <repeat for="{{authorBriefs}}" key="index">
           <view class="text">
             {{item}}
             <text class="expander" wx:if="{{shouldAuthorExpand && index === authorBriefs.length - 1}}" @tap="toggleExpand('author')">{{authorBriefExpand ? '收起' : '展开'}}</text>
@@ -403,7 +403,7 @@
       <view class="text">书摘插画</view>
     </view>
     <view class="pdintro-body">
-      <repeat for="{{product.imags}}">
+      <repeat for="{{product.imags}}" key="index">
         <image src="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
       </repeat>
     </view>
@@ -413,7 +413,7 @@
     <view class="suggest-title">猜您喜欢</view>
     <scroll-view class="suggest-scrollview" scroll-x="true">
       <view class="suggest-list">
-        <repeat for="{{product.relatedBookInfoList}}">
+        <repeat for="{{product.relatedBookInfoList}}" key="index">
           <view class="suggest-item">
             <view class="suggest-cover">
               <image src="{{item.smallIconDetail}}" lazyload="true"></image>

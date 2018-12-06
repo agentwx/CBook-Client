@@ -438,7 +438,7 @@
   <block wx:else>
     <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
     <view class="orders-wrap">
-      <repeat for="{{products}}">
+      <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="order-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}">
             <view class="order-cover">

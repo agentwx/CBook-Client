@@ -187,7 +187,7 @@
   <panel>
     <view class="panel-title" slot="title">图书列表</view>
     <view class="order-body">
-      <repeat for="{{products}}">
+      <repeat for="{{products}}" key="index">
         <view class="order-book">
           <view class="book-name">{{item.name}}</view>
           <view class="book-count">x{{item.COUNT}}</view>

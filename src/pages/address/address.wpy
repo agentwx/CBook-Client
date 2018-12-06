@@ -104,7 +104,7 @@
   }
 </style>
 <template>
-  <repeat for="{{addressList}}">
+  <repeat for="{{addressList}}" key="index">
     <panel @tap="selectAddress({{item}})">
       <view class="addr-title">
         <text class="addr-username">{{item.name}}</text>
