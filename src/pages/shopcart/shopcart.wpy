@@ -259,8 +259,8 @@
         <text>图书列表</text>
       </view>
       <view class="edit-right">
-        <view class="edit-btn" wx:if="{{!isEdit}}" @tap="startEditCart">编辑</view>
-        <view class="edit-btn" wx:if="{{isEdit}}" @tap="endEditCart">完成</view>
+        <view class="edit-btn" wx:if="{{!isEdit}}" @tap="startEdit">编辑</view>
+        <view class="edit-btn" wx:if="{{isEdit}}" @tap="endEdit">完成</view>
       </view>
     </view>
 
@@ -269,7 +269,7 @@
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="cart-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="toggleSelect({{item}})">
             <view class="cart-col-checkbox cart-checkbox">
-              <check-box readonly="true" checked="{{item.isChecked}}" />
+              <check-box readonly="true" checked="{{item.checked}}" />
             </view>
             <view class="cart-pd-cover">
               <image src="{{item.smallImageUrl}}" lazyload="true"></image>
@@ -307,7 +307,7 @@
           <view class="cart-summary">合计￥{{totalPrice}}</view>
           <view class="cart-hint">非偏远地区，满69包邮</view>
         </view>
-        <view class="cart-buybtn {{totalCount === 0 ? 'disabled' : ''}}" wx:if="{{!isEdit}}" @tap="gotoBuy">结算({{totalCount}})</view>
+        <view class="cart-buybtn {{totalCount === 0 ? 'disabled' : ''}}" wx:if="{{!isEdit}}" @tap="goToBuy">结算({{totalCount}})</view>
         <view class="cart-delbtn {{totalCount === 0 ? 'disabled' : ''}}" wx:if="{{isEdit}}" @tap="deleteCart">删除({{totalCount}})</view>
       </view>
     </view>
@@ -326,11 +326,36 @@
 <script>
   import wepy from 'wepy'
   import { confirm } from '../../utils/util'
-
-  import { getStore } from 'wepy-redux'
+  import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
 
+  @connect({
+    products ({ shopCart, cartProducts: p }) {
+      return shopCart.map(item => {
+        for (let i = 0; i < p.length; i++) {
+          if (item.ID === p[i].goodsId) {
+            p[i].COUNT = item.COUNT
+            p[i].checked = p[i].checked === undefined ? this.isSelectAll : p[i].checked
+            return p[i]
+          }
+        }
+      })
+    },
+    totalPrice ({ cartProducts }) {
+      return cartProducts
+        .filter(product => product.checked)
+        .reduce((prev, cur) => prev + cur.COUNT * +cur.price, 0).toFixed(2)
+    },
+    totalCount ({ cartProducts }) {
+      return cartProducts
+        .filter(product => product.checked)
+        .reduce((prev, cur) => prev + cur.COUNT, 0)
+    },
+    cartCount ({ shopCart }) {
+      return shopCart.reduce((prev, cur) => prev + cur.COUNT, 0)
+    }
+  })
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '购物车',
@@ -343,54 +368,37 @@
       }
     }
 
-    components = {
-    }
-
     data = {
       isEdit: false,
       isSelectAll: true,
-      isHintDel: false,
-      products: []
-    }
-
-    computed = {
-      totalPrice () {
-        return this.products
-          .filter(product => product.isChecked)
-          .reduce((prev, cur) => prev + cur.COUNT * +cur.price, 0).toFixed(2)
-      },
-      totalCount () {
-        return this.products
-          .filter(product => product.isChecked)
-          .reduce((prev, cur) => prev + cur.COUNT, 0)
-      },
-      cartCount () {
-        return this.products
-          .reduce((prev, cur) => prev + cur.COUNT, 0)
-      }
+      isHintDel: false
     }
 
     watch = {
-      isEdit (newValue) {
-        if (newValue === true) {
-          this.setProductsChecked(false)
-          this.$apply()
+      isEdit (value) {
+        if (value === true) {
+          toggleCart(null, false)
         }
       },
-      isSelectAll (newValue) {
-        if (newValue === true) {
-          this.setProductsChecked(newValue)
-          this.$apply()
+      isSelectAll (value) {
+        if (value === true) {
+          toggleCart(null, true)
         }
       },
       cartCount () {
         this.setBadge()
+      },
+      products (value) {
+        if (value.length === 0) {
+          this.isSelectAll = false
+          this.isEdit = false
+        }
       }
     }
 
     methods = {
-      gotoBuy () {
-        const productsToBuy = this.products.filter(product => product.isChecked)
+      goToBuy () {
+        const productsToBuy = this.products.filter(product => product.checked)
         this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
       },
       goShopping () {
@@ -399,108 +407,45 @@
       toggleSelectAll () {
         this.isSelectAll = !this.isSelectAll
         if (!this.isSelectAll) {
-          this.setProductsChecked(false)
+          toggleCart(null, false)
         }
       },
       toggleSelect (item) {
-        this.products = this.products.map(product => {
-          if (product.goodsId === item.goodsId) {
-            return {...product, isChecked: !product.isChecked}
-          } else {
-            return product
-          }
-        })
-        if (item.isChecked) {
+        toggleCart(item.goodsId, !item.checked)
+        if (item.checked) {
           this.isSelectAll = false
         } else {
-          const notAll = this.products.some(product => !product.isChecked)
+          const notAll = this.products.some(product => !product.checked)
           this.isSelectAll = !notAll
         }
       },
-      startEditCart () {
+      startEdit () {
         this.isEdit = true
         this.isSelectAll = false
       },
-      endEditCart () {
+      endEdit () {
         this.isEdit = false
         this.isSelectAll = true
       },
       async deleteCart () {
         const isOK = await confirm('确定要删除吗?')
         if (isOK) {
-          this.products = this.products.filter(product => {
-            if (product.isChecked) {
-              store.dispatch({
-                type: 'REMOVE_CART',
-                payload: { ID: product.goodsId }
-              })
-              store.dispatch({
-                type: 'REMOVE_CART_PRODUCT',
-                payload: { ID: product.goodsId }
-              })
+          this.products.forEach(product => {
+            if (product.checked) {
+              removeCartAndProduct(product.goodsId)
             }
-            return !product.isChecked
           })
-          if (this.products.length === 0) {
-            this.isSelectAll = false
-            this.isEdit = false
-          }
-          this.$apply()
         }
       },
       async deleteCartItem (goodsId) {
         const isOK = await confirm('确定要删除吗?')
         if (isOK) {
-          this.products = this.products.filter(product => {
-            const isHit = product.goodsId === goodsId
-            if (isHit) {
-              store.dispatch({
-                type: 'REMOVE_CART',
-                payload: { ID: product.goodsId }
-              })
-              store.dispatch({
-                type: 'REMOVE_CART_PRODUCT',
-                payload: { ID: product.goodsId }
-              })
-            }
-            return !isHit
-          })
-          if (this.products.length === 0) {
-            this.isSelectAll = false
-            this.isEdit = false
-          }
-          this.$apply()
+          removeCartAndProduct(goodsId)
         }
+      },
+      clear () {
+        clearCartAndProducts()
       }
-    }
-
-    setProductsChecked (isChecked) {
-      this.products = this.products.map(product => ({...product, isChecked: isChecked}))
-    }
-
-    getProductsFromCart () {
-      let { shopcart, cartProducts } = store.getState()
-
-      this.products = shopcart.map(item => {
-        for (let i = 0; i < cartProducts.length; i++) {
-          if (item.ID === cartProducts[i].goodsId) {
-            cartProducts[i].COUNT = item.COUNT
-            cartProducts[i].isChecked = this.isSelectAll
-            return cartProducts[i]
-          }
-        }
-      })
-    }
-
-    clear () {
-      store.dispatch({
-        type: 'CLEAR_CART'
-      })
-      store.dispatch({
-        type: 'CLEAR_CART_PRODUCTS'
-      })
-      this.products = []
-      this.$apply()
     }
 
     setBadge () {
@@ -534,11 +479,44 @@
       if (!this.isEdit) {
         this.isSelectAll = true
       }
-      this.getProductsFromCart()
       this.setHintDel()
       wx.nextTick(() => {
         this.setBadge()
       })
     }
+
+    onLoad () {
+      toggleCart(null, this.isSelectAll)
+    }
+  }
+
+  function toggleCart (ID, checked) {
+    store.dispatch({
+      type: 'TOGGLE_CART_PRODUCT',
+      payload: {
+        ID,
+        checked
+      }
+    })
+  }
+
+  function removeCartAndProduct (ID) {
+    store.dispatch({
+      type: 'REMOVE_CART',
+      payload: { ID }
+    })
+    store.dispatch({
+      type: 'REMOVE_CART_PRODUCT',
+      payload: { ID }
+    })
+  }
+
+  function clearCartAndProducts () {
+    store.dispatch({
+      type: 'CLEAR_CART'
+    })
+    store.dispatch({
+      type: 'CLEAR_CART_PRODUCTS'
+    })
   }
 </script>

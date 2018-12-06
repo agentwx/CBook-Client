@@ -194,12 +194,12 @@
   <view class="search-sublayer" wx:if="{{!isSearchShow}}">
     <view class="ssbl-hd">
       <text class="ssbl-title">历史搜索</text>
-      <view class="ssbl-icon" @tap="clearHistory" wx:if="{{historyTags.length > 0}}">
+      <view class="ssbl-icon" @tap="clearHistory" wx:if="{{history.length > 0}}">
         <icon name="trash"></icon>
       </view>
     </view>
     <view class="search-history">
-      <repeat for="{{historyTags}}">
+      <repeat for="{{history}}">
         <view class="ssr-item" @tap="doSearchByTag({{item}})">{{item}}</view>
       </repeat>
     </view>
@@ -250,8 +250,15 @@
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
-  import History from '../../service/history'
+  import { connect, getStore } from 'wepy-redux'
 
+  const store = getStore()
+
+  @connect({
+    history ({history}) {
+      return history
+    }
+  })
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '星月童书',
@@ -265,11 +272,6 @@
       }
     }
 
-    components = {
-    }
-
-    history = new History('home_search')
-
     data = {
       isLoading: null,
       isEmpty: false,
@@ -277,7 +279,6 @@
       isSearchShow: false,
       isModalSpinShow: false,
       searchVal: '',
-      historyTags: [],
       products: []
     }
 
@@ -310,8 +311,9 @@
         this.searchVal = ''
       },
       clearHistory () {
-        this.history.clear()
-        this.historyTags = this.history.getAll()
+        store.dispatch({
+          type: 'CLEAR_HISTORY'
+        })
       }
     }
 
@@ -337,8 +339,10 @@
         } else {
           this.products = this.products.concat(items)
         }
-        this.history.add(key)
-        this.historyTags = this.history.getAll()
+        store.dispatch({
+          type: 'ADD_HISTORY',
+          payload: key
+        })
         if (items.length > 0) {
           this.pageNum++
           this.isEmpty = false
@@ -368,13 +372,6 @@
       this.isModalSpinShow = true
       await this.reloadProducts()
       wx.stopPullDownRefresh()
-    }
-
-    onShareAppMessage () {
-    }
-
-    onLoad() {
-      this.historyTags = this.history.getAll()
     }
   }
 </script>

@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
-import shopcart from './shopcart'
+import shopCart from './shopcart'
 import recycles from './recycles'
 import cartProducts from './cartProducts'
+import history from './history'
 import userInfo from './userInfo'
 
 export default combineReducers({
-  shopcart,
+  shopCart,
   recycles,
   cartProducts,
+  history,
   userInfo
 })

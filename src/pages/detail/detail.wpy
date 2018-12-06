@@ -447,8 +447,8 @@
   }
 
   @connect({
-    cartCount (state) {
-      return state.shopcart.reduce((prev, cur) => prev + cur.COUNT, 0)
+    cartCount ({ shopCart }) {
+      return shopCart.reduce((prev, cur) => prev + cur.COUNT, 0)
     }
   })
   export default class Index extends wepy.page {
@@ -461,9 +461,6 @@
         'raty': '/components/raty/index',
         'badge': '/components/badge/index'
       }
-    }
-
-    components = {
     }
 
     data = {
@@ -528,15 +525,15 @@
       addToCart () {
         if (this.canBuy) {
           store.dispatch({
-            type: 'ADD_CART',
-            payload: {
-              ID: this.product.goodsId
-            }
-          })
-          store.dispatch({
             type: 'ADD_CART_PRODUCT',
             payload: {
               product: this.product
+            }
+          })
+          store.dispatch({
+            type: 'ADD_CART',
+            payload: {
+              ID: this.product.goodsId
             }
           })
         } else {

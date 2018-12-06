@@ -28,9 +28,21 @@ Component({
     },
     color: String
   },
+  data: {
+    isCustomSize: false
+  },
   computed: {
     iconColor () {
       return this.data.color ? `color: ${this.data.color}` : ''
+    },
+    iconSize () {
+      const { isCustomSize, size } = this.data
+      return isCustomSize ? `font-size: ${size};` : ''
     }
+  },
+  attached () {
+    this.setData({
+      isCustomSize: /^\d/.test(this.data.size)
+    })
   }
 })

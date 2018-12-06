@@ -1,11 +1,6 @@
 <style lang="less">
   @import "../styles/mixin";
 
-  .iconSize (@size) {
-    width: @size;
-    height: @size;
-  }
-
   .icon {
     display: inline-block;
     line-height: 1;
@@ -39,42 +34,18 @@
       line-height: inherit;
     }
 
-    &.img.x-large {
-      .iconSize(80rpx);
-    }
-
-    &.img.large {
-      .iconSize(64rpx);
-    }
-
-    &.img.middle {
-      .iconSize(44rpx);
-    }
-
-    &.img.normal {
-      .iconSize(36rpx);
-    }
-
-    &.img.small {
-      .iconSize(30rpx);
-    }
-
-    &.img.x-small {
-      .iconSize(24rpx);
-    }
-
     .icon-img {
       display: block;
-      width: 100%;
-      height: 100%;
+      width: 1em;
+      height: 1em;
     }
   }
 </style>
 
 <template>
-  <view class="icon {{type!=='iconfont' ? 'img' : ''}} {{size}}" style="{{style}}">
+  <view class="icon {{isCustomSize ? '' : size}}" style="{{iconSize}}{{style}}">
     <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
-    <image wx:if="{{type=='png'||type=='svg'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
+    <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
   </view>
 </template>
 
@@ -102,9 +73,19 @@
       color: String
     }
 
+    data = {
+      isCustomSize: false
+    }
+
     computed = {
       iconColor () {
         return this.color ? `color: ${this.color}` : ''
+      },
+      iconSize () {
+        return this.isCustomSize ? `font-size: ${this.size};` : ''
+      },
+      isCustomSize () {
+        return /^\d/.test(this.size)
       }
     }
   }
