@@ -9,25 +9,25 @@
 
 #### 安装教程
 
-1. 安装wepy-cli命令行工具
+1、安装wepy-cli命令行工具
 
  ```
   npm install wepy-cli -g
 ```
 
-2. 克隆项目
+2、克隆项目
 
 ```
 git clone git@gitee.com:t_share/CBook-Client.git
 ```
 
-3.安装依赖
+3、安装依赖
 
  ```
   cd CBook-Client&&npm install
 ```
 
-4. 开发
+4、开发
 
 ```
   npm run dev
