@@ -442,7 +442,7 @@
     if (expand === true) {
       return str.split(/\n|<br>/g)
     } else {
-      return str.substring(0, maxLength).replace(/[<br>，,.。：:;；]+$/, '').split(/\n|<br>/g)
+      return str.substring(0, maxLength).replace(/[<br>，,、.。：:;；]+$/, '').split(/\n|<br>/g)
     }
   }
 
