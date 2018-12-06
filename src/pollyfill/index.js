@@ -151,3 +151,174 @@ if (!Array.prototype.findIndex) {
     }
   })
 }
+
+if (!Object.keys) {
+  Object.keys = (function () {
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+      hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+      dontEnums = [
+        'toString',
+        'toLocaleString',
+        'valueOf',
+        'hasOwnProperty',
+        'isPrototypeOf',
+        'propertyIsEnumerable',
+        'constructor'
+      ],
+      dontEnumsLength = dontEnums.length
+
+    return function (obj) {
+      if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object')
+
+      var result = []
+
+      for (var prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) result.push(prop)
+      }
+
+      if (hasDontEnumBug) {
+        for (var i = 0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i])
+        }
+      }
+      return result
+    }
+  })()
+}
+
+if (!Object.values) {
+  Object.values = function (obj) {
+    if (obj !== Object(obj))
+      throw new TypeError('Object.values called on a non-object')
+    var val = [], key
+    for (key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        val.push(obj[key])
+      }
+    }
+    return val
+  }
+}
+
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (searchElement, fromIndex) {
+    var k
+    if (this == null) {
+      throw new TypeError('"this" is null or not defined')
+    }
+
+    var O = Object(this)
+    var len = O.length >>> 0
+
+    if (len === 0) {
+      return -1
+    }
+
+    var n = +fromIndex || 0
+
+    if (Math.abs(n) === Infinity) {
+      n = 0
+    }
+
+    if (n >= len) {
+      return -1
+    }
+
+    k = Math.max(n >= 0 ? n : len - Math.abs(n), 0)
+
+    while (k < len) {
+      if (k in O && O[k] === searchElement) {
+        return k
+      }
+      k++
+    }
+    return -1
+  }
+}
+
+if (!Array.prototype.includes) {
+  Array.prototype.includes = function () {
+    return this.indexOf.apply(this, arguments) > -1
+  }
+}
+
+if (!Array.prototype.some) {
+  Array.prototype.some = function (fun/*, thisArg*/) {
+    if (this == null) {
+      throw new TypeError('Array.prototype.some called on null or undefined')
+    }
+
+    if (typeof fun !== 'function') {
+      throw new TypeError()
+    }
+
+    var t = Object(this)
+    var len = t.length >>> 0
+
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0
+    for (var i = 0; i < len; i++) {
+      if (i in t && fun.call(thisArg, t[i], i, t)) {
+        return true
+      }
+    }
+
+    return false
+  }
+}
+
+if (!Array.prototype.every) {
+  Array.prototype.every = function (fun /*, thisArg */) {
+    if (this === void 0 || this === null)
+      throw new TypeError()
+
+    var t = Object(this)
+    var len = t.length >>> 0
+    if (typeof fun !== 'function')
+      throw new TypeError()
+
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0
+    for (var i = 0; i < len; i++) {
+      if (i in t && !fun.call(thisArg, t[i], i, t))
+        return false
+    }
+
+    return true
+  }
+}
+
+if (!Array.isArray) {
+  Array.isArray = function (array) {
+    return Object.prototype.toString.call(array) === "[object Array]"
+  }
+}
+
+if (!String.prototype.repeat) {
+  String.prototype.repeat = function (count) {
+    if (this === null) {
+      throw new TypeError('can\'t convert ' + this + ' to object')
+    }
+    var str = '' + this
+    count = +count
+    if (count !== count) {
+      count = 0
+    }
+    if (count < 0) {
+      throw new RangeError('repeat count must be non-negative')
+    }
+    if (count === Infinity) {
+      throw new RangeError('repeat count must be less than infinity')
+    }
+    count = Math.floor(count)
+    if (str.length === 0 || count === 0) {
+      return ''
+    }
+    if (str.length * count >= 1 << 28) {
+      throw new RangeError('repeat count must not overflow maximum string size')
+    }
+    var rpt = ''
+    for (var i = 0; i < count; i++) {
+      rpt += str
+    }
+    return rpt
+  }
+}
