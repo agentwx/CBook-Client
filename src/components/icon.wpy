@@ -5,30 +5,6 @@
     display: inline-block;
     line-height: 1;
 
-    &.x-large {
-      font-size: 80rpx;
-    }
-
-    &.large {
-      font-size: 64rpx;
-    }
-
-    &.middle {
-      font-size: 44rpx;
-    }
-
-    &.normal {
-      font-size: 36rpx;
-    }
-
-    &.small {
-      font-size: 30rpx;
-    }
-
-    &.x-small {
-      font-size: 24rpx;
-    }
-
     .iconfont {
       font-size: inherit;
       line-height: inherit;
@@ -43,7 +19,7 @@
 </style>
 
 <template>
-  <view class="icon {{isCustomSize ? '' : size}}" style="{{iconSize}}{{style}}">
+  <view class="icon" style="{{iconSize}}{{style}}">
     <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
     <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
   </view>
@@ -51,6 +27,15 @@
 
 <script>
   import wepy from 'wepy'
+
+  const SIZE_MAP = {
+    'x-large': '80rpx',
+    'large': '64rpx',
+    'middle': '44rpx',
+    'normal': '36rpx',
+    'small': '30rpx',
+    'x-small': '24rpx'
+  }
 
   export default class Icon extends wepy.component {
     props = {
@@ -82,10 +67,7 @@
         return this.color ? `color: ${this.color}` : ''
       },
       iconSize () {
-        return this.isCustomSize ? `font-size: ${this.size};` : ''
-      },
-      isCustomSize () {
-        return /^\d/.test(this.size)
+        return `font-size: ${SIZE_MAP[this.size] || this.size};`
       }
     }
   }

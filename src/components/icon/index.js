@@ -1,4 +1,12 @@
 const computedBehavior = require('miniprogram-computed')
+const SIZE_MAP = {
+  'x-large': '80rpx',
+  'large': '64rpx',
+  'middle': '44rpx',
+  'normal': '36rpx',
+  'small': '30rpx',
+  'x-small': '24rpx'
+}
 
 Component({
   behaviors: [computedBehavior],
@@ -36,13 +44,8 @@ Component({
       return this.data.color ? `color: ${this.data.color}` : ''
     },
     iconSize () {
-      const { isCustomSize, size } = this.data
-      return isCustomSize ? `font-size: ${size};` : ''
+      const { size } = this.data
+      return `font-size: ${SIZE_MAP[size] || size};`
     }
-  },
-  attached () {
-    this.setData({
-      isCustomSize: /^\d/.test(this.data.size)
-    })
   }
 })
