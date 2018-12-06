@@ -33,7 +33,7 @@ git clone git@gitee.com:t_share/CBook-Client.git
   npm run dev
 ```
 
-5.正式构建项目
+5、正式构建项目
 
 ```
   npm run build
