@@ -58,7 +58,7 @@
 </style>
 
 <script>
-import './pollyfill'
+import './polyfill'
 import wepy from 'wepy'
 import 'wepy-async-function'
 import { toast } from './utils/util'
