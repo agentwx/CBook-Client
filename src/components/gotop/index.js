@@ -15,7 +15,7 @@ Component({
     },
     showOffset: {
       type: Number,
-      value: 300
+      value: 600
     },
     useSlot: Boolean,
     disabled: Boolean
