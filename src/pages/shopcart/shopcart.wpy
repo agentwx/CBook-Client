@@ -55,6 +55,7 @@
   }
 
   .cart-pd-cover {
+    .flex-center();
     width: 160rpx;
     height: 196rpx;
     margin-right: 20rpx;
@@ -274,7 +275,7 @@
               <check-box readonly="true" checked="{{item.checked}}" />
             </view>
             <view class="cart-pd-cover">
-              <image src="{{item.smallImageUrl}}" lazyload="true"></image>
+              <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
             </view>
             <view class="cart-pd-main">
               <view class="pd-head">

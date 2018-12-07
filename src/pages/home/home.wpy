@@ -222,6 +222,7 @@
   }
 
   .product-cover {
+    .flex-center();
     width: 200rpx;
     height: 254rpx;
     margin-left: 10rpx;
@@ -385,7 +386,7 @@
     <repeat for="{{products}}" key="index">
       <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="viewDetail({{item}})">
         <view class="product-cover">
-          <image src="{{item.smallImageUrl}}" lazyload="true"></image>
+          <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
         </view>
         <view class="product-panel-body">
           <view class="product-maininfo">

@@ -28,6 +28,7 @@
   }
 
   .order-cover {
+    .flex-center();
     width: 150rpx;
     height: 184rpx;
     margin-right: 30rpx;
@@ -111,7 +112,7 @@
           <view class="order-body">
             <block wx:for="{{item.bookInfos}}" wx:key="index">
               <view class="order-cover">
-                <image src="{{item.smallIcon}}" lazyload="true"></image>
+                <image src="{{item.smallIcon}}" mode="widthFix" lazyload="true"></image>
               </view>
             </block>
           </view>
