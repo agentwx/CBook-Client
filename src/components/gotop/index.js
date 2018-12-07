@@ -17,39 +17,44 @@ Component({
       type: Number,
       value: 300
     },
-    useSlot: {
-      type: Boolean,
-      value: false
-    }
+    useSlot: Boolean,
+    disabled: Boolean
   },
   data: {
     visible: false
   },
   ready () {
-    let self = this
-    let page = getCurrentPage()
-    let origScroll = page.onPageScroll
-    page.onPageScroll = function (e) {
-      origScroll(e)
-
-      let visible = false
-      if (e.scrollTop > self.data.showOffset) {
-        visible = true
-      }
-
-      if (visible !== self.data.visible) {
-        self.setData({
-          visible
-        })
-      }
+    if (!this.data.disabled) {
+      this.handlePage()
     }
   },
   methods: {
+    handlePage() {
+      let self = this
+      let page = getCurrentPage()
+      let origScroll = page.onPageScroll
+      page.onPageScroll = function (e) {
+        origScroll(e)
+
+        let visible = false
+        if (e.scrollTop > self.data.showOffset) {
+          visible = true
+        }
+
+        if (visible !== self.data.visible) {
+          self.setData({
+            visible
+          })
+        }
+      }
+    },
     onClick () {
-      wx.pageScrollTo({
-        scrollTop: 0,
-        duration: 0
-      })
+      if (!this.data.disabled) {
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
+      }
     }
   }
 })

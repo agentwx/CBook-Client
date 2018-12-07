@@ -418,7 +418,9 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <gotop />
+  <scroll-view id="scrollview"></scroll-view>
+
+  <gotop selector="#scrollview" />
   <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
