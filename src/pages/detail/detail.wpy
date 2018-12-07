@@ -419,7 +419,7 @@
     <scroll-view class="suggest-scrollview" scroll-x="true">
       <view class="suggest-list">
         <repeat for="{{product.relatedBookInfoList}}" key="index">
-          <view class="suggest-item">
+          <view class="suggest-item" @tap="viewDetail({{item}})">
             <view class="suggest-cover">
               <image src="{{item.smallIconDetail}}" lazyload="true"></image>
             </view>
@@ -559,6 +559,9 @@
             this.$apply()
           }, 1000)
         }
+      },
+      viewDetail (item) {
+        this.$navigate('/pages/detail/detail', {product: JSON.stringify(item)})
       }
     }
 
@@ -587,9 +590,10 @@
       }
     }
 
-    onLoad(params) {
-      this.product = {...this.product, ...params}
-      this.loadData(params.isbn)
+    onLoad({ product }) {
+      product = JSON.parse(product)
+      this.product = {...this.product, ...product}
+      this.loadData(product.isbn)
     }
   }
 </script>

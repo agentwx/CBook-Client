@@ -515,7 +515,7 @@ export default class Index extends wepy.page {
       this.$navigate('/pages/search/search')
     },
     viewDetail (item) {
-      this.$navigate('/pages/detail/detail', item)
+      this.$navigate('/pages/detail/detail', {product: JSON.stringify(item)})
     },
     showFilter (type, value, showDrop) {
       if (this.isLoading) return
