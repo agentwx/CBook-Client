@@ -23,7 +23,7 @@ Component({
   data: {
     visible: false
   },
-  ready () {
+  attached () {
     if (!this.data.disabled) {
       this.handlePage()
     }
@@ -32,7 +32,8 @@ Component({
     handlePage() {
       let self = this
       let page = getCurrentPage()
-      let origScroll = page.onPageScroll
+      let origScroll = page.onPageScroll || function () {}
+
       page.onPageScroll = function (e) {
         origScroll(e)
 

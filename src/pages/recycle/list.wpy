@@ -138,7 +138,8 @@
     </view>
   </view>
 
-  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <gotop />
+  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
 </template>
 
 <script>
@@ -159,7 +160,8 @@
       usingComponents: {
         'btn': '/components/button/index',
         'panel': '/components/panel/index',
-        'weui-loading': '/components/weui-loading/index'
+        'weui-loading': '/components/weui-loading/index',
+        'gotop': '/components/gotop/index'
       }
     }
 

@@ -193,7 +193,8 @@
     </view>
   </view>
 
-  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <gotop />
+  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
 </template>
 
 <script>
@@ -216,7 +217,8 @@
         'tab-head': '/components/tab-head/index',
         'weui-loading': '/components/weui-loading/index',
         'btn': '/components/button/index',
-        'panel': '/components/panel/index'
+        'panel': '/components/panel/index',
+        'gotop': '/components/gotop/index'
       }
     }
 
