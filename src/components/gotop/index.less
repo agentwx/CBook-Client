@@ -1,0 +1,17 @@
+@import "../../styles/mixin";
+
+.gotop {
+  position: fixed;
+  right: 20rpx;
+  bottom: 30rpx;
+  .animation(fade-in .3s linear);
+
+  &-inner {
+    .flex-center();
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, .6);
+  }
+}

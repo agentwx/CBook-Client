@@ -563,11 +563,12 @@
     }
 
     async startFly () {
-      const nodes = await Promise.all([getNodeRect('#cart-btn'), getNodeRect('#cart')])
-      const startX = nodes[0].left + nodes[0].width / 2 - 9
-      const startY = nodes[0].top + nodes[0].height / 2 - 9
-      const endX = nodes[1].left + nodes[1].width / 2 - 9
-      const endY = nodes[1].top + nodes[1].height / 2 - 9
+      const btn = await getNodeRect('#cart-btn')
+      const cart = await getNodeRect('#cart')
+      const startX = btn.left + btn.width / 2 - 9
+      const startY = btn.top + btn.height / 2 - 9
+      const endX = cart.left + cart.width / 2 - 9
+      const endY = cart.top + cart.height / 2 - 9
       this.$wxpage.selectComponent('#J_flyer').start(startX, startY, endX, endY)
     }
 

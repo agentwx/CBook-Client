@@ -418,7 +418,8 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
+  <gotop />
+  <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
@@ -442,7 +443,8 @@ export default class Index extends wepy.page {
       'overlay': '/components/overlay/index',
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
-      'tag': '/components/tag/index'
+      'tag': '/components/tag/index',
+      'gotop': '/components/gotop/index'
     }
   }
 
@@ -666,8 +668,6 @@ export default class Index extends wepy.page {
 
     if (e.scrollTop > this.filterBarTop) {
       isFixed = true
-    } else {
-      isFixed = false
     }
 
     if (isFixed !== this.filterBarFixed) {

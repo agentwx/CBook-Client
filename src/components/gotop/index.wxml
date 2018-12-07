@@ -1,0 +1,6 @@
+<view class="gotop {{customClass}}" hidden="{{!visible}}" style="{{customStyle}}" bindtap="onClick">
+  <view class="gotop-inner" wx:if="{{!useSlot}}">
+    <icon name="arrow-up" size="middle"></icon>
+  </view>
+  <slot wx:if="{{useSlot}}"></slot>
+</view>

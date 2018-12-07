@@ -242,6 +242,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
+  <gotop />
   <weui-loading visible="{{products.length > 4 && isSearchShow}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
   <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
@@ -268,7 +269,8 @@
         'weui-loading': '/components/weui-loading/index',
         'raty': '/components/raty/index',
         'icon': '/components/icon/index',
-        'tag': '/components/tag/index'
+        'tag': '/components/tag/index',
+        'gotop': '/components/gotop/index'
       }
     }
 
