@@ -42,7 +42,7 @@
   import wepy from 'wepy'
   import Icon from './icon'
 
-  export default class Notice extends wepy.component {
+  export default class Index extends wepy.component {
     props = {
       style: {
         type: String,

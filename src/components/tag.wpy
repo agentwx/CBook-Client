@@ -20,7 +20,7 @@
 <script>
   import wepy from 'wepy'
 
-  export default class Raty extends wepy.component {
+  export default class Index extends wepy.component {
     props = {
       style: {
         type: String,

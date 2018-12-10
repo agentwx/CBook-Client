@@ -10,7 +10,8 @@
     font-size: 28rpx;
     box-sizing: border-box;
 
-    > .icon {
+    .icon,
+    .loading {
       margin-right: 6rpx;
     }
 
@@ -24,6 +25,7 @@
 
     &.primary {
       color: #fff;
+
       &:not(.bordered) {
         .g-gradient();
 
@@ -148,7 +150,7 @@
     }
 
     &.disabled {
-      background-color: @color-disabled;
+      background: @color-disabled !important;
       pointer-events: none;
     }
 
@@ -184,7 +186,7 @@
   const coerce = t =>
     typeof t === 'string' ? JSON.parse(t) : t
 
-  export default class Button extends wepy.component {
+  export default class Index extends wepy.component {
     props = {
       style: {
         type: String,

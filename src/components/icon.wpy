@@ -37,7 +37,7 @@
     'x-small': '24rpx'
   }
 
-  export default class Icon extends wepy.component {
+  export default class Index extends wepy.component {
     props = {
       style: {
         type: String,

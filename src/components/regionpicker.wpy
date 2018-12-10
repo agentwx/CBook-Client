@@ -78,7 +78,7 @@
   const coerce = t =>
     typeof t === 'string' ? JSON.parse(t) : t
 
-  export default class Button extends wepy.component {
+  export default class Index extends wepy.component {
     props = {
       style: {
         type: String,
