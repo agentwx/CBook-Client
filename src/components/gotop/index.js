@@ -17,6 +17,10 @@ Component({
       type: Number,
       value: 600
     },
+    duration: {
+      type: Number,
+      value: 0
+    },
     useSlot: Boolean,
     disabled: Boolean
   },
@@ -53,7 +57,7 @@ Component({
       if (!this.data.disabled) {
         wx.pageScrollTo({
           scrollTop: 0,
-          duration: 0
+          duration: this.data.duration
         })
       }
     }
