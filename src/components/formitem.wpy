@@ -56,6 +56,7 @@
     }
 
     > .icon-left {
+      margin-left: 12rpx;
       margin-right: -18rpx;
     }
 
@@ -63,6 +64,7 @@
       display: flex;
       align-items: center;
       margin-left: -24rpx;
+      margin-right: 6rpx;
     }
 
     .ctrl-icon {
@@ -86,10 +88,7 @@
       <text wx:if="{{label}}" class="form-item-label" style="width:{{labelWidth}};">{{label}}</text>
       <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
         <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
-        <input wx:if="{{!password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
-               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
-               @focus="focus" @blur="blur" @confirm="confirm" style="text-align:{{textAlign}}"/>
-        <input wx:if="{{password}}" password class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
+        <input password="{{password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
                placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm" style="text-align:{{textAlign}}"/>
         <view class="icon-right" wx:if="{{showClear || showEye}}">
@@ -160,41 +159,42 @@
       bordered: {
         type: [Boolean, String],
         default: true,
-        coerce: coerce
+        coerce
       },
       showClear: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       showEye: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       nomargin: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       underline: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       password: {
         type: String,
-        default: ''
+        default: false,
+        coerce
       },
       focus: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       disabled: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       }
     }
 
