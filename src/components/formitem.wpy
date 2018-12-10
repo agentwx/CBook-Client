@@ -29,6 +29,7 @@
   }
 
   .form-item-bd {
+    position: relative;
     border-radius: 8rpx;
     flex: 1;
     .flex-v-center();
