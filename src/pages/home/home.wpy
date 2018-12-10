@@ -420,7 +420,7 @@
 
   <gotop />
   <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
-  <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
+  <modal-spinner wx:if="{{isLoading && isSpinShow}}" />
 </template>
 
 <script>
@@ -452,7 +452,7 @@ export default class Index extends wepy.page {
     isEmpty: false,
     inited: false,
     pageNum: 1,
-    isModalSpinShow: false,
+    isSpinShow: false,
     filterBarFixed: false,
     filterVisible: false,
     sortTypes: [
@@ -586,7 +586,7 @@ export default class Index extends wepy.page {
   }
 
   hideFilterAndSearch () {
-    this.isModalSpinShow = true
+    this.isSpinShow = true
     this.filterVisible = false
     this.reloadProducts()
   }
@@ -651,7 +651,7 @@ export default class Index extends wepy.page {
     } finally {
       this.isLoading = false
       this.inited = true
-      this.isModalSpinShow = false
+      this.isSpinShow = false
       this.$apply()
     }
   }
@@ -680,7 +680,7 @@ export default class Index extends wepy.page {
   }
 
   async onPullDownRefresh () {
-    this.isModalSpinShow = true
+    this.isSpinShow = true
     await this.reloadProducts()
     wx.stopPullDownRefresh()
   }
