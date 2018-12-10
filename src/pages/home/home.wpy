@@ -303,7 +303,6 @@
   }
 </style>
 <template>
-  <view>{{aaa}}</view>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
       <icon name="find" custom-style=" font-size: 36rpx;color: #999;"></icon>
@@ -426,9 +425,8 @@
 
 <script>
 import wepy from 'wepy'
-import { getNodeRect } from '../../utils/util'
 import fetch from '../../service/fetch'
-
+import { getNodeRect } from '../../utils/util'
 import { getStore } from 'wepy-redux'
 
 const store = getStore()

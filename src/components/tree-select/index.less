@@ -1,0 +1,65 @@
+@import "../../styles/mixin";
+@import "../../styles/ellipsis";
+
+.tree-select {
+  user-select: none;
+  position: relative;
+  font-size: 16px;
+
+  &__nav {
+    width: 35%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: @white;
+  }
+
+  &__nitem {
+    line-height: 44px;
+    padding: 0 15px;
+    background-color: @white;
+
+    &:active,
+    &--active {
+      background-color: @background-color;
+    }
+
+    &--active {
+      font-weight: 500;
+    }
+  }
+
+  &__content {
+    width: 65%;
+    padding: 0 15px;
+    margin-left: 35%;
+    box-sizing: border-box;
+  }
+
+  &__item {
+    position: relative;
+    line-height: 44px;
+    padding-left: 5px;
+    padding-right: 18px;
+
+    &:active,
+    &--active {
+      color: @red;
+    }
+
+    &--disabled,
+    &--disabled:active {
+      color: @gray;
+    }
+  }
+
+  &__selected {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    line-height: inherit;
+  }
+}

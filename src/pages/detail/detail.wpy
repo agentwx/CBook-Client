@@ -443,11 +443,15 @@
 
   const store = getStore()
 
+  const handleStr = str => {
+    return str.split(/\n|<br>|<br\/>|<br \/>/g).map(item => item.replace(/<[^<>]+>/g, ''))
+  }
+
   const getDisplayText = (str, expand, maxLength) => {
     if (expand === true) {
-      return str.split(/\n|<br>/g)
+      return handleStr(str)
     } else {
-      return str.substring(0, maxLength).replace(/[<br>，,、.。：:;；]+$/, '').split(/\n|<br>/g)
+      return handleStr(str.substring(0, maxLength).replace(/[<br>，,、.。：:;；]+$/, ''))
     }
   }
 
