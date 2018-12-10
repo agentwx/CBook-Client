@@ -150,6 +150,7 @@
     }
 
     &.disabled {
+      color: @color-disabled-font !important;
       background: @color-disabled !important;
       pointer-events: none;
     }
