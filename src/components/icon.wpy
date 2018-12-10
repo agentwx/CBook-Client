@@ -20,8 +20,10 @@
 
 <template>
   <view class="icon" style="{{iconSize}}{{style}}">
-    <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
-    <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
+    <block wx:if="{{name}}">
+      <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
+      <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../images/{{name}}.{{type}}"></image>
+    </block>
   </view>
 </template>
 
