@@ -3,13 +3,13 @@
 .button {
   position: relative;
   padding: 0;
-  display: inline-block;
+  display: inline-flex;
   height: 44px;
-  line-height: 42px;
-  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
-  text-align: center;
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-text-size-adjust: 100%;
@@ -98,7 +98,7 @@
 
   /* mini图标默认宽度50px，文字不能超过4个 */
   &--mini {
-    display: inline-block;
+    display: inline-flex;
     width: 50px;
     height: 22px;
     line-height: 20px;
@@ -111,7 +111,7 @@
 
   &--block {
     width: 100%;
-    display: block;
+    display: flex;
   }
 
   &--round {
@@ -124,6 +124,10 @@
 
   &--disabled {
     opacity: .5;
+  }
+
+  icon {
+    margin-right: 6rpx;
   }
 }
 

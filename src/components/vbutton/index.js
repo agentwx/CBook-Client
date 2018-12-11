@@ -39,6 +39,11 @@ Component({
     iconType: {
       type: String,
       value: 'iconfont'
+    },
+    iconSize: String,
+    loadingClass: {
+      type: String,
+      value: ''
     }
   },
 

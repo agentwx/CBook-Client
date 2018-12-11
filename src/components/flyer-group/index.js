@@ -56,10 +56,10 @@ Component({
   methods: {
     start (startX, startY, endX, endY) {
       const {
-        duration, curvature, useCss
+        duration, curvature, useCss, group
       } = this.data
 
-      this.data.group.push({
+      group.push({
         startX,
         startY,
         endX,
@@ -71,7 +71,7 @@ Component({
       })
 
       this.setData({
-        group: this.data.group
+        group
       })
     },
     onComplete () {

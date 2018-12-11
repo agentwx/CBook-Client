@@ -43,7 +43,7 @@
   width: 68rpx;
 }
 
-.modal-spinner-bd.x-small {
+.modal-spinner-bd.mini {
   border-radius: 4rpx;
   height: 52rpx;
   width: 52rpx;

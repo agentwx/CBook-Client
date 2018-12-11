@@ -318,7 +318,7 @@
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
       <view class="filter-toolbar-inner hairline--bottom {{filterVisible ? 'expand' : ''}}">
         <view class="filter-itemtype sort {{filterVisible && filterType === 'sort' ? 'selected' : ''}}" @tap="showFilter('sort', 0, true)">
-          {{sortName}}<icon size="x-small" name="caret-down"></icon>
+          {{sortName}}<icon size="mini" name="caret-down"></icon>
         </view>
         <view class="filter-itemtype {{sortType === 2 ? 'selected' : ''}}" @tap="showFilter('sort', 2, false)">
           人气优先
@@ -327,7 +327,7 @@
           新书优先
         </view>
         <view class="filter-itemtype filter {{filterVisible && filterType === 'catelog' ? 'selected' : ''}}" @tap="showFilter('catelog', 0, true)">
-          筛选<icon size="x-small" name="filter"></icon>
+          筛选<icon size="mini" name="filter"></icon>
         </view>
       </view>
       <transition custom-class="filter-sublayer" name="fade-down" show="{{filterVisible}}">

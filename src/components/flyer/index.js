@@ -78,7 +78,7 @@ Component({
     handleShow (value) {
       if (value === true) {
         const { useCss, startY, endY } = this.data
-        if ((useCss && Math.abs(endY - startY) < 50) || !useCss) {
+        if (!useCss || (useCss && Math.abs(endY - startY) < 50)) {
           this.animateByJs()
         } else {
           wx.nextTick(() => {

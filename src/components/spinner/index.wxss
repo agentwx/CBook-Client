@@ -18,7 +18,7 @@
   height: 40rpx;
 }
 
-.spinner.x-small image {
+.spinner.mini image {
   width: 32rpx;
   height: 32rpx;
 }
