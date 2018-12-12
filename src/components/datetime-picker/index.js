@@ -35,7 +35,7 @@ function getTimeIndex (startTime = '', endTime = '', times, selectIndex) {
   return selectIndex
 }
 
-function getInitialTimeIndex (times, valueTime, startTime) {
+function getInitTimeIndex (times, valueTime, startTime) {
   let index = 0
   let str
 
@@ -114,7 +114,7 @@ Component({
       if (fields === 'range') {
         const times = getTimeRange(timeRange[0], timeRange[1], timeStep, timeHalf)
         rangeArray.push(times)
-        range.push(getInitialTimeIndex(times, value, start))
+        range.push(getInitTimeIndex(times, value, start))
         suffix[3] = ''
       }
 
