@@ -1,4 +1,4 @@
-<picker mode="{{mode == 'datetime' ? 'multiSelector' : mode}}" start="{{start}}" end="{{end}}" fields="{{fields}}" value="{{dateTime}}" bindchange="change"
-        bindcolumnchange="changeColumn" bindcancel="cancel" range="{{dateTimeArrayDisplay}}" range-key="{{rangeKey}}" disabled="{{disabled}}">
+<picker mode="{{mode == 'datetime' ? 'multiSelector' : mode}}" start="{{start}}" end="{{end}}" fields="{{fields}}" value="{{range}}" bindchange="change"
+        bindcolumnchange="columnChange" bindcancel="cancel" range="{{rangeArrayDisplay}}" range-key="{{rangeKey}}" disabled="{{disabled}}">
   <slot></slot>
 </picker>

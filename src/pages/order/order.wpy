@@ -171,11 +171,13 @@
   </view>
 
   <datetime-picker
+    id="datePicker"
     wx:if="{{orderSource === 'recycle'}}"
     fields="range"
+    start="{{startDateTime}}"
     time-range="{{timeRange}}"
-    time-offset="1"
     @change="datetimeChange"
+    @columnchange="columnChange"
   >
     <list-item bordered="false" custom-class="timepicker">
       <view class="timepicker-bd">
@@ -230,7 +232,7 @@
 
 <script>
   import wepy from 'wepy'
-  import { toast, getPrevPage } from '../../utils/util'
+  import { toast, getPrevPage, formatDate } from '../../utils/util'
   import fetch from '../../service/fetch'
 
   const validateTime = timeStr => {
@@ -247,6 +249,37 @@
     return true
   }
 
+  const getNowTimeRange = (date, offset = 2) => {
+    let now = new Date()
+    let dateStr = formatDate(now, 'yyyy-MM-dd')
+    let hourStr = ''
+
+    date = new Date(
+      typeof date === 'string'
+      ? date.split(' ')[0].replace(/-/g, '/')
+      : date
+    ).getTime()
+
+    if (date === now.getTime() || date <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
+      let hour = now.getHours() + offset
+      hourStr = `${hour}:00-${hour + 1}:00`
+    }
+
+    return `${dateStr} ${hourStr}`
+  }
+
+  const getTimeValue = (range, date, offset = 2) => {
+    let now = new Date()
+    let dateStr = date.split(' ')[0].replace(/-/g, '/')
+    if (new Date(dateStr).getTime() <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
+      let hour = now.getHours() + offset
+      let hourStr = `${hour}:00-${hour + 1}:00`
+      return range.indexOf(hourStr)
+    } else {
+      return 0
+    }
+  }
+
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '订单确认',
@@ -261,11 +294,9 @@
       }
     }
 
-    components = {
-    }
-
     data = {
       modalVisible: false,
+      startDateTime: null,
       deliveryTime: '',
       orderSource: 'normal',
       address: null,
@@ -318,7 +349,16 @@
         this.$navigate('/pages/recycle/list')
       },
       datetimeChange (e) {
-        this.deliveryTime = e.detail.value
+        this.deliveryTime = e.detail.date
+      },
+      columnChange (e) {
+        if (e.detail.column < 3) {
+          this.startDateTime = getNowTimeRange(e.detail.date)
+          let value = e.detail.values
+          let range = e.detail.range
+          value[3] = getTimeValue(range[3], e.detail.date)
+          this.$wxpage.selectComponent('#datePicker').setValue(value)
+        }
       }
     }
 
@@ -398,6 +438,9 @@
     onLoad ({orderSource, products}) {
       if (orderSource) {
         this.orderSource = orderSource
+        if (orderSource === 'recycle') {
+          this.startDateTime = getNowTimeRange(new Date())
+        }
       }
       this.orderCreated = false
       this.products = JSON.parse(products)

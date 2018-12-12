@@ -76,37 +76,48 @@ function getNowDateArray() {
   return [year, month, date, hour, minu, seco]
 }
 
-function dateTimePicker(startYear, endYear, date, field = 'second') {
+function getDateStack (dateStr) {
+  let stack = dateStr.split(' ')
+  if (stack.length > 1) {
+    return [...stack[0].split('-'), ...stack[1].split(':')]
+  } else {
+    return [...stack[0].split('-'), ...['00', '00', '00']]
+  }
+}
+
+function dateTimePicker(startYear = 1900, endYear = 2100, valueDate, startDate, field = 'second') {
   // 返回默认显示的数组和联动数组的声明
-  let dateTime = []
-  let dateTimeArray = []
-  let start = startYear || 1978
-  let end = endYear || 2100
+  let range = []
+  let rangeArray = []
   // 默认开始显示数据
-  let defaultDate = date ? [...date.split(' ')[0].split('-'), ...date.split(' ')[1].split(':')] : getNowDateArray()
+  let initDate = valueDate ? getDateStack(valueDate) : (
+    startDate
+        ? getDateStack(startDate)
+        : getNowDateArray()
+      )
   // 处理联动列表数据
   // 年月日 时分秒
-  dateTimeArray[0] = getLoopArray(start, end)
-  dateTimeArray[1] = getLoopArray(1, 12)
-  dateTimeArray[2] = getMonthDay(defaultDate[0], defaultDate[1])
+  rangeArray[0] = getLoopArray(startYear, endYear)
+  rangeArray[1] = getLoopArray(1, 12)
+  rangeArray[2] = getMonthDay(initDate[0], initDate[1])
   if (field === 'hour') {
-    dateTimeArray[3] = getLoopArray(0, 23)
+    rangeArray[3] = getLoopArray(0, 23)
   } else if (field === 'minute') {
-    dateTimeArray[3] = getLoopArray(0, 23)
-    dateTimeArray[4] = getLoopArray(0, 59)
+    rangeArray[3] = getLoopArray(0, 23)
+    rangeArray[4] = getLoopArray(0, 59)
   } else if (field === 'second') {
-    dateTimeArray[3] = getLoopArray(0, 23)
-    dateTimeArray[4] = getLoopArray(0, 59)
-    dateTimeArray[5] = getLoopArray(0, 59)
+    rangeArray[3] = getLoopArray(0, 23)
+    rangeArray[4] = getLoopArray(0, 59)
+    rangeArray[5] = getLoopArray(0, 59)
   }
 
-  dateTimeArray.forEach((current, index) => {
-    dateTime.push(current.indexOf(defaultDate[index]))
+  rangeArray.forEach((current, index) => {
+    range.push(current.indexOf(initDate[index]))
   })
 
   return {
-    dateTimeArray,
-    dateTime
+    rangeArray,
+    range
   }
 }
 
