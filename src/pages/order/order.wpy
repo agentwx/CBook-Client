@@ -249,20 +249,31 @@
     return true
   }
 
-  const getNowTimeRange = (date, offset = 2) => {
+  const getTimeRange = (date, offset = 2) => {
     let now = new Date()
+    let hour = now.getHours()
+    const MAX_HOUR = 20
+
+    if (hour >= MAX_HOUR) {
+      now.setDate(now.getDate() + 1)
+    }
+
     let dateStr = formatDate(now, 'yyyy-MM-dd')
     let hourStr = ''
 
-    date = new Date(
-      typeof date === 'string'
-      ? date.split(' ')[0].replace(/-/g, '/')
-      : date
-    ).getTime()
+    if (hour < MAX_HOUR) {
+      date = new Date(
+        typeof date === 'string'
+          ? date.split(' ')[0].replace(/-/g, '/')
+          : date
+      ).getTime()
 
-    if (date === now.getTime() || date <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
-      let hour = now.getHours() + offset
-      hourStr = `${hour}:00-${hour + 1}:00`
+      if (date === now.getTime() || date <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
+        let hour = now.getHours() + offset
+        hourStr = `${hour}:00-${hour + 1}:00`
+      }
+    } else {
+      hourStr = `08:00-09:00`
     }
 
     return `${dateStr} ${hourStr}`
@@ -353,7 +364,7 @@
       },
       columnChange (e) {
         if (e.detail.column < 3) {
-          this.startDateTime = getNowTimeRange(e.detail.date)
+          this.startDateTime = getTimeRange(e.detail.date)
           let value = e.detail.values
           let range = e.detail.range
           value[3] = getTimeValue(range[3], e.detail.date)
@@ -439,7 +450,7 @@
       if (orderSource) {
         this.orderSource = orderSource
         if (orderSource === 'recycle') {
-          this.startDateTime = getNowTimeRange(new Date())
+          this.startDateTime = getTimeRange(new Date())
         }
       }
       this.orderCreated = false
