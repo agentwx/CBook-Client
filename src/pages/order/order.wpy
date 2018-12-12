@@ -249,6 +249,11 @@
     return true
   }
 
+  const getNowTime = () => {
+    let now = new Date()
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
+  }
+
   const getTimeRange = (date, offset = 2) => {
     let now = new Date()
     let hour = now.getHours()
@@ -268,7 +273,7 @@
           : date
       ).getTime()
 
-      if (date === now.getTime() || date <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
+      if (date === now.getTime() || date <= getNowTime()) {
         let hour = now.getHours() + offset
         hourStr = `${hour}:00-${hour + 1}:00`
       }
@@ -282,7 +287,7 @@
   const getTimeValue = (range, date, offset = 2) => {
     let now = new Date()
     let dateStr = date.split(' ')[0].replace(/-/g, '/')
-    if (new Date(dateStr).getTime() <= new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) {
+    if (new Date(dateStr).getTime() <= getNowTime()) {
       let hour = now.getHours() + offset
       let hourStr = `${hour}:00-${hour + 1}:00`
       return range.indexOf(hourStr)
