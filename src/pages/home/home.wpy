@@ -716,7 +716,7 @@ export default class Index extends wepy.page {
     }
   }
 
-  async onLoad() {
+  async onLoad () {
     this.getFilterBarTop()
     this.$parent.ready(() => {
       this.reloadProducts()

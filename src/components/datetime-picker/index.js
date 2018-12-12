@@ -44,6 +44,10 @@ Component({
       type: Boolean,
       value: false
     },
+    timeOffset: {
+      type: Number,
+      value: 0
+    },
     suffix: {
       type: Array,
       value: ['年', '月', '日', '时', '分', '秒']
@@ -59,7 +63,7 @@ Component({
 
         const {
           startYear, endYear, value, suffix,
-          fields, timeRange, timeStep, timeHalf
+          fields, timeRange, timeStep, timeHalf, timeOffset
         } = this.data
 
         const {dateTime, dateTimeArray} = dateTimePicker(startYear, endYear, value, fields)
@@ -67,7 +71,7 @@ Component({
         if (fields === 'range') {
           const times = getTimeRange(timeRange[0], timeRange[1], timeStep, timeHalf)
           dateTimeArray.push(times)
-          dateTime.push(this.getTimeIndex(times))
+          dateTime.push(this.getTimeIndex(times) + timeOffset)
           suffix[3] = ''
         }
 
@@ -137,5 +141,7 @@ Component({
     cancel (e) {
       this.triggerEvent('cancel', e.detail)
     }
-  }
+  },
+  getMonthDay,
+  getTimeRange
 })

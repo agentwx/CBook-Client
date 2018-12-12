@@ -173,7 +173,8 @@
   <datetime-picker
     wx:if="{{orderSource === 'recycle'}}"
     fields="range"
-    timeRange="{{timeRange}}"
+    time-range="{{timeRange}}"
+    time-offset="1"
     @change="datetimeChange"
   >
     <list-item bordered="false" custom-class="timepicker">
@@ -232,6 +233,20 @@
   import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
 
+  const validateTime = timeStr => {
+    let now = new Date()
+    let date = timeStr.split(' ')[0].replace(/-/g, '/')
+    let hour = timeStr.split(' ')[1].split('-')[0]
+    if (new Date(date) < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+      return false
+    }
+
+    if (parseInt(hour) <= now.getHours()) {
+      return false
+    }
+    return true
+  }
+
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '订单确认',
@@ -283,8 +298,13 @@
           return toast.error(`请选择${isRecycleOrder ? '取件' : '收货'}地址`)
         }
 
-        if (isRecycleOrder && !this.deliveryTime) {
-          return toast.error('请选择取件时间')
+        if (isRecycleOrder) {
+          if (!this.deliveryTime) {
+            return toast.error('请选择取件时间')
+          }
+          if (!validateTime(this.deliveryTime)) {
+            return toast.error('取件时间不合法，请重新选择')
+          }
         }
 
         if (this.orderSource === 'normal') {

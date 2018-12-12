@@ -105,14 +105,14 @@ function dateTimePicker(startYear, endYear, date, field = 'second') {
   })
 
   return {
-    dateTimeArray: dateTimeArray,
-    dateTime: dateTime
+    dateTimeArray,
+    dateTime
   }
 }
 
 module.exports = {
-  dateTimePicker: dateTimePicker,
-  getMonthDay: getMonthDay,
-  getTimeRange: getTimeRange,
-  padZero: padZero
+  dateTimePicker,
+  getMonthDay,
+  getTimeRange,
+  padZero
 }
