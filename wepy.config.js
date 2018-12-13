@@ -1,6 +1,23 @@
-const path = require('path');
-const autoprefixer = require('autoprefixer')
-const prod = process.env.NODE_ENV === 'production';
+const path = require('path')
+const prod = process.env.NODE_ENV === 'production'
+
+const TransformPx2Rpx = function (opts = {}) {
+  let def = {
+    filter: new RegExp('.(wxss|wxml|json)$')
+  }
+  this.setting = Object.assign({}, def, opts)
+}
+
+TransformPx2Rpx.prototype.apply = function apply(op) {
+  if (this.setting.filter.test(op.file)) {
+    if (op.code) {
+      op.code = op.code.replace(/\b(\d+(\.\d+)?)px\b/ig, function (match, $1) {
+        return $1 * 2 + 'rpx'
+      })
+    }
+  }
+  op.next()
+}
 
 module.exports = {
   wpyExt: '.wpy',
@@ -27,20 +44,6 @@ module.exports = {
     /*sass: {
       outputStyle: 'compressed'
     },*/
-    postcss: {
-      plugins: [
-        require('postcss-flexbugs-fixes'),
-        autoprefixer({
-          browsers: [
-            '>1%',
-            'last 4 versions',
-            'Firefox ESR',
-            'not ie < 9'
-          ],
-          flexbox: 'no-2009'
-        })
-      ]
-    },
     babel: {
       sourceMap: true,
       presets: [
@@ -50,11 +53,20 @@ module.exports = {
         'transform-class-properties',
         'transform-decorators-legacy',
         'transform-object-rest-spread',
-        'transform-export-extensions',
+        'transform-export-extensions'
       ]
     }
   },
   plugins: {
+    /* autoprefixer: {
+      filter: /\.wxss/,
+      config: {
+        browsers: ['last 11 iOS versions']
+      }
+    },
+    rpx: {
+      filter: /\.(wxss|wxml)$/
+    } */
   },
   appConfig: {
     noPromiseAPI: ['createSelectorQuery']
@@ -70,8 +82,7 @@ if (prod) {
   module.exports.plugins = {
     uglifyjs: {
       filter: /\.js$/,
-      config: {
-      }
+      config: {}
     },
     imagemin: {
       filter: /\.(jpg|png|jpeg)$/,

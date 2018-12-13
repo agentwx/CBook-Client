@@ -296,7 +296,7 @@
         this.isSearchShow = false
       },
       viewDetail (item) {
-        this.$navigate('/pages/detail/detail', item)
+        this.$navigate('/pages/detail/detail', { product: JSON.stringify(item) })
       },
       onSearchChange (e) {
         this.searchVal = e.detail.value
