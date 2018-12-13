@@ -331,7 +331,7 @@
           筛选<icon size="mini" name="filter"></icon>
         </view>
       </view>
-      <transition custom-class="filter-sublayer" name="fade-down" show="{{filterVisible}}">
+      <transition custom-class="filter-sublayer" name="slide-down" duration="300" show="{{filterVisible}}">
         <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
           <block wx:for="{{sortTypes}}" wx:key="index">
             <view class="filter-itemsort {{item.checked ? 'selected' : ''}}" @tap="filterBySort({{item.value}})">
@@ -379,7 +379,7 @@
         </view>
       </transition>
     </view>
-    <overlay show="{{filterVisible}}" mask="true" @tap="hideFilter"></overlay>
+    <overlay show="{{filterVisible}}" duration="300" mask="true" @tap="hideFilter"></overlay>
   </view>
 
   <view class="product-listview">

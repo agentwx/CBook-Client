@@ -13,6 +13,10 @@ Component({
     },
     show: Boolean,
     mask: Boolean,
+    duration: {
+      type: Number,
+      value: 400
+    },
     zIndex: {
       type: Number,
       value: 1

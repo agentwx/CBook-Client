@@ -1,5 +1,6 @@
 <transition
   show="{{ show }}"
+  duration="{{duration}}"
   custom-class="overlay {{customClass}}"
   custom-style="z-index: {{ zIndex }}; {{ mask ? 'background-color: rgba(0, 0, 0, .6);' : '' }}; {{ customStyle }}"
   catch:touchmove="noop"
