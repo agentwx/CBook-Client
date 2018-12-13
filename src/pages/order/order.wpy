@@ -173,6 +173,8 @@
     id="datePicker"
     wx:if="{{orderSource === 'recycle'}}"
     fields="range"
+    start-year="{{startYear}}"
+    end-year="{{endYear}}"
     start="{{startDateTime}}"
     time-range="{{timeRange}}"
     @change="datetimeChange"
@@ -315,6 +317,8 @@
       deliveryTime: '',
       orderSource: 'normal',
       address: null,
+      startYear: new Date().getFullYear(),
+      endYear: new Date().getFullYear() + 1,
       timeRange: [9, 19],
       products: []
     }
