@@ -419,9 +419,10 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <gotop />
-  <weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
+  <preloader visible="{{isLoading}}" />
+  <!--<weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />-->
   <modal-spinner wx:if="{{isLoading && isSpinShow}}" />
+  <gotop />
 </template>
 
 <script>
@@ -444,7 +445,8 @@ export default class Index extends wepy.page {
       'raty': '/components/raty/index',
       'icon': '/components/icon/index',
       'tag': '/components/tag/index',
-      'gotop': '/components/gotop/index'
+      'gotop': '/components/gotop/index',
+      'preloader': '/components/preloader/index'
     }
   }
 

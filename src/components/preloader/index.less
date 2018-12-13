@@ -1,0 +1,44 @@
+@import "../../styles/mixin";
+
+@pre-color: #f2f2f2;
+
+.preloader-wrap {
+  .animation(flash .8s ease infinite);
+}
+
+.preloader {
+  .flex();
+  padding: 20rpx;
+
+  &-aside {
+    .flex-center();
+    width: 200rpx;
+    height: 254rpx;
+    margin-left: 10rpx;
+    margin-right: 30rpx;
+    background-color: @pre-color;
+  }
+
+  &-main {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-cell {
+    height: 24rpx;
+    background-color: @pre-color;
+    margin-bottom: 16rpx;
+
+    &.bold {
+      height: 30rpx;
+      background-color: darken(@pre-color, 3%);
+    }
+
+    &.light {
+      height: 20rpx;
+      background-color: lighten(@pre-color, 1%);
+    }
+  }
+}

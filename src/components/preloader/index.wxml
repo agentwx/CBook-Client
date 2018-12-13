@@ -1,0 +1,18 @@
+<view class="preloader-wrap {{customClass}}" style="{{customStyle}}" hidden="{{!visible}}">
+  <block wx:for="{{count}}" wx:key="index">
+    <view class="preloader">
+      <view class="preloader-aside"></view>
+      <view class="preloader-main">
+        <view>
+          <view class="preloader-cell bold"></view>
+          <view class="preloader-cell light" style="width: 80%"></view>
+        </view>
+        <view>
+          <view class="preloader-cell" style="width: 40%"></view>
+          <view class="preloader-cell" style="width: 70%"></view>
+          <view class="preloader-cell" style="width: 50%"></view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
