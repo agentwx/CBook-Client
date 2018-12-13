@@ -70,8 +70,10 @@
 
     .desc {
       .light-font();
+      .ellipsis();
       font-size: 24rpx;
       color: #888;
+      margin-bottom: 4rpx;
     }
   }
 
