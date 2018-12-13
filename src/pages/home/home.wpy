@@ -302,6 +302,7 @@
     }
   }
 </style>
+
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">

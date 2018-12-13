@@ -101,42 +101,44 @@ Component({
     range: [],
     rangeArrayDisplay: []
   },
-  attached: function () {
-    if (this.data.mode === 'datetime') {
-
-      const {
-        startYear, endYear, value, start, suffix,
-        fields, timeRange, timeStep, timeHalf
-      } = this.data
-
-      const {range, rangeArray} = dateTimePicker(startYear, endYear, value, start, fields)
-
-      if (fields === 'range') {
-        const times = getTimeRange(timeRange[0], timeRange[1], timeStep, timeHalf)
-        rangeArray.push(times)
-        range.push(getInitTimeIndex(times, value, start))
-        suffix[3] = ''
-      }
-
-      let rangeArrayDisplay = []
-
-      rangeArray.forEach((items, index) => {
-        rangeArrayDisplay.push(items.map(item => item + suffix[index]))
-      })
-
-      this.rangeArray = rangeArray
-
-      this.setData({
-        range,
-        rangeArrayDisplay
-      })
-    } else {
-      this.setData({
-        range: this.data.value
-      })
-    }
+  attached () {
+    this.init()
   },
   methods: {
+    init () {
+      if (this.data.mode === 'datetime') {
+        const {
+          startYear, endYear, value, start, suffix,
+          fields, timeRange, timeStep, timeHalf
+        } = this.data
+
+        const { range, rangeArray } = dateTimePicker(startYear, endYear, value, start, fields)
+
+        if (fields === 'range') {
+          const times = getTimeRange(timeRange[0], timeRange[1], timeStep, timeHalf)
+          rangeArray.push(times)
+          range.push(getInitTimeIndex(times, value, start))
+          suffix[3] = ''
+        }
+
+        let rangeArrayDisplay = []
+
+        rangeArray.forEach((items, index) => {
+          rangeArrayDisplay.push(items.map(item => item + suffix[index]))
+        })
+
+        this.rangeArray = rangeArray
+
+        this.setData({
+          range,
+          rangeArrayDisplay
+        })
+      } else {
+        this.setData({
+          range: this.data.value
+        })
+      }
+    },
     change (e) {
       this.setData({range: e.detail.value})
 
@@ -147,9 +149,9 @@ Component({
         })
         value = {
           ...e.detail,
-          value: this.data.range,
+          range: this.data.range,
           date: formatDate(date),
-          range: this.rangeArray
+          data: this.rangeArray
         }
       } else {
         value = e.detail
@@ -194,18 +196,18 @@ Component({
       if (rangeOrig[column] !== range[column]) {
         this.triggerEvent('columnchange', {
           ...e.detail,
-          values: this.data.range,
+          range: this.data.range,
           date: formatDate(date),
-          range: this.rangeArray
+          data: this.rangeArray
         })
       }
     },
     cancel (e) {
       this.triggerEvent('cancel', e.detail)
     },
-    setValue (value) {
+    setRange (range) {
       this.setData({
-        range: value
+        range
       })
     }
   },

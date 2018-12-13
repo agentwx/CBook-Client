@@ -408,17 +408,17 @@
       <view class="text">书摘插画</view>
     </view>
     <view class="pdintro-body">
-      <repeat for="{{product.imags}}" key="index">
+      <repeat for="{{detail.imags}}" key="index">
         <image src="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
       </repeat>
     </view>
   </view>
 
-  <view class="suggest-window" wx:if="{{product.relatedBookInfoList.length > 0}}">
+  <view class="suggest-window" wx:if="{{detail.relatedBookInfoList.length > 0}}">
     <view class="suggest-title">猜您喜欢</view>
     <scroll-view class="suggest-scrollview" scroll-x="true">
       <view class="suggest-list">
-        <repeat for="{{product.relatedBookInfoList}}" key="index">
+        <repeat for="{{detail.relatedBookInfoList}}" key="index">
           <view class="suggest-item" @tap="viewDetail({{item}})">
             <view class="suggest-cover">
               <image src="{{item.smallIconDetail}}" lazyload="true"></image>
@@ -481,6 +481,7 @@
       authorMaxLength: 100,
       errMsg: '',
       product: {},
+      detail: {},
       contentBriefStr: '',
       authorBriefStr: ''
     }
@@ -552,7 +553,7 @@
       previewImage (url) {
         wx.previewImage({
           current: url,
-          urls: this.product.imags
+          urls: this.detail.imags
         })
       },
       flyComplete () {
@@ -565,7 +566,7 @@
         }
       },
       viewDetail (item) {
-        this.$navigate('/pages/detail/detail', {product: JSON.stringify(item)})
+        this.$navigate('/pages/detail/detail', { product: JSON.stringify(item) })
       }
     }
 
@@ -581,8 +582,8 @@
 
     async loadData (isbn) {
       try {
-        let res = await fetch.post('/bookinfo/detail', {isbn})
-        this.product = {...this.product, ...res.datas}
+        let res = await fetch.post('/bookinfo/detail', { isbn })
+        this.detail = res.datas
         this.contentBriefStr = res.datas.contentBrief
         this.authorBriefStr = res.datas.authorBrief
         this.canBuy = true
@@ -595,9 +596,8 @@
     }
 
     onLoad({ product }) {
-      product = JSON.parse(product)
-      this.product = {...this.product, ...product}
-      this.loadData(product.isbn)
+      this.product = JSON.parse(product)
+      this.loadData(this.product.isbn)
     }
   }
 </script>

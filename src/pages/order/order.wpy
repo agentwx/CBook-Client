@@ -148,13 +148,12 @@
     margin-bottom: 0;
   }
 </style>
+
 <template>
-  <notice-bar
-    wx:if="{{orderSource === 'recycle'}}"
-    showArrow="false"
-  >
-    卖书运费由平台承担，你在快递上门时告知快递员运费到付即可
+  <notice-bar wx:if="{{orderSource === 'recycle'}}" show-arrow="false">
+    <text>卖书运费由平台承担，你在快递上门时告知快递员运费到付即可</text>
   </notice-bar>
+
   <view class="address-selection" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle"/>
     <view class="addr-slbd" wx:if="{{address !== null}}">
@@ -200,11 +199,9 @@
       </repeat>
     </view>
     <view class="panel-footer" slot="footer">
+      <view class="order-ft">总共 <text>{{totalCount}}</text> 本图书</view>
       <view class="order-ft">
-        总共 <text>{{totalCount}}</text> 本图书
-      </view>
-      <view class="order-ft">
-        {{orderSource==='recycle' ? '预计收入' : '合计'}}
+        <text>{{orderSource==='recycle' ? '预计收入' : '合计'}}</text>
         <view>
           <text class="trade-unit">￥</text>
           <text class="trade-amount">{{totalPrice}}</text>
@@ -213,9 +210,7 @@
     </view>
   </panel>
 
-  <view class="order-action-button" @tap="submitOrder">
-    提交订单
-  </view>
+  <view class="order-action-button" @tap="submitOrder">提交订单</view>
 
   <modal visible="{{modalVisible}}" show-close="false">
     <view class="modal-container">
@@ -227,7 +222,6 @@
       <btn size="small" @tap="confirmOrder">确定</btn>
     </view>
   </modal>
-
 </template>
 
 <script>
@@ -235,29 +229,30 @@
   import { toast, getPrevPage, formatDate } from '../../utils/util'
   import fetch from '../../service/fetch'
 
-  const validateTime = timeStr => {
-    let now = new Date()
-    let date = timeStr.split(' ')[0].replace(/-/g, '/')
-    let hour = timeStr.split(' ')[1].split('-')[0]
-    if (new Date(date) < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
-      return false
-    }
-
-    if (parseInt(hour) <= now.getHours()) {
-      return false
-    }
-    return true
-  }
-
   const getNowTime = () => {
     let now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
   }
 
+  const validateTime = timeStr => {
+    let now = new Date()
+    let date = timeStr.split(' ')[0].replace(/-/g, '/')
+    let hour = timeStr.split(' ')[1].split('-')[0]
+    let dateTime = new Date(date).getTime()
+    let nowTime = getNowTime()
+
+    if (dateTime < nowTime) {
+      return false
+    } else if (dateTime === nowTime && parseInt(hour) < now.getHours() + 2) {
+      return false
+    }
+    return true
+  }
+
   const getTimeRange = (date, offset = 2) => {
     let now = new Date()
     let hour = now.getHours()
-    const MAX_HOUR = 20
+    const MAX_HOUR = 17
 
     if (hour >= MAX_HOUR) {
       now.setDate(now.getDate() + 1)
@@ -266,19 +261,15 @@
     let dateStr = formatDate(now, 'yyyy-MM-dd')
     let hourStr = ''
 
-    if (hour < MAX_HOUR) {
-      date = new Date(
-        typeof date === 'string'
-          ? date.split(' ')[0].replace(/-/g, '/')
-          : date
-      ).getTime()
-
+    if (hour > MAX_HOUR) {
+      hourStr = `09:00-10:00`
+    } else {
+      date = typeof date === 'string' ? date.split(' ')[0].replace(/-/g, '/') : date
+      date = new Date(date).getTime()
       if (date === now.getTime() || date <= getNowTime()) {
         let hour = now.getHours() + offset
         hourStr = `${hour}:00-${hour + 1}:00`
       }
-    } else {
-      hourStr = `08:00-09:00`
     }
 
     return `${dateStr} ${hourStr}`
@@ -316,7 +307,7 @@
       deliveryTime: '',
       orderSource: 'normal',
       address: null,
-      timeRange: [8, 22],
+      timeRange: [9, 19],
       products: []
     }
 
@@ -337,7 +328,7 @@
         this.modalVisible = false
       },
       selectAddress() {
-        this.$navigate('/pages/address/address', {actionMode: 'select'})
+        this.$navigate('/pages/address/address', { actionMode: 'select' })
       },
       submitOrder() {
         const isRecycleOrder = this.orderSource === 'recycle'
@@ -350,7 +341,7 @@
             return toast.error('请选择取件时间')
           }
           if (!validateTime(this.deliveryTime)) {
-            return toast.error('取件时间不合法，请重新选择')
+            return toast.error('取件时间不合理，请重新选择')
           }
         }
 
@@ -370,10 +361,10 @@
       columnChange (e) {
         if (e.detail.column < 3) {
           this.startDateTime = getTimeRange(e.detail.date)
-          let value = e.detail.values
           let range = e.detail.range
-          value[3] = getTimeValue(range[3], e.detail.date)
-          this.$wxpage.selectComponent('#datePicker').setValue(value)
+          let data = e.detail.data
+          range[3] = getTimeValue(data[3], e.detail.date)
+          this.$wxpage.selectComponent('#datePicker').setRange(range)
         }
       }
     }
