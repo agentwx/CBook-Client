@@ -19,7 +19,7 @@ Component({
     },
     duration: {
       type: Number,
-      value: 0
+      value: 300
     },
     useSlot: Boolean,
     disabled: Boolean
