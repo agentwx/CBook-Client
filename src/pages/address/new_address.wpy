@@ -6,20 +6,20 @@
   }
 
   .address-new-wrap {
-    box-shadow: 0 16rpx 36rpx rgba(0,0,0,.04);
+    box-shadow: 0 8px 18px rgba(0,0,0,.04);
   }
 
   .address-defset {
-    padding: 30rpx 20rpx;
+    padding: 15px 10px;
     .flex-v-center();
 
     text {
-      margin-left: 16rpx;
+      margin-left: 8px;
     }
   }
 
   .address-new-button {
-    margin-top: 10rpx;
+    margin-top: 5px;
     margin-left: 6%;
     margin-right: 6%;
   }

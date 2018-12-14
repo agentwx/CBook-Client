@@ -3,18 +3,18 @@
 
   page {
     background-color: #f5f5f5;
-    padding-bottom: 20rpx;
+    padding-bottom: 10px;
   }
 
   .profile {
-    padding: 40rpx 0 60rpx;
+    padding: 20px 0 30px;
     background-color: #fff;
     .flex-v-center();
     flex-direction: column;
 
     .avatar {
-      width: 140rpx;
-      height: 140rpx;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       overflow: hidden;
 
@@ -26,7 +26,7 @@
 
     .nickname {
       color: #888;
-      margin-top: 16rpx;
+      margin-top: 8px;
     }
   }
 
@@ -40,15 +40,15 @@
   }
 
   .profile-listitem {
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
   }
 
   .delete-button {
-    padding: 24rpx 0;
+    padding: 12px 0;
     text-align: center;
     color: #888;
     background-color: #fff;
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
 
     &:active {
       background-color: @color-active;
@@ -56,7 +56,7 @@
   }
 
   .profile-action {
-    margin: 60rpx 10% 0;
+    margin: 30px 10% 0;
   }
 </style>
 <template>

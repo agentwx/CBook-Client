@@ -2,26 +2,26 @@
   @import '../../styles/mixin';
 
   .manual-panel {
-    margin: 50rpx 40rpx;
-    padding: 40rpx 50rpx;
+    margin: 25px 20px;
+    padding: 20px 25px;
     border-radius: 16px;
     box-shadow: 0 0 24px rgba(0,0,0,.1);
   }
 
   .manual-hd {
     text-align: center;
-    margin-top: 30rpx;
-    margin-bottom: 40rpx;
-    font-size: 30rpx;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
 
     .title {
       color: #888;
-      margin-bottom: 12rpx;
+      margin-bottom: 6px;
     }
 
     .text {
       font-weight: bold;
-      margin-bottom: 6rpx;
+      margin-bottom: 3px;
     }
   }
 
@@ -30,22 +30,22 @@
 
     image {
       width: 100%;
-      height: 242rpx;
-      max-width: 560rpx;
+      height: 121px;
+      max-width: 280px;
     }
   }
 
   .manual-field {
-    margin-top: 40rpx;
-    margin-bottom: 40rpx;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .manual-input {
-    padding: 12rpx 24px;
+    padding: 6px 12px;
     background-color: #eee;
     text-align: center;
-    border-radius: 16rpx;
-    height: 84rpx;
+    border-radius: 8px;
+    height: 42px;
   }
 
   .manual-action {
@@ -72,7 +72,7 @@
     </view>
     <view class="manual-action">
       <btn type="plain" @tap="onCancel">取消</btn>
-      <btn style="margin-left: 30rpx;" @tap="onConfirm">确认</btn>
+      <btn style="margin-left: 15px;" @tap="onConfirm">确认</btn>
     </view>
   </view>
 </template>

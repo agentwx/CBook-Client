@@ -3,16 +3,16 @@
   @import '../../styles/ellipsis';
 
   page {
-    padding-bottom: 100rpx;
+    padding-bottom: 50px;
     background-color: #f7f7f7;
   }
 
   .address-selection {
     position: relative;
     .flex-v-center();
-    padding: 24rpx 30rpx 30rpx;
+    padding: 12px 15px 15px;
     background-color: #fff;
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
 
     &:active {
       background-color: @color-active;
@@ -24,16 +24,16 @@
       left: 0;
       bottom: 0;
       right: 0;
-      height: 6rpx;
+      height: 3px;
       background: #fff url(data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wgARCAAFADQDAREAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAABwMGCP/EABgBAAMBAQAAAAAAAAAAAAAAAAQFBgAC/9oADAMBAAIQAxAAAADVbkE4bhWkElUk35wjppdwtU0h/8QAJRAAAgIABAUFAAAAAAAAAAAAAQIDBAAFERIGBxATITFDcXKC/9oACAEBAAE/AOatuQ2MvqeztMn68jpy8qR2uJ65lGvZVpF+w9McVzPDksuzxvKofgnpXjEtiGNtdrsoOERYkCINFUaAY//EABsRAAICAwEAAAAAAAAAAAAAAAECABEEBRAD/9oACAECAQE/ANUgpm5sGK47VMxivi1cWKABU//EAB0RAAIBBAMAAAAAAAAAAAAAAAECAAMEEBEFISL/2gAIAQMBAT8Au2PnFuoZxuccoauu8VGKJ1AS+yZ//9k=) repeat-x 0 100%;
       background-size: auto 100%;
     }
 
     .addr-slbd {
       flex: 1;
-      margin-left: 20rpx;
-      margin-right: 20rpx;
-      min-height: 82rpx;
+      margin-left: 10px;
+      margin-right: 10px;
+      min-height: 41px;
     }
 
     .addr-slbd2 {
@@ -42,30 +42,30 @@
     }
 
     .addr-sltitle {
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
-      margin-bottom: 10rpx;
+      margin-bottom: 5px;
     }
 
     .addr-username {
-      margin-right: 20rpx;
+      margin-right: 10px;
     }
 
     .addr-text {
-      font-size: 24rpx;
+      font-size: 12px;
       color: #666
     }
   }
 
   .timepicker {
-    margin-top: 20rpx;
-    margin-bottom: 20rpx;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .timepicker-bd {
     .flex-v-center();
     justify-content: space-between;
-    padding-right: 10rpx;
+    padding-right: 5px;
 
     .tm-hd {
       font-weight: bold;
@@ -73,7 +73,7 @@
   }
 
   .order-book {
-    padding: 8rpx 0;
+    padding: 4px 0;
     .flex();
     justify-content: space-between;
 
@@ -81,16 +81,16 @@
       flex: 1;
       font-weight: bold;
       .ellipsis();
-      margin-right: 30rpx;
+      margin-right: 15px;
     }
 
     .book-count {
-      width: 60rpx;
-      margin-right: 30rpx;
+      width: 30px;
+      margin-right: 15px;
     }
 
     .book-price {
-      width: 100rpx;
+      width: 50px;
       text-align: right;
     }
   }
@@ -104,11 +104,11 @@
     }
 
     .trade-unit {
-      font-size: 24rpx;
+      font-size: 12px;
     }
 
     .trade-amount {
-      font-size: 32rpx;
+      font-size: 16px;
     }
   }
 
@@ -117,8 +117,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100rpx;
-    font-size: 36rpx;
+    height: 50px;
+    font-size: 18px;
     color: #fff;
     .g-gradient(60%);
     .flex-center();
@@ -133,14 +133,14 @@
     flex-direction: column;
 
     .md-title {
-      font-size: 36rpx;
-      margin-bottom: 10rpx;
-      margin-top: 16rpx;
+      font-size: 18px;
+      margin-bottom: 5px;
+      margin-top: 8px;
     }
 
     .md-subtitle {
       color: #888;
-      margin-bottom: 20rpx;
+      margin-bottom: 10px;
     }
   }
 
@@ -166,7 +166,7 @@
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">
       {{orderSource === 'recycle' ? '请选择取件地址...' : '请选择收货地址...'}}
     </view>
-    <icon name="arrow-right-o" color="#888" custom-style="font-size: 36rpx"/>
+    <icon name="arrow-right-o" color="#888" custom-style="font-size: 18px"/>
   </view>
 
   <datetime-picker

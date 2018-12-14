@@ -4,45 +4,45 @@
   background-color: #fff;
 
   &:not(.nomargin) {
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
   }
 }
 
 .form-item-inner {
   .flex-v-center();
-  margin-left: 30rpx;
-  margin-right: 30rpx;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   &.underline {
-    border-bottom: 1rpx solid @color-underline;
+    border-bottom: .5px solid @color-underline;
   }
 }
 
 .form-item-label {
   display: inline-block;
   white-space: nowrap;
-  margin-right: 16rpx;
+  margin-right: 8px;
   color: #888;
 }
 
 .form-item-bd {
   position: relative;
-  border-radius: 8rpx;
+  border-radius: 4px;
   flex: 1;
   .flex-v-center();
 
   > .input {
     width: 100%;
-    padding: 12rpx 24rpx;
-    font-size: 28rpx;
+    padding: 6px 12px;
+    font-size: 14px;
     box-sizing: border-box;
     flex: 1;
 
     &.large {
       height: @large;
-      font-size: 32rpx;
+      font-size: 16px;
     }
     &.normal {
       height: @normal;
@@ -56,28 +56,28 @@
   }
 
   > .icon-left {
-    margin-left: 12rpx;
-    margin-right: -18rpx;
+    margin-left: 6px;
+    margin-right: -9px;
   }
 
   > .icon-right {
     display: flex;
     align-items: center;
-    margin-left: -24rpx;
-    margin-right: 6rpx;
+    margin-left: -12px;
+    margin-right: 3px;
   }
 
   .ctrl-icon {
-    padding: 6rpx;
-    margin-left: 4rpx;
+    padding: 3px;
+    margin-left: 2px;
     color: #8a8a8a;
   }
 
   .pwd-ctrl {
-    font-size: 36rpx;
+    font-size: 18px;
   }
 
   &.bordered {
-    border: 1rpx solid @color-border;
+    border: .5px solid @color-border;
   }
 }

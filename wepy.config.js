@@ -1,24 +1,6 @@
 const path = require('path')
 const prod = process.env.NODE_ENV === 'production'
 
-const TransformPx2Rpx = function (opts = {}) {
-  let def = {
-    filter: new RegExp('.(wxss|wxml|json)$')
-  }
-  this.setting = Object.assign({}, def, opts)
-}
-
-TransformPx2Rpx.prototype.apply = function apply(op) {
-  if (this.setting.filter.test(op.file)) {
-    if (op.code) {
-      op.code = op.code.replace(/\b(\d+(\.\d+)?)px\b/ig, function (match, $1) {
-        return $1 * 2 + 'rpx'
-      })
-    }
-  }
-  op.next()
-}
-
 module.exports = {
   wpyExt: '.wpy',
   eslint: true,
@@ -58,13 +40,13 @@ module.exports = {
     }
   },
   plugins: {
-    /* autoprefixer: {
+    autoprefixer: {
       filter: /\.wxss/,
       config: {
         browsers: ['last 11 iOS versions']
       }
-    } */
-    rpx: {
+    },
+    pxtorpx: {
       filter: /\.(wxss|wxml)$/
     }
   },

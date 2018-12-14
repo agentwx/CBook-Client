@@ -4,43 +4,43 @@
 
   page {
     background-color: #f7f7f7;
-    padding-bottom: 20rpx;
+    padding-bottom: 10px;
   }
 
   .delivery-body {
     .flex-v-center();
 
     .geo-icon {
-      margin-right: 20rpx;
+      margin-right: 10px;
     }
   }
 
   .delivery-hd {
     font-weight: bold;
-    margin-bottom: 12rpx;
+    margin-bottom: 6px;
 
     .username {
-      margin-right: 20rpx;
+      margin-right: 10px;
     }
   }
 
   .delivery-address,
   .delivery-picktime {
     color: #888;
-    font-size: 26rpx;
-    margin-bottom: 10rpx;
+    font-size: 13px;
+    margin-bottom: 5px;
   }
 
   .book-body {
     .flex();
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
   }
 
   .book-cover {
     .flex-center();
-    width: 160rpx;
-    height: 196rpx;
-    margin-right: 30rpx;
+    width: 80px;
+    height: 98px;
+    margin-right: 15px;
     overflow: hidden;
 
     image {
@@ -59,17 +59,17 @@
   .book-hd {
     .title {
       .ellipsis();
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
-      margin-bottom: 6rpx;
+      margin-bottom: 3px;
     }
 
     .desc {
       .light-font();
       .ellipsis();
-      font-size: 24rpx;
+      font-size: 12px;
       color: #999;
-      margin-bottom: 4rpx;
+      margin-bottom: 2px;
     }
   }
 
@@ -78,7 +78,7 @@
     justify-content: space-between;
 
     .price {
-      font-size: 30rpx;
+      font-size: 15px;
     }
 
     .status {
@@ -90,7 +90,7 @@
     .flex-v-center();
 
     .icon {
-      margin-right: 10rpx;
+      margin-right: 5px;
     }
   }
 
@@ -103,7 +103,7 @@
   .income-item {
     .flex();
     justify-content: space-between;
-    padding: 6rpx 0;
+    padding: 3px 0;
 
     /*&:first-child {
       color: #888;
@@ -122,17 +122,17 @@
   .order-item {
     .flex-v-center();
     justify-content: space-between;
-    padding: 4rpx 0;
+    padding: 2px 0;
     color: #888;
   }
 
   .copy-text {
-    padding:6rpx 16rpx;
+    padding: 3px 8px;
   }
 
   .action-button {
-    padding-top: 20rpx;
-    padding-bottom: 20rpx;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: #fff;
     .flex-center();
 

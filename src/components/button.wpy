@@ -3,16 +3,16 @@
 
   .button {
     .flex-center();
-    padding-left: 40rpx;
-    padding-right: 40rpx;
+    padding-left: 20px;
+    padding-right: 20px;
     flex-direction: row;
     color: #444;
-    font-size: 28rpx;
+    font-size: 14px;
     box-sizing: border-box;
 
     .icon,
     .loading {
-      margin-right: 6rpx;
+      margin-right: 3px;
     }
 
     &.circled {
@@ -36,7 +36,7 @@
 
       &.bordered {
         color: @gcolor;
-        border: 1rpx solid @gcolor;
+        border: .5px solid @gcolor;
 
         &:active {
           color: darken(@gcolor, 10%);
@@ -58,7 +58,7 @@
 
       &.bordered {
         color: @color-success;
-        border: 1rpx solid @color-success;
+        border: .5px solid @color-success;
 
         &:active {
           color: darken(@color-success, 10%);
@@ -80,7 +80,7 @@
 
       &.bordered {
         color: @color-info;
-        border: 1rpx solid @color-info;
+        border: .5px solid @color-info;
 
         &:active {
           color: darken(@color-info, 10%);
@@ -102,7 +102,7 @@
 
       &.bordered {
         color: @color-warning;
-        border: 1rpx solid @color-warning;
+        border: .5px solid @color-warning;
 
         &:active {
           color: darken(@color-warning, 10%);
@@ -124,7 +124,7 @@
 
       &.bordered {
         color: @color-danger;
-        border: 1rpx solid @color-danger;
+        border: .5px solid @color-danger;
 
         &:active {
           color: darken(@color-danger, 10%);
@@ -142,7 +142,7 @@
 
     &.plain {
       background-color: transparent;
-      border: 1rpx solid @color-border;
+      border: .5px solid @color-border;
 
       &:active {
         border-color: darken(@color-border, 10%);
@@ -157,7 +157,7 @@
 
     &.large {
       height: @large;
-      font-size: 32rpx;
+      font-size: 16px;
     }
 
     &.normal {
@@ -166,8 +166,8 @@
 
     &.small {
       height: @small;
-      padding-left: 30rpx;
-      padding-right: 30rpx;
+      padding-left: 15px;
+      padding-right: 15px;
     }
 
   }

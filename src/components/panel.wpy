@@ -4,14 +4,14 @@
 
   .panel {
     background-color: #fff;
-    padding: 24rpx 30rpx;
-    margin-bottom: 20rpx;
+    padding: 12px 15px;
+    margin-bottom: 10px;
   }
 
   .panel-title {
-    font-size: 30rpx;
+    font-size: 15px;
     font-weight: bold;
-    margin-bottom: 20rpx;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
 
@@ -21,13 +21,13 @@
   }
 
   .panel-body {
-    padding-top: 20rpx;
-    padding-bottom: 20rpx;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .panel-footer {
     position: relative;
-    padding-top: 24rpx;
+    padding-top: 12px;
     display: flex;
     justify-content: space-between;
 

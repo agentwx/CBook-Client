@@ -1,10 +1,10 @@
 const computedBehavior = require('miniprogram-computed')
 const SIZE_MAP = {
-  'large': '64rpx',
-  'middle': '44rpx',
-  'normal': '36rpx',
-  'small': '30rpx',
-  'mini': '24rpx'
+  'large': '32px',
+  'middle': '22px',
+  'normal': '18px',
+  'small': '15px',
+  'mini': '12px'
 }
 
 Component({

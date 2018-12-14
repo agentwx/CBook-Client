@@ -3,11 +3,11 @@
 
   page {
     height: auto;
-    padding-bottom: 102rpx;
+    padding-bottom: 51px;
   }
 
   .detail-image-wrap {
-    height: 500rpx;
+    height: 250px;
     .flex-center();
 
     > image {
@@ -17,8 +17,8 @@
   }
 
   .detail-title {
-    padding: 30rpx 20rpx 16rpx;
-    font-size: 32rpx;
+    padding: 15px 10px 8px;
+    font-size: 16px;
     font-weight: bold;
     word-break: break-all;
     word-wrap: break-word;
@@ -27,7 +27,7 @@
   .detail-salesInfo {
     .flex();
     justify-content: space-between;
-    padding: 0 20rpx 30rpx;
+    padding: 0 10px 15px;
   }
 
   .sale-price {
@@ -36,13 +36,13 @@
 
     .now-price {
       color: #eb5a21;
-      font-size: 40rpx;
+      font-size: 20px;
       font-weight: bold;
-      margin-right: 16rpx;
+      margin-right: 8px;
 
       .unit {
         font-weight: normal;
-        font-size: 26rpx;
+        font-size: 13px;
       }
     }
 
@@ -57,25 +57,25 @@
   }
 
   .product-info {
-    padding-left: 20rpx;
-    padding-right: 20rpx;
+    padding-left: 10px;
+    padding-right: 10px;
 
     > view {
-      padding: 24rpx 0;
+      padding: 12px 0;
     }
   }
 
   .product-flags {
-    padding: 24rpx 20rpx 20rpx;
+    padding: 12px 10px 10px;
 
     .flag-item {
       display: inline-flex;
       align-items: center;
-      margin-right: 30rpx;
+      margin-right: 15px;
       color: #888;
 
       .icon {
-        margin-right: 10rpx;
+        margin-right: 5px;
         color: @gcolor;
       }
     }
@@ -87,7 +87,7 @@
     right: 0;
     bottom: 0;
     background-color: #fff;
-    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
     z-index: 200;
     .flex();
 
@@ -95,18 +95,18 @@
       line-height: 1.2;
       .flex-center();
       flex-direction: column;
-      height: 100rpx;
+      height: 50px;
     }
 
     .action-cart {
       position: relative;
       flex: none;
-      padding-left: 30rpx;
-      padding-right: 30rpx;
-      border-right: 1rpx solid @color-light-gray;
-      border-top: 1rpx solid @color-light-gray;
+      padding-left: 15px;
+      padding-right: 15px;
+      border-right: .5px solid @color-light-gray;
+      border-top: .5px solid @color-light-gray;
       color: #666;
-      font-size: 24rpx;
+      font-size: 12px;
 
       &:active {
         background-color: @color-active;
@@ -121,7 +121,7 @@
       .badge {
         position: absolute;
         left: 65%;
-        top: -10rpx;
+        top: -5px;
         .animation(zoom-in .4s ease);
       }
     }
@@ -130,20 +130,20 @@
       flex: 1;
 
       .price {
-        font-size: 36rpx;
+        font-size: 18px;
       }
 
       .unit {
-        font-size: 26rpx;
+        font-size: 13px;
       }
 
       .buy-text {
-        font-size: 30rpx;
+        font-size: 15px;
       }
 
       &.cash-buy {
         color: @gcolor;
-        border-top: 1rpx solid @color-light-gray;
+        border-top: .5px solid @color-light-gray;
 
         &:active {
           background-color: @color-active;
@@ -163,26 +163,26 @@
 
 
   .detail-pdintro-wrap {
-    margin-top: 36rpx;
+    margin-top: 18px;
   }
 
   .pdintro-title {
     text-align: center;
-    font-size: 36rpx;
-    margin: 0 20rpx 50rpx;
+    font-size: 18px;
+    margin: 0 10px 25px;
   }
 
   .pdintro-subtitle {
-    margin: 0 20rpx 20rpx;
-    border-bottom: 1rpx solid @color-underline;
+    margin: 0 10px 10px;
+    border-bottom: .5px solid @color-underline;
 
     > .text {
       position: relative;
       display: inline-block;
-      padding: 8rpx 30rpx;
-      font-size: 30rpx;
-      border-top-left-radius: 12rpx;
-      border-bottom-right-radius: 12rpx;
+      padding: 4px 15px;
+      font-size: 15px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
       background-color: @active-color;
 
       &:before {
@@ -191,21 +191,21 @@
         left: 0;
         top: 0;
         bottom: 0;
-        width: 10rpx;
+        width: 5px;
         background-color: @gcolor;
-        border-top-left-radius: 12rpx;
-        border-bottom-right-radius: 12rpx;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
       }
     }
   }
 
   .pdintro-body {
-    margin: 0 20rpx 50rpx;
+    margin: 0 10px 25px;
 
     image {
       width: 100%;
-      margin-bottom: 20rpx;
-      border: 1rpx dashed #31b3ed;
+      margin-bottom: 10px;
+      border: .5px dashed #31b3ed;
     }
 
     &:last-child {
@@ -215,46 +215,46 @@
 
   .pdintro-author {
     color:#777;
-    font-size: 26rpx;
+    font-size: 13px;
     .light-font();
-    padding-top: 10rpx;
-    padding-bottom: 16rpx;
+    padding-top: 5px;
+    padding-bottom: 8px;
   }
 
   .pdintro-content {
 
     .text {
       .light-font();
-      font-size: 26rpx;
+      font-size: 13px;
       line-height: 1.6;
       text-indent: 2em;
-      letter-spacing: 2rpx;
-      margin-bottom: 6rpx;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
     }
 
     .expander {
       white-space: nowrap;
       color: @gcolor;
-      padding: 4rpx 6rpx;
+      padding: 2px 3px;
     }
   }
 
 
   .suggest-window {
-    margin-top: 40rpx;
-    margin-bottom: 40rpx;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .suggest-title {
-    font-size: 32rpx;
+    font-size: 16px;
     text-align: center;
-    margin-bottom: 30rpx;
+    margin-bottom: 15px;
   }
 
   .suggest-scrollview {
     width: 100%;
-    padding-left: 30rpx;
-    padding-right: 30rpx;
+    padding-left: 15px;
+    padding-right: 15px;
     overflow: hidden;
   }
 
@@ -264,12 +264,12 @@
   }
 
   .suggest-item {
-    width: 208rpx;
-    margin-right: 30rpx;
+    width: 104px;
+    margin-right: 15px;
 
     .suggest-cover {
       width: 100%;
-      height: 254rpx;
+      height: 127px;
       overflow: hidden;
 
       image {
@@ -283,23 +283,23 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-top: 16rpx;
-      margin-bottom: 10rpx;
+      margin-top: 8px;
+      margin-bottom: 5px;
     }
 
     .suggest-pdprice {
-      font-size: 32rpx;
+      font-size: 16px;
       color: #eb5a21;
 
       text {
-        font-size: 24rpx;
+        font-size: 12px;
       }
     }
   }
 
   .fly-dot {
-    width: 36rpx;
-    height: 36rpx;
+    width: 18px;
+    height: 18px;
     background-color: #ff0000;
     border-radius: 50%;
   }

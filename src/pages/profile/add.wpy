@@ -15,12 +15,12 @@
   }
 
   .profile-listitem {
-    margin-top: 20rpx;
-    margin-bottom: 20rpx;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .profile-action {
-    margin-top: 60rpx;
+    margin-top: 30px;
     margin-left: 10%;
     margin-right: 10%;
   }

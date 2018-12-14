@@ -1,3 +1,4 @@
+// Colors
 @gcolor: #08affe;
 @lgcolor: #09c8fe;
 @black: #000;
@@ -25,11 +26,13 @@
 @gray-light: #e5e5e5;
 @gray-darker: #7d7e80;
 @gray-dark: #999;
-@large: 100rpx;
-@normal: 80rpx;
-@medium: 66rpx;
-@small: 56rpx;
-@mini: 40rpx;
+
+// Size
+@large: 50px;
+@normal: 40px;
+@medium: 33px;
+@small: 28px;
+@mini: 20px;
 
 
 // Default colors
@@ -115,11 +118,11 @@
 }
 
 .g-gradient (@offset: 50%) {
-  background: -webkit-linear-gradient(left, @lgcolor, @gcolor @offset);
-  background: linear-gradient(left, @lgcolor, @gcolor @offset);
+  background: -webkit-linear-gradient(to right, @lgcolor, @gcolor @offset);
+  background: linear-gradient(to right, @lgcolor, @gcolor @offset);
 }
 
 .g-darken-gradient (@offset: 50%) {
-  background: -webkit-linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
-  background: linear-gradient(left, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
+  background: -webkit-linear-gradient(to right, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
+  background: linear-gradient(to right, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
 }

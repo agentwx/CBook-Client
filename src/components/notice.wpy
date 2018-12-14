@@ -3,7 +3,7 @@
 
   .notice {
     .flex-v-center();
-    padding: 16rpx;
+    padding: 8px;
     background-color: #fff;
 
     &:active {
@@ -12,12 +12,12 @@
   }
   .notice-messages{
     flex: 1;
-    height: 72rpx;
+    height: 36px;
     overflow: hidden;
   }
   .notice-item {
     .flex-v-center();
-    height: 72rpx;
+    height: 36px;
   }
   .notice-scroller {
     transition-property: all;

@@ -18,17 +18,17 @@
   }
 
   .recycle-intro {
-    padding-top: 40rpx;
+    padding-top: 20px;
   }
 
   .intro-item-bd {
-    padding: 12rpx 30rpx;
+    padding: 6px 15px;
     .flex-center();
 
     .intro-img {
-      width: 320rpx;
-      height: 210rpx;
-      margin-right: 50rpx;
+      width: 160px;
+      height: 105px;
+      margin-right: 25px;
       overflow: hidden;
       flex: none;
 
@@ -39,21 +39,21 @@
     }
 
     .intro-aside {
-      width: 200rpx;
+      width: 100px;
     }
 
     .intro-text {
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
-      letter-spacing: 6rpx;
-      margin-bottom: 4rpx;
+      letter-spacing: 3px;
+      margin-bottom: 2px;
     }
 
     .intro-refuses {
       color: @gcolor;
-      font-size: 24rpx;
-      padding-top: 6rpx;
-      padding-bottom: 6rpx;
+      font-size: 12px;
+      padding-top: 3px;
+      padding-bottom: 3px;
       .flex-v-center();
 
       icon {
@@ -66,24 +66,24 @@
   .explain-dropdown {
     display: none;
     position: relative;
-    border: 1rpx solid @color-border;
+    border: .5px solid @color-border;
     background-color: #fff;
-    margin: 0 40rpx 30rpx 40rpx;
-    padding: 20rpx;
-    border-radius: 10rpx;
+    margin: 0 20px 15px 20px;
+    padding: 10px;
+    border-radius: 5px;
 
     > view {
       .light-font();
-      font-size: 24rpx;
+      font-size: 12px;
       line-height: 1.42;
-      padding-left: 24rpx;
-      text-indent: -20rpx;
-      margin: 10rpx 0;
+      padding-left: 12px;
+      text-indent: -0px;
+      margin: 5px 0;
 
       &:before {
         content: '•';
         color: @gcolor;
-        margin-right: 10rpx;
+        margin-right: 5px;
       }
     }
 
@@ -92,10 +92,10 @@
       content: '';
       right: 25%;
       top: 0;
-      width: 16rpx;
-      height: 16rpx;
+      width: 8px;
+      height: 8px;
       background-color: #fff;
-      border-width: 1rpx;
+      border-width: .5px;
       border-style: solid;
       border-color: @color-border @color-border transparent transparent;
       -webkit-transform: translateY(-50%) rotate(-45deg);
@@ -124,10 +124,10 @@
     flex: 1;
     .flex-center();
     flex-direction: column;
-    padding: 20rpx 0;
+    padding: 10px 0;
 
     btn:not(:last-child) {
-      margin-bottom: 30rpx;
+      margin-bottom: 15px;
     }
   }
 
@@ -142,8 +142,8 @@
   }
 
   .manual-panel {
-    margin: 100rpx 40rpx 0;
-    padding: 40rpx 50rpx;
+    margin: 50px 20px 0;
+    padding: 20px 25px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0,0,0,.25);
@@ -151,18 +151,18 @@
 
   .manual-hd {
     text-align: center;
-    margin-top: 30rpx;
-    margin-bottom: 40rpx;
-    font-size: 30rpx;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
 
     .title {
       color: #888;
-      margin-bottom: 12rpx;
+      margin-bottom: 6px;
     }
 
     .text {
       font-weight: bold;
-      margin-bottom: 6rpx;
+      margin-bottom: 3px;
     }
   }
 
@@ -171,22 +171,22 @@
 
     image {
       width: 100%;
-      height: 242rpx;
-      max-width: 560rpx;
+      height: 121px;
+      max-width: 140px;
     }
   }
 
   .manual-field {
-    margin-top: 40rpx;
-    margin-bottom: 40rpx;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .manual-input {
-    padding: 12rpx 24px;
+    padding: 6px 12px;
     background-color: #eee;
     text-align: center;
-    border-radius: 16rpx;
-    height: 84rpx;
+    border-radius: 8px;
+    height: 42px;
   }
 
   .manual-action {
@@ -199,24 +199,24 @@
 
 
   .orders-wrap {
-    margin-top: 30rpx;
+    margin-top: 15px;
   }
 
   .order-panel {
     .flex();
     position: relative;
-    padding: 20rpx;
+    padding: 10px;
 
     &:after {
-      margin-left: 40rpx;
-      margin-right: 40rpx;
+      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 
   .order-cover {
-    width: 160rpx;
-    height: 196rpx;
-    margin-right: 30rpx;
+    width: 80px;
+    height: 98px;
+    margin-right: 15px;
     overflow: hidden;
 
     image {
@@ -236,35 +236,35 @@
 
   .order-pd-hd {
     .title {
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
       .ellipsis();
-      margin-bottom: 2rpx;
+      margin-bottom: 1px;
     }
 
     .desc {
       .light-font();
       color: #888;
-      font-size: 24rpx;
+      font-size: 12px;
       .ellipsis();
-      margin-bottom: 6rpx;
+      margin-bottom: 3px;
     }
   }
 
   .order-pd-specs {
     .price {
-      font-size: 30rpx;
+      font-size: 15px;
     }
 
     .discount {
-      margin-left: 30rpx;
+      margin-left: 15px;
       color: #777;
-      font-size: 26rpx;
+      font-size: 13px;
     }
   }
 
   .order-delete {
-    width: 130rpx;
+    width: 65px;
     height: 100%;
     .flex-center();
     color: #fff;
@@ -276,9 +276,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100rpx;
+    height: 50px;
     background-color: #fff;
-    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
     .flex();
   }
 
@@ -287,15 +287,15 @@
     .flex();
     flex-direction: column;
     justify-content: center;
-    padding-left: 24rpx;
+    padding-left: 12px;
 
     .income {
-      font-size: 30rpx;
+      font-size: 15px;
     }
 
     .hint {
       color: #999;
-      font-size: 24rpx;
+      font-size: 12px;
     }
   }
 
@@ -303,9 +303,9 @@
     .g-gradient(50%);
     .flex-center();
     color: #fff;
-    font-size: 32rpx;
-    padding-left: 40rpx;
-    padding-right: 40rpx;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
 
     &:active {
       .g-darken-gradient(50%);
@@ -320,15 +320,15 @@
 
   .float-action-bar {
     position: fixed;
-    right: 40rpx;
-    bottom: 200rpx;
+    right: 20px;
+    bottom: 100px;
   }
 
   .float-button {
-    padding: 20rpx;
-    margin-top: 40rpx;
+    padding: 10px;
+    margin-top: 20px;
     border-radius: 50%;
-    box-shadow: 0 0 32rpx rgba(8,175,254,.4);
+    box-shadow: 0 0 16px rgba(8,175,254,.4);
     background-color: #fdfdfd;
 
     &:active {
@@ -340,7 +340,7 @@
       width: 2.5em;
       height: 2.5em;
       text-align: center;
-      font-size: 24rpx;
+      font-size: 12px;
       line-height: 1.2;
     }
 
@@ -356,7 +356,7 @@
 
   .search-hint-btn {
     border: none !important;
-    margin-top: -20rpx !important;
+    margin-top: -10px !important;
     margin-bottom: 0 !important;
   }
 
@@ -492,7 +492,7 @@
       </view>
       <view class="manual-action">
         <btn type="plain" @tap="onCancel">取消</btn>
-        <btn style="margin-left: 30rpx;" @tap="onConfirm">确认</btn>
+        <btn style="margin-left: 15px;" @tap="onConfirm">确认</btn>
       </view>
     </view>
   </transition>

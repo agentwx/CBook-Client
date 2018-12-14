@@ -1,7 +1,7 @@
 <view class="button {{isInline ? 'inline' : ''}} {{isCircled ? 'circled' : ''}} {{isBordered ? 'bordered' : ''}} {{size}} {{type}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}">
   <loading
     wx:if="{{ isLoading }}"
-    size="40rpx"
+    size="20px"
     color="{{ type === 'default' ? '#c9c9c9' : '' }}"
   />
   <icon wx:if="{{icon && !isLoading}}" type="{{iconType}}" name="{{icon}}" size="{{size}}"></icon>

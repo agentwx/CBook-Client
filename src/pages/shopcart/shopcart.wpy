@@ -3,62 +3,62 @@
   @import '../../styles/ellipsis';
 
   page {
-    padding-bottom: 100rpx;
+    padding-bottom: 50px;
   }
 
   .cart-edit-hd {
     .flex-v-center();
     justify-content: space-between;
-    padding: 30rpx 20rpx 0;
-    font-size: 32rpx;
+    padding: 15px 10px 0;
+    font-size: 16px;
 
     .edit-left {
       .flex-v-center();
 
       .lib-icon {
-        margin-right: 10rpx;
-        font-size: 40rpx;
+        margin-right: 5px;
+        font-size: 20px;
       }
 
       check-box {
         position: relative;
-        top: -2rpx;
+        top: -1px;
       }
     }
   }
 
   .cart-checkbox {
-    margin-right: 20rpx;
+    margin-right: 10px;
   }
 
   .cart-list {
     width: 100%;
     overflow: hidden;
-    padding-top: 20rpx;
-    padding-bottom: 20rpx;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .cart-panel {
     .flex();
     position: relative;
-    padding: 20rpx;
+    padding: 10px;
 
     &:after {
-      margin-left: 40rpx;
-      margin-right: 40rpx;
+      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 
   .cart-col-checkbox {
     .flex-v-center();
-    min-width: 36rpx;
+    min-width: 18px;
   }
 
   .cart-pd-cover {
     .flex-center();
-    width: 160rpx;
-    height: 196rpx;
-    margin-right: 20rpx;
+    width: 80px;
+    height: 98px;
+    margin-right: 10px;
 
     image {
       width: 100%;
@@ -75,31 +75,31 @@
     justify-content: space-between;
 
     .pd-title {
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
       .ellipsis();
-      margin-bottom: 2rpx;
+      margin-bottom: 1px;
     }
 
     .pd-desc {
       .light-font();
       color: #999;
-      font-size: 24rpx;
+      font-size: 12px;
       .ellipsis();
     }
 
     .pd-orig-price {
       .light-font();
       color: #777;
-      font-size: 26rpx;
-      margin-top: 10rpx;
+      font-size: 13px;
+      margin-top: 5px;
     }
 
     .pd-now-price {
-      font-size: 32rpx;
+      font-size: 16px;
 
       > .unit {
-        font-size: 26rpx;
+        font-size: 13px;
       }
     }
 
@@ -117,8 +117,8 @@
     .flex();
     .pd-count {
       position: relative;
-      margin-left: 30rpx;
-      top: 4rpx;
+      margin-left: 15px;
+      top: 2px;
       color: #888;
     }
   }
@@ -128,7 +128,7 @@
     left: 50%;
     top: 50%;
     width: 80%;
-    max-width: 640rpx;
+    max-width: 320px;
     transform: translate(-50%,-50%);
 
     image {
@@ -139,19 +139,19 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -30rpx;
+      bottom: -15px;
       .flex-v-center();
       flex-direction: column;
     }
 
     .empty-text {
-      font-size: 32rpx;
+      font-size: 16px;
       color: #888;
     }
 
     .goshop-btn {
       color: @gcolor;
-      margin-top: 30rpx;
+      margin-top: 15px;
     }
   }
 
@@ -162,18 +162,18 @@
     bottom: 0;
     right: 0;
     background-color: #fff;
-    height: 100rpx;
-    box-shadow: 0 -16rpx 36rpx rgba(0,0,0,.04);
+    height: 50px;
+    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
     .flex();
     justify-content: space-between;
 
     .action-left {
-      padding-left: 20rpx;
+      padding-left: 10px;
       .flex-v-center();
 
       check-box {
         position: relative;
-        top: -2rpx;
+        top: -1px;
       }
     }
 
@@ -183,28 +183,28 @@
   }
 
   .cart-total-info {
-    padding-top: 12rpx;
-    padding-right: 20rpx;
+    padding-top: 6px;
+    padding-right: 10px;
     text-align: right;
   }
 
   .cart-summary {
-    font-size: 30rpx;
+    font-size: 15px;
     font-weight: bold;
   }
 
   .cart-hint {
     color: #999;
-    font-size: 24rpx;
+    font-size: 12px;
   }
 
   .cart-buybtn {
     .g-gradient(50%);
     .flex-center();
     color: #fff;
-    font-size: 36rpx;
-    padding-left: 60rpx;
-    padding-right: 60rpx;
+    font-size: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     &:active {
       .g-darken-gradient(50%);
@@ -221,9 +221,9 @@
     .flex-center();
     color: #fff;
     background-color: @color-danger;
-    font-size: 36rpx;
-    padding-left: 60rpx;
-    padding-right: 60rpx;
+    font-size: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     &:active {
       background-color: darken(@color-danger, 10%);
@@ -237,7 +237,7 @@
   }
 
   .cart-delete {
-    width: 130rpx;
+    width: 65px;
     height: 100%;
     .flex-center();
     color: #fff;

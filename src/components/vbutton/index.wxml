@@ -19,7 +19,7 @@
 >
   <loading
     wx:if="{{ loading }}"
-    size="40rpx"
+    size="20px"
     custom-class="{{loadingClass}}"
     color="{{ type === 'default' ? '#c9c9c9' : '' }}"
   />

@@ -13,7 +13,7 @@ Component({
     },
     size: {
       type: String,
-      value: '60rpx'
+      value: '30px'
     },
     type: {
       type: String,

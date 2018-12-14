@@ -4,7 +4,7 @@
 
   page {
     background-color: #f7f7f7;
-    padding-top: 95rpx;
+    padding-top: 48px;
   }
 
   .order-tabhead {
@@ -17,7 +17,7 @@
 
   .order-hd {
     font-weight: normal;
-    font-size: 26rpx;
+    font-size: 13px;
 
     .order-num {
       color: #777;
@@ -34,15 +34,15 @@
 
   .order-body {
     .flex();
-    padding-top: 16rpx;
-    padding-bottom: 16rpx;
+    padding-top: 13px;
+    padding-bottom: 13px;
   }
 
   .order-cover {
     .flex-center();
-    width: 160rpx;
-    height: 196rpx;
-    margin-right: 30rpx;
+    width: 80px;
+    height: 98px;
+    margin-right: 15px;
     overflow: hidden;
 
     image {
@@ -62,18 +62,18 @@
 
   .order-pd-hd {
     .title {
-      font-size: 30rpx;
+      font-size: 15px;
       font-weight: bold;
       .ellipsis();
-      margin-bottom: 6rpx;
+      margin-bottom: 15px;
     }
 
     .desc {
       .light-font();
       .ellipsis();
-      font-size: 24rpx;
+      font-size: 12px;
       color: #888;
-      margin-bottom: 4rpx;
+      margin-bottom: 2px;
     }
   }
 
@@ -82,7 +82,7 @@
     justify-content: space-between;
 
     .price {
-      font-size: 30rpx;
+      font-size: 15px;
     }
   }
 
@@ -91,15 +91,15 @@
   }
 
   .create-time {
-    font-size: 26rpx;
-    margin-top: 4rpx;
+    font-size: 13px;
+    margin-top: 2px;
   }
 
   .order-subinfo {
     text-align: right;
 
     .order-sumup {
-      margin-bottom: 16rpx;
+      margin-bottom: 8px;
 
       .price {
         color: #333;
@@ -122,24 +122,24 @@
     left: 50%;
     top: 50%;
     width: 70%;
-    max-width: 640rpx;
+    max-width: 320px;
     transform: translate(-50%,-50%);
 
     image {
       width: 100%;
-      height: 390rpx;
+      height: 195px;
     }
 
     .empty-action {
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 40rpx;
+      bottom: 20px;
       text-align: center;
     }
 
     .empty-text {
-      font-size: 32rpx;
+      font-size: 16px;
       color: #888;
     }
   }

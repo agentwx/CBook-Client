@@ -17,8 +17,8 @@
 
     text {
       display: inline-block;
-      padding: 30rpx 16rpx 24rpx;
-      border-bottom: 6rpx solid transparent;
+      padding: 15px 8px 12px;
+      border-bottom: 3px solid transparent;
     }
 
     &.active {

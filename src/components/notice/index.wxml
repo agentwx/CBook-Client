@@ -1,5 +1,5 @@
 <view class="notice {{customClass}}" style="{{customStyle}}" wx:if="{{show}}">
-  <icon wx:if="{{leftIcon !== ''}}" name="{{leftIcon}}" size="small" style="margin-right: 10rpx;"></icon>
+  <icon wx:if="{{leftIcon !== ''}}" name="{{leftIcon}}" size="small" style="margin-right: 5px;"></icon>
   <view class="notice-messages">
     <view class="notice-scroller" animation="{{ animationData }}">
       <block wx:for="{{items}}" wx:key="index">

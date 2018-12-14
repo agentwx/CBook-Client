@@ -11,17 +11,17 @@
         margin-bottom: 0;
 
         &:not(:first-child) {
-          margin-left: -2rpx;
+          margin-left: -1px;
         }
 
         &:first-child {
-          border-top-left-radius: 8rpx;
-          border-bottom-left-radius: 8rpx;
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
         }
 
         &:last-child {
-          border-top-right-radius: 8rpx;
-          border-bottom-right-radius: 8rpx;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
         }
 
       }
@@ -30,12 +30,12 @@
 
   .button-group-item {
     .flex-center();
-    padding-left: 40rpx;
-    padding-right: 40rpx;
-    border-radius: 8rpx;
-    border: 1rpx solid @gcolor;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    border: .5px solid @gcolor;
     background-color: #fff;
-    margin-bottom: 6rpx;
+    margin-bottom: 3px;
 
     &.actived {
       background-color: @gcolor;
@@ -44,7 +44,7 @@
 
     &.large {
       height: @large;
-      font-size: 36rpx;
+      font-size: 18px;
     }
     &.normal {
       height: @normal;
