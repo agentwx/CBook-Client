@@ -47,7 +47,7 @@
 
   .addr-right {
     .flex-v-center();
-    margin-right: -18px;
+    margin-right: -8px;
   }
 
   .addr-action-item {
