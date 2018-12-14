@@ -419,7 +419,7 @@
     <text>抱歉，未查询到相关内容!</text>
   </view>
 
-  <preloader visible="{{isLoading}}" />
+  <preloader count="10" visible="{{isLoading}}" />
   <!--<weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />-->
   <modal-spinner wx:if="{{isLoading && isSpinShow}}" />
   <gotop />
