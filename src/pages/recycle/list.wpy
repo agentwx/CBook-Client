@@ -139,8 +139,8 @@
     </view>
   </view>
 
+  <weui-loading custom-style="margin-top: -5px;" visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
   <gotop />
-  <weui-loading visible="{{orders.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
 </template>
 
 <script>
