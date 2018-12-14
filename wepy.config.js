@@ -41,7 +41,7 @@ module.exports = {
   },
   plugins: {
     autoprefixer: {
-      filter: /\.wxss/,
+      filter: /\.wxss$/,
       config: {
         browsers: ['last 11 iOS versions']
       }
