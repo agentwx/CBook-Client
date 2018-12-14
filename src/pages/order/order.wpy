@@ -257,6 +257,7 @@
     let now = new Date()
     let hour = now.getHours()
     const MAX_HOUR = 17
+    const MIN_HOUR = 8
 
     // 如果当前小时大于17点，直接显示下一天的时间
     if (hour >= MAX_HOUR) {
@@ -266,8 +267,8 @@
     let dateStr = formatDate(now, 'yyyy-MM-dd')
     let hourStr = ''
 
-    // 如果当前小时大于17点，选择器回归到起点
-    if (hour >= MAX_HOUR) {
+    // 超过时间界限，选择器回归到起点
+    if (hour >= MAX_HOUR || hour < MIN_HOUR) {
       hourStr = `09:00-10:00`
     } else {
       date = typeof date === 'string'
@@ -390,7 +391,7 @@
         addressCode: this.address.code,
         appointment: this.deliveryTime,
         isbnList: this.products.map(item => item.isbn),
-        income: parseFloat(this.totalPrice)
+        income: parseFloat(this.totalPrice.toString())
       }
 
       await fetch.post('/recover/order/create', params)
@@ -401,7 +402,7 @@
     }
 
     async createBuyOrder () {
-      const original = parseFloat(this.totalPrice)
+      const original = parseFloat(this.totalPrice.toString())
       const carriage = 6
       const deduction = 17.5
       const discount = 1

@@ -7,7 +7,7 @@
   }
 
   .home-search-wrap {
-    padding: 30rpx 20rpx;
+    padding: 15px 10px;
   }
 
   .home-search {
@@ -502,12 +502,7 @@ export default class Index extends wepy.page {
   watch = {
     sortType (newVal) {
       this.sortTypes = this.sortTypes.map(item => {
-        if (item.value === newVal) {
-          item.checked = true
-        } else {
-          item.checked = false
-        }
-        return item
+        return { ...item, checked: item.value === newVal }
       })
     }
   }
@@ -525,7 +520,7 @@ export default class Index extends wepy.page {
       value = +value
       showDrop = showDrop === 'true'
 
-      if (showDrop && this.products.length > 0 && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
+      if (showDrop && this.products.length > 0 && this.lastScrollTop !== Math.floor(this.filterBarTop >>> 0) && !this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop + 1,
           duration: this.isIOS ? 300 : 0

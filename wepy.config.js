@@ -41,9 +41,9 @@ module.exports = {
     less: {
       compress: prod
     },
-    /*sass: {
+    /* sass: {
       outputStyle: 'compressed'
-    },*/
+    }, */
     babel: {
       sourceMap: true,
       presets: [
@@ -63,10 +63,10 @@ module.exports = {
       config: {
         browsers: ['last 11 iOS versions']
       }
-    },
+    } */
     rpx: {
       filter: /\.(wxss|wxml)$/
-    } */
+    }
   },
   appConfig: {
     noPromiseAPI: ['createSelectorQuery']
