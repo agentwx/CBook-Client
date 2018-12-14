@@ -4,7 +4,7 @@
 		"urlCheck": false,
 		"es6": false,
 		"minified": false,
-		"postcss": true,
+		"postcss": false,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
