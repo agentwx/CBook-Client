@@ -229,7 +229,7 @@
       line-height: 1.6;
       text-indent: 2em;
       letter-spacing: 1px;
-      margin-bottom: 3px;
+      margin-bottom: 8px;
     }
 
     .expander {
@@ -409,7 +409,7 @@
     </view>
     <view class="pdintro-body">
       <repeat for="{{detail.imags}}" key="index">
-        <image src="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
+        <image src="{{item}}" wx:if="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
       </repeat>
     </view>
   </view>
