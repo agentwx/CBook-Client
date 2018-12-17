@@ -1,12 +1,12 @@
 <picker mode="selector"
         bindchange="change"
         bindcolumnchange="columnChange"
-        class="{{isDisabled ? 'disabled' : ''}}"
         value="{{selectIndex}}"
         range="{{items}}"
         disabled="{{isDisabled}}"
 >
-  <view class="picker {{size}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+  <view class="picker {{size}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+    <text class="placeholder" wx:if="{{placeholder && items[selectIndex] === ''}}">{{placeholder}}</text>
     <text>{{items[selectIndex]}}</text>
     <icon name="arrow-down" color="#999"></icon>
   </view>

@@ -54,8 +54,26 @@ function getInitTimeIndex (times, valueTime, startTime) {
   return index
 }
 
+const coerce = (v) =>
+  typeof v === 'string'
+    ? JSON.parse(v)
+    : v
+
 Component({
   properties: {
+    customClass: {
+      type: String,
+      value: ''
+    },
+    customStyle: {
+      type: String,
+      value: ''
+    },
+    size: {
+      type: String,
+      value: 'normal'
+    },
+    placeholder: String,
     mode: {
       type: String,
       value: 'datetime'
@@ -80,6 +98,10 @@ Component({
       type: Boolean,
       value: false
     },
+    useSlot: {
+      type: Boolean,
+      value: false
+    },
     timeRange: {
       type: Array,
       value: [0, 24]
@@ -98,8 +120,17 @@ Component({
     }
   },
   data: {
+    date: '',
     range: [],
     rangeArrayDisplay: []
+  },
+  computed: {
+    isDisabled () {
+      return coerce(this.data.disabled)
+    },
+    isUseSlot () {
+      return coerce(this.data.useSlot)
+    }
   },
   attached () {
     this.init()
@@ -140,21 +171,23 @@ Component({
       }
     },
     change (e) {
-      this.setData({range: e.detail.value})
-
+      let range = e.detail.value
       let value = null
       if (this.data.mode === 'datetime') {
-        let date = this.data.range.map((item, index) => {
+        let date = range.map((item, index) => {
           return this.rangeArray[index][item]
         })
+        date = formatDate(date)
         value = {
           ...e.detail,
-          range: this.data.range,
-          date: formatDate(date),
+          range,
+          date,
           data: this.rangeArray
         }
+        this.setData({ range, date })
       } else {
         value = e.detail
+        this.setData({ range, date: range })
       }
 
       this.triggerEvent('change', value)

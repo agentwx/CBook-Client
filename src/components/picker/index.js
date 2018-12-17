@@ -37,6 +37,7 @@ Component({
       type: Boolean,
       value: false
     },
+    placeholder: String,
     useSlot: {
       type: Boolean,
       value: false

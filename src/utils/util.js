@@ -1,7 +1,7 @@
 function formatDate(source, format) {
   if (!source) return ''
   source = !(source instanceof Date)
-    ? new Date(source.replace(/\-/g, '/'))
+    ? new Date(source.replace(/-/g, '/'))
     : source
   const o = {
     'M+': source.getMonth() + 1,
@@ -25,7 +25,7 @@ function formatDate(source, format) {
 
 function parseDate(dateStr) {
   if (typeof dateStr === 'string') {
-    dateStr = dateStr.replace(/\-/g, '/')
+    dateStr = dateStr.replace(/-/g, '/')
   }
   return new Date(dateStr)
 }

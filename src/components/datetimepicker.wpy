@@ -41,6 +41,10 @@
         vertical-align: middle;
       }
     }
+
+    .placeholder {
+      color: #999;
+    }
   }
 </style>
 
@@ -55,6 +59,7 @@
           disabled="{{disabled}}"
   >
     <view class="picker {{size}} {{className}}" style="{{style}}">
+      <text class="placeholder" wx:if="{{placeholder && value === ''}}">{{placeholder}}</text>
       <text>{{value}}</text>
       <icon name="angle-down-black.png"></icon>
     </view>
@@ -106,7 +111,8 @@
         type: [Boolean, String],
         default: false,
         coerce: coerce
-      }
+      },
+      placeholder: String
     }
 
     components = {

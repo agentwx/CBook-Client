@@ -35,6 +35,10 @@
         vertical-align: middle;
       }
     }
+
+    .placeholder {
+      color: #999;
+    }
   }
 </style>
 
@@ -48,6 +52,7 @@
           disabled="{{disabled}}"
   >
     <view class="picker {{size}} {{className}}" style="{{style}}" wx:if="{{!useSlot}}">
+      <text class="placeholder" wx:if="{{placeholder && items[selectIndex] === ''}}">{{placeholder}}</text>
       <text>{{items[selectIndex]}}</text>
       <icon name="angle-down-black.png"></icon>
     </view>
@@ -90,6 +95,7 @@
         default: false,
         coerce
       },
+      placeholder: String,
       useSlot: {
         type: Boolean,
         default: false,

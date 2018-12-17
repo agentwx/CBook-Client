@@ -9,7 +9,12 @@
   bindcancel="cancel"
   range="{{rangeArrayDisplay}}"
   range-key="{{rangeKey}}"
-  disabled="{{disabled}}"
+  disabled="{{isDisabled}}"
 >
-  <slot></slot>
+  <view class="picker {{size}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+    <text class="placeholder" wx:if="{{placeholder && date === ''}}">{{placeholder}}</text>
+    <text>{{date}}</text>
+    <icon name="arrow-down" color="#999"></icon>
+  </view>
+  <slot wx:else></slot>
 </picker>
