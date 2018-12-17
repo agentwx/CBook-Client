@@ -2,8 +2,6 @@
   @import "../styles/mixin";
 
   .form-item {
-    background-color: #fff;
-
     &:not(.nomargin) {
       margin-bottom: 10px;
     }
@@ -30,6 +28,7 @@
 
   .form-item-bd {
     position: relative;
+    background-color: #fff;
     border-radius: 4px;
     flex: 1;
     .flex-v-center();
