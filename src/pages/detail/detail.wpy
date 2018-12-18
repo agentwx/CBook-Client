@@ -368,7 +368,7 @@
     <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
       <view>
         <text class="unit">￥</text>
-        <text class="price">29.8</text>
+        <text class="price">{{product.starPrice}}</text>
       </view>
       <view class="buy-text">星币价</view>
     </view>
