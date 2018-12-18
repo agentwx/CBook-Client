@@ -98,29 +98,20 @@
     .pd-now-price {
       font-size: 16px;
 
-      > .unit {
+      .unit {
         font-size: 13px;
       }
-    }
 
-    .cart-pd-from {
-      color: @gcolor;
+      .count {
+        margin-left: 15px;
+        color: #888;
+      }
     }
   }
 
   .cart-pd-footer {
     .flex();
     justify-content: space-between;
-  }
-
-  .cart-pdft {
-    .flex();
-    .pd-count {
-      position: relative;
-      margin-left: 15px;
-      top: 2px;
-      color: #888;
-    }
   }
 
   .empty-layer {
@@ -285,13 +276,13 @@
               </view>
               <view class="cart-pd-footer">
                 <view class="cart-pdft">
-                  <view class="pd-now-price">
-                    <text class="unit">￥</text>
-                    <text>{{item.price}}</text>
-                  </view>
-                  <text class="pd-count">x{{item.COUNT}}</text>
+                  <text class="pd-dist-price" wx:if="{{item.starDeduction > 0}}">星币已抵扣{{item.starDeduction}}元</text>
                 </view>
-                <view class="cart-pd-from">星币价</view>
+                <view class="pd-now-price">
+                  <text class="unit">￥</text>
+                  <text class="price">{{item.price - item.starDeduction}}</text>
+                  <text class="count">x{{item.COUNT}}</text>
+                </view>
               </view>
             </view>
           </view>

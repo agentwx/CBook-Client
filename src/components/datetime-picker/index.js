@@ -242,6 +242,7 @@ Component({
       }
 
       let selectIndex = e.detail.value
+      let fields = this.data.fields
       let start = this.data.start
       let end = this.data.end
       let column = e.detail.column
@@ -253,7 +254,7 @@ Component({
 
       if (column < 3) {
         range[column] = getDateIndex(start, end, range.slice(), rangeArray, column, selectIndex)
-      } else {
+      } else if (fields === 'range') {
         range[column] = getTimeIndex(start, end, range.slice(), rangeArray, column, selectIndex)
       }
 
