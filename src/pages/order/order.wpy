@@ -177,8 +177,8 @@
     end-year="{{endYear}}"
     start="{{startDateTime}}"
     time-range="{{timeRange}}"
+    use-slot="true"
     @change="datetimeChange"
-    @columnchange="columnChange"
   >
     <list-item bordered="false" custom-class="timepicker">
       <view class="timepicker-bd">
@@ -228,7 +228,7 @@
 
 <script>
   import wepy from 'wepy'
-  import { toast, getPrevPage, formatDate } from '../../utils/util'
+  import { toast, getPrevPage, formatDate, parseDate } from '../../utils/util'
   import fetch from '../../service/fetch'
 
   const getDateTime = (d = new Date()) => {
@@ -239,9 +239,9 @@
   // 验证取件时间的有效性
   const validateTime = timeStr => {
     let now = new Date()
-    let date = timeStr.split(' ')[0].replace(/-/g, '/')
+    let date = timeStr.split(' ')[0]
     let hour = timeStr.split(' ')[1].split('-')[0]
-    let dateTime = new Date(date).getTime()
+    let dateTime = parseDate(date).getTime()
     let nowTime = getDateTime()
 
     if (dateTime < nowTime) {
@@ -252,50 +252,30 @@
     return true
   }
 
-  // 计算时间选择器默认选中的时间节点
+  // 计算时间选择器起始时间节点
   const getTimeRange = (date, offset = 2) => {
-    let now = new Date()
-    let hour = now.getHours()
     const MAX_HOUR = 17
     const MIN_HOUR = 8
 
+    let hour = date.getHours()
+
     // 如果当前小时大于17点，直接显示下一天的时间
     if (hour >= MAX_HOUR) {
-      now.setDate(now.getDate() + 1)
+      date.setDate(date.getDate() + 1)
     }
 
-    let dateStr = formatDate(now, 'yyyy-MM-dd')
+    let dateStr = formatDate(date, 'yyyy-MM-dd')
     let hourStr = ''
 
     // 超过时间界限，选择器回归到起点
     if (hour >= MAX_HOUR || hour < MIN_HOUR) {
       hourStr = `09:00-10:00`
     } else {
-      date = typeof date === 'string'
-        ? date.split(' ')[0].replace(/-/g, '/')
-        : date
-      if (getDateTime(date) <= getDateTime()) {
-        // 当前时间往后推2小时
-        hour += offset
-        hourStr = `${hour}:00-${hour + 1}:00`
-      }
-    }
-
-    return `${dateStr} ${hourStr}`
-  }
-
-  // 计算时间选择器最后一列的selectIndex
-  const getTimeValue = (range, date, offset = 2) => {
-    let now = new Date()
-    let dateStr = date.split(' ')[0].replace(/-/g, '/')
-    if (getDateTime(dateStr) <= getDateTime()) {
       // 当前时间往后推2小时
-      let hour = now.getHours() + offset
-      let hourStr = `${hour}:00-${hour + 1}:00`
-      return range.indexOf(hourStr)
-    } else {
-      return 0
+      hour += offset
+      hourStr = `${hour}:00-${hour + 1}:00`
     }
+    return `${dateStr} ${hourStr}`
   }
 
   export default class Index extends wepy.page {
@@ -319,7 +299,7 @@
       orderSource: 'normal',
       address: null,
       startYear: new Date().getFullYear(),
-      endYear: new Date().getFullYear() + 1,
+      endYear: new Date().getFullYear() + (new Date().getMonth() > 10 ? 1 : 0),
       timeRange: [9, 19],
       products: []
     }
@@ -370,14 +350,6 @@
       },
       datetimeChange (e) {
         this.deliveryTime = e.detail.date
-      },
-      columnChange (e) {
-        if (e.detail.column < 3) {
-          this.startDateTime = getTimeRange(e.detail.date)
-          let range = e.detail.range
-          range[3] = getTimeValue(e.detail.data[3], e.detail.date)
-          this.$wxpage.selectComponent('#datePicker').setRange(range)
-        }
       }
     }
 
@@ -433,13 +405,6 @@
       } catch (e) {
         this.orderCreated = true
         this.$navigate('/pages/orderlist/orderlist', {tabIndex: 1})
-        /* const isOk = await confirm('您确定要放弃支付吗?', '', '确定', '继续支付')
-        if (isOk) {
-          this.orderCreated = true
-          this.$navigate('/pages/orderlist/orderlist', {tabIndex: 1})
-        } else {
-          this.createBuyOrder()
-        } */
       } finally {
         const prevPage = getPrevPage()
         if (prevPage.route === 'pages/shopcart/shopcart') {

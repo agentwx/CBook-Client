@@ -23,7 +23,7 @@ Component({
       value: 0
     },
     readonly: {
-      type: Boolean,
+      type: [Boolean, String],
       value: true
     }
   },

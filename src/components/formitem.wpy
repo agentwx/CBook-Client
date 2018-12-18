@@ -44,12 +44,15 @@
         height: @large;
         font-size: 16px;
       }
+
       &.normal {
         height: @normal;
       }
+
       &.medium {
         height: @medium;
       }
+
       &.small {
         height: @small;
       }
@@ -89,13 +92,13 @@
       <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
         <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
         <input password="{{password}}" type="{{type}}" class="input {{size}}" focus="{{focus}}" disabled="{{disabled}}"
-               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @input="input"
+               placeholder="{{placeholder}}" placeholder-class="{{placeholderClass}}" confirm-type="{{confirmType}}" value="{{value}}" maxlength="{{maxlength}}" @tap="tap" @change="change" @input="input"
                @focus="focus" @blur="blur" @confirm="confirm" style="text-align:{{textAlign}}"/>
-        <view class="icon-right" wx:if="{{showClear || showEye}}">
-          <view class="ctrl-icon iconfont icon-close-circle" wx:if="{{showClear}}" @tap="clearField"
+        <view class="icon-right" wx:if="{{resetable || secretive}}">
+          <view class="ctrl-icon iconfont icon-close-circle" wx:if="{{resetable}}" @tap="reset"
                 style="display: {{shouldClearShow ? '' : 'none'}}">
           </view>
-          <view class="ctrl-icon pwd-ctrl iconfont icon-{{eyeName}}" wx:if="{{showEye}}" @tap="togglePwdVisible">
+          <view class="ctrl-icon pwd-ctrl iconfont icon-{{eyeName}}" wx:if="{{secretive}}" @tap="togglePwdVisible">
           </view>
         </view>
       </view>
@@ -161,12 +164,12 @@
         default: true,
         coerce
       },
-      showClear: {
+      resetable: {
         type: [Boolean, String],
         default: false,
         coerce
       },
-      showEye: {
+      secretive: {
         type: [Boolean, String],
         default: false,
         coerce
@@ -209,7 +212,7 @@
 
     computed = {
       shouldClearShow() {
-        return this.showClear ? this.value !== '' : false
+        return this.resetable ? this.value !== '' : false
       },
       eyeName() {
         return this.password ? 'eye-closed' : 'eye-opened'
@@ -217,17 +220,16 @@
     }
 
     methods = {
-      clearField() {
-        this.value = ''
-      },
       togglePwdVisible() {
         this.password = !this.password
       },
       tap(e) {
         this.$emit('tap', e.detail.value, e)
       },
+      change (e) {
+        this.$emit('change', e.detail.value, e)
+      },
       input(e) {
-        this.value = e.detail.value
         this.$emit('input', e.detail.value, e)
       },
       focus(e) {
@@ -238,6 +240,11 @@
       },
       confirm(e) {
         this.$emit('confirm', e.detail.value, e)
+      },
+      reset() {
+        this.value = ''
+        this.$emit('change', '')
+        this.$emit('input', '')
       }
     }
   }

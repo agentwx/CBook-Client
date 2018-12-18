@@ -4,16 +4,10 @@
   picker {
     flex: 1;
     width: 100%;
-    background-color: #fff;
-    border-radius: 4px;
 
     &.disabled {
       opacity: 0.7;
       pointer-events: none;
-    }
-
-    &.bordered {
-      border: .5px solid @color-border;
     }
   }
 
@@ -22,38 +16,48 @@
     width: 100%;
     padding: 6px 12px;
     font-size: 14px;
+    background-color: #fff;
     box-sizing: border-box;
     .flex-v-center();
     justify-content: space-between;
+
+    &.bordered {
+      border: .5px solid @border-color;
+      border-radius: 4px;
+    }
 
     &.large {
       height: @large;
       font-size: 16px;
     }
+
     &.normal {
       height: @normal;
     }
+
     &.small {
       height: @small;
     }
-  }
 
-  .picker-value {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    .placeholder {
+      color: #999;
+      white-space: nowrap;
+    }
+
+    .picker-actions {
+      .flex-v-center();
+    }
   }
 </style>
 
 <template>
-  <picker mode="region"
-          @change="change"
-          value="{{value}}"
-          custom-item="{{customItem}}"
-          class="{{disabled ? 'disabled' : ''}}"
-          disabled="{{disabled}}"
+  <picker
+    mode="region"
+    @change="change"
+    value="{{value}}"
+    custom-item="{{customItem}}"
+    class="{{disabled ? 'disabled' : ''}}"
+    disabled="{{disabled}}"
   >
     <view class="form-item {{nomargin ? 'nomargin' : ''}}" style="{{style}}" wx:if="{{!useSlot}}">
       <view class="form-item-inner {{underline ? 'hairline--bottom' : ''}}">
@@ -61,8 +65,12 @@
         <view class="form-item-bd {{bordered ? 'bordered' : ''}}">
           <icon wx:if="{{icon}}" class="icon-left" :type="iconType" color="#999" :name="icon" :size="size"/>
           <view class="picker {{size}} {{className}}" style="{{style}}">
-            <text class="picker-value">{{value}}</text>
-            <iconangle name="arrow-down" color="#999"></iconangle>
+            <text class="placeholder" wx:if="{{placeholder && valueStr === ''}}">{{placeholder}}</text>
+            <text class="picker-value">{{valueStr}}</text>
+            <view class="picker-actions">
+              <view class="iconfont icon-close-circle" style="color: #999;margin-right: 5px;" catchtap="reset" wx:if="{{resetable && valueStr !== ''}}"></view>
+              <iconangle name="arrow-down" color="#999"></iconangle>
+            </view>
           </view>
         </view>
       </view>
@@ -108,30 +116,36 @@
         type: String,
         default: ''
       },
+      placeholder: String,
       disabled: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       bordered: {
         type: [Boolean, String],
         default: true,
-        coerce: coerce
+        coerce
       },
       underline: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       nomargin: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
       },
       useSlot: {
         type: [Boolean, String],
         default: false,
-        coerce: coerce
+        coerce
+      },
+      resetable: {
+        type: [Boolean, String],
+        default: false,
+        coerce
       }
     }
 
@@ -143,10 +157,20 @@
     data = {
     }
 
+    computed = {
+      valueStr () {
+        return this.value.join(' ')
+      }
+    }
+
     methods = {
       change (e) {
         this.value = e.detail.value
         this.$emit('change', this.value, e)
+      },
+      reset () {
+        this.value = []
+        this.$emit('change', this.value)
       }
     }
   }

@@ -34,12 +34,20 @@ Component({
       }
     },
     disabled: {
-      type: Boolean,
+      type: [Boolean, String],
       value: false
+    },
+    bordered: {
+      type: [Boolean, String],
+      value: true
     },
     placeholder: String,
     useSlot: {
-      type: Boolean,
+      type: [Boolean, String],
+      value: false
+    },
+    resetable: {
+      type: [Boolean, String],
       value: false
     }
   },
@@ -50,8 +58,14 @@ Component({
     isDisabled () {
       return coerce(this.data.disabled)
     },
+    isBordered () {
+      return coerce(this.data.bordered)
+    },
     isUseSlot () {
       return coerce(this.data.useSlot)
+    },
+    isResetable () {
+      return coerce(this.data.resetable)
     },
     items () {
       return this.data.range.map(item => item.text)
@@ -67,11 +81,21 @@ Component({
     change (e) {
       const { value } = e.detail
       const valueObj = this.data.range[value]
+      this.setData({
+        selectIndex: value
+      })
       this.triggerEvent('change', {value: valueObj.value, text: valueObj.text, selectedIndex: value})
     },
     columnChange (e) {
       const {column, value} = e.detail
       this.triggerEvent('columnchange', {column: column, value: value})
+    },
+    reset () {
+      this.setData({
+        selectIndex: 0
+      })
+      const valueObj = this.data.range[0]
+      this.triggerEvent('change', {value: valueObj.value, text: valueObj.text, selectedIndex: 0})
     }
   }
 })

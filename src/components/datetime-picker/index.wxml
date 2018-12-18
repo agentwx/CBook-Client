@@ -11,10 +11,13 @@
   range-key="{{rangeKey}}"
   disabled="{{isDisabled}}"
 >
-  <view class="picker {{size}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+  <view class="picker {{size}} {{isBordered ? 'bordered' : ''}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
     <text class="placeholder" wx:if="{{placeholder && date === ''}}">{{placeholder}}</text>
     <text>{{date}}</text>
-    <icon name="arrow-down" color="#999"></icon>
+    <view class="picker-actions">
+      <icon name="close-circle" color="#999" catchtap="reset" custom-style="margin-right:5px;" wx:if="{{isResetable && date !== ''}}"></icon>
+      <icon name="arrow-down" color="#999"></icon>
+    </view>
   </view>
   <slot wx:else></slot>
 </picker>

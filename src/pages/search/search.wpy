@@ -230,7 +230,7 @@
                 <text>{{item.price}}</text>
               </view>
               <view class="split"></view>
-              <view class="product-tax">书费价 ￥{{item.costPrice}}</view>
+              <view class="product-tax">星币价 ￥{{item.starPrice}}</view>
             </view>
           </view>
         </view>

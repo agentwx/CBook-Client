@@ -30,6 +30,10 @@ function parseDate(dateStr) {
   return new Date(dateStr)
 }
 
+function padZero(n) {
+  return n < 10 ? '0' + n : '' + n
+}
+
 function dayAfter(target, offset = 0) {
   let now = parseDate(target)
   now.setDate(now.getDate() + offset)
@@ -165,6 +169,7 @@ function getCurrentPage () {
 module.exports = {
   formatDate,
   parseDate,
+  padZero,
   dayAfter,
   getNodeRect,
   uuid,

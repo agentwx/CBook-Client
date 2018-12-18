@@ -4,16 +4,10 @@
 picker {
   flex: 1;
   width: 100%;
-  background-color: #fff;
-  border-radius: 4px;
 
   &.disabled {
     opacity: 0.7;
     pointer-events: none;
-  }
-
-  &.bordered {
-    border: .5px solid @color-underline;
   }
 }
 
@@ -30,18 +24,21 @@ picker {
     height: @large;
     font-size: 16px;
   }
+
   &.normal {
     height: @normal;
   }
+
   &.small {
     height: @small;
   }
-}
 
-.picker-value {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  .placeholder {
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .picker-actions {
+    white-space: nowrap;
+  }
 }

@@ -6,9 +6,19 @@
     width: 100%;
     padding: 6px 12px;
     font-size: 14px;
+    background-color: #fff;
     box-sizing: border-box;
     .flex-v-center();
     justify-content: space-between;
+
+    &:active {
+      background-color: @color-active;
+    }
+
+    &.bordered {
+      border: .5px solid @border-color;
+      border-radius: 4px;
+    }
 
     &.disabled {
       opacity: 0.7;
@@ -19,9 +29,11 @@
       height: @large;
       font-size: 16px;
     }
+
     &.normal {
       height: @normal;
     }
+
     &.small {
       height: @small;
     }
@@ -39,22 +51,30 @@
     .placeholder {
       color: #999;
     }
+
+    .picker-actions {
+      .flex-v-center();
+    }
   }
 </style>
 
 <template>
-  <picker mode="selector"
-          @change="change"
-          @columnchange="columnChange"
-          class="{{disabled ? 'disabled' : ''}}"
-          value="{{selectIndex}}"
-          range="{{items}}"
-          disabled="{{disabled}}"
+  <picker
+    mode="selector"
+    @change="change"
+    @columnchange="columnChange"
+    class="{{disabled ? 'disabled' : ''}}"
+    value="{{selectIndex}}"
+    range="{{items}}"
+    disabled="{{disabled}}"
   >
-    <view class="picker {{size}} {{className}}" style="{{style}}" wx:if="{{!useSlot}}">
-      <text class="placeholder" wx:if="{{placeholder && items[selectIndex] === ''}}">{{placeholder}}</text>
+    <view class="picker {{size}} {{bordered ? 'bordered' : ''}} {{className}}" style="{{style}}" wx:if="{{!useSlot}}">
+      <text class="placeholder" wx:if="{{placeholder && range[selectIndex].value === ''}}">{{placeholder}}</text>
       <text>{{items[selectIndex]}}</text>
-      <icon name="angle-down-black.png"></icon>
+      <view class="picker-actions">
+        <view class="iconfont icon-close-circle" style="color: #999;margin-right: 5px;" catchtap="reset" wx:if="{{resetable && range[selectIndex].value !== ''}}"></view>
+        <icon name="arrow-down" color="#999"></icon>
+      </view>
     </view>
     <slot wx:else></slot>
   </picker>
@@ -91,13 +111,23 @@
         type: [String, Number]
       },
       disabled: {
-        type: Boolean,
+        type: [Boolean, String],
         default: false,
+        coerce
+      },
+      bordered: {
+        type: [Boolean, String],
+        default: true,
         coerce
       },
       placeholder: String,
       useSlot: {
-        type: Boolean,
+        type: [Boolean, String],
+        default: false,
+        coerce
+      },
+      resetable: {
+        type: [Boolean, String],
         default: false,
         coerce
       }
@@ -127,17 +157,24 @@
       change (e) {
         const { value } = e.detail
         const valueObj = this.range[value]
+        this.value = valueObj.value
         this.$emit('change', valueObj.value, valueObj.text, value, e)
       },
       columnChange (e) {
         const {column, value} = e.detail
         this.$emit('columnchange', column, value)
+      },
+      reset () {
+        this.value = ''
+        const valueObj = this.range[0]
+        this.$emit('change', valueObj.value, valueObj.text, 0)
       }
     }
 
     setSelectIndex (value) {
       const index = this.range.findIndex(item => item.value === value)
       this.selectIndex = index < 0 ? 0 : index
+      this.$apply()
     }
   }
 </script>

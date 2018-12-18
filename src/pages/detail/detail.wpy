@@ -205,7 +205,6 @@
     image {
       width: 100%;
       margin-bottom: 10px;
-      border: .5px dashed #31b3ed;
     }
 
     &:last-child {

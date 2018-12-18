@@ -38,6 +38,7 @@ Component({
       type: String,
       value: ''
     },
+    placeholder: String,
     disabled: {
       type: [Boolean, String],
       value: false
@@ -55,6 +56,10 @@ Component({
       value: false
     },
     useSlot: {
+      type: [Boolean, String],
+      value: false
+    },
+    resetable: {
       type: [Boolean, String],
       value: false
     }
@@ -75,13 +80,25 @@ Component({
     isUseSlot () {
       return coerce(this.data.useSlot)
     },
+    isResetable () {
+      return coerce(this.data.resetable)
+    },
     valueStr () {
       return this.data.value.join(' ')
     }
   },
   methods: {
     change (e) {
+      this.setData({
+        value: e.detail.value
+      })
       this.triggerEvent('change', {value: e.detail.value})
+    },
+    reset () {
+      this.setData({
+        value: []
+      })
+      this.triggerEvent('change', {value: []})
     }
   }
 })

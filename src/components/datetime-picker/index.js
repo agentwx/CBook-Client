@@ -1,4 +1,6 @@
-const {dateTimePicker, getMonthDay, getTimeRange, padZero} = require('./dateTimePicker')
+import computedBehavior from 'miniprogram-computed'
+import { dateTimePicker, getMonthDay, getTimeRange, padZero } from './dateTimePicker'
+import { parseDate } from '../../utils/util'
 
 function formatDate (dateArr) {
   let date = dateArr.slice(0, 3).join('-')
@@ -6,29 +8,53 @@ function formatDate (dateArr) {
   return `${date} ${time}`
 }
 
-function getDateIndex (startDate = '', endDate = '', stack, column, selectIndex) {
-  let startStack = (startDate.split(' ')[0] || '').split('-')
-  let endStack = (endDate.split(' ')[0] || '').split('-')
-  let curValue = parseInt(stack[column][selectIndex])
+function getDateIndex (start = '', end = '', range, rangeArray, column, selectIndex) {
+  range[column] = selectIndex
+  range.pop() // 去掉时分的比较
 
-  if (startDate && curValue < parseInt(startStack[column])) {
-    return stack[column].indexOf(startStack[column])
-  } else if (endDate && curValue > parseInt(endStack[column])) {
-    return stack[column].indexOf(endStack[column])
-  } else {
-    return selectIndex
+  let value = range.map((item, index) => rangeArray[index][item])
+  value = new Date(value.join('/'))
+
+  if (start) {
+    start = start.split(' ')[0]
+    let startDate = parseDate(start)
+    let startStack = start.split('-')
+    if (value < startDate) {
+      return rangeArray[column].indexOf(startStack[column])
+    }
   }
+
+  if (end) {
+    end = end.split(' ')[0]
+    let endDate = parseDate(end)
+    let endStack = start.split('-')
+    if (value > endDate) {
+      return rangeArray[column].indexOf(endStack[column])
+    }
+  }
+
+  return selectIndex
 }
 
-function getTimeIndex (startTime = '', endTime = '', times, selectIndex) {
+function getTimeIndex (startTime = '', endTime = '', range, rangeArray, column, selectIndex) {
+  range.pop() // 去掉时分的比较
+
+  let times = rangeArray[3]
+  let value = range.map((item, index) => rangeArray[index][item])
+  value = new Date(value.join('/')).getTime()
+
+  let sDate = parseDate(startTime.split(' ')[0])
   let sIndex = times.indexOf(startTime.split(' ')[1])
+  let eDate = parseDate(endTime.split(' ')[0])
   let eIndex = times.indexOf(endTime.split(' ')[1])
 
   eIndex = eIndex === -1 ? Number.MAX_VALUE : eIndex
 
-  if (selectIndex < sIndex) {
+  if (value <= sDate && selectIndex < sIndex) {
     return sIndex
-  } else if (selectIndex > eIndex) {
+  }
+
+  if (value >= eDate && selectIndex > eIndex) {
     return eIndex
   }
 
@@ -60,6 +86,10 @@ const coerce = (v) =>
     : v
 
 Component({
+  behaviors: [computedBehavior],
+  options: {
+    addGlobalClass: true
+  },
   properties: {
     customClass: {
       type: String,
@@ -95,11 +125,19 @@ Component({
     end: String,
     rangeKey: String,
     disabled: {
-      type: Boolean,
+      type: [Boolean, String],
+      value: false
+    },
+    bordered: {
+      type: [Boolean, String],
+      value: true
+    },
+    resetable: {
+      type: [Boolean, String],
       value: false
     },
     useSlot: {
-      type: Boolean,
+      type: [Boolean, String],
       value: false
     },
     timeRange: {
@@ -128,8 +166,14 @@ Component({
     isDisabled () {
       return coerce(this.data.disabled)
     },
+    isBordered () {
+      return coerce(this.data.bordered)
+    },
     isUseSlot () {
       return coerce(this.data.useSlot)
+    },
+    isResetable () {
+      return coerce(this.data.resetable)
     }
   },
   attached () {
@@ -201,20 +245,21 @@ Component({
       let start = this.data.start
       let end = this.data.end
       let column = e.detail.column
+      let suffix = this.data.suffix
       let rangeOrig = this.data.range.slice()
       let range = this.data.range
       let rangeArray = this.rangeArray
       let rangeArrayDisplay = this.data.rangeArrayDisplay
 
       if (column < 3) {
-        range[column] = getDateIndex(start, end, rangeArray, column, selectIndex)
+        range[column] = getDateIndex(start, end, range.slice(), rangeArray, column, selectIndex)
       } else {
-        range[column] = getTimeIndex(start, end, rangeArray[3], selectIndex)
+        range[column] = getTimeIndex(start, end, range.slice(), rangeArray, column, selectIndex)
       }
 
       if (column === 0) {
         rangeArray[2] = getMonthDay(rangeArray[0][range[0]], rangeArray[1][range[1]])
-        rangeArrayDisplay[2] = rangeArray[2].map(date => date + this.data.suffix[2])
+        rangeArrayDisplay[2] = rangeArray[2].map(date => date + suffix[2])
       }
 
       this.setData({
@@ -223,7 +268,7 @@ Component({
       })
 
       let date = range.map((item, index) => {
-        return this.rangeArray[index][item]
+        return rangeArray[index][item]
       })
 
       if (rangeOrig[column] !== range[column]) {
@@ -231,9 +276,14 @@ Component({
           ...e.detail,
           range: this.data.range,
           date: formatDate(date),
-          data: this.rangeArray
+          data: rangeArray
         })
       }
+    },
+    reset () {
+      let value = {value: [], range: [], date: ''}
+      this.setData(value)
+      this.triggerEvent('change', {...value, data: this.rangeArray})
     },
     cancel (e) {
       this.triggerEvent('cancel', e.detail)

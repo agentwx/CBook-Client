@@ -65,11 +65,11 @@ Component({
       type: [Boolean, String],
       value: true
     },
-    showClear: {
+    resetable: {
       type: [Boolean, String],
       value: false
     },
-    showEye: {
+    secretive: {
       type: [Boolean, String],
       value: false
     },
@@ -98,11 +98,11 @@ Component({
     isBordered () {
       return coerce(this.data.bordered)
     },
-    isShowClear () {
-      return coerce(this.data.showClear)
+    isResetable () {
+      return coerce(this.data.resetable)
     },
-    isShowEye () {
-      return coerce(this.data.showEye)
+    isSecretive () {
+      return coerce(this.data.secretive)
     },
     isNomargin () {
       return coerce(this.data.nomargin)
@@ -120,18 +120,13 @@ Component({
       return coerce(this.data.focus)
     },
     shouldClearShow() {
-      return this.data.isShowClear ? this.data.value !== '' : false
+      return this.data.isResetable ? this.data.value !== '' : false
     },
     eyeName() {
       return this.data.password ? 'eye-closed' : 'eye-opened'
     }
   },
   methods: {
-    clearField() {
-      this.setData({
-        value: ''
-      })
-    },
     togglePwdVisible() {
       this.setData({
         password: !this.data.password
@@ -151,6 +146,13 @@ Component({
     },
     confirm(e) {
       this.triggerEvent('confirm', {value: e.detail.value})
+    },
+    reset() {
+      this.setData({
+        value: ''
+      })
+      this.triggerEvent('change', {value: ''})
+      this.triggerEvent('input', {value: ''})
     }
   }
 })

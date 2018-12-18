@@ -1,14 +1,18 @@
-<picker mode="selector"
-        bindchange="change"
-        bindcolumnchange="columnChange"
-        value="{{selectIndex}}"
-        range="{{items}}"
-        disabled="{{isDisabled}}"
+<picker
+  mode="selector"
+  bindchange="change"
+  bindcolumnchange="columnChange"
+  value="{{selectIndex}}"
+  range="{{items}}"
+  disabled="{{isDisabled}}"
 >
-  <view class="picker {{size}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
-    <text class="placeholder" wx:if="{{placeholder && items[selectIndex] === ''}}">{{placeholder}}</text>
+  <view class="picker {{size}} {{isBordered ? 'bordered' : ''}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+    <text class="placeholder" wx:if="{{placeholder && range[selectIndex].value === ''}}">{{placeholder}}</text>
     <text>{{items[selectIndex]}}</text>
-    <icon name="arrow-down" color="#999"></icon>
+    <view class="picker-actions">
+      <icon name="close-circle" color="#999" catchtap="reset" custom-style="margin-right:5px;" wx:if="{{isResetable && range[selectIndex].value !== ''}}"></icon>
+      <icon name="arrow-down" color="#999"></icon>
+    </view>
   </view>
   <slot wx:else></slot>
 </picker>
