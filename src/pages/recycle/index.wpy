@@ -437,7 +437,12 @@
     </view>
   </block>
   <block wx:else>
-    <notice-bar showArrow="false">继续扫码，还需5本或预计收入满200元即可下单</notice-bar>
+    <notice-bar
+      showArrow="false"
+      wx:if="{{remainCount > 0 || totalPrice < 200}}"
+    >
+      <text>继续扫码，还需{{remainCount}}本或预计收入满200元即可下单</text>
+    </notice-bar>
     <view class="orders-wrap">
       <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
@@ -517,6 +522,9 @@
     },
     totalCount ({ recycles }) {
       return recycles.length
+    },
+    remainCount ({ recycles }) {
+      return Math.max(0, 5 - recycles.length)
     }
   })
   export default class Index extends wepy.page {
@@ -530,9 +538,6 @@
         'swipe-cell': '/components/swipe-cell/index',
         'transition': '/components/transition/index'
       }
-    }
-
-    components = {
     }
 
     data = {
