@@ -151,7 +151,7 @@
 
 <template>
   <notice-bar wx:if="{{orderSource === 'recycle'}}" show-arrow="false">
-    <text>卖书运费由平台承担，你在快递上门时告知快递员运费到付即可</text>
+    <text>卖书运费由平台承担，你在快递上门时告知快递员运费到付即可。</text>
   </notice-bar>
 
   <view class="address-selection" @tap="selectAddress">
