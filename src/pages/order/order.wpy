@@ -156,7 +156,7 @@
 
   <view class="address-selection" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle"/>
-    <view class="addr-slbd" wx:if="{{address !== null}}">
+    <view class="addr-slbd" wx:if="{{address}}">
       <view class="addr-sltitle">
         <text class="addr-username">{{address.name}}</text>
         <text class="addr-usertel">{{address.mobile}}</text>
@@ -416,6 +416,12 @@
       }
     }
 
+    async loadAddress () {
+      let res = await fetch.post('/user/address/list')
+      this.address = res.datas.find(item => item.isDefault === 1)
+      this.$apply()
+    }
+
     onShow () {
       if (this.orderCreated) {
         this.$switch('/pages/home/home')
@@ -431,6 +437,7 @@
       }
       this.orderCreated = false
       this.products = JSON.parse(products)
+      this.loadAddress()
     }
   }
 </script>
