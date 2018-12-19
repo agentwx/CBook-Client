@@ -306,6 +306,7 @@ Component({
       }
 
       if (column === 0) {
+        // 计算是否润年所对应当前月份的天数
         rangeArray[2] = getMonthDay(rangeArray[0][range[0]], rangeArray[1][range[1]])
         rangeArrayDisplay[2] = rangeArray[2].map(date => date + suffix[2])
       }
