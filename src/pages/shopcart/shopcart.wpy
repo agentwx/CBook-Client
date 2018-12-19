@@ -114,6 +114,27 @@
     justify-content: space-between;
   }
 
+  .pd-dist-price {
+    position: relative;
+    font-size: 12px;
+    padding: 3px 8px;
+    margin-left: 8px;
+    background-color: @color-active;
+    border-radius: 4px;
+
+    &:before {
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-width: 4px;
+      border-style: solid solid dashed dashed;
+      border-color: @color-active @color-active transparent transparent;
+    }
+  }
+
   .empty-layer {
     position: absolute;
     left: 50%;
@@ -243,7 +264,7 @@
 <template>
   <block wx:if="{{products.length > 0}}">
     <notice-bar>
-      <text>书费已抵扣23.8元，共一本，查看抵扣规则</text>
+      <text>书费已抵扣{{cutPrice}}元，共{{cutCount}}本，查看抵扣规则</text>
     </notice-bar>
 
     <view class="cart-edit-hd">
@@ -272,7 +293,7 @@
               <view class="pd-head">
                 <view class="pd-title">{{item.name}}</view>
                 <view class="pd-desc">{{item.author}}</view>
-                <view class="pd-orig-price">原价：￥{{item.costPrice}}</view>
+                <view class="pd-orig-price">原价：￥{{item.price}}</view>
               </view>
               <view class="cart-pd-footer">
                 <view class="cart-pdft">
@@ -280,7 +301,7 @@
                 </view>
                 <view class="pd-now-price">
                   <text class="unit">￥</text>
-                  <text class="price">{{item.price - item.starDeduction}}</text>
+                  <text class="price">{{item.starPrice || item.price}}</text>
                   <text class="count">x{{item.COUNT}}</text>
                 </view>
               </view>
@@ -339,7 +360,7 @@
     totalPrice ({ cartProducts }) {
       return cartProducts
         .filter(product => product.checked)
-        .reduce((prev, cur) => prev + cur.COUNT * +cur.price, 0).toFixed(2)
+        .reduce((prev, cur) => prev + cur.COUNT * (cur.starPrice || cur.price), 0).toFixed(2)
     },
     totalCount ({ cartProducts }) {
       return cartProducts
@@ -348,6 +369,14 @@
     },
     cartCount ({ shopCart }) {
       return shopCart.reduce((prev, cur) => prev + cur.COUNT, 0)
+    },
+    cutCount ({ cartProducts }) {
+      return cartProducts
+        .filter(product => product.starDeduction > 0)
+        .reduce((prev, cur) => prev + cur.COUNT, 0)
+    },
+    cutPrice ({ cartProducts }) {
+      return cartProducts.reduce((prev, cur) => prev + cur.COUNT * cur.starDeduction, 0).toFixed(2)
     }
   })
   export default class Index extends wepy.page {

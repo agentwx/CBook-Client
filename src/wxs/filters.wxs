@@ -1,0 +1,9 @@
+module.exports = {
+  formatFloat: function (f, digit = 2) {
+    var m = Math.pow(10, digit)
+    return Math.round(f * m, 10) / m
+  },
+  toFixed: function (num, len = 2) {
+    return num.toFixed(len);
+  }
+}

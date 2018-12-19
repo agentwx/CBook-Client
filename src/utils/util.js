@@ -40,6 +40,11 @@ function dayAfter(target, offset = 0) {
   return now
 }
 
+function formatFloat(f, digit = 2) {
+  let m = Math.pow(10, digit)
+  return Math.round(f * m, 10) / m
+}
+
 function getNodeRect(selector, scope, all) {
   return new Promise(resolve => {
     let query = wx.createSelectorQuery()
@@ -62,9 +67,10 @@ function getNodeRect(selector, scope, all) {
 let CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
 
 function uuid(len, radix) {
-  var chars = CHARS,
-    uuid = [],
-    i
+  let chars = CHARS
+  let uuid = []
+  let i
+
   radix = radix || chars.length
 
   if (len) {
@@ -171,6 +177,7 @@ module.exports = {
   parseDate,
   padZero,
   dayAfter,
+  formatFloat,
   getNodeRect,
   uuid,
   confirm,
