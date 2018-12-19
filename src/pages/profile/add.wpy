@@ -41,6 +41,7 @@
       mode="date"
       fields="day"
       value="{{birthday}}"
+      use-slot="true"
       @change="birthdayChange"
     >
       <list-item>
