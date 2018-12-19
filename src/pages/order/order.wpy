@@ -170,9 +170,8 @@
   </view>
 
   <datetime-picker
-    id="datePicker"
     wx:if="{{orderSource === 'recycle'}}"
-    fields="second"
+    fields="range"
     start-year="{{startYear}}"
     end-year="{{endYear}}"
     start="{{startDateTime}}"

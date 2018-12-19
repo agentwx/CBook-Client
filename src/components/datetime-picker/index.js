@@ -8,7 +8,50 @@ function formatDate (dateArr) {
   return `${date} ${time}`
 }
 
+function makeDateArgsFromArray (array) {
+  array = Array.from({length: 6}).map((item, i) => {
+    return array[i] || (i < 3 ? '01' : '00')
+  })
+  return array.slice(0, 3).join('/') + " " + array.slice(3).join(':')
+}
+
+function makeDateStringToArray (str) {
+  let strArray = str.split(' ')
+  let dateArray = strArray[0].split('-')
+  let timeArray = (strArray[1]||'').split(':')
+  return [...dateArray, ...timeArray]
+}
+
+function makeDateArgsFromString (str) {
+  return makeDateArgsFromArray(makeDateStringToArray(str))
+}
+
 function getDateIndex (start = '', end = '', range, rangeArray, column, selectIndex) {
+  range[column] = selectIndex
+
+  let value = range.map((item, index) => rangeArray[index][item])
+  value = new Date(makeDateArgsFromArray(value))
+
+  if (start) {
+    let startDate = new Date(makeDateArgsFromString(start))
+    let startStack = makeDateStringToArray(start)
+    if (value < startDate) {
+      return rangeArray[column].indexOf(startStack[column])
+    }
+  }
+
+  if (end) {
+    let endDate = new Date(makeDateArgsFromString(end))
+    let endStack = makeDateStringToArray(end)
+    if (value > endDate) {
+      return rangeArray[column].indexOf(endStack[column])
+    }
+  }
+
+  return selectIndex
+}
+
+function getDateRangeIndex (start = '', end = '', range, rangeArray, column, selectIndex) {
   range[column] = selectIndex
   range.pop() // 去掉时分的比较
 
@@ -36,7 +79,7 @@ function getDateIndex (start = '', end = '', range, rangeArray, column, selectIn
   return selectIndex
 }
 
-function getTimeIndex (startTime = '', endTime = '', range, rangeArray, column, selectIndex) {
+function getTimeRangeIndex (startTime = '', endTime = '', range, rangeArray, column, selectIndex) {
   range.pop() // 去掉时分的比较
 
   let times = rangeArray[3]
@@ -252,10 +295,14 @@ Component({
       let rangeArray = this.rangeArray
       let rangeArrayDisplay = this.data.rangeArrayDisplay
 
-      if (column < 3) {
+      if (fields === 'range') {
+        if (column < 3) {
+          range[column] = getDateRangeIndex(start, end, range.slice(), rangeArray, column, selectIndex)
+        } else {
+          range[column] = getTimeRangeIndex(start, end, range.slice(), rangeArray, column, selectIndex)
+        }
+      } else {
         range[column] = getDateIndex(start, end, range.slice(), rangeArray, column, selectIndex)
-      } else if (fields === 'range') {
-        range[column] = getTimeIndex(start, end, range.slice(), rangeArray, column, selectIndex)
       }
 
       if (column === 0) {
