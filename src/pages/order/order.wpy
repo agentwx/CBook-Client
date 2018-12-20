@@ -161,7 +161,7 @@
         <text class="addr-username">{{address.name}}</text>
         <text class="addr-usertel">{{address.mobile}}</text>
       </view>
-      <view class="addr-text">{{address.province}} {{address.city}} {{address.region}}{{address.address}}</view>
+      <view class="addr-text">{{address.province}} {{address.city}} {{address.region}} {{address.address}}</view>
     </view>
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">
       {{orderSource === 'recycle' ? '请选择取件地址...' : '请选择收货地址...'}}
