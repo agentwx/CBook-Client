@@ -1,7 +1,20 @@
 <view class="list-item {{isShowArrow ? 'enabled' : ''}} {{isBordered ? 'bordered' : ''}} {{customClass}}" style="{{customStyle}}">
-  <icon wx:if="{{icon}}" name="{{icon}}" size="{{iconSize}}" custom-style="margin-right: 5px;"></icon>
+  <icon
+    wx:if="{{icon}}"
+    name="{{icon}}"
+    size="{{iconSize}}"
+    custom-style="margin-right: 5px;"
+  >
+  </icon>
   <view class="list-item-bd">
     <slot></slot>
   </view>
-  <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{isShowArrow}}"></text>
+  <icon
+    name="arrow-right"
+    color="#999"
+    size="17px"
+    custom-style="margin-left: 5px;"
+    wx:if="{{isShowArrow}}"
+  >
+  </icon>
 </view>

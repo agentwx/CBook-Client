@@ -328,7 +328,7 @@
           新书优先
         </view>
         <view class="filter-itemtype filter {{filterVisible && filterType === 'catelog' ? 'selected' : ''}}" @tap="showFilter('catelog', 0, true)">
-          筛选<icon size="mini" name="filter"></icon>
+          筛选<icon size="mini" name="filter-o"></icon>
         </view>
       </view>
       <transition custom-class="filter-sublayer" name="slide-down" duration="300" show="{{filterVisible}}">

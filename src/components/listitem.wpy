@@ -33,19 +33,29 @@
     }
 
     .list-arrow {
-      font-size: 18px;
-      color: #888;
+      font-size: 17px;
+      color: #999;
       margin-left: 5px;
     }
   }
 </style>
 <template>
   <view class="list-item {{showArrow ? 'enabled' : ''}} {{bordered ? 'bordered' : ''}}" style="{{style}}" @tap="tap">
-    <icon wx:if="{{icon}}" :name="icon" :size="iconSize" class="list-item-icon"></icon>
+    <icon
+      wx:if="{{icon}}"
+      :name="icon"
+      :size="iconSize"
+      class="list-item-icon"
+    >
+    </icon>
     <view class="list-item-bd">
       <slot></slot>
     </view>
-    <text class="list-arrow iconfont icon-arrow-right-o" wx:if="{{showArrow}}"></text>
+    <text
+      class="list-arrow iconfont icon-arrow-right"
+      wx:if="{{showArrow}}"
+    >
+    </text>
   </view>
 </template>
 <script>

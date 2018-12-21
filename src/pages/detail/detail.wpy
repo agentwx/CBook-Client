@@ -355,7 +355,7 @@
 
   <view class="detail-action-bar">
     <view id="cart" class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="goToCart">
-      <icon-item icon="cart" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
+      <icon-item icon="cart-o" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
       <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
     </view>
     <view class="action-item action-buy cash-buy" @tap="goToBuy">
