@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "raty": "/components/raty/index",
+    "tag": "/components/tag/index",
+    "icon": "/components/icon/index",
+    "modal-spinner": "/components/modal-spinner/index",
+    "preloader": "/components/preloader/index"
+  }
+}

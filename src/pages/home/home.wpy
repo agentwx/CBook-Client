@@ -382,52 +382,13 @@
     <overlay show="{{filterVisible}}" duration="300" mask="true" @tap="hideFilter"></overlay>
   </view>
 
-  <view class="product-listview">
-    <repeat for="{{products}}" key="index">
-      <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="viewDetail({{item}})">
-        <view class="product-cover">
-          <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
-        </view>
-        <view class="product-panel-body">
-          <view class="product-maininfo">
-            <view class="product-caption">{{item.name}}</view>
-            <view class="product-desc">{{item.author}}</view>
-          </view>
-          <view class="product-subInfo">
-            <raty value="{{item.doubanScore}}"></raty>
-            <view class="product-tags">
-              <tag wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
-              <tag wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
-              <tag wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
-            </view>
-            <view class="product-priceInfo">
-              <view class="product-price">
-                <text class="unit">￥</text>
-                <text>{{item.price}}</text>
-              </view>
-              <view class="split"></view>
-              <view class="product-tax">星币价 ￥{{item.starPrice}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </repeat>
-  </view>
+  <products query-params="{{queryParams}}"></products>
 
-  <view class="search-empty" wx:if="{{isLoading === false && products.length === 0}}">
-    <icon name="empty" size="large"></icon>
-    <text>抱歉，未查询到相关内容!</text>
-  </view>
-
-  <preloader count="10" visible="{{isLoading}}" />
-  <!--<weui-loading visible="{{!inited || products.length > 4}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}" />-->
-  <modal-spinner wx:if="{{isLoading && isSpinShow}}" />
   <gotop />
 </template>
 
 <script>
 import wepy from 'wepy'
-import fetch from '../../service/fetch'
 import { getNodeRect } from '../../utils/util'
 import { getStore } from 'wepy-redux'
 
@@ -438,26 +399,18 @@ export default class Index extends wepy.page {
     navigationBarTitleText: '星月童书',
     enablePullDownRefresh: true,
     usingComponents: {
-      'modal-spinner': '/components/modal-spinner/index',
-      'weui-loading': '/components/weui-loading/index',
       'transition': '/components/transition/index',
       'overlay': '/components/overlay/index',
-      'raty': '/components/raty/index',
       'icon': '/components/icon/index',
-      'tag': '/components/tag/index',
-      'gotop': '/components/gotop/index',
-      'preloader': '/components/preloader/index'
+      'products': '/components/products/index',
+      'gotop': '/components/gotop/index'
     }
   }
 
   data = {
-    isLoading: true,
-    isEmpty: false,
-    inited: false,
-    pageNum: 1,
-    isSpinShow: false,
     filterBarFixed: false,
     filterVisible: false,
+    queryParams: null,
     sortTypes: [
       {checked: true, value: 1, name: '综合排序'},
       {checked: false, value: 2, name: '人气优先'},
@@ -489,8 +442,7 @@ export default class Index extends wepy.page {
     ageValue: 0,
     tagValue: 0,
     langValue: 0,
-    filterType: null,
-    products: []
+    filterType: null
   }
 
   computed = {
@@ -515,12 +467,12 @@ export default class Index extends wepy.page {
       this.$navigate('/pages/detail/detail', {product: JSON.stringify(item)})
     },
     showFilter (type, value, showDrop) {
-      if (this.isLoading) return
+      // if (this.isLoading) return
 
       value = +value
       showDrop = showDrop === 'true'
 
-      if (showDrop && this.products.length > 0 && this.lastScrollTop !== Math.floor(this.filterBarTop >>> 0) && !this.filterBarFixed) {
+      if (showDrop /* && this.products.length > 0 */ && this.lastScrollTop !== Math.floor(this.filterBarTop >>> 0) && !this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop + 1,
           duration: this.isIOS ? 300 : 0
@@ -584,9 +536,8 @@ export default class Index extends wepy.page {
   }
 
   hideFilterAndSearch () {
-    this.isSpinShow = true
     this.filterVisible = false
-    this.reloadProducts()
+    this.loadProducts()
   }
 
   hideFilter () {
@@ -599,7 +550,7 @@ export default class Index extends wepy.page {
     })
   }
 
-  async loadProducts (params) {
+  loadProducts () {
     const filterChecked = list =>
       list.filter(item => item.checked && item.value > 0).map(item => item.value)
 
@@ -624,39 +575,14 @@ export default class Index extends wepy.page {
       }
     ]
 
-    params = {
-      offset: this.pageNum,
+    let params = {
+      offset: 1,
       limit: 10,
       filter,
       sort
     }
 
-    try {
-      this.isLoading = true
-      let res = await fetch.post('/sales/list', params, false)
-      let items = res.datas.Items || []
-      if (this.pageNum === 1) {
-        this.products = items
-      } else {
-        this.products = this.products.concat(items)
-      }
-      if (items.length > 0) {
-        this.pageNum++
-        this.isEmpty = false
-      } else {
-        this.isEmpty = true
-      }
-    } finally {
-      this.isLoading = false
-      this.inited = true
-      this.isSpinShow = false
-      this.$apply()
-    }
-  }
-
-  async reloadProducts () {
-    this.pageNum = 1
-    await this.loadProducts()
+    this.queryParams = JSON.stringify(params)
   }
 
   onPageScroll (e) {
@@ -671,16 +597,6 @@ export default class Index extends wepy.page {
       this.filterBarFixed = isFixed
       this.$apply()
     }
-  }
-
-  onReachBottom () {
-    this.loadProducts()
-  }
-
-  async onPullDownRefresh () {
-    this.isSpinShow = true
-    await this.reloadProducts()
-    wx.stopPullDownRefresh()
   }
 
   onShareAppMessage () {
@@ -717,7 +633,8 @@ export default class Index extends wepy.page {
   async onLoad () {
     this.getFilterBarTop()
     this.$parent.ready(() => {
-      this.reloadProducts()
+      this.loadProducts()
+      this.$apply()
     })
     const sysInfo = await wepy.getSystemInfo()
     this.isIOS = /IOS/i.test(sysInfo.system)

@@ -1,0 +1,39 @@
+<view class="product-listview">
+  <block wx:for="{{products}}" wx:key="index">
+    <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" bindtap="viewDetail({{item}})">
+      <view class="product-cover">
+        <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
+      </view>
+      <view class="product-panel-body">
+        <view class="product-maininfo">
+          <view class="product-caption">{{item.name}}</view>
+          <view class="product-desc">{{item.author}}</view>
+        </view>
+        <view class="product-subInfo">
+          <raty value="{{item.doubanScore}}"></raty>
+          <view class="product-tags">
+            <tag wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
+            <tag wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
+            <tag wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
+          </view>
+          <view class="product-priceInfo">
+            <view class="product-price">
+              <text class="unit">￥</text>
+              <text>{{item.price}}</text>
+            </view>
+            <view class="split"></view>
+            <view class="product-tax">星币价 ￥{{item.starPrice}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="search-empty" wx:if="{{isLoading === false && products.length === 0}}">
+  <icon name="empty" size="large"></icon>
+  <text>抱歉，未查询到相关内容!</text>
+</view>
+
+<preloader count="10" visible="{{isLoading}}" />
+<modal-spinner wx:if="{{isLoading && isSpinShow}}" />

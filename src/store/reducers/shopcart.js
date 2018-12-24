@@ -14,7 +14,6 @@ function reduceCart (list, { ID }) {
   let item = list.find(item => item.ID === ID)
   if (item) {
     item.COUNT--
-
     if (item.COUNT === 0) {
       list = list.filter(cart => cart.ID !== ID)
     }

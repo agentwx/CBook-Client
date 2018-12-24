@@ -365,6 +365,7 @@
     }
 
     onReachBottom () {
+      if (this.isLoading) return
       this.loadProducts(this.searchVal)
     }
 
