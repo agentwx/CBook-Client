@@ -23,7 +23,6 @@
   position: relative;
   width: 80%;
   max-width: 320px;
-  -webkit-animation: zoom-out .2s ease-out;
   animation: zoom-out .2s ease-out;
 
   &.hasTitle {
@@ -76,16 +75,14 @@
   }
 }
 
-@-webkit-keyframes zoom-out {
+@keyframes zoom-out {
   0% {
     opacity: .3;
-    -webkit-transform: translateY(20%) scale(1.1);
     transform: translateY(20%) scale(1.1);
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: none;
     transform: none;
   }
 }
@@ -93,13 +90,11 @@
 @keyframes zoom-out {
   0% {
     opacity: .3;
-    -webkit-transform: translateY(20%) scale(1.1);
     transform: translateY(20%) scale(1.1);
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: none;
     transform: none;
   }
 }

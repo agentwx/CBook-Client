@@ -57,7 +57,6 @@
       .flex-v-center();
 
       icon {
-        -webkit-transition: -webkit-transform .3s ease;
         transition: transform .3s ease;
       }
     }
@@ -98,7 +97,6 @@
       border-width: .5px;
       border-style: solid;
       border-color: @color-border @color-border transparent transparent;
-      -webkit-transform: translateY(-50%) rotate(-45deg);
       transform: translateY(-50%) rotate(-45deg);
     }
   }
@@ -106,7 +104,6 @@
   .intro-item.show {
     .intro-refuses {
       icon {
-        -webkit-transform: rotate(180deg);
         transform: rotate(180deg);
       }
     }
@@ -382,7 +379,7 @@
               <view class="intro-text">看收购价</view>
               <view class="intro-refuses" @tap="toggleExpItem1()">
                 <text>什么书不收</text>
-                <icon name="arrow-down"></icon>
+                <icon name="arrow-down" size="small"></icon>
               </view>
             </view>
           </view>
@@ -415,7 +412,7 @@
               <view class="intro-text">书款到账</view>
               <view class="intro-refuses" @tap="toggleExpItem2()">
                 <text>什么是审核</text>
-                <icon name="arrow-down"></icon>
+                <icon name="arrow-down" size="small"></icon>
               </view>
             </view>
           </view>
