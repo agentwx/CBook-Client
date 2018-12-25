@@ -33,19 +33,14 @@ Component({
       type: String,
       value: 'iconfont'
     },
-    color: String
+    color: String,
+    backgroundColor: String
   },
   computed: {
-    iconColor () {
-      return this.data.color ? `color: ${this.data.color}` : ''
-    },
     bound () {
-      const { size } = this.data
-      return SIZE_MAP[size] || size
-    },
-    iconSize () {
-      const { size } = this.data
-      return `font-size:${SIZE_MAP[size] || size};`
+      let { size } = this.data
+      size = parseFloat(SIZE_MAP[size] || size)
+      return size + size / 2
     }
   }
 })

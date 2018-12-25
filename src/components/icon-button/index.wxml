@@ -1,0 +1,3 @@
+<view class="icon-button {{customClass}}" style="width:{{bound}}px;height:{{bound}}px;background-color:{{backgroundColor}};{{customStyle}}">
+  <icon name="{{name}}" size="{{size}}" color="{{color}}" type="{{type}}"></icon>
+</view>
