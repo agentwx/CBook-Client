@@ -7,10 +7,14 @@ Component({
   },
   properties: {
     queryParams: {
-      type: String,
+      type: Object,
       observer (value) {
-        this.loadData(JSON.parse(value))
+        this.loadData(value)
       }
+    },
+    resetTop: {
+      type: Number,
+      value: 0
     }
   },
   data: {
@@ -60,6 +64,12 @@ Component({
           this.setData({
             products: items
           })
+          if (this.data.inited) {
+            wx.pageScrollTo({
+              scrollTop: this.data.resetTop,
+              duration: 0
+            })
+          }
         } else {
           this.data.products = this.data.products.concat(items)
           this.setData({

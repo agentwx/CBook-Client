@@ -382,7 +382,7 @@
     <overlay show="{{filterVisible}}" duration="300" mask="true" @tap="hideFilter"></overlay>
   </view>
 
-  <products query-params="{{queryParams}}" @itemtap="viewDetail"></products>
+  <products query-params="{{queryParams}}" reset-top="{{filterBarTop + 1}}" @itemtap="viewDetail"></products>
 
   <gotop />
 </template>
@@ -408,6 +408,7 @@ export default class Index extends wepy.page {
   }
 
   data = {
+    filterBarTop: 0,
     filterBarFixed: false,
     filterVisible: false,
     queryParams: null,
@@ -467,7 +468,7 @@ export default class Index extends wepy.page {
       this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
     },
     showFilter (type, value, showDrop) {
-      value = +value
+      value = Number(value)
       showDrop = showDrop === 'true'
 
       if (showDrop && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
@@ -580,7 +581,7 @@ export default class Index extends wepy.page {
       sort
     }
 
-    this.queryParams = JSON.stringify(params)
+    this.queryParams = params
   }
 
   onPageScroll (e) {
