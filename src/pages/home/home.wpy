@@ -382,7 +382,7 @@
     <overlay show="{{filterVisible}}" duration="300" mask="true" @tap="hideFilter"></overlay>
   </view>
 
-  <products query-params="{{queryParams}}"></products>
+  <products query-params="{{queryParams}}" @itemtap="viewDetail"></products>
 
   <gotop />
 </template>
@@ -463,16 +463,14 @@ export default class Index extends wepy.page {
     toSearch () {
       this.$navigate('/pages/search/search')
     },
-    viewDetail (item) {
-      this.$navigate('/pages/detail/detail', {product: JSON.stringify(item)})
+    viewDetail (e) {
+      this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
     },
     showFilter (type, value, showDrop) {
-      // if (this.isLoading) return
-
       value = +value
       showDrop = showDrop === 'true'
 
-      if (showDrop /* && this.products.length > 0 */ && this.lastScrollTop !== Math.floor(this.filterBarTop >>> 0) && !this.filterBarFixed) {
+      if (showDrop && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop + 1,
           duration: this.isIOS ? 300 : 0
@@ -546,7 +544,7 @@ export default class Index extends wepy.page {
 
   getFilterBarTop() {
     getNodeRect('#filter_bar').then(rect => {
-      this.filterBarTop = rect.top
+      this.filterBarTop = Number(rect.top)
     })
   }
 

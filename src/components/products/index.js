@@ -11,23 +11,15 @@ Component({
       observer (value) {
         this.loadData(JSON.parse(value))
       }
-    },
-    refresh: {
-      type: Boolean,
-      observer (value) {
-        if (value) {
-          this.reloadData()
-        }
-      }
     }
   },
   data: {
     isLoading: true,
-    isSpinShow: false,
-    pageNum: 1,
+    inited: false,
     products: []
   },
   attached () {
+    this.pageNum = 1
     this.queryParams = null
     this.handlePage()
   },
@@ -40,17 +32,20 @@ Component({
 
       page.onReachBottom = function (e) {
         _onReachBottom(e)
-        if (self.data.isLoading) return
+        self.setData({
+          inited: false
+        })
         self.appendData()
       }
 
       page.onPullDownRefresh = function (e) {
         _onPullDownRefresh(e)
-        self.setData({
-          isSpinShow: true
-        })
         self.reloadData().then(wx.stopPullDownRefresh)
       }
+    },
+    onClick (e) {
+      let index = e.currentTarget.dataset.index
+      this.triggerEvent('itemtap', { item: this.data.products[index], index })
     },
     async loadData (params) {
       this.queryParams = params
@@ -58,7 +53,7 @@ Component({
         this.setData({
           isLoading: true
         })
-        let pageNum = params.offset || this.data.pageNum
+        let pageNum = params.offset || this.pageNum
         let res = await fetch.post('/sales/list', {...params, offset: pageNum}, false)
         let items = res.datas.Items || []
         if (pageNum === 1) {
@@ -72,8 +67,8 @@ Component({
           })
         }
         if (items.length > 0) {
+          this.pageNum++
           this.setData({
-            pageNum: ++pageNum,
             isEmpty: false
           })
         } else {
@@ -84,8 +79,7 @@ Component({
       } finally {
         this.setData({
           isLoading: false,
-          refresh: false,
-          isSpinShow: false
+          inited: true
         })
       }
     },
