@@ -53,10 +53,10 @@ Component({
         this.setData({
           isLoading: true
         })
-        let pageNum = params.offset || this.pageNum
-        let res = await fetch.post('/sales/list', {...params, offset: pageNum}, false)
+        this.pageNum = params.offset || this.pageNum
+        let res = await fetch.post('/sales/list', {...params, offset: this.pageNum}, false)
         let items = res.datas.Items || []
-        if (pageNum === 1) {
+        if (this.pageNum === 1) {
           this.setData({
             products: items
           })
