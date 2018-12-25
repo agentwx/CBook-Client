@@ -318,17 +318,19 @@
   <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="true">
     <view class="filter-toolbar {{filterBarFixed ? 'fixed' : ''}}">
       <view class="filter-toolbar-inner hairline--bottom {{filterVisible ? 'expand' : ''}}">
-        <view class="filter-itemtype sort {{filterVisible && filterType === 'sort' ? 'selected' : ''}}" @tap="showFilter('sort', 0, true)">
-          {{sortName}}<icon size="mini" name="caret-down"></icon>
+        <view class="filter-itemtype sort {{filterVisible && filterType === 'sort' ? 'selected' : ''}}" @tap="showFilter('sort')">
+          <text>{{sortName}}</text>
+          <icon size="mini" name="caret-down"></icon>
         </view>
-        <view class="filter-itemtype {{sortType === 2 ? 'selected' : ''}}" @tap="showFilter('sort', 2, false)">
-          人气优先
+        <view class="filter-itemtype {{sortType === 2 ? 'selected' : ''}}" @tap="filterBySort(2)">
+          <text>人气优先</text>
         </view>
-        <view class="filter-itemtype {{sortType === 4 ? 'selected' : ''}}" @tap="showFilter('sort', 4, false)">
-          新书优先
+        <view class="filter-itemtype {{sortType === 4 ? 'selected' : ''}}" @tap="filterBySort(4)">
+          <text>新书优先</text>
         </view>
-        <view class="filter-itemtype filter {{filterVisible && filterType === 'catelog' ? 'selected' : ''}}" @tap="showFilter('catelog', 0, true)">
-          筛选<icon size="mini" name="filter-o"></icon>
+        <view class="filter-itemtype filter {{filterVisible && filterType === 'catelog' ? 'selected' : ''}}" @tap="showFilter('catelog')">
+          <text>筛选</text>
+          <icon size="mini" name="filter-o"></icon>
         </view>
       </view>
       <transition custom-class="filter-sublayer" name="slide-down" duration="300" show="{{filterVisible}}">
@@ -349,8 +351,7 @@
             </view>
             <view class="filter-catelog-bd">
               <block wx:for="{{ageTypes}}" wx:key="index">
-              <view class="filter-catelog-item {{item.checked ? 'selected' : ''}}"
-                    @tap="filterByTag('ageTypes', {{item.value}})">{{item.name}}</view>
+                <view class="filter-catelog-item {{item.checked ? 'selected' : ''}}" @tap="filterByTag('ageTypes', {{item.value}})">{{item.name}}</view>
               </block>
             </view>
             <view class="filter-catelog-hd">
@@ -411,7 +412,12 @@ export default class Index extends wepy.page {
     filterBarTop: 0,
     filterBarFixed: false,
     filterVisible: false,
+    filterType: null,
     queryParams: null,
+    sortType: 1,
+    ageValue: 0,
+    tagValue: 0,
+    langValue: 0,
     sortTypes: [
       {checked: true, value: 1, name: '综合排序'},
       {checked: false, value: 2, name: '人气优先'},
@@ -438,12 +444,7 @@ export default class Index extends wepy.page {
       {checked: false, value: 2, name: '中文注音'},
       {checked: false, value: 3, name: '英文'},
       {checked: false, value: 4, name: '中英文'}
-    ],
-    sortType: 1,
-    ageValue: 0,
-    tagValue: 0,
-    langValue: 0,
-    filterType: null
+    ]
   }
 
   computed = {
@@ -467,42 +468,29 @@ export default class Index extends wepy.page {
     viewDetail (e) {
       this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
     },
-    showFilter (type, value, showDrop) {
-      value = Number(value)
-      showDrop = showDrop === 'true'
-
-      if (showDrop && this.lastScrollTop !== Math.floor(this.filterBarTop) && !this.filterBarFixed) {
+    showFilter (type) {
+      if (this.lastScrollTop !== Math.floor(+this.filterBarTop) && !this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop + 1,
           duration: this.isIOS ? 300 : 0
         })
         setTimeout(() => {
-          this.filterType = type
-          if (!showDrop) {
-            this.sortType = value
-          }
           this.filterVisible = true
+          this.filterType = type
           this.$apply()
         }, this.isIOS ? 300 : 0)
       } else {
-        if (showDrop && type === this.filterType) {
+        if (type === this.filterType) {
           this.filterVisible = !this.filterVisible
         } else {
           this.filterVisible = true
         }
         this.filterType = type
-        if (!showDrop) {
-          this.sortType = value
-        }
-      }
-
-      if (type === 'sort' && !showDrop) {
-        this.hideFilterAndSearch()
       }
     },
     filterBySort (value) {
       this.filterType = 'sort'
-      this.sortType = value
+      this.sortType = +value
       this.hideFilterAndSearch()
     },
     filterByTag (type, value) {
@@ -545,7 +533,7 @@ export default class Index extends wepy.page {
 
   getFilterBarTop() {
     getNodeRect('#filter_bar').then(rect => {
-      this.filterBarTop = Number(rect.top)
+      this.filterBarTop = rect.top
     })
   }
 

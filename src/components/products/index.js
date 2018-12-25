@@ -9,7 +9,7 @@ Component({
     queryParams: {
       type: Object,
       observer (value) {
-        this.loadData(value)
+        this.loadData(value, true)
       }
     },
     resetTop: {
@@ -51,7 +51,7 @@ Component({
       let index = e.currentTarget.dataset.index
       this.triggerEvent('itemtap', { item: this.data.products[index], index })
     },
-    async loadData (params) {
+    async loadData (params, reset) {
       this.queryParams = params
       try {
         this.setData({
@@ -64,9 +64,10 @@ Component({
           this.setData({
             products: items
           })
-          if (this.data.inited) {
+          const {resetTop, inited} = this.data
+          if (reset && inited) {
             wx.pageScrollTo({
-              scrollTop: this.data.resetTop,
+              scrollTop: resetTop,
               duration: 0
             })
           }
