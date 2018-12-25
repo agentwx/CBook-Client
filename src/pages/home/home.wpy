@@ -469,7 +469,7 @@ export default class Index extends wepy.page {
       this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
     },
     showFilter (type) {
-      if (this.lastScrollTop !== Math.floor(+this.filterBarTop) && !this.filterBarFixed) {
+      if (!this.filterBarFixed) {
         wx.pageScrollTo({
           scrollTop: this.filterBarTop + 1,
           duration: this.isIOS ? 300 : 0
@@ -574,7 +574,6 @@ export default class Index extends wepy.page {
 
   onPageScroll (e) {
     let isFixed = false
-    this.lastScrollTop = e.scrollTop
 
     if (e.scrollTop > this.filterBarTop) {
       isFixed = true
