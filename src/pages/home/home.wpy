@@ -119,7 +119,7 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
   }
 
-  .filter-itemsort-wrap{
+  .filter-itemsort-wrap {
     padding-bottom: 12px;
   }
 
@@ -213,7 +213,7 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search" @tap="toSearch">
-      <icon name="find" custom-style=" font-size: 18px;color: #999;"></icon>
+      <icon name="find" custom-style="font-size:18px;color:#999;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者、图书的ISBN号" placeholder-class="input-placeholder" disabled></input>
     </view>
   </view>
