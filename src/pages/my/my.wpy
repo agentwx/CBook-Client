@@ -123,6 +123,7 @@
     }
   }
 </style>
+
 <template>
   <view class="ucbg-wrap">
     <image src="../../assets/images/ucenter_top_bg.jpg"></image>

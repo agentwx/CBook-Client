@@ -12,10 +12,8 @@ Component({
         this.loadData(value, true)
       }
     },
-    resetTop: {
-      type: Number,
-      value: 0
-    }
+    resetTop: Number,
+    searchMode: Boolean
   },
   data: {
     isLoading: true,
@@ -25,6 +23,11 @@ Component({
   attached () {
     this.pageNum = 1
     this.queryParams = null
+    if (this.data.searchMode) {
+      this.setData({
+        inited: true
+      })
+    }
     this.handlePage()
   },
   methods: {
@@ -54,23 +57,22 @@ Component({
     async loadData (params, reset) {
       this.queryParams = params
       try {
+        this.triggerEvent('beforeSend')
         this.setData({
           isLoading: true
         })
         this.pageNum = params.offset || this.pageNum
-        let res = await fetch.post('/sales/list', {...params, offset: this.pageNum}, false)
+        let url = this.data.searchMode ? '/sales/search' : '/sales/list'
+        let res = await fetch.post(url, { ...params, offset: this.pageNum }, false)
+        wx.nextTick(() => {
+          this.triggerEvent('success', { data: res })
+        })
         let items = res.datas.Items || []
         if (this.pageNum === 1) {
           this.setData({
             products: items
           })
-          const {resetTop, inited} = this.data
-          if (reset && inited) {
-            wx.pageScrollTo({
-              scrollTop: resetTop,
-              duration: 0
-            })
-          }
+          this.goTop()
         } else {
           this.data.products = this.data.products.concat(items)
           this.setData({
@@ -87,11 +89,14 @@ Component({
             isEmpty: true
           })
         }
+      } catch (e) {
+        this.triggerEvent('error')
       } finally {
         this.setData({
           isLoading: false,
           inited: true
         })
+        this.triggerEvent('complete')
       }
     },
     reloadData () {
@@ -99,6 +104,15 @@ Component({
     },
     appendData () {
       return this.loadData({...this.queryParams, offset: null})
+    },
+    goTop () {
+      const { resetTop, inited } = this.data
+      if (reset && inited && typeof resetTop === 'number') {
+        wx.pageScrollTo({
+          scrollTop: resetTop,
+          duration: 0
+        })
+      }
     }
   }
 })

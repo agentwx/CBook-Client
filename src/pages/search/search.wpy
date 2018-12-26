@@ -86,94 +86,6 @@
       color: #555;
     }
   }
-
-  .product-panel {
-    position: relative;
-    .flex();
-    padding: 10px;
-
-    &:after {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-  }
-
-  .product-cover {
-    .flex-center();
-    width: 100px;
-    height: 127px;
-    margin-left: 5px;
-    margin-right: 15px;
-    overflow: hidden;
-
-    > image {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .product-panel-body {
-    flex: 1;
-    .flex();
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    overflow: hidden;
-
-    .product-caption {
-      font-size: 15px;
-      font-weight: bold;
-      .ellipsis();
-      margin-bottom: 5px;
-    }
-
-    .product-desc {
-      .light-font();
-      .ellipsis();
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 2px;
-    }
-
-    .product-tags {
-      margin-top: 3px;
-    }
-  }
-
-  .product-priceInfo {
-    .flex-v-center();
-
-    .product-price {
-      font-size: 16px;
-      font-weight: bold;
-      color: #eb5a21;
-
-      .unit {
-        font-weight: normal;
-        font-size: 12px;
-      }
-    }
-
-    .product-tax {
-      color: #27a1f8;
-    }
-
-    .split {
-      width: 0;
-      display: inline-block;
-      border-left: .5px solid #ddd;
-      margin-left: 8px;
-      margin-right: 8px;
-      height: 15px;
-    }
-  }
-
-  .search-empty {
-    .flex-center();
-    color: #999;
-    margin-top: 80px;
-  }
 </style>
 
 <template>
@@ -202,51 +114,15 @@
     </view>
   </view>
 
-  <view class="product-listview" hidden="{{!isSearchShow}}">
-    <repeat for="{{products}}" key="index">
-      <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" @tap="viewDetail({{item}})">
-        <view class="product-cover">
-          <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
-        </view>
-        <view class="product-panel-body">
-          <view class="product-maininfo">
-            <view class="product-caption">{{item.name}}</view>
-            <view class="product-desc">{{item.author}}</view>
-          </view>
-          <view class="product-subInfo">
-            <raty value="{{item.doubanScore}}"></raty>
-            <view class="product-tags">
-              <tag wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
-              <tag wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
-              <tag wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
-            </view>
-            <view class="product-priceInfo">
-              <view class="product-price">
-                <text class="unit">￥</text>
-                <text>{{item.price}}</text>
-              </view>
-              <view class="split"></view>
-              <view class="product-tax">星币价 ￥{{item.starPrice}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </repeat>
-  </view>
-
-  <view class="search-empty" wx:if="{{isLoading === false && isSearchShow && products.length === 0}}">
-    <icon name="empty" size="large"></icon>
-    <text>抱歉，未查询到相关内容!</text>
+  <view hidden="{{!isSearchShow}}">
+    <products query-params="{{queryParams}}" search-mode="{{true}}" @success="searchSuccess" @itemtap="viewDetail"></products>
   </view>
 
   <gotop />
-  <weui-loading visible="{{products.length > 4 && isSearchShow}}" empty="{{pageNum > 1 && !isLoading && isEmpty}}"></weui-loading>
-  <modal-spinner wx:if="{{isLoading && isModalSpinShow}}" />
 </template>
 
 <script>
   import wepy from 'wepy'
-  import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
   import { connect, getStore } from 'wepy-redux'
 
@@ -262,23 +138,16 @@
       navigationBarTitleText: '星月童书',
       enablePullDownRefresh: true,
       usingComponents: {
-        'modal-spinner': '/components/modal-spinner/index',
-        'weui-loading': '/components/weui-loading/index',
-        'raty': '/components/raty/index',
         'icon': '/components/icon/index',
-        'tag': '/components/tag/index',
+        'products': '/components/products/index',
         'gotop': '/components/gotop/index'
       }
     }
 
     data = {
-      isLoading: null,
-      isEmpty: false,
-      pageNum: 1,
+      queryParams: null,
       isSearchShow: false,
-      isModalSpinShow: false,
-      searchVal: '',
-      products: []
+      searchVal: ''
     }
 
     computed = {
@@ -291,17 +160,17 @@
       hideSearch () {
         this.isSearchShow = false
       },
-      viewDetail (item) {
-        this.$navigate('/pages/detail/detail', { product: JSON.stringify(item) })
+      viewDetail (e) {
+        this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
       },
       onSearchChange (e) {
         this.searchVal = e.detail.value
       },
       doSearch () {
-        this.reloadProducts()
+        this.loadProducts(this.searchVal)
       },
       doSearchByTag (name) {
-        this.reloadProducts(name)
+        this.loadProducts(name)
       },
       cancelSearch () {
         this.isSearchShow = true
@@ -313,65 +182,29 @@
         store.dispatch({
           type: 'CLEAR_HISTORY'
         })
+      },
+      searchSuccess () {
+        store.dispatch({
+          type: 'ADD_HISTORY',
+          payload: this.searchVal
+        })
       }
     }
 
     async loadProducts (key) {
-      let params = {
-        offset: this.pageNum,
-        limit: 10,
-        key
-      }
-
       if (key === '') {
         return toast.error('请输入搜索关键字')
       }
 
-      try {
-        this.searchVal = key
-        this.isSearchShow = true
-        this.isLoading = true
-        let res = await fetch.post('/sales/search', params, false)
-        let items = res.datas.Items || []
-        if (this.pageNum === 1) {
-          this.products = items
-        } else {
-          this.products = this.products.concat(items)
-        }
-        store.dispatch({
-          type: 'ADD_HISTORY',
-          payload: key
-        })
-        if (items.length > 0) {
-          this.pageNum++
-          this.isEmpty = false
-        } else {
-          this.isEmpty = true
-        }
-      } finally {
-        this.isLoading = false
-        this.isModalSpinShow = false
-        this.$apply()
+      let params = {
+        offset: 1,
+        limit: 10,
+        key
       }
-    }
 
-    async reloadProducts (key = this.searchVal) {
-      this.pageNum = 1
-      await this.loadProducts(key)
-    }
-
-    onReachBottom () {
-      if (this.isLoading) return
-      this.loadProducts(this.searchVal)
-    }
-
-    async onPullDownRefresh () {
-      if (this.searchVal === '') {
-        return wx.stopPullDownRefresh()
-      }
-      this.isModalSpinShow = true
-      await this.reloadProducts()
-      wx.stopPullDownRefresh()
+      this.searchVal = key
+      this.isSearchShow = true
+      this.queryParams = params
     }
   }
 </script>

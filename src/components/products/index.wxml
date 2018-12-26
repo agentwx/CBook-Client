@@ -30,7 +30,7 @@
   </block>
 </view>
 
-<view class="search-empty" wx:if="{{isLoading === false && products.length === 0}}">
+<view class="search-empty" wx:if="{{!isLoading && products.length === 0}}">
   <icon name="empty" size="large"></icon>
   <text>抱歉，未查询到相关内容!</text>
 </view>
