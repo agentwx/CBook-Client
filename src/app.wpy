@@ -156,7 +156,7 @@ export default class extends wepy.app {
     this.use('promisify')
   }
 
-  onLaunch() {
+  async onLaunch() {
     this.wxlogin()
 
     const { recycles, shopcart } = initialState
@@ -176,15 +176,15 @@ export default class extends wepy.app {
       })
     }
 
-    wepy.getSystemInfo().then(res => {
-      const SDKVersion = parseFloat(res.SDKVersion.replace(/\./g, ''))
-      if (SDKVersion < 223) {
-        wx.showModal({
-          content: '您当前版本的微信不能满足本小程序的运行要求，请升级!',
-          showCancel: false
-        })
-      }
-    })
+    const sys = await wepy.getSystemInfo()
+    const SDKVersion = parseFloat(sys.SDKVersion.replace(/\./g, ''))
+
+    if (SDKVersion < 223) {
+      wx.showModal({
+        content: '您当前版本的微信不能满足本小程序的运行要求，请升级!',
+        showCancel: false
+      })
+    }
   }
 
   sleep (s) {
@@ -264,6 +264,7 @@ export default class extends wepy.app {
       this.dispatchReady()
     }
   }
+
   dispatchReady () {
     this.appReady = true
     if (typeof this.readyCallback === 'function') {
