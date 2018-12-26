@@ -93,7 +93,7 @@ Component({
     },
     goTop (reset) {
       const { resetTop, inited } = this.data
-      if (reset && inited && typeof resetTop === 'number') {
+      if (reset && inited) {
         wx.pageScrollTo({
           scrollTop: resetTop,
           duration: 0
