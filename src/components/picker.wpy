@@ -38,16 +38,6 @@
       height: @small;
     }
 
-    .icon {
-      padding: 0;
-
-      .icon-img {
-        width: 10px !important;
-        height: 10px !important;
-        vertical-align: middle;
-      }
-    }
-
     .placeholder {
       color: #999;
     }
@@ -73,7 +63,7 @@
       <text>{{items[selectIndex]}}</text>
       <view class="picker-actions">
         <view class="iconfont icon-close-circle" style="color: #999;margin-right: 5px;" catchtap="reset" wx:if="{{resetable && range[selectIndex].value !== ''}}"></view>
-        <icon name="arrow-down" color="#999"></icon>
+        <icon name="arrow-down" size="mini" color="#999"></icon>
       </view>
     </view>
     <slot wx:else></slot>

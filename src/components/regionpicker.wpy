@@ -69,7 +69,7 @@
             <text class="picker-value">{{valueStr}}</text>
             <view class="picker-actions">
               <view class="iconfont icon-close-circle" style="color: #999;margin-right: 5px;" catchtap="reset" wx:if="{{resetable && valueStr !== ''}}"></view>
-              <iconangle name="arrow-down" color="#999"></iconangle>
+              <iconangle name="arrow-down" size="mini" color="#999"></iconangle>
             </view>
           </view>
         </view>
