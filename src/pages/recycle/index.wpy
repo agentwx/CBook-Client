@@ -372,7 +372,7 @@
         <view class="intro-item {{expItem1 ? 'show' : ''}}">
           <view class="intro-item-bd">
             <view class="intro-img">
-              <image src="../../images/recycle_1.png"></image>
+              <image src="../../assets/images/recycle_1.png"></image>
             </view>
             <view class="intro-aside">
               <view class="intro-text">手机扫码</view>
@@ -393,7 +393,7 @@
         <view class="intro-item">
           <view class="intro-item-bd">
             <view class="intro-img">
-              <image src="../../images/recycle_2.png"></image>
+              <image src="../../assets/images/recycle_2.png"></image>
             </view>
             <view class="intro-aside">
               <view class="intro-text">快递免费</view>
@@ -405,7 +405,7 @@
         <view class="intro-item {{expItem2 ? 'show' : ''}}">
           <view class="intro-item-bd">
             <view class="intro-img">
-              <image src="../../images/recycle_3.png"></image>
+              <image src="../../assets/images/recycle_3.png"></image>
             </view>
             <view class="intro-aside">
               <view class="intro-text">审核通过</view>
@@ -489,7 +489,7 @@
         <view class="text">不含“-”符号</view>
       </view>
       <view class="manual-hint-img">
-        <image src="../../images/manual_hint.png"></image>
+        <image src="../../assets/images/manual_hint.png"></image>
       </view>
       <view class="manual-field">
         <input type="text" class="manual-input" value="{{isbn}}" placeholder="请输入书箱的ISBN号" @input="changeIsbn" />

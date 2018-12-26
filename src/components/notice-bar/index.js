@@ -1,5 +1,5 @@
-const computedBehavior = require('miniprogram-computed')
-const { getNodeRect } = require('../../utils/util')
+import computedBehavior from 'miniprogram-computed'
+import { getNodeRect } from '../../utils/util'
 
 const coerce = (v) =>
   typeof v === 'string'

@@ -1,4 +1,4 @@
-const computedBehavior = require('miniprogram-computed')
+import computedBehavior from 'miniprogram-computed'
 
 Component({
   behaviors: [computedBehavior],
@@ -22,6 +22,18 @@ Component({
       type: Number,
       value: 0
     },
+    color: {
+      type: String,
+      value: '#d3d3d3'
+    },
+    activeColor: {
+      type: String,
+      value: '#faa431'
+    },
+    size: {
+      type: String,
+      value: '16px'
+    },
     readonly: {
       type: [Boolean, String],
       value: true
@@ -39,7 +51,7 @@ Component({
   },
   methods: {
     change (e) {
-      if (!this.readonly) {
+      if (!this.data.readonly) {
         const ratyIndex = e.currentTarget.dataset.index
         this.setData({
           value: ratyIndex + 1

@@ -1,5 +1,5 @@
 import computedBehavior from 'miniprogram-computed'
-import {touch} from '../../mixins/touch'
+import { touch } from '../../mixins/touch'
 
 const THRESHOLD = 0.15
 

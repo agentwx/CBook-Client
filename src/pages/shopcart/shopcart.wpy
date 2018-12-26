@@ -329,7 +329,7 @@
   </block>
   <block wx:else>
     <view class="empty-layer">
-      <image src="../../images/cart-empty-bg.png"></image>
+      <image src="../../assets/images/cart-empty-bg.png"></image>
       <view class="empty-action">
         <view class="empty-text">购物车空空如也~</view>
         <btn type="plain" custom-class="goshop-btn" @tap="goShopping">去逛逛</btn>

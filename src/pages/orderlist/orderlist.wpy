@@ -189,7 +189,7 @@
 
   <view class="empty-layer-wrap" wx:if="{{!isLoading && orders.length === 0}}">
     <view class="empty-layer">
-      <image src="../../images/orders_empty_bg.png"></image>
+      <image src="../../assets/images/orders_empty_bg.png"></image>
       <view class="empty-action">
         <view class="empty-text">暂无订单~</view>
       </view>

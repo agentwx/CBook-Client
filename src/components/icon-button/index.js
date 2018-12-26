@@ -1,11 +1,5 @@
-const computedBehavior = require('miniprogram-computed')
-const SIZE_MAP = {
-  'large': '32px',
-  'middle': '22px',
-  'normal': '18px',
-  'small': '15px',
-  'mini': '12px'
-}
+import computedBehavior from 'miniprogram-computed'
+import { SIZE_MAP } from '../../constants/size'
 
 Component({
   behaviors: [computedBehavior],

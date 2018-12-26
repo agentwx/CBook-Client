@@ -134,7 +134,7 @@
 
   <view class="empty-layer-wrap" wx:if="{{!isLoading && addressList.length === 0}}">
     <view class="empty-layer">
-      <image src="../../images/address_empty_bg.png"></image>
+      <image src="../../assets/images/address_empty_bg.png"></image>
       <view class="empty-action">
         <view class="empty-text">暂无地址~</view>
       </view>

@@ -173,12 +173,9 @@
     .flex-center();
     color: #999;
     margin-top: 80px;
-
-    icon {
-      margin-right: 10px;
-    }
   }
 </style>
+
 <template>
   <view class="home-search-wrap">
     <view class="home-search">

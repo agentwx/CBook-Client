@@ -8,12 +8,6 @@
 
     .raty-item {
       margin-right: 2x;
-      color: #d3d3d3;
-      font-size: 16px;
-
-      &.active {
-        color: #faa431;
-      }
     }
 
     .raty-value {
@@ -27,7 +21,7 @@
 <template>
   <view class="raty-wrap {{readonly ? 'readonly' : ''}}" style="{{style}}">
     <repeat for="{{max}}">
-      <text class="raty-item iconfont icon-star {{index < value ? 'active' : ''}}" @tap="pickRaty({{index}})"></text>
+      <text class="raty-item iconfont icon-star" style="{{iconSize}};color:{{index < ratyIndex ? activeColor : color}}" @tap="change({{index}})"></text>
     </repeat>
     <text class="raty-value">{{value}}</text>
   </view>
@@ -35,6 +29,7 @@
 
 <script>
   import wepy from 'wepy'
+  import { SIZE_MAP } from '../constants/size'
 
   const coerce = t =>
     typeof t === 'string' ? JSON.parse(t) : t
@@ -55,6 +50,18 @@
         default: 0,
         coerce: v => +v
       },
+      color: {
+        type: String,
+        default: '#d3d3d3'
+      },
+      activeColor: {
+        type: String,
+        default: '#faa431'
+      },
+      size: {
+        type: String,
+        default: '16px'
+      },
       readonly: {
         type: [Boolean, String],
         default: true,
@@ -63,16 +70,19 @@
     }
 
     computed = {
+      iconSize () {
+        return `font-size:${SIZE_MAP[this.size] || this.size}`
+      },
       ratyIndex () {
         return Math.floor(this.value)
       }
     }
 
     methods = {
-      pickRaty (rateIndex, $e) {
+      change (rateIndex, $e) {
         if (!this.readonly) {
           this.value = rateIndex + 1
-          this.$emit('onPick', this.value, $e)
+          this.$emit('change', this.value, $e)
         }
       }
     }

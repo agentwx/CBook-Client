@@ -1,4 +1,4 @@
-<view class="icon {{customClass}}" style="width:{{bound}};height:{{bound}};{{iconSize}}{{customStyle}}">
+<view class="icon {{customClass}}" style="{{iconSize}}{{customStyle}}">
   <text wx:if="{{type=='iconfont'}}" class="iconfont icon-{{name}}" style="{{iconColor}}"></text>
-  <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../../images/{{name}}.{{type}}"></image>
+  <image wx:if="{{type=='svg'||type=='png'||type=='gif'}}" class="icon-img" src="../../assets/images/{{name}}.{{type}}"></image>
 </view>

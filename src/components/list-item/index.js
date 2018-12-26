@@ -1,4 +1,4 @@
-const computedBehavior = require('miniprogram-computed')
+import computedBehavior from 'miniprogram-computed'
 
 const coerce = (v) =>
   typeof v === 'string'

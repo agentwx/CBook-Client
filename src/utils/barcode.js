@@ -9,9 +9,8 @@ var SET_CODEA = 101
 var SET_CODEB = 100
 var SET_STOP = 106
 
-
 var REPLACE_CODES = {
-  CHAR_TILDE: CODE_FNC1 //~ corresponds to FNC1 in GS1-128 standard
+  CHAR_TILDE: CODE_FNC1 // ~ corresponds to FNC1 in GS1-128 standard
 }
 
 var CODESET = {
@@ -46,14 +45,14 @@ exports.code128 = function (ctx, text, width, height) {
   var y = g.area.top
   for (var i = 0; i < codes.length; i++) {
     var c = codes[i]
-    //two bars at a time: 1 black and 1 white
+    // two bars at a time: 1 black and 1 white
     for (var bar = 0; bar < 8; bar += 2) {
       var barW = PATTERNS[c][bar] * barWeight
       // var barH = height - y - this.border;
       var barH = height - y
       var spcW = PATTERNS[c][bar + 1] * barWeight
 
-      //no need to draw if 0 width
+      // no need to draw if 0 width
       if (barW > 0) {
         g.fillFgRect(x, y, barW, barH)
       }
@@ -65,15 +64,13 @@ exports.code128 = function (ctx, text, width, height) {
   ctx.draw()
 }
 
-
 function stringToCode128(text) {
-
   var barc = {
     currcs: CODESET.C
   }
 
   var bytes = getBytes(text)
-  //decide starting codeset
+  // decide starting codeset
   var index = bytes[0] == CHAR_TILDE ? 1 : 0
 
   var csa1 = bytes.length > 0 ? codeSetAllowedFor(bytes[index++]) : CODESET.AB
@@ -81,8 +78,8 @@ function stringToCode128(text) {
   barc.currcs = getBestStartSet(csa1, csa2)
   barc.currcs = perhapsCodeC(bytes, barc.currcs)
 
-  //if no codeset changes this will end up with bytes.length+3
-  //start, checksum and stop
+  // if no codeset changes this will end up with bytes.length+3
+  // start, checksum and stop
   var codes = new Array()
 
   switch (barc.currcs) {
@@ -99,23 +96,23 @@ function stringToCode128(text) {
 
 
   for (var i = 0; i < bytes.length; i++) {
-    var b1 = bytes[i] //get the first of a pair
-    //should we translate/replace
+    var b1 = bytes[i] // get the first of a pair
+    // should we translate/replace
     if (b1 in REPLACE_CODES) {
       codes.push(REPLACE_CODES[b1])
-      i++ //jump to next
+      i++ // jump to next
       b1 = bytes[i]
     }
 
-    //get the next in the pair if possible
+    // get the next in the pair if possible
     var b2 = bytes.length > (i + 1) ? bytes[i + 1] : -1
 
     codes = codes.concat(codesForChar(b1, b2, barc.currcs))
-    //code C takes 2 chars each time
+    // code C takes 2 chars each time
     if (barc.currcs == CODESET.C) i++
   }
 
-  //calculate checksum according to Code 128 standards
+  // calculate checksum according to Code 128 standards
   var checksum = codes[0]
   for (var weight = 1; weight < codes.length; weight++) {
     checksum += (weight * codes[weight])
@@ -124,18 +121,18 @@ function stringToCode128(text) {
 
   codes.push(SET_STOP)
 
-  //encoding should now be complete
+  // encoding should now be complete
   return codes
 
   function getBestStartSet(csa1, csa2) {
-    //tries to figure out the best codeset
-    //to start with to get the most compact code
+    // tries to figure out the best codeset
+    // to start with to get the most compact code
     var vote = 0
     vote += csa1 == CODESET.A ? 1 : 0
     vote += csa1 == CODESET.B ? -1 : 0
     vote += csa2 == CODESET.A ? 1 : 0
     vote += csa2 == CODESET.B ? -1 : 0
-    //tie goes to B due to my own predudices
+    // tie goes to B due to my own predudices
     return vote > 0 ? CODESET.A : CODESET.B
   }
 
@@ -148,8 +145,8 @@ function stringToCode128(text) {
     return CODESET.C
   }
 
-  //chr1 is current byte
-  //chr2 is the next byte to process. looks ahead.
+  // chr1 is current byte
+  // chr2 is the next byte to process. looks ahead.
   function codesForChar(chr1, chr2, currcs) {
     var result = []
     var shifter = -1
@@ -161,7 +158,7 @@ function stringToCode128(text) {
           currcs = CODESET.B
         }
         else if ((chr2 != -1) && !charCompatible(chr2, currcs)) {
-          //need to check ahead as well
+          // need to check ahead as well
           if (charCompatible(chr2, CODESET.A)) {
             shifter = SET_CODEA
             currcs = CODESET.A
@@ -174,9 +171,9 @@ function stringToCode128(text) {
       }
     }
     else {
-      //if there is a next char AND that next char is also not compatible
+      // if there is a next char AND that next char is also not compatible
       if ((chr2 != -1) && !charCompatible(chr2, currcs)) {
-        //need to switch code sets
+        // need to switch code sets
         switch (currcs) {
           case CODESET.A:
             shifter = SET_CODEB
@@ -189,19 +186,19 @@ function stringToCode128(text) {
         }
       }
       else {
-        //no need to shift code sets, a temporary SHIFT will suffice
+        // no need to shift code sets, a temporary SHIFT will suffice
         shifter = SET_SHIFT
       }
     }
 
-    //ok some type of shift is nessecary
+    // ok some type of shift is nessecary
     if (shifter != -1) {
       result.push(shifter)
       result.push(codeValue(chr1))
     }
     else {
       if (currcs == CODESET.C) {
-        //include next as well
+        // include next as well
         result.push(codeValue(chr1, chr2))
       }
       else {
@@ -214,7 +211,7 @@ function stringToCode128(text) {
   }
 }
 
-//reduce the ascii code to fit into the Code128 char table
+// reduce the ascii code to fit into the Code128 char table
 function codeValue(chr1, chr2) {
   if (typeof chr2 == "undefined") {
     return chr1 >= 32 ? chr1 - 32 : chr1 + 64
@@ -227,7 +224,7 @@ function codeValue(chr1, chr2) {
 function charCompatible(chr, codeset) {
   var csa = codeSetAllowedFor(chr)
   if (csa == CODESET.ANY) return true
-  //if we need to change from current
+  // if we need to change from current
   if (csa == CODESET.AB) return true
   if (csa == CODESET.A && codeset == CODESET.A) return true
   if (csa == CODESET.B && codeset == CODESET.B) return true
@@ -236,15 +233,15 @@ function charCompatible(chr, codeset) {
 
 function codeSetAllowedFor(chr) {
   if (chr >= 48 && chr <= 57) {
-    //0-9
+    // 0-9
     return CODESET.ANY
   }
   else if (chr >= 32 && chr <= 95) {
-    //0-9 A-Z
+    // 0-9 A-Z
     return CODESET.AB
   }
   else {
-    //if non printable
+    // if non printable
     return chr < 32 ? CODESET.A : CODESET.B
   }
 }
@@ -266,8 +263,8 @@ var Graphics = function (ctx, width, height) {
   }
 
   this.ctx = ctx
-  this.fg = "#000000"
-  this.bg = "#ffffff"
+  this.fg = '#000000'
+  this.bg = '#ffffff'
 
   // fill background
   this.fillBgRect(0, 0, width, height)
@@ -276,7 +273,7 @@ var Graphics = function (ctx, width, height) {
   this.fillBgRect(0, this.border_size, width, height - this.border_size * 2)
 }
 
-//use native color
+// use native color
 Graphics.prototype._fillRect = function (x, y, width, height, color) {
   this.ctx.setFillStyle(color)
   this.ctx.fillRect(x, y, width, height)

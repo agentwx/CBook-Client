@@ -1,4 +1,4 @@
-const {transition} = require('../../mixins/transition')
+import { transition } from '../../mixins/transition'
 
 Component({
   behaviors: [transition(false)],

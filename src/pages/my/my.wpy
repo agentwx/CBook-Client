@@ -125,7 +125,7 @@
 </style>
 <template>
   <view class="ucbg-wrap">
-    <image src="../../images/ucenter_top_bg.jpg"></image>
+    <image src="../../assets/images/ucenter_top_bg.jpg"></image>
   </view>
 
   <view class="uc-userinfo">
