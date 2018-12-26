@@ -155,7 +155,7 @@
   </notice-bar>
 
   <view class="address-selection" @tap="selectAddress">
-    <icon name="geo" color="#777" size="middle"/>
+    <icon name="geo" color="#777" size="middle" />
     <view class="addr-slbd" wx:if="{{address}}">
       <view class="addr-sltitle">
         <text class="addr-username">{{address.name}}</text>
@@ -166,7 +166,7 @@
     <view class="addr-slbd addr-slbd2" wx:if="{{address === null}}">
       {{orderSource === 'recycle' ? '请选择取件地址...' : '请选择收货地址...'}}
     </view>
-    <icon name="arrow-right-o" color="#888" custom-style="font-size: 18px"/>
+    <icon name="arrow-right" color="#999" size="17px" />
   </view>
 
   <datetime-picker
