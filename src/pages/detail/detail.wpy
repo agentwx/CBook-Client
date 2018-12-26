@@ -114,7 +114,7 @@
 
       &.shake {
         .icon-item {
-          .animation(tada 1s);
+          animation: tada 1s;
         }
       }
 
@@ -122,7 +122,7 @@
         position: absolute;
         left: 65%;
         top: -5px;
-        .animation(zoom-in .4s ease);
+        animation: zoom-in .4s ease;
       }
     }
 
@@ -354,7 +354,7 @@
   <view class="spliter"></view>
 
   <view class="detail-action-bar">
-    <view id="cart" class="action-item action-cart {{buyTriggered ? 'shake' : ''}}" @tap="goToCart">
+    <view id="cart" class="action-item action-cart" :class="{'shake': buyTriggered}" @tap="goToCart">
       <icon-item icon="cart-o" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
       <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
     </view>
@@ -581,7 +581,7 @@
 
     async loadData (isbn) {
       try {
-        let res = await fetch.post('/bookinfo/detail', { isbn })
+        let res = await fetch.post('/bookinfo/detail', { isbn }, false)
         this.detail = res.datas
         this.contentBriefStr = res.datas.contentBrief
         this.authorBriefStr = res.datas.authorBrief

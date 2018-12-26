@@ -361,15 +361,15 @@
 
   .hint-del {
     overflow: visible !important;
-    .animation(swipe-hint 2.5s 1s cubic-bezier(0.18, 0.89, 0.32, 1));
+    animation: swipe-hint 2.5s 1s cubic-bezier(0.18, 0.89, 0.32, 1);
   }
 </style>
 
 <template>
   <block wx:if="{{totalCount === 0}}">
-    <view class="recycle-index-wrap {{expand ? 'expand' : ''}}">
+    <view class="recycle-index-wrap" :class="{'expand': expand}">
       <view class="recycle-intro">
-        <view class="intro-item {{expItem1 ? 'show' : ''}}">
+        <view class="intro-item" :class="{'show': expItem1}">
           <view class="intro-item-bd">
             <view class="intro-img">
               <image src="../../assets/images/recycle_1.png"></image>
@@ -402,7 +402,7 @@
           </view>
         </view>
 
-        <view class="intro-item {{expItem2 ? 'show' : ''}}">
+        <view class="intro-item" :class="{'show': expItem2}">
           <view class="intro-item-bd">
             <view class="intro-img">
               <image src="../../assets/images/recycle_3.png"></image>
@@ -435,16 +435,13 @@
     </view>
   </block>
   <block wx:else>
-    <notice-bar
-      showArrow="false"
-      wx:if="{{remainCount > 0 || totalPrice < 200}}"
-    >
+    <notice-bar showArrow="false" wx:if="{{remainCount > 0 || totalPrice < 200}}">
       <text>继续扫码，还需{{remainCount}}本或预计收入满200元即可下单</text>
     </notice-bar>
     <view class="orders-wrap">
       <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
-          <view class="order-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}">
+          <view class="order-panel" :class="{'hairline--bottom': index < products.length - 1}">
             <view class="order-cover">
               <image src="{{item.smallImageUrl}}" mode="widthFix" layload="true"></image>
             </view>
@@ -477,7 +474,7 @@
         <view class="income">预计收入￥{{totalPrice}}</view>
         <view class="hint">请继续扫描哦~</view>
       </view>
-      <view class="action-button {{totalCount === 0 ? 'disabled' : ''}}" @tap="nextStep">下一步({{totalCount}})</view>
+      <view class="action-button" :class="{'disabled': totalCount === 0}" @tap="nextStep">下一步({{totalCount}})</view>
     </view>
   </block>
 

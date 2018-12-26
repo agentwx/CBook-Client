@@ -1,5 +1,5 @@
 import fetch from '../../service/fetch'
-import { getCurrentPage } from '../../utils/util'
+import { getCurrentPage, toast } from '../../utils/util'
 
 Component({
   options: {
@@ -13,7 +13,7 @@ Component({
       }
     },
     resetTop: Number,
-    searchMode: Boolean
+    api: String
   },
   data: {
     isLoading: true,
@@ -23,11 +23,6 @@ Component({
   attached () {
     this.pageNum = 1
     this.queryParams = null
-    if (this.data.searchMode) {
-      this.setData({
-        inited: true
-      })
-    }
     this.handlePage()
   },
   methods: {
@@ -58,37 +53,28 @@ Component({
       this.queryParams = params
       try {
         this.triggerEvent('beforeSend')
+        this.pageNum = params.offset || this.pageNum
         this.setData({
           isLoading: true
         })
-        this.pageNum = params.offset || this.pageNum
-        let url = this.data.searchMode ? '/sales/search' : '/sales/list'
-        let res = await fetch.post(url, { ...params, offset: this.pageNum }, false)
-        wx.nextTick(() => {
-          this.triggerEvent('success', { data: res })
-        })
+        let res = await fetch.post(this.data.api, { ...params, offset: this.pageNum }, false)
         let items = res.datas.Items || []
         if (this.pageNum === 1) {
           this.setData({
             products: items
           })
-          this.goTop()
+          this.goTop(reset)
         } else {
-          this.data.products = this.data.products.concat(items)
           this.setData({
-            products: this.data.products
+            products: this.data.products.concat(items)
           })
         }
         if (items.length > 0) {
           this.pageNum++
-          this.setData({
-            isEmpty: false
-          })
         } else {
-          this.setData({
-            isEmpty: true
-          })
+          toast.error('没有更多数据了')
         }
+        this.triggerEvent('success', { data: res })
       } catch (e) {
         this.triggerEvent('error')
       } finally {
@@ -105,7 +91,7 @@ Component({
     appendData () {
       return this.loadData({...this.queryParams, offset: null})
     },
-    goTop () {
+    goTop (reset) {
       const { resetTop, inited } = this.data
       if (reset && inited && typeof resetTop === 'number') {
         wx.pageScrollTo({

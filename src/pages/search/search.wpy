@@ -91,13 +91,13 @@
 <template>
   <view class="home-search-wrap">
     <view class="home-search">
-      <icon name="find" custom-style="font-size: 18px;color: #999;"></icon>
+      <icon name="find" custom-style="font-size:18px;color:#999;"></icon>
       <input type="text" class="search-input" placeholder="搜索书名、作者、图书的ISBN号" placeholder-class="input-placeholder" value="{{searchVal}}" focus="true" @focus="hideSearch" @input="onSearchChange" @confirm="doSearch" confirm-type="search" />
       <view class="clear-search" hidden="{{isSearchEmpty}}" @tap="clearSearch">
         <icon name="close-circle" color="#999"></icon>
       </view>
     </view>
-    <view class="search-cancel {{!isSearchShow ? 'open' : ''}}" @tap="cancelSearch">取消</view>
+    <view class="search-cancel" :class="{'open': !isSearchShow}" @tap="cancelSearch">取消</view>
   </view>
 
   <view class="search-sublayer" wx:if="{{!isSearchShow}}">
@@ -115,7 +115,7 @@
   </view>
 
   <view hidden="{{!isSearchShow}}">
-    <products query-params="{{queryParams}}" search-mode="{{true}}" @success="searchSuccess" @itemtap="viewDetail"></products>
+    <products api="/sales/search" query-params="{{queryParams}}" @success="searchSuccess" @itemtap="viewDetail"></products>
   </view>
 
   <gotop />
@@ -129,7 +129,7 @@
   const store = getStore()
 
   @connect({
-    history ({history}) {
+    history ({ history }) {
       return history
     }
   })
@@ -191,7 +191,7 @@
       }
     }
 
-    async loadProducts (key) {
+    loadProducts (key) {
       if (key === '') {
         return toast.error('请输入搜索关键字')
       }
