@@ -3,18 +3,23 @@
 
   .tag-item {
     display: inline-block;
-    padding: 3px 8px;
+    padding: 6px 14px;
     border-radius: 20px;
     background-color: #f2f3f7;
     color: #888;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 5px;
     margin-bottom: 5px;
+
+    &.mini {
+      padding: 3px 8px;
+      font-size: 12px;
+    }
   }
 </style>
 
 <template>
-  <view class="tag-item" style="{{style}}"><slot></slot></view>
+  <view class="tag-item {{size}}" style="{{style}}"><slot></slot></view>
 </template>
 
 <script>
@@ -25,6 +30,10 @@
       style: {
         type: String,
         default: ''
+      },
+      size: {
+        type: String,
+        value: 'normal'
       }
     }
 

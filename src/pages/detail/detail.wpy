@@ -60,6 +60,38 @@
     }
   }
 
+  .comments-count {
+    margin-left: 10px;
+  }
+
+  .comments-panel {
+    padding-bottom: 15px;
+  }
+
+  .comments-hd {
+    font-size: 15px;
+    margin-bottom: 10px;
+
+    .bold {
+      font-weight: bold;
+      margin-right: 4px;
+    }
+  }
+
+  .comment-btn {
+    width: 60%;
+    .marign-auto();
+  }
+
+  .comment-hint {
+    text-align: center;
+    margin-top: 10px;
+
+    .h {
+      color: #f90;
+    }
+  }
+
   .product-info {
     padding-left: 10px;
     padding-right: 10px;
@@ -306,60 +338,82 @@
     background-color: #ff0000;
     border-radius: 50%;
   }
-
 </style>
 <template>
   <view class="detail-image-wrap">
     <image mode="aspectFit" src="{{product.smallImageUrl}}" lazyload="true"></image>
   </view>
-  <view class="detail-pdinfo-wrap">
-    <view class="detail-title">{{product.name}}</view>
-    <view class="detail-salesInfo">
-      <view class="sale-price">
-        <view class="now-price">
-          <text class="unit">￥</text>
-          <text>{{product.price}}</text>
-        </view>
-        <view class="orig-price">￥{{product.costPrice}}</view>
+
+  <view class="detail-title">
+    {{product.name}}
+  </view>
+
+  <view class="detail-salesInfo">
+    <view class="sale-price">
+      <view class="now-price">
+        <text class="unit">￥</text>
+        <text>{{product.price}}</text>
       </view>
-      <view class="sales-aside">
-        <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
-        <view class="sales-share">
-          <icon name="share"></icon>
-          <text>分享</text>
-        </view>
+      <view class="orig-price">￥{{product.costPrice}}</view>
+    </view>
+    <view class="sales-aside">
+      <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
+      <view class="sales-share">
+        <icon name="share"></icon>
+        <text>分享</text>
       </view>
     </view>
+  </view>
 
-    <view class="spliter"></view>
+  <view class="spliter"></view>
 
-    <view class="product-info">
-      <view class="hairline--bottom">作者：{{product.author}}</view>
-      <view class="hairline--bottom">出版社：{{product.press}}</view>
-      <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
-      <view class="hairline--bottom">
-        <raty show-value="false" value="{{product.doubanScore}}"></raty>
-        <text class="comments-count">121条书评</text>
+  <view class="product-info">
+    <view class="hairline--bottom">作者：{{product.author}}</view>
+    <view class="hairline--bottom">出版社：{{product.press}}</view>
+    <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
+    <view class="hairline--bottom">
+      <raty show-value="false" value="{{product.doubanScore}}"></raty>
+      <text class="comments-count">121条书评</text>
+    </view>
+  </view>
+
+  <view class="spliter"></view>
+
+  <view class="product-flags">
+    <view class="flag-item">
+      <icon name="check"></icon>
+      <text>消毒塑封</text>
+    </view>
+    <view class="flag-item">
+      <icon name="check"></icon>
+      <text>官方直营</text>
+    </view>
+    <view class="flag-item">
+      <icon name="check"></icon>
+      <text>原价回收</text>
+    </view>
+  </view>
+
+  <view class="spliter"></view>
+
+  <view class="comments-panel">
+    <list-item custom-class="comments-hd" bordered="false" show-arrow="true">
+      <text class="bold">精选书评</text>
+      <text>(120)</text>
+    </list-item>
+    <view class="comments-content">
+      <view class="comments-empty" wx:if="{{false}}">
+        <btn type="plain" custom-class="comment-btn" icon="comment">抢首评</btn>
+        <view class="comment-hint">抢首评，精选评论，可获得<text class="h">21星币</text></view>
+      </view>
+      <view class="tags-wrapper">
+        <tag>宝宝爱看(36)</tag>
+        <tag>妈妈爱读(36)</tag>
+        <tag>睡前故事(36)</tag>
+        <tag>想象力(36)</tag>
+        <tag>想象力(36)</tag>
       </view>
     </view>
-
-    <view class="spliter"></view>
-
-    <view class="product-flags">
-      <view class="flag-item">
-        <icon name="check"></icon>
-        <text>消毒塑封</text>
-      </view>
-      <view class="flag-item">
-        <icon name="check"></icon>
-        <text>官方直营</text>
-      </view>
-      <view class="flag-item">
-        <icon name="check"></icon>
-        <text>原价回收</text>
-      </view>
-    </view>
-
   </view>
 
   <view class="spliter"></view>
@@ -475,8 +529,11 @@
       navigationBarTitleText: '商品详情',
       usingComponents: {
         'icon-item': '/components/icon-item/index',
+        'list-item': '/components/list-item/index',
         'flyer-group': '/components/flyer-group/index',
         'icon': '/components/icon/index',
+        'btn': '/components/button/index',
+        'tag': '/components/tag/index',
         'raty': '/components/raty/index',
         'badge': '/components/badge/index'
       }

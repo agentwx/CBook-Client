@@ -10,6 +10,10 @@ Component({
     customStyle: {
       type: String,
       value: ''
+    },
+    size: {
+      type: String,
+      value: 'normal'
     }
   }
 })
