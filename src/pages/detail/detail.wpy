@@ -339,6 +339,7 @@
       <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
       <view class="hairline--bottom">
         <raty show-value="false" value="{{product.doubanScore}}"></raty>
+        <text class="comments-count">121条书评</text>
       </view>
     </view>
 
