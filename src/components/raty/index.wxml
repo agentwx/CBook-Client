@@ -9,5 +9,5 @@
       bindtap="change">
     </icon>
   </block>
-  <text class="raty-value">{{value}}</text>
+  <text class="raty-value" wx:if="{{isShowValue}}">{{value}}</text>
 </view>

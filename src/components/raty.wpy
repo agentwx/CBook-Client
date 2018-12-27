@@ -23,7 +23,7 @@
     <repeat for="{{max}}">
       <text class="raty-item iconfont icon-star" style="{{iconSize}};color:{{index < ratyIndex ? activeColor : color}}" @tap="change({{index}})"></text>
     </repeat>
-    <text class="raty-value">{{value}}</text>
+    <text class="raty-value" wx:if="{{showValue}}">{{value}}</text>
   </view>
 </template>
 
@@ -63,6 +63,11 @@
         default: '16px'
       },
       readonly: {
+        type: [Boolean, String],
+        default: true,
+        coerce: coerce
+      },
+      showValue: {
         type: [Boolean, String],
         default: true,
         coerce: coerce

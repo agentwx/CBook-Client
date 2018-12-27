@@ -338,7 +338,7 @@
       <view class="hairline--bottom">出版社：{{product.press}}</view>
       <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
       <view class="hairline--bottom">
-        <raty value="{{product.doubanScore}}"></raty>
+        <raty show-value="false" value="{{product.doubanScore}}"></raty>
       </view>
     </view>
 

@@ -1,5 +1,10 @@
 import computedBehavior from 'miniprogram-computed'
 
+const coerce = (v) =>
+  typeof v === 'string'
+    ? JSON.parse(v)
+    : v
+
 Component({
   behaviors: [computedBehavior],
   options: {
@@ -37,13 +42,18 @@ Component({
     readonly: {
       type: [Boolean, String],
       value: true
+    },
+    showValue: {
+      type: [Boolean, String],
+      value: true
     }
   },
   computed: {
     isReadonly () {
-      return typeof this.data.readonly === 'string'
-        ? JSON.parse(this.data.readonly)
-        : this.data.readonly
+      return coerce(this.data.readonly)
+    },
+    isShowValue () {
+      return coerce(this.data.showValue)
     },
     ratyIndex () {
       return Math.floor(this.data.value)
