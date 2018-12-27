@@ -19,7 +19,7 @@
     box-sizing: border-box;
   }
 
-  image {
+  image, icon {
     vertical-align: top;
   }
 
@@ -151,9 +151,10 @@ store.subscribe(() => {
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/detail/detail',
       'pages/home/home',
       'pages/search/search',
-      'pages/detail/detail',
+
       'pages/recycle/index',
       'pages/recycle/list',
       'pages/recycle/detail',
@@ -225,7 +226,7 @@ export default class extends wepy.app {
     this.use('promisify')
   }
 
-  async onLaunch() {
+  async onLaunch2() {
     this.wxlogin()
 
     const { recycles, shopcart } = initialState

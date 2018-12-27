@@ -52,8 +52,12 @@
     }
   }
 
-  .sales-count {
-    color: #999;
+  .sales-share {
+    padding: 4px;
+
+    icon {
+      margin-right: 3px;
+    }
   }
 
   .product-info {
@@ -318,7 +322,13 @@
         </view>
         <view class="orig-price">￥{{product.costPrice}}</view>
       </view>
-      <view class="sales-count">已售{{product.sales}}份</view>
+      <view class="sales-aside">
+        <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
+        <view class="sales-share">
+          <icon name="share"></icon>
+          <text>分享</text>
+        </view>
+      </view>
     </view>
 
     <view class="spliter"></view>
@@ -595,8 +605,8 @@
     }
 
     onLoad({ product }) {
-      this.product = JSON.parse(product)
-      this.loadData(this.product.isbn)
+      // this.product = JSON.parse(product)
+      // this.loadData(this.product.isbn)
     }
   }
 </script>
