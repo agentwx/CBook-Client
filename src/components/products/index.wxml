@@ -12,9 +12,9 @@
         <view class="product-subInfo">
           <raty value="{{item.doubanScore}}"></raty>
           <view class="product-tags">
-            <tag wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
-            <tag wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
-            <tag wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
+            <tag size="mini" wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
+            <tag size="mini" wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>
+            <tag size="mini" wx:if="{{item.languageType.length > 0}}">{{item.languageType[0]}}</tag>
           </view>
           <view class="product-priceInfo">
             <view class="product-price">
