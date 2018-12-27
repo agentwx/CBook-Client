@@ -63,25 +63,33 @@ Component({
           isLoading: true,
           showSpin: this.data.inited && this.spinOn
         })
+
         let res = await fetch.post(this.data.api, { ...params, offset: this.pageNum }, false)
         let items = res.datas.Items || []
+
         if (this.pageNum === 1) {
           this.data.products = items
-          this.goTop(reset)
         } else {
           this.data.products = this.data.products.concat(items)
         }
-        if (items.length > 0) {
-          this.pageNum++
-        } else {
-          toast.error('没有更多数据了~')
-        }
+
         this.setData({
           products: this.data.products,
           isLoading: false,
           inited: true,
           showSpin: false
         })
+
+        if (this.pageNum === 1) {
+          this.goTop(reset)
+        }
+
+        if (items.length > 0) {
+          this.pageNum++
+        } else {
+          toast.error('没有更多数据了~')
+        }
+
         this.triggerEvent('success', { data: res })
       } catch (e) {
         this.setData({
