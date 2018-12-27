@@ -18,11 +18,14 @@ Component({
   data: {
     isLoading: true,
     inited: false,
+    showSpin: false,
     products: []
   },
   attached () {
     this.pageNum = 1
+    this.spinOn = false
     this.queryParams = null
+    this.lastTime = Date.now()
     this.handlePage()
   },
   methods: {
@@ -34,10 +37,12 @@ Component({
 
       page.onReachBottom = function (e) {
         _onReachBottom(e)
-        self.setData({
-          inited: false
-        })
-        self.appendData()
+        // 通过时间差控制最后一页没数据时可能导致的循环请求
+        if (Date.now() - self.lastTime > 3000) {
+          self.lastTime = Date.now()
+          self.spinOn = false
+          self.appendData()
+        }
       }
 
       page.onPullDownRefresh = function (e) {
@@ -55,33 +60,38 @@ Component({
         this.triggerEvent('beforeSend')
         this.pageNum = params.offset || this.pageNum
         this.setData({
-          isLoading: true
+          isLoading: true,
+          showSpin: this.data.inited && this.spinOn
         })
         let res = await fetch.post(this.data.api, { ...params, offset: this.pageNum }, false)
         let items = res.datas.Items || []
         if (this.pageNum === 1) {
-          this.setData({
-            products: items
-          })
+          this.data.products = items
           this.goTop(reset)
         } else {
-          this.setData({
-            products: this.data.products.concat(items)
-          })
+          this.data.products = this.data.products.concat(items)
         }
         if (items.length > 0) {
           this.pageNum++
         } else {
-          toast.error('没有更多数据了')
+          toast.error('没有更多数据了~')
         }
+        this.setData({
+          products: this.data.products,
+          isLoading: false,
+          inited: true,
+          showSpin: false
+        })
         this.triggerEvent('success', { data: res })
       } catch (e) {
-        this.triggerEvent('error')
-      } finally {
         this.setData({
           isLoading: false,
-          inited: true
+          inited: true,
+          showSpin: false
         })
+        this.triggerEvent('error')
+      } finally {
+        this.spinOn = true
         this.triggerEvent('complete')
       }
     },
