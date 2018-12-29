@@ -658,7 +658,7 @@
         class="action-item action-fav"
         icon="heart-o"
         inline="false"
-        iconSize="middle"
+        icon-size="middle"
         @tap="addToFav"
       >
         收藏
@@ -667,7 +667,7 @@
         class="action-item action-comment"
         icon="write"
         inline="false"
-        iconSize="middle"
+        icon-size="middle"
         @tap="writeComment"
       >
         写书评
@@ -676,7 +676,7 @@
         <icon-item
           icon="cart-o"
           inline="false"
-          iconSize="middle"
+          icon-size="middle"
         >
           购物车
         </icon-item>

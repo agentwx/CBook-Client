@@ -105,12 +105,15 @@
     }
   }
 
+  .c-f90 {
+    color: #f90;
+  }
+
   // global style for panel component
   .panel-title {
     position: relative;
     font-size: 15px;
     font-weight: bold;
-    padding: 10px;
 
     &:after {
       .hairline-bottom();
@@ -118,16 +121,20 @@
   }
 
   .panel-footer {
-    position: relative;
-    padding: 10px;
-
     &:after {
       .hairline-top();
+    }
+
+    > view {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
   .panel-title,
   .panel-footer {
+    position: relative;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;

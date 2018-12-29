@@ -1,7 +1,100 @@
 <style lang="less">
   @import '../../styles/mixin';
+  @import '../../styles/ellipsis';
 
-  .comment-tags {
+  .panel {
+    margin-bottom: 0 !important;
+  }
+
+  .panel-title {
+    &__left {
+      flex: 1;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    &__text {
+      flex: 1;
+      margin-left: 5px;
+      margin-right: 10px;
+      .ellipsis();
+    }
+  }
+
+  .panel-body {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .comment-raty {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+    &__hint {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  }
+
+  .comment-field {
+    border: 1px solid @color-border;
+    background-color: @color-light-gray;
+    border-radius: 4px;
+
+    &__edit {
+      padding: 6px;
+      width: 100%;
+      height: 120px;
+      appearance: none;
+      background: none;
+      border: 0;
+    }
+
+    &__hint {
+      padding: 8px 10px;
+      color: #999;
+      text-align: right;
+    }
+
+    &__actions {
+      margin-top: 15px;
+    }
+
+    &__choose {
+      padding: 8px;
+      border: 2px dashed @color-border;
+      background-color: @color-light-gray;
+      border-radius: 4px;
+      color: #777;
+
+      &:active {
+        background-color: darken(@color-light-gray, 5%);
+      }
+
+      .icon-item {
+        background: none !important;
+      }
+    }
+
+    &__choose--desc {
+      margin-left: 12px;
+      color: #999;
+      font-size: 15px;
+    }
+  }
+
+  .tags-panel {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+
+    &__title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
     &__actions {
       .flex-center();
       color: #888;
@@ -12,15 +105,32 @@
     }
   }
 
-  .comment-raty {
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 10px;
-
-    &__hint {
-      color: #f90;
+  .modal-form {
+    &__title {
+      margin-top: 8px;
+      margin-bottom: 15px;
       font-size: 16px;
-      margin-top: 10px;
+      text-align: center;
+    }
+
+    &__input {
+      border: 0;
+      background-color: @color-light-gray;
+      padding: 6px 12px;
+      border-radius: 40px;
+      height: 40px;
+    }
+
+    &__footer {
+      margin-top: 20px;
+
+      btn {
+        flex: 1;
+
+        &:not(:first-child) {
+          margin-left: 8px;
+        }
+      }
     }
   }
 </style>
@@ -29,22 +139,49 @@
 
   <panel>
     <view class="panel-title" slot="title">
-      <view>
-        <icon name="library" style="margin-right: 5px;"></icon>
-        <text>美国国家地理科普双语</text>
+      <view class="panel-title__left flex-v-center">
+        <icon name="library"></icon>
+        <view class="panel-title__text">
+          美国国家地理科普双语美国国家地理科普双语
+        </view>
       </view>
       <view>
-        <btn size="small">发表</btn>
+        <btn>发表</btn>
       </view>
     </view>
     <view class="comment-raty">
       <raty size="large" show-value="false" readonly="false"></raty>
-      <view class="comment-raty__hint">点击星星评分</view>
+      <view class="comment-raty__hint c-f90">点击星星评分</view>
+    </view>
+    <view class="comment-field">
+      <textarea class="comment-field__edit" placeholder-class="input-placeholder" placeholder="亲，说说你对这本书的感觉吧~">
+      </textarea>
+      <view class="comment-field__hint">
+        写15个字，有机会被选为<text class="c-f90">精选书评</text>
+      </view>
+    </view>
+    <view class="comment-field__actions flex-v-center">
+      <view class="comment-field__choose">
+        <icon-item
+          icon="camera"
+          icon-type="svg"
+          icon-size="large"
+        >
+          上传照片
+        </icon-item>
+      </view>
+      <view class="comment-field__choose--desc">
+        <view>写30个汉字 + 3张图</view>
+        <view>有机会额外<text class="c-f90">额外获得10星币</text></view>
+      </view>
     </view>
   </panel>
 
-  <view class="comment-tags">
-    <view class="comment-tags__list">
+  <view class="spliter"></view>
+
+  <view class="tags-panel">
+    <view class="tags-panel__title">推荐分类</view>
+    <view class="tags-panel__list">
       <tag>全部</tag>
       <tag>最新书评</tag>
       <tag>好评</tag>
@@ -54,13 +191,40 @@
       <tag>妈妈爱读(36)</tag>
       <tag>睡前故事(36)</tag>
     </view>
-    <view class="comment-tags__actions">
+    <view class="tags-panel__actions">
       <text>展开</text>
       <icon name="arrow-down"></icon>
     </view>
   </view>
 
-  <view class="spliter"></view>
+  <view class="tags-panel">
+    <view class="tags-panel__title">书本映像</view>
+    <view class="tags-panel__list">
+      <tag>全部</tag>
+      <tag>最新书评</tag>
+      <tag>好评</tag>
+      <tag>差评</tag>
+      <tag>带图书评</tag>
+      <tag>宝宝爱看(36)</tag>
+      <tag>妈妈爱读(36)</tag>
+      <tag>睡前故事(36)</tag>
+    </view>
+    <view class="tags-panel__actions">
+      <text>展开</text>
+      <icon name="arrow-down"></icon>
+    </view>
+  </view>
+
+  <modal visible="{{false}}">
+    <view class="modal-form">
+      <view class="modal-form__title">添加标签</view>
+      <input type="text" class="modal-form__input" placeholder="标签文字6个汉字(12个字符之内)" />
+      <view class="modal-form__footer flex" slot="footer">
+        <btn type="plain" @tap="cancel">取消</btn>
+        <btn bordered="true" @tap="confirmOrder">确定</btn>
+      </view>
+    </view>
+  </modal>
 
 </template>
 
@@ -75,7 +239,9 @@
         'raty': '/components/raty/index',
         'btn': '/components/button/index',
         'icon': '/components/icon/index',
-        'tag': '/components/tag/index'
+        'icon-item': '/components/icon-item/index',
+        'tag': '/components/tag/index',
+        'modal': '/components/modal/index'
       }
     }
 

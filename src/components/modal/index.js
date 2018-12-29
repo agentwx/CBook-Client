@@ -42,17 +42,17 @@ Component({
     }
   },
   methods: {
-    open (e) {
+    open () {
       this.setData({
         visible: true
       })
-      this.$emit('modalOpen', e)
+      this.triggerEvent('modalOpen')
     },
-    close (e) {
+    close () {
       this.setData({
         visible: false
       })
-      this.$emit('modalClose', e)
+      this.triggerEvent('modalClose')
     },
     closeModal (e) {
       this.close(e)
