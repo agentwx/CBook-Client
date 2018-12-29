@@ -505,7 +505,7 @@
     <view class="sales-aside">
       <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
       <view class="sales-share flex-v-center">
-        <icon name="share"></icon>
+        <icon name="transmit"></icon>
         <text>分享</text>
       </view>
     </view>
