@@ -543,13 +543,13 @@
   <view class="spliter"></view>
 
   <view class="comments-panel">
-    <list-item custom-class="comments-hd" bordered="false" show-arrow="true">
+    <list-item custom-class="comments-hd" bordered="false" show-arrow="true" @tap="viewComments">
       <text class="bold">精选书评</text>
       <text>(120)</text>
     </list-item>
     <view class="comments-content">
       <view class="comments-empty" wx:if="{{false}}">
-        <btn type="plain" custom-class="comment-btn" icon="comment">抢首评</btn>
+        <btn type="plain" custom-class="comment-btn" icon="comment" @tap="addComment">抢首评</btn>
         <view class="comment-hint">抢首评，精选评论，可获得<text class="h">21星币</text></view>
       </view>
       <view class="tags-wrapper">
@@ -646,7 +646,7 @@
       </view>
     </view>
     <view class="comment-footer">
-      <list-item bordered="false">查看全部书评</list-item>
+      <list-item bordered="false" @tap="viewComments">查看全部书评</list-item>
     </view>
   </view>
 
@@ -849,6 +849,17 @@
         if (target === 'author') {
           this.authorBriefExpand = !this.authorBriefExpand
         }
+      },
+      viewComments () {
+        this.$navigate('/pages/comment/list')
+      },
+      addComment () {
+        this.$navigate('/pages/comment/new')
+      },
+      addToFav () {
+      },
+      writeComment () {
+        this.$navigate('/pages/comment/new')
       },
       goToCart () {
         this.$switch('/pages/shopcart/shopcart')

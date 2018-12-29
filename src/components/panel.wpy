@@ -15,11 +15,6 @@
     &:after {
       .hairline-bottom();
     }
-
-    > view {
-      display: flex;
-      justify-content: space-between;
-    }
   }
 
   .panel-body {
@@ -29,11 +24,6 @@
   .panel-footer {
     &:after {
       .hairline-top();
-    }
-
-    > view {
-      display: flex;
-      justify-content: space-between;
     }
   }
 

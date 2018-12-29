@@ -1,0 +1,154 @@
+<style lang="less">
+  @import '../../styles/mixin';
+
+  .star-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &__value {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    &__hint {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+
+  .star-panel {
+    &__title {
+      font-size: 15px;
+      padding: 12px 15px;
+    }
+
+    &__item {
+      padding: 10px 15px;
+
+      &__name {
+        font-size: 13px;
+        margin-bottom: 1px;
+      }
+
+      &__date {
+        color: #999;
+      }
+
+      &--right {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .empty-layer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80%;
+    max-width: 320px;
+    transform: translate(-50%,-50%);
+
+    image {
+      width: 100%;
+    }
+
+    .empty-action {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -15px;
+      .flex-v-center();
+      flex-direction: column;
+    }
+
+    .empty-text {
+      font-size: 16px;
+      color: #888;
+    }
+  }
+</style>
+<template>
+  <block wx:if="{{dataList.length > 0}}">
+    <view class="star-info">
+      <view class="star-info__value">1082</view>
+      <view class="star-info__hint">我的星币</view>
+    </view>
+
+    <view class="spliter"></view>
+
+    <view class="star-panel">
+      <view class="star-panel__title hairline--bottom">星币明细</view>
+      <view class="star-panel__list">
+        <view class="star-panel__item hairline--bottom flex-v-center flex-between">
+          <view class="star-panel__item--left">
+            <view class="star-panel__item__name">买书星币抵扣</view>
+            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          </view>
+          <view class="star-panel__item--right">+ 200.00</view>
+        </view>
+        <view class="star-panel__item hairline--bottom flex-v-center flex-between">
+          <view class="star-panel__item--left">
+            <view class="star-panel__item__name">买书星币抵扣</view>
+            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          </view>
+          <view class="star-panel__item--right">+ 200.00</view>
+        </view>
+        <view class="star-panel__item hairline--bottom flex-v-center flex-between">
+          <view class="star-panel__item--left">
+            <view class="star-panel__item__name">买书星币抵扣</view>
+            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          </view>
+          <view class="star-panel__item--right">+ 200.00</view>
+        </view>
+        <view class="star-panel__item hairline--bottom flex-v-center flex-between">
+          <view class="star-panel__item--left">
+            <view class="star-panel__item__name">买书星币抵扣</view>
+            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          </view>
+          <view class="star-panel__item--right">+ 200.00</view>
+        </view>
+        <view class="star-panel__item hairline--bottom flex-v-center flex-between">
+          <view class="star-panel__item--left">
+            <view class="star-panel__item__name">买书星币抵扣</view>
+            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          </view>
+          <view class="star-panel__item--right">+ 200.00</view>
+        </view>
+      </view>
+    </view>
+    <weui-loading visible="{{true}}" empty="{{true}}"></weui-loading>
+  </block>
+  <block wx:else>
+    <view class="empty-layer">
+      <image src="../../assets/images/empty-star.png"></image>
+      <view class="empty-action">
+        <view class="empty-text">暂无星币明细记录~</view>
+      </view>
+    </view>
+  </block>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '星币明细',
+      usingComponents: {
+        'weui-loading': '/components/weui-loading/index'
+      }
+    }
+
+    data = {
+      dataList: []
+    }
+
+    methods = {
+    }
+
+    onLoad (options) {
+    }
+  }
+</script>

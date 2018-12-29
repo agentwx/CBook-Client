@@ -142,7 +142,7 @@
   </view>
 
   <view class="uc-assets-panel">
-    <view class="uc-assets-item">
+    <view class="uc-assets-item" @tap="viewCoins">
       <view class="assets-value">6</view>
       <view class="assets-name">星星币</view>
     </view>
@@ -201,6 +201,9 @@
     }
 
     methods = {
+      viewCoins () {
+        this.$navigate('/pages/starcoin/list')
+      },
       goToOrders (index) {
         this.toOrders(index)
       },

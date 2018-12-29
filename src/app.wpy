@@ -124,11 +124,6 @@
     &:after {
       .hairline-top();
     }
-
-    > view {
-      display: flex;
-      justify-content: space-between;
-    }
   }
 
   .panel-title,
@@ -166,7 +161,6 @@ store.subscribe(() => {
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/comment/new',
       'pages/home/home',
       'pages/search/search',
       'pages/detail/detail',
@@ -175,6 +169,7 @@ export default class extends wepy.app {
       'pages/recycle/detail',
       'pages/shopcart/shopcart',
       'pages/comment/list',
+      'pages/comment/new',
       'pages/order/order',
       'pages/orderlist/orderlist',
       'pages/my/my',
@@ -182,6 +177,7 @@ export default class extends wepy.app {
       'pages/profile/add',
       'pages/address/address',
       'pages/address/new',
+      'pages/starcoin/list',
       'pages/auth/auth'
     ],
     window: {

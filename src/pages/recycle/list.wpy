@@ -43,6 +43,7 @@
 
   .order-footer {
     color: #777;
+    align-items: start;
   }
 
   .create-time {
