@@ -128,76 +128,85 @@
     right: 0;
     bottom: 0;
     background-color: #fff;
-    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
+    box-shadow: 0 -8px 18px rgba(0, 0, 0, .04);
     z-index: 200;
     .flex();
+  }
 
-    .action-item {
-      line-height: 1.2;
-      .flex-center();
-      flex-direction: column;
-      height: 50px;
-    }
-
-    .action-cart {
-      position: relative;
-      flex: none;
-      padding-left: 15px;
-      padding-right: 15px;
+  .action-bar {
+    &--left {
+      .flex();
       border-right: .5px solid @color-light-gray;
       border-top: .5px solid @color-light-gray;
-      color: #666;
-      font-size: 12px;
+
+      .action-item {
+        color: #666;
+        font-size: 13px;
+        min-width: 52px;
+      }
+    }
+
+    &--right {
+      flex: 1;
+      .flex();
+    }
+  }
+
+  .action-item {
+    line-height: 1.2;
+    flex: 1;
+    .flex-center();
+    flex-direction: column;
+    height: 50px;
+  }
+
+  .action-cart {
+    position: relative;
+
+    &.shake {
+      .icon-item {
+        animation: tada 1s;
+      }
+    }
+
+    .badge {
+      position: absolute;
+      left: 65%;
+      top: -5px;
+      animation: zoom-in .4s ease;
+    }
+  }
+
+  .action-buy {
+    flex: 1;
+
+    .price {
+      font-size: 18px;
+    }
+
+    .unit {
+      font-size: 13px;
+    }
+
+    .buy-text {
+      font-size: 15px;
+    }
+
+    &.cash-buy {
+      color: @gcolor;
+      border-top: .5px solid @color-light-gray;
 
       &:active {
         background-color: @color-active;
       }
-
-      &.shake {
-        .icon-item {
-          animation: tada 1s;
-        }
-      }
-
-      .badge {
-        position: absolute;
-        left: 65%;
-        top: -5px;
-        animation: zoom-in .4s ease;
-      }
     }
 
-    .action-buy {
-      flex: 1;
+    &.coin-buy {
+      .g-gradient(50%);
+      color: #fff;
 
-      .price {
-        font-size: 18px;
-      }
-
-      .unit {
-        font-size: 13px;
-      }
-
-      .buy-text {
-        font-size: 15px;
-      }
-
-      &.cash-buy {
-        color: @gcolor;
-        border-top: .5px solid @color-light-gray;
-
-        &:active {
-          background-color: @color-active;
-        }
-      }
-
-      &.coin-buy {
-        .g-gradient(50%);
-        color: #fff;
-
-        &:active {
-          .g-darken-gradient(50%);
-        }
+      &:active {
+        .g-darken-gradient(50%);
       }
     }
   }
@@ -636,23 +645,51 @@
   <view class="spliter"></view>
 
   <view class="detail-action-bar">
-    <view id="cart" class="action-item action-cart" :class="{'shake': buyTriggered}" @tap="goToCart">
-      <icon-item icon="cart-o" iconSize="middle" custom-style="padding:0;">购物车</icon-item>
-      <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
-    </view>
-    <view class="action-item action-buy cash-buy" @tap="goToBuy">
-      <view>
-        <text class="unit">￥</text>
-        <text class="price">{{product.price}}</text>
+    <view class="action-bar--left">
+      <icon-item
+        class="action-item action-fav"
+        icon="heart-o"
+        inline="false"
+        iconSize="middle"
+        @tap="addToFav"
+      >
+        收藏
+      </icon-item>
+      <icon-item
+        class="action-item action-comment"
+        icon="write"
+        inline="false"
+        iconSize="middle"
+        @tap="writeComment"
+      >
+        写书评
+      </icon-item>
+      <view id="cart" class="action-item action-cart" :class="{'shake': buyTriggered}" @tap="goToCart">
+        <icon-item
+          icon="cart-o"
+          inline="false"
+          iconSize="middle"
+        >
+          购物车
+        </icon-item>
+        <badge wx:if="{{cartCount > 0}}">{{cartCount}}</badge>
       </view>
-      <view class="buy-text">直接买</view>
     </view>
-    <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
-      <view>
-        <text class="unit">￥</text>
-        <text class="price">{{product.starPrice}}</text>
+    <view class="action-bar--right">
+      <view class="action-item action-buy cash-buy" @tap="goToBuy">
+        <view>
+          <text class="unit">￥</text>
+          <text class="price">{{product.price}}</text>
+        </view>
+        <view class="buy-text">直接买</view>
       </view>
-      <view class="buy-text">星币价</view>
+      <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
+        <view>
+          <text class="unit">￥</text>
+          <text class="price">{{product.starPrice}}</text>
+        </view>
+        <view class="buy-text">星币价</view>
+      </view>
     </view>
   </view>
 
@@ -880,8 +917,8 @@
     }
 
     onLoad({ product }) {
-      this.product = JSON.parse(product)
-      this.loadData(this.product.isbn)
+      // this.product = JSON.parse(product)
+      // this.loadData(this.product.isbn)
     }
   }
 </script>

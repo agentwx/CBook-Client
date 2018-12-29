@@ -30,7 +30,7 @@ Component({
     },
     inline: {
       type: [Boolean, String],
-      value: true
+      value: false
     }
   },
   computed: {

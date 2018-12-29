@@ -1,17 +1,17 @@
 @import "../../styles/mixin";
 
 .icon-item {
-  flex: 1;
-  .flex-center();
-  flex-direction: column;
+  width: 100%;
   padding: 8px 8px 10px;
+  text-align: center;
+  white-space: nowrap;
 
   &:active {
     background-color: @color-active;
   }
 
   &.inline {
-    .inline-flex();
+    display: inline-block;
   }
 
   > icon {

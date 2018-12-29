@@ -151,9 +151,10 @@ store.subscribe(() => {
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/detail/detail',
       'pages/home/home',
       'pages/search/search',
-      'pages/detail/detail',
+
       'pages/recycle/index',
       'pages/recycle/list',
       'pages/recycle/detail',

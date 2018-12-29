@@ -3,16 +3,17 @@
 
   .icon-item {
     flex: 1;
-    .flex-center();
-    flex-direction: column;
+    width: 100%;
     padding: 8px 8px 10px;
+    text-align: center;
+    white-space: nowrap;
 
     &:active {
       background-color: @color-active;
     }
 
     &.inline {
-      .inline-flex();
+      display: inline-block;
     }
 
     > .icon {
@@ -23,7 +24,9 @@
 <template>
   <view class="icon-item {{inline ? 'inline' : ''}}" style="{{style}}" @tap="tap">
     <icon :size="iconSize" :type="iconType" :name="icon"></icon>
-    <slot></slot>
+    <view>
+      <slot></slot>
+    </view>
   </view>
 </template>
 <script>

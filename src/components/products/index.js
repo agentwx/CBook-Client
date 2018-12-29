@@ -69,6 +69,7 @@ Component({
 
         if (this.pageNum === 1) {
           this.data.products = items
+          this.goTop(reset)
         } else {
           this.data.products = this.data.products.concat(items)
         }
@@ -79,10 +80,6 @@ Component({
           inited: true,
           showSpin: false
         })
-
-        if (this.pageNum === 1) {
-          this.goTop(reset)
-        }
 
         if (items.length > 0) {
           this.pageNum++
