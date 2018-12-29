@@ -1,0 +1,94 @@
+<style lang="less">
+  @import '../../styles/mixin';
+
+  .comment-tags {
+    &__actions {
+      .flex-center();
+      color: #888;
+
+      > text {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  .comment-raty {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+
+    &__hint {
+      color: #f90;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  }
+</style>
+<template>
+  <view class="spliter"></view>
+
+  <panel>
+    <view class="panel-title" slot="title">
+      <view>
+        <icon name="library" style="margin-right: 5px;"></icon>
+        <text>美国国家地理科普双语</text>
+      </view>
+      <view>
+        <btn size="small">发表</btn>
+      </view>
+    </view>
+    <view class="comment-raty">
+      <raty size="large" show-value="false" readonly="false"></raty>
+      <view class="comment-raty__hint">点击星星评分</view>
+    </view>
+  </panel>
+
+  <view class="comment-tags">
+    <view class="comment-tags__list">
+      <tag>全部</tag>
+      <tag>最新书评</tag>
+      <tag>好评</tag>
+      <tag>差评</tag>
+      <tag>带图书评</tag>
+      <tag>宝宝爱看(36)</tag>
+      <tag>妈妈爱读(36)</tag>
+      <tag>睡前故事(36)</tag>
+    </view>
+    <view class="comment-tags__actions">
+      <text>展开</text>
+      <icon name="arrow-down"></icon>
+    </view>
+  </view>
+
+  <view class="spliter"></view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '精选书评',
+      usingComponents: {
+        'panel': '/components/panel/index',
+        'raty': '/components/raty/index',
+        'btn': '/components/button/index',
+        'icon': '/components/icon/index',
+        'tag': '/components/tag/index'
+      }
+    }
+
+    components = {
+    }
+
+    data = {
+    }
+
+    methods = {
+    }
+
+    onLoad (options) {
+    }
+  }
+</script>

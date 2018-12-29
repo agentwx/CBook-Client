@@ -1,7 +1,7 @@
 import wepy from 'wepy'
 import { toast } from '../utils/util'
 
-export const serverUrl = 'http://123.206.112.37:9001'
+export const serverUrl = 'http://47.101.67.135:9001'
 
 let requestCount = 0
 let errorMsg = ''

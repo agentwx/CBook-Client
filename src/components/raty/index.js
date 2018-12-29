@@ -61,7 +61,7 @@ Component({
   },
   methods: {
     change (e) {
-      if (!this.data.readonly) {
+      if (!this.data.isReadonly) {
         const ratyIndex = e.currentTarget.dataset.index
         this.setData({
           value: ratyIndex + 1

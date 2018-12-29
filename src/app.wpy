@@ -107,22 +107,30 @@
 
   // global style for panel component
   .panel-title {
+    position: relative;
     font-size: 15px;
     font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
+
+    &:after {
+      .hairline-bottom();
+    }
   }
 
   .panel-footer {
     position: relative;
-    padding-top: 12px;
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
 
     &:after {
       .hairline-top();
     }
+  }
+
+  .panel-title,
+  .panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
 
@@ -151,6 +159,7 @@ store.subscribe(() => {
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/comment/new',
       'pages/home/home',
       'pages/search/search',
       'pages/detail/detail',
@@ -158,13 +167,14 @@ export default class extends wepy.app {
       'pages/recycle/list',
       'pages/recycle/detail',
       'pages/shopcart/shopcart',
+      'pages/comment/list',
       'pages/order/order',
       'pages/orderlist/orderlist',
       'pages/my/my',
       'pages/profile/profile',
       'pages/profile/add',
       'pages/address/address',
-      'pages/address/new_address',
+      'pages/address/new',
       'pages/auth/auth'
     ],
     window: {

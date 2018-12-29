@@ -2,6 +2,23 @@
   @import '../../styles/mixin';
 
   .comment {
+    &-tags {
+      padding: 10px 15px;
+
+      &__actions {
+        .flex-center();
+        color: #888;
+
+        > text {
+          margin-right: 3px;
+        }
+      }
+    }
+
+    &-content {
+      padding: 15px;
+    }
+
     &-panel {
       .flex();
       padding-top: 12px;
@@ -121,90 +138,111 @@
   }
 </style>
 <template>
-  <view class="comments-list">
-    <view class="comment-panel hairline--bottom">
-      <view class="comment-aside">
-        <view class="comment-avatar vip">
-          <image src="" mode="aspectFill" lazyload="true"></image>
-        </view>
-      </view>
-      <view class="comment-main">
-        <view class="comment-heading">
-          <text class="cmt-user">sonicren</text>
-        </view>
-        <view class="comment-date">12月14日</view>
-        <view class="comment-raty">
-          <text>评分</text>
-          <raty value="3" show-value="false"></raty>
-        </view>
-        <view class="comment-body">
-          <view class="comment-desc">
-            宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
+  <view class="comment-tags">
+    <view class="comment-tags__list">
+      <tag>全部</tag>
+      <tag>最新书评</tag>
+      <tag>好评</tag>
+      <tag>差评</tag>
+      <tag>带图书评</tag>
+      <tag>宝宝爱看(36)</tag>
+      <tag>妈妈爱读(36)</tag>
+      <tag>睡前故事(36)</tag>
+    </view>
+    <view class="comment-tags__actions">
+      <text>展开</text>
+      <icon name="arrow-down"></icon>
+    </view>
+  </view>
+
+  <view class="spliter"></view>
+
+  <view class="comment-content">
+    <view class="comment-list">
+      <view class="comment-panel hairline--bottom">
+        <view class="comment-aside">
+          <view class="comment-avatar vip">
+            <image src="" mode="aspectFill" lazyload="true"></image>
           </view>
-          <view class="comment-images">
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
+        </view>
+        <view class="comment-main">
+          <view class="comment-heading">
+            <text class="cmt-user">sonicren</text>
           </view>
-          <view class="comment-actions flex-between">
-            <view class="comment-actions--left flex-v-center">
-              <icon name="raise-up" size="middle"></icon>
-              <view class="comment-actions__users">
-                <image src="" mode="aspectFill" lazyload="true"></image>
-                <image src="" mode="aspectFill" lazyload="true"></image>
-                <image src="" mode="aspectFill" lazyload="true"></image>
+          <view class="comment-date">12月14日</view>
+          <view class="comment-raty">
+            <text>评分</text>
+            <raty value="3" show-value="false"></raty>
+          </view>
+          <view class="comment-body">
+            <view class="comment-desc">
+              宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
+            </view>
+            <view class="comment-images">
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+            </view>
+            <view class="comment-actions flex-between">
+              <view class="comment-actions--left flex-v-center">
+                <icon name="raise-up" size="middle"></icon>
+                <view class="comment-actions__users">
+                  <image src="" mode="aspectFill" lazyload="true"></image>
+                  <image src="" mode="aspectFill" lazyload="true"></image>
+                  <image src="" mode="aspectFill" lazyload="true"></image>
+                </view>
+                <text class="comment-stars">3人赞</text>
               </view>
-              <text class="comment-stars">3人赞</text>
-            </view>
-            <view class="comment-actions--right flex-v-center">
-              <icon name="comment" size="middle"></icon>
-              <text class="comment-count">6</text>
+              <view class="comment-actions--right flex-v-center">
+                <icon name="comment" size="middle"></icon>
+                <text class="comment-count">6</text>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
 
-    <view class="comment-panel hairline--bottom">
-      <view class="comment-aside">
-        <view class="comment-avatar">
-          <image src="" mode="aspectFill" lazyload="true"></image>
+      <view class="comment-panel hairline--bottom">
+        <view class="comment-aside">
+          <view class="comment-avatar">
+            <image src="" mode="aspectFill" lazyload="true"></image>
+          </view>
+        </view>
+        <view class="comment-main">
+          <view class="comment-heading">
+            <text class="cmt-user">sonicren</text>
+          </view>
+          <view class="comment-date">12月14日</view>
+          <view class="comment-raty">
+            <text>评分</text>
+            <raty value="3" show-value="false"></raty>
+          </view>
+          <view class="comment-body">
+            <view class="comment-desc">
+              宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
+            </view>
+            <view class="comment-images">
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+              <image src="" mode="aspectFit"></image>
+            </view>
+            <view class="comment-actions flex-between">
+              <view class="comment-actions--left flex-v-center">
+                <icon name="raise-up" size="middle"></icon>
+                <text class="comment-stars">1人赞</text>
+              </view>
+              <view class="comment-actions--right flex-v-center">
+                <icon name="comment" size="middle"></icon>
+                <text class="comment-count">6</text>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
-      <view class="comment-main">
-        <view class="comment-heading">
-          <text class="cmt-user">sonicren</text>
-        </view>
-        <view class="comment-date">12月14日</view>
-        <view class="comment-raty">
-          <text>评分</text>
-          <raty value="3" show-value="false"></raty>
-        </view>
-        <view class="comment-body">
-          <view class="comment-desc">
-            宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
-          </view>
-          <view class="comment-images">
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
-            <image src="" mode="aspectFit"></image>
-          </view>
-          <view class="comment-actions flex-between">
-            <view class="comment-actions--left flex-v-center">
-              <icon name="raise-up" size="middle"></icon>
-              <text class="comment-stars">1人赞</text>
-            </view>
-            <view class="comment-actions--right flex-v-center">
-              <icon name="comment" size="middle"></icon>
-              <text class="comment-count">6</text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
 
+    </view>
   </view>
 
 </template>

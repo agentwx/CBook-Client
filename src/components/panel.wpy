@@ -4,36 +4,48 @@
 
   .panel {
     background-color: #fff;
-    padding: 12px 15px;
     margin-bottom: 10px;
   }
 
   .panel-title {
+    position: relative;
     font-size: 15px;
     font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
+
+    &:after {
+      .hairline-bottom();
+    }
 
     > view {
-
+      display: flex;
+      justify-content: space-between;
     }
   }
 
   .panel-body {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
   }
 
   .panel-footer {
     position: relative;
-    padding-top: 12px;
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
 
     &:after {
       .hairline-top();
     }
+
+    > view {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .panel-title,
+  .panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
 <template>

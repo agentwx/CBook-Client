@@ -189,7 +189,7 @@
         this.loadData()
       },
       editAddress (item) {
-        this.$navigate('/pages/address/new_address', {...item, actionMode: 'edit'})
+        this.$navigate('/pages/address/new', {...item, actionMode: 'edit'})
       },
       async deleteAddress (code) {
         let isOK = await confirm('确定要删除吗?')
@@ -200,7 +200,7 @@
         }
       },
       newAddress () {
-        this.$navigate('/pages/address/new_address')
+        this.$navigate('/pages/address/new')
       },
       selectAddress (address) {
         if (this.actionMode === 'select') {

@@ -355,8 +355,8 @@
   }
 
   .fly-dot {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     background-color: #ff0000;
     border-radius: 50%;
   }
@@ -756,7 +756,7 @@
     </scroll-view>
   </view>
 
-  <flyer-group id="J_flyer" @complete="flyComplete">
+  <flyer-group id="J_flyer" duration="300" @complete="flyComplete">
     <view class="fly-dot"></view>
   </flyer-group>
 </template>
