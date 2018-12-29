@@ -1,9 +1,10 @@
 @import "../../styles/mixin";
 
 .icon-item {
+  .flex-center();
+  flex-direction: column;
   width: 100%;
   padding: 8px 8px 10px;
-  text-align: center;
   white-space: nowrap;
 
   &:active {
@@ -11,7 +12,8 @@
   }
 
   &.inline {
-    display: inline-block;
+    .inline-flex();
+    width: auto;
   }
 
   > icon {

@@ -128,6 +128,7 @@
     right: 0;
     bottom: 0;
     background-color: #fff;
+    height: 50px;
     box-shadow: 0 -8px 18px rgba(0, 0, 0, .04);
     z-index: 200;
     .flex();
@@ -157,7 +158,16 @@
     flex: 1;
     .flex-center();
     flex-direction: column;
-    height: 50px;
+
+    icon-item {
+      display: block;
+      width: 100%;
+    }
+
+    .icon-item {
+      padding: 0;
+      height: 49px;
+    }
   }
 
   .action-cart {
@@ -178,8 +188,6 @@
   }
 
   .action-buy {
-    flex: 1;
-
     .price {
       font-size: 18px;
     }
@@ -917,8 +925,8 @@
     }
 
     onLoad({ product }) {
-      // this.product = JSON.parse(product)
-      // this.loadData(this.product.isbn)
+      this.product = JSON.parse(product)
+      this.loadData(this.product.isbn)
     }
   }
 </script>
