@@ -1,12 +1,9 @@
 <style lang="less">
   @import "styles/font";
   @import "styles/mixin";
-  @import "styles/hairline";
   @import "styles/iconfont";
   @import "styles/animation";
-
-  // init hairline styles
-  .hairline-styles();
+  @import "styles/hairline";
 
   // global style for app
   page {

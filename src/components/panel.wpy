@@ -1,6 +1,6 @@
 <style lang="less">
-  @import "../styles/mixin";
-  @import "../styles/hairline";
+  @import "../styles/mixins/common";
+  @import "../styles/mixins/hairline";
 
   .panel {
     background-color: #fff;

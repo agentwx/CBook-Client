@@ -1,101 +1,42 @@
-@def-color: #e9e9e9;
+@import "./mixins/hairline.less";
 
-.hairline-common() {
-  content: ' ';
-  position: absolute;
-  pointer-events: none;
-  box-sizing: border-box;
-  transform-origin: center; /* cover wechat button:after default transforn-origin */
+.hairline,
+.hairline--top,
+.hairline--left,
+.hairline--right,
+.hairline--bottom,
+.hairline--top-bottom,
+.hairline--surround {
+  position: relative;
+
+  &:after {
+    .hairline-mixin();
+  }
 }
 
-.hairline-mixin(@border-color: @def-color) {
-  .hairline-common();
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  transform: scale(0.5);
-  border: 0 solid @border-color;
-}
-
-._hairline-bottom (@left, @right) {
-  .hairline-common();
-  top: auto;
-  left: @left;
-  right: @right;
-  bottom: 0;
-  transform: scaleY(0.5);
-}
-
-.hairline-bottom(@border-color: @def-color, @left: 0, @right: 0) when (@border-color = inherit) {
-  ._hairline-bottom(@left, @right);
-  border-bottom: 1px solid @def-color;
-}
-
-.hairline-bottom(@border-color: @def-color, @left: 0, @right: 0) when (default()) {
-  ._hairline-bottom(@left, @right);
-  border-bottom: 1px solid @border-color;
-}
-
-._hairline-top (@left, @right) {
-  .hairline-common();
-  top: 0;
-  left: @left;
-  right: @right;
-  bottom: auto;
-  transform: scaleY(0.5);
-}
-
-.hairline-top(@border-color: @def-color, @left: 0, @right: 0) when (@border-color = inherit) {
-  ._hairline-top(@left, @right);
-  border-bottom: 1px solid @def-color;
-}
-
-.hairline-top(@border-color: @def-color, @left: 0, @right: 0) when (default()) {
-  ._hairline-top(@left, @right);
-  border-bottom: 1px solid @border-color;
-}
-
-
-.hairline-styles () {
-  .hairline,
-  .hairline--top,
-  .hairline--left,
-  .hairline--right,
-  .hairline--bottom,
-  .hairline--top-bottom,
-  .hairline--surround {
-    position: relative;
-
-    &:after {
-      .hairline-mixin();
-    }
+.hairline {
+  &--top:after {
+    border-top-width: 1px;
   }
 
-  .hairline {
-    &--top:after {
-      border-top-width: 1px;
-    }
+  &--left:after {
+    border-left-width: 1px;
+  }
 
-    &--left:after {
-      border-left-width: 1px;
-    }
+  &--right:after {
+    border-right-width: 1px;
+  }
 
-    &--right:after {
-      border-right-width: 1px;
-    }
+  &--bottom:after {
+    border-bottom-width: 1px;
+  }
 
-    &--bottom:after {
-      border-bottom-width: 1px;
-    }
+  &--top-bottom:after {
+    border-width: 1px 0;
+  }
 
-    &--top-bottom:after {
-      border-width: 1px 0;
-    }
-
-    &--surround:after {
-      border-width: 1px;
-    }
+  &--surround:after {
+    border-width: 1px;
   }
 }
 

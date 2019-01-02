@@ -1,5 +1,5 @@
 <style lang="less">
-  @import '../../styles/mixin';
+  @import '../../styles/mixins/common';
 
   .gradient (@color1, @color2) {
     background: linear-gradient(to right, @color1, @color2);

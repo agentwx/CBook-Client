@@ -1,6 +1,6 @@
 <style lang="less">
-  @import '../../styles/mixin';
-  @import '../../styles/ellipsis';
+  @import '../../styles/mixins/common';
+  @import '../../styles/mixins/ellipsis';
 
   page {
     height: 100%;

@@ -1,5 +1,5 @@
 <style type="less">
-  @import "../styles/mixin";
+  @import "../styles/mixins/common";
 
   .list-item {
     position: relative;
