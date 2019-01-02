@@ -35,10 +35,12 @@ Component({
       let _onReachBottom = page.onReachBottom || function () {}
       let _onPullDownRefresh = page.onPullDownRefresh || function () {}
 
+      const { inited } = this.data
+
       page.onReachBottom = function (e) {
         _onReachBottom(e)
         // 通过时间差控制最后一页没数据时可能导致的循环请求
-        if (Date.now() - self.lastTime > 3000) {
+        if (inited && (Date.now() - self.lastTime > 3000)) {
           self.lastTime = Date.now()
           self.spinOn = false
           self.appendData()
@@ -47,7 +49,16 @@ Component({
 
       page.onPullDownRefresh = function (e) {
         _onPullDownRefresh(e)
-        self.reloadData().then(wx.stopPullDownRefresh)
+        if (!inited) {
+          wx.stopPullDownRefresh()
+          return
+        }
+        self.spinOn = false
+        wx.showNavigationBarLoading()
+        self.reloadData().then(() => {
+          wx.stopPullDownRefresh()
+          wx.hideNavigationBarLoading()
+        })
       }
     },
     onClick (e) {
@@ -63,7 +74,9 @@ Component({
           isLoading: true,
           showSpin: this.data.inited && this.spinOn
         })
-
+        if (!this.data.inited) {
+          wx.showNavigationBarLoading()
+        }
         let res = await fetch.post(this.data.api, { ...params, offset: this.pageNum }, false)
         let items = res.datas.Items || []
 
@@ -72,6 +85,10 @@ Component({
           this.goTop(reset)
         } else {
           this.data.products = this.data.products.concat(items)
+        }
+
+        if (!this.data.inited) {
+          wx.hideNavigationBarLoading()
         }
 
         this.setData({

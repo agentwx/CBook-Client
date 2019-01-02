@@ -183,10 +183,12 @@
         })
       },
       searchSuccess () {
-        store.dispatch({
-          type: 'ADD_HISTORY',
-          payload: this.searchVal
-        })
+       if (this.searchVal !== '') {
+         store.dispatch({
+           type: 'ADD_HISTORY',
+           payload: this.searchVal
+         })
+       }
       }
     }
 

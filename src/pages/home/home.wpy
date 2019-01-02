@@ -523,14 +523,14 @@ export default class Index extends wepy.page {
     }
   }
 
-  async onLoad () {
+  onLoad () {
+    const sysInfo = wx.getSystemInfoSync()
+    this.isIOS = /IOS/i.test(sysInfo.system)
     this.getFilterBarTop()
     this.$parent.ready(() => {
       this.loadProducts()
       this.$apply()
     })
-    const sysInfo = await wepy.getSystemInfo()
-    this.isIOS = /IOS/i.test(sysInfo.system)
   }
 }
 </script>
