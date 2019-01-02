@@ -221,7 +221,7 @@
     <image src="../../assets/images/home_banner.jpg"></image>
   </view>
 
-  <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="true">
+  <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="noop">
     <view class="filter-toolbar" :class="{'fixed': filterBarFixed}">
       <view class="filter-toolbar-inner hairline--bottom" :class="{'expand': filterVisible}">
         <view class="filter-itemtype sort" :class="{'selected': filterVisible && filterType === 'sort'}" @tap="showFilter('sort')">
@@ -368,6 +368,7 @@ export default class Index extends wepy.page {
   }
 
   methods = {
+    noop () {},
     toSearch () {
       this.$navigate('/pages/search/search')
     },
