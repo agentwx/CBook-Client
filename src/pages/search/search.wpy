@@ -96,7 +96,7 @@
         <icon name="close-circle" color="#999"></icon>
       </view>
     </view>
-    <view class="search-cancel" :class="{'open': !isSearchShow}" @tap="cancelSearch">取消</view>
+    <view class="search-cancel" :class="{'open': !isCancel}" @tap="cancelSearch">取消</view>
   </view>
 
   <view class="search-sublayer" wx:if="{{!isSearchShow}}">
@@ -146,6 +146,7 @@
     data = {
       queryParams: null,
       isSearchShow: false,
+      isCancel: false,
       searchVal: ''
     }
 
@@ -158,6 +159,7 @@
     methods = {
       hideSearch () {
         this.isSearchShow = false
+        this.isCancel = false
       },
       viewDetail (e) {
         this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
@@ -172,7 +174,10 @@
         this.loadProducts(name)
       },
       cancelSearch () {
-        this.isSearchShow = true
+        this.isCancel = true
+        if (this.isLoaded) {
+          this.isSearchShow = true
+        }
       },
       clearSearch () {
         this.searchVal = ''
@@ -183,12 +188,13 @@
         })
       },
       searchSuccess () {
-       if (this.searchVal !== '') {
-         store.dispatch({
-           type: 'ADD_HISTORY',
-           payload: this.searchVal
-         })
-       }
+        this.isLoaded = true
+        if (this.searchVal !== '') {
+          store.dispatch({
+            type: 'ADD_HISTORY',
+            payload: this.searchVal
+          })
+        }
       }
     }
 
@@ -206,6 +212,10 @@
       this.searchVal = key
       this.isSearchShow = true
       this.queryParams = params
+    }
+
+    onLoad () {
+      this.isLoaded = false
     }
   }
 </script>
