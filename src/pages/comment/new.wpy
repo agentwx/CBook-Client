@@ -40,7 +40,7 @@
 
   .comment-field {
     border: 1px solid @color-border;
-    background-color: @color-light-gray;
+    background-color: @color-gray;
     border-radius: 4px;
 
     &__edit {
@@ -126,7 +126,7 @@
 
     &__input {
       border: 0;
-      background-color: @color-light-gray;
+      background-color: @color-gray;
       padding: 6px 12px;
       border-radius: 40px;
       height: 40px;

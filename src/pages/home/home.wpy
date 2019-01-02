@@ -191,7 +191,7 @@
     }
 
     .filter-btn-reset {
-      border-top: .5px solid @color-light-gray;
+      border-top: .5px solid @color-gray;
 
       &:active {
         background-color: @color-active;

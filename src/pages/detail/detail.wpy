@@ -137,8 +137,8 @@
   .action-bar {
     &--left {
       .flex();
-      border-right: .5px solid @color-light-gray;
-      border-top: .5px solid @color-light-gray;
+      border-right: .5px solid @color-gray;
+      border-top: .5px solid @color-gray;
 
       .action-item {
         color: #666;
@@ -202,7 +202,7 @@
 
     &.cash-buy {
       color: @gcolor;
-      border-top: .5px solid @color-light-gray;
+      border-top: .5px solid @color-gray;
 
       &:active {
         background-color: @color-active;
