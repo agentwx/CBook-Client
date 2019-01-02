@@ -1,9 +1,9 @@
 <style lang="less">
   @import "styles/font";
-  @import "styles/mixin";
   @import "styles/iconfont";
   @import "styles/animation";
   @import "styles/hairline";
+  @import "styles/flex";
 
   // global style for app
   page {
@@ -36,73 +36,6 @@
   .spliter {
     height: 10px;
     background-color: #f5f5f5;
-  }
-
-  // global flex styles
-  .flex {
-    .flex();
-
-    &-inline {
-      .inline-flex();
-    }
-
-    &-center {
-      .flex-center();
-    }
-
-    &-v-center {
-      .flex-v-center();
-    }
-
-    &-h-center {
-      .flex-h-center();
-    }
-
-    &-end {
-      .flex();
-      justify-content: flex-end;
-      align-items: flex-end;
-    }
-
-    &-v-end {
-      .flex();
-      align-items: flex-end;
-    }
-
-    &-h-end {
-      .flex();
-      justify-content: flex-end;
-    }
-
-    &-between {
-      .flex();
-      justify-content: space-between;
-    }
-
-    &-around {
-      .flex();
-      justify-content: space-around;
-    }
-
-    &-column {
-      .flex();
-      flex-direction: column;
-
-      &-reverse {
-        .flex();
-        flex-direction: column-reverse;
-      }
-    }
-
-    &-row {
-      .flex();
-      flex-direction: row;
-
-      &-reverse {
-        .flex();
-        flex-direction: row-reverse;
-      }
-    }
   }
 
   .c-f90 {

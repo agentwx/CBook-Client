@@ -1,0 +1,67 @@
+@import "./mixins/common";
+
+.flex {
+  .flex();
+
+  &-inline {
+    .inline-flex();
+  }
+
+  &-center {
+    .flex-center();
+  }
+
+  &-v-center {
+    .flex-v-center();
+  }
+
+  &-h-center {
+    .flex-h-center();
+  }
+
+  &-end {
+    .flex();
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &-v-end {
+    .flex();
+    align-items: flex-end;
+  }
+
+  &-h-end {
+    .flex();
+    justify-content: flex-end;
+  }
+
+  &-between {
+    .flex();
+    justify-content: space-between;
+  }
+
+  &-around {
+    .flex();
+    justify-content: space-around;
+  }
+
+  &-column {
+    .flex();
+    flex-direction: column;
+
+    &-reverse {
+      .flex();
+      flex-direction: column-reverse;
+    }
+  }
+
+  &-row {
+    .flex();
+    flex-direction: row;
+
+    &-reverse {
+      .flex();
+      flex-direction: row-reverse;
+    }
+  }
+}
