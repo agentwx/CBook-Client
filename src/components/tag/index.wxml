@@ -1,1 +1,1 @@
-<view class="tag-item {{size}} {{customClass}}" style="{{customStyle}}"><slot></slot></view>
+<view class="tag-item {{size}} {{isActived ? 'actived' : ''}} {{isSelected ? 'selected' : ''}} {{customClass}}" style="{{customStyle}}"><slot></slot></view>

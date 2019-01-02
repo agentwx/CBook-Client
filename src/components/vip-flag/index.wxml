@@ -1,0 +1,3 @@
+<view class="vip-flag {{customClass}}" style="{{customStyle}}">
+  <icon name="level" size="{{size}}"></icon>
+</view>

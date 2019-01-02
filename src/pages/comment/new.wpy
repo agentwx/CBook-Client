@@ -15,7 +15,7 @@
 
     &__text {
       flex: 1;
-      margin-left: 5px;
+      margin-left: 3px;
       margin-right: 10px;
       .ellipsis();
     }
@@ -30,11 +30,11 @@
   .comment-raty {
     text-align: center;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
 
     &__hint {
       font-size: 16px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
   }
 
@@ -44,7 +44,8 @@
     border-radius: 4px;
 
     &__edit {
-      padding: 6px;
+      padding: 5px 8px;
+      margin: 0;
       width: 100%;
       height: 120px;
       appearance: none;
@@ -53,33 +54,42 @@
     }
 
     &__hint {
-      padding: 8px 10px;
+      padding: 5px 10px;
       color: #999;
       text-align: right;
     }
 
     &__actions {
       margin-top: 15px;
+      flex-wrap: wrap;
     }
 
     &__choose {
-      padding: 8px;
+      width: 88px;
+      height: 88px;
       border: 2px dashed @color-border;
-      background-color: @color-light-gray;
-      border-radius: 4px;
+      background-color: #f8f8f8;
+      border-radius: 6px;
+      margin-right: 12px;
       color: #777;
+      overflow: hidden;
 
       &:active {
-        background-color: darken(@color-light-gray, 5%);
+        background-color: darken(#f8f8f8, 3%);
       }
 
       .icon-item {
         background: none !important;
       }
+
+      > image {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     &__choose--desc {
-      margin-left: 12px;
+      margin-top: 10px;
       color: #999;
       font-size: 15px;
     }
@@ -97,6 +107,7 @@
 
     &__actions {
       .flex-center();
+      padding-top: 5px;
       color: #888;
 
       > text {
@@ -140,7 +151,7 @@
   <panel>
     <view class="panel-title" slot="title">
       <view class="panel-title__left flex-v-center">
-        <icon name="library"></icon>
+        <icon name="library" size="20px"></icon>
         <view class="panel-title__text">
           美国国家地理科普双语美国国家地理科普双语
         </view>
@@ -162,17 +173,16 @@
     </view>
     <view class="comment-field__actions flex-v-center">
       <view class="comment-field__choose">
-        <icon-item
-          icon="camera"
-          icon-type="svg"
-          icon-size="large"
-        >
+        <image src="../../assets/images/book1.png" mode="aspectFill"></image>
+      </view>
+      <view class="comment-field__choose flex-center">
+        <icon-item icon="camera" icon-type="svg" icon-size="large">
           上传照片
         </icon-item>
       </view>
       <view class="comment-field__choose--desc">
         <view>写30个汉字 + 3张图</view>
-        <view>有机会额外<text class="c-f90">额外获得10星币</text></view>
+        <view>有机会额外<text class="c-f90">获得10星币</text></view>
       </view>
     </view>
   </panel>
@@ -182,14 +192,14 @@
   <view class="tags-panel">
     <view class="tags-panel__title">推荐分类</view>
     <view class="tags-panel__list">
-      <tag>全部</tag>
-      <tag>最新书评</tag>
-      <tag>好评</tag>
-      <tag>差评</tag>
-      <tag>带图书评</tag>
-      <tag>宝宝爱看(36)</tag>
-      <tag>妈妈爱读(36)</tag>
-      <tag>睡前故事(36)</tag>
+      <tag actived="true" selected="true">全部</tag>
+      <tag actived="true">最新书评</tag>
+      <tag actived="true">好评</tag>
+      <tag actived="true">差评</tag>
+      <tag actived="true">带图书评</tag>
+      <tag actived="true">宝宝爱看(36)</tag>
+      <tag actived="true">妈妈爱读(36)</tag>
+      <tag actived="true">睡前故事(36)</tag>
     </view>
     <view class="tags-panel__actions">
       <text>展开</text>
@@ -200,14 +210,14 @@
   <view class="tags-panel">
     <view class="tags-panel__title">书本映像</view>
     <view class="tags-panel__list">
-      <tag>全部</tag>
-      <tag>最新书评</tag>
-      <tag>好评</tag>
-      <tag>差评</tag>
-      <tag>带图书评</tag>
-      <tag>宝宝爱看(36)</tag>
-      <tag>妈妈爱读(36)</tag>
-      <tag>睡前故事(36)</tag>
+      <tag actived="true">全部</tag>
+      <tag actived="true">最新书评</tag>
+      <tag actived="true">好评</tag>
+      <tag actived="true">差评</tag>
+      <tag actived="true">带图书评</tag>
+      <tag actived="true">宝宝爱看(36)</tag>
+      <tag actived="true">妈妈爱读(36)</tag>
+      <tag actived="true">睡前故事(36)</tag>
     </view>
     <view class="tags-panel__actions">
       <text>展开</text>

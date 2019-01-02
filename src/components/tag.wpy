@@ -15,15 +15,29 @@
       padding: 3px 8px;
       font-size: 12px;
     }
+
+    &.actived {
+      &:active {
+        background-color: darken(#f2f3f7, 5%);
+      }
+    }
+
+    &.selected {
+      background-color: #deebf5;
+      color: #08affe;
+    }
   }
 </style>
 
 <template>
-  <view class="tag-item {{size}}" style="{{style}}"><slot></slot></view>
+  <view class="tag-item {{size}} {{actived ? 'actived' : ''}} {{selected ? 'selected' : ''}}" style="{{style}}"><slot></slot></view>
 </template>
 
 <script>
   import wepy from 'wepy'
+
+  const coerce = t =>
+    typeof t === 'string' ? JSON.parse(t) : t
 
   export default class Index extends wepy.component {
     props = {
@@ -33,7 +47,17 @@
       },
       size: {
         type: String,
-        value: 'normal'
+        default: 'normal'
+      },
+      actived: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
+      },
+      selected: {
+        type: [Boolean, String],
+        default: false,
+        coerce: coerce
       }
     }
 

@@ -17,7 +17,7 @@
 
   .delivery-hd {
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 
     .username {
       margin-right: 10px;
@@ -28,7 +28,7 @@
   .delivery-picktime {
     color: #888;
     font-size: 13px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
   }
 
   .book-body {
@@ -148,7 +148,7 @@
   </panel>
   <panel custom-class="delivery-panel">
     <view class="delivery-body">
-      <icon name="geo" custom-class="geo-icon"></icon>
+      <icon name="geo" size="20px" custom-class="geo-icon"></icon>
       <view class="delivery-main">
         <view class="delivery-hd">
           <text class="username">{{order.orderName}}</text>
@@ -162,7 +162,7 @@
   <panel>
     <view class="panel-title" slot="title">
       <view class="book-title">
-        <icon name="library"></icon>
+        <icon name="library" size="20px"></icon>
         <text>图书列表</text>
       </view>
     </view>

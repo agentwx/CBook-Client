@@ -7,6 +7,7 @@
 
       &__actions {
         .flex-center();
+        padding-top: 5px;
         color: #888;
 
         > text {
@@ -41,18 +42,11 @@
         background-color: @color-preloader;
       }
 
-      &.vip {
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          width: 22px;
-          height: 22px;
-          transform: translate(10%, 10%);
-          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAMAAAANmfvwAAAA9lBMVEUAAAD/////////////////////////////////////////////////////////////////////////////jS3/kjD/kC7/oDv/qkP/pT//ljP/9PL/rET/nTn/lDL/qEL/mzf/p0H/pD7/oj3/mTb/mDX//fv/+fP/wIb/4sv/zJH/s1X/okj/lj7/6t3/3MD/2bj/ypr/nj3/8u3/7ub/5cf/4r//w4z/vYL/rE//pUn/nEH/8Or/1rL/0qn/xpT/unb/tWn/r2T/qln/8ev/5tT/38L/1aH/0p//0JX/xX//s3H/v2//sGD/pVr/r0r/nkP/rFUiYaB5AAAAE3RSTlMAtPrsoGA9Fn4hy1ryzFnz8XojcKfyvwAAAg5JREFUOMt9lIl2qjAQhgFFrdZuo5SSimAlIOK+L3Xrvve+/8vcGRDEo/d+MyGZnP9kErIIMdJyMpuQpEQ2KaeFY6RECSIkMXUgOBEBeMv5bihK49tpcQDxZF9xdgH2slGIaCxtuMjFFRmAti+IidoAmZ3iEvi4cMCYw2WUBfhHQVGUAjoWv0HNDw5n25megqMcxYHTYM4itIsKGqIEHrSRNoj+/wB7VvwHMxtS/iCdoq5HjgWN2hR0aJi0xH91RNP1Wr8/1jVN92rz3sLv0n65lBZkeNa23DPWwcrqMNZ80AKeQRaSMNIsyw9HjLUNzdr0GXM0C7XUB0khCxvLqqJZ1oqxmmfNWoy1ZhQTG8gKCfCqWx6amKDq9Fj/y48NLB4kBAm6xhavxuZr7wlnZER0QfIlJaNE3sX5jkeYbVoyMPT7SJKAaSlkibNosvmqtGOKibKwvg5Z9RiyuI6xhjwu2o3iryYqnv7EJS4uWobBXci0xljPuYszAJk2YFIJWTw+3pcrMSa4AbSNrzeHVILqFcTgMExuTNOkHpNqNAxMCif+YaBhhmWTjD7oZAiFQxDDg+mqahkdCWpyLC4dTJ8c8Hf1CO8ccrtrxF31llBVdCz0cTlk9q7asH67R30IMQXlOgf7pR4TvNhwjlniXNG1H7x91n9+6p9vA7r2V/9/PODg8YieoDw9Qfn9J+gvt0lqhMTb9ywAAAAASUVORK5CYII=) no-repeat;
-          background-size: 100% auto;
-        }
+      vip-flag {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(10%, 10%);
       }
     }
 
@@ -161,8 +155,9 @@
     <view class="comment-list">
       <view class="comment-panel hairline--bottom">
         <view class="comment-aside">
-          <view class="comment-avatar vip">
+          <view class="comment-avatar">
             <image src="" mode="aspectFill" lazyload="true"></image>
+            <vip-flag />
           </view>
         </view>
         <view class="comment-main">
@@ -255,7 +250,9 @@
       navigationBarTitleText: '精选书评',
       usingComponents: {
         'icon': '/components/icon/index',
-        'tag': '/components/tag/index'
+        'tag': '/components/tag/index',
+        'raty': '/components/raty/index',
+        'vip-flag': '/components/vip-flag/index'
       }
     }
 

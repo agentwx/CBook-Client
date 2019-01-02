@@ -32,6 +32,13 @@
     }
   }
 
+  .order-panel {
+    .panel-body {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
   .order-body {
     .flex();
     padding-top: 13px;
@@ -151,7 +158,7 @@
 
   <view class="tabs-wrapper" wx:if="{{orders.length > 0}}">
     <block wx:for="{{orders}}" wx:key="index">
-      <panel>
+      <panel custom-class="order-panel">
         <view class="panel-title order-hd" slot="title">
           <text class="order-num">单号：{{item.orderCode}}</text>
           <text class="order-status {{item.orderStatus == 10 ? 'closed' : ''}}">{{item.orderStatusText}}</text>

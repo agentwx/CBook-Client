@@ -46,6 +46,7 @@
 
     .picker-actions {
       .flex-v-center();
+      margin-left: 5px;
     }
   }
 </style>
