@@ -35,12 +35,10 @@ Component({
       let _onReachBottom = page.onReachBottom || function () {}
       let _onPullDownRefresh = page.onPullDownRefresh || function () {}
 
-      const { inited } = this.data
-
       page.onReachBottom = function (e) {
         _onReachBottom(e)
         // 通过时间差控制最后一页没数据时可能导致的循环请求
-        if (inited && (Date.now() - self.lastTime > 3000)) {
+        if (self.data.inited && (Date.now() - self.lastTime > 3000)) {
           self.lastTime = Date.now()
           self.spinOn = false
           self.appendData()
@@ -49,7 +47,7 @@ Component({
 
       page.onPullDownRefresh = function (e) {
         _onPullDownRefresh(e)
-        if (!inited) {
+        if (!self.data.inited) {
           wx.stopPullDownRefresh()
           return
         }
