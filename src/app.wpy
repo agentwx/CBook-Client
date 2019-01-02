@@ -5,6 +5,9 @@
   @import "styles/iconfont";
   @import "styles/animation";
 
+  // init hairline styles
+  .hairline-styles();
+
   // global style for app
   page {
     background-color: #fff;
