@@ -1,5 +1,6 @@
 <style lang="less">
   @import "../styles/mixins/common";
+  @import "../styles/mixins/hairline";
 
   .tab-head {
     position: relative;
@@ -7,13 +8,15 @@
     background-color: #fff;
 
     &:after {
-      z-index: -1;
+      .hairline-bottom();
     }
   }
 
   .tab-head-item {
+    position: relative;
     flex: 1;
     text-align: center;
+    z-index: 5;
 
     text {
       display: inline-block;

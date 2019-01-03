@@ -24,7 +24,6 @@
   .order-body {
     .flex();
     flex-wrap: nowrap;
-    padding-top: 10px;
   }
 
   .order-cover {

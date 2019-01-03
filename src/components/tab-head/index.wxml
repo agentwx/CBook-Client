@@ -1,4 +1,4 @@
-<view class="tab-head hairline--bottom {{customClass}}" wx:if="{{items.length>0}}" style="{{customStyle}}">
+<view class="tab-head {{customClass}}" wx:if="{{items.length>0}}" style="{{customStyle}}">
   <block wx:for="{{items}}" wx:key="index">
     <view class="tab-head-item {{tabIndex == index ? 'active' : ''}}" data-index="{{index}}" bindtap="onItemTap">
       <text>{{item}}</text>

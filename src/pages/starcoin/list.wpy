@@ -5,6 +5,12 @@
     background: linear-gradient(to right, @color1, @color2);
   }
 
+  page {
+    height: 100%;
+    .flex();
+    flex-direction: column;
+  }
+
   .star-info {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -31,9 +37,24 @@
   }
 
   .star-panel {
+    flex: 1;
+    .flex();
+    flex-direction: column;
+
     &__title {
       font-size: 15px;
       padding: 12px 15px;
+    }
+
+    &__list {
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    &__scrollview {
+      height: 100%;
+      overflow: hidden;
     }
 
     &__item {
@@ -131,42 +152,81 @@
     <view class="star-panel">
       <tab-head custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tab-head>
       <view class="star-panel__list" wx:if="{{tabIndex === 0}}">
-        <view class="star-panel__item hairline--bottom flex-v-center">
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">买书星币抵扣</view>
-            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+        <scroll-view class="star-panel__scrollview" scroll-y="true">
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
           </view>
-          <view class="star-panel__item--right">+ 200.00</view>
-        </view>
-        <view class="star-panel__item hairline--bottom flex-v-center">
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">买书星币抵扣</view>
-            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
           </view>
-          <view class="star-panel__item--right">+ 200.00</view>
-        </view>
-        <view class="star-panel__item hairline--bottom flex-v-center">
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">买书星币抵扣</view>
-            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
           </view>
-          <view class="star-panel__item--right">+ 200.00</view>
-        </view>
-        <view class="star-panel__item hairline--bottom flex-v-center">
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">买书星币抵扣</view>
-            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
           </view>
-          <view class="star-panel__item--right">+ 200.00</view>
-        </view>
-        <view class="star-panel__item hairline--bottom flex-v-center">
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">买书星币抵扣</view>
-            <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
           </view>
-          <view class="star-panel__item--right">+ 200.00</view>
-        </view>
-        <weui-loading visible="{{true}}" empty="{{true}}"></weui-loading>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
+          </view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
+          </view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
+          </view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
+          </view>
+          <view class="star-panel__item hairline--bottom flex-v-center">
+            <view class="star-panel__item--left">
+              <view class="star-panel__item__name">买书星币抵扣</view>
+              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+            </view>
+            <view class="star-panel__item--right">+ 200.00</view>
+          </view>
+
+          <weui-loading visible="{{true}}" empty="{{true}}"></weui-loading>
+
+        </scroll-view>
       </view>
 
       <view class="star-panel__list" wx:if="{{tabIndex === 1}}">

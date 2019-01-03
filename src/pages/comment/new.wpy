@@ -56,6 +56,7 @@
     &__hint {
       padding: 5px 10px;
       color: #999;
+      font-size: 13px;
       text-align: right;
     }
 
@@ -91,7 +92,7 @@
     &__choose--desc {
       margin-top: 10px;
       color: #999;
-      font-size: 15px;
+      font-size: 13px;
     }
   }
 
