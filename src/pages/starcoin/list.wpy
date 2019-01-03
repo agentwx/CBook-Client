@@ -94,14 +94,17 @@
       }
 
       &__name {
-        font-size: 13px;
-        margin-bottom: 1px;
+        margin-bottom: 2px;
       }
 
       &.guide {
         .star-panel__item__name {
           font-weight: bold;
         }
+      }
+
+      &__hint {
+        font-size: 13px;
       }
 
       &__date {
