@@ -216,7 +216,6 @@
     height: 98px;
     margin-right: 15px;
     overflow: hidden;
-    .flex-v-center();
 
     image {
       width: 100%;
@@ -228,7 +227,7 @@
     width: 100%;
     overflow: hidden;
     flex: 1;
-    .flex-h-center();
+    .flex();
     flex-direction: column;
     justify-content: space-between;
   }
@@ -442,7 +441,7 @@
       <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="order-panel" :class="{'hairline--bottom': index < products.length - 1}">
-            <view class="order-cover">
+            <view class="order-cover flex-v-center">
               <image src="{{item.smallImageUrl}}" mode="widthFix" layload="true"></image>
             </view>
             <view class="order-main">
