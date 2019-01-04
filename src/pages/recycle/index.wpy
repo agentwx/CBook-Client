@@ -194,9 +194,15 @@
     }
   }
 
+  .notice-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
 
   .orders-wrap {
-    margin-top: 15px;
+    padding-top: 40px;
     padding-bottom: 50px;
   }
 
@@ -434,7 +440,7 @@
     </view>
   </block>
   <block wx:else>
-    <notice-bar showArrow="false" wx:if="{{remainCount > 0 || totalPrice < 200}}">
+    <notice-bar custom-class="notice-bar" wx:if="{{remainCount > 0 || totalPrice < 200}}">
       <text>继续扫码，还需{{remainCount}}本或预计收入满200元即可下单</text>
     </notice-bar>
     <view class="orders-wrap">

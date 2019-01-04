@@ -6,10 +6,17 @@
     padding-bottom: 50px;
   }
 
+  .notice-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
+
   .cart-edit-hd {
     .flex-v-center();
     justify-content: space-between;
-    padding: 15px 10px 0;
+    padding: 50px 10px 0;
     font-size: 16px;
 
     .edit-left {
@@ -261,7 +268,7 @@
 </style>
 <template>
   <block wx:if="{{products.length > 0}}">
-    <notice-bar>
+    <notice-bar custom-class="notice-bar">
       <text>书费已抵扣{{cutPrice}}元，共{{cutCount}}本，查看抵扣规则</text>
     </notice-bar>
 

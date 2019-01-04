@@ -7,12 +7,23 @@
     background-color: #f7f7f7;
   }
 
+  .notice-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
+
   .address-selection {
     position: relative;
     .flex-v-center();
     padding: 12px 15px 15px;
     background-color: #fff;
     margin-bottom: 10px;
+
+    &.recycle {
+      margin-top: 35px;
+    }
 
     &:active {
       background-color: @color-active;
@@ -150,11 +161,11 @@
 </style>
 
 <template>
-  <notice-bar wx:if="{{orderSource === 'recycle'}}" show-arrow="false">
+  <notice-bar custom-class="notice-bar" wx:if="{{orderSource === 'recycle'}}">
     <text>卖书运费由平台承担，你在快递上门时告知快递员运费到付即可。</text>
   </notice-bar>
 
-  <view class="address-selection" @tap="selectAddress">
+  <view class="address-selection" :class="{recycle: orderSource === 'recycle'}" @tap="selectAddress">
     <icon name="geo" color="#777" size="middle" />
     <view class="addr-slbd" wx:if="{{address}}">
       <view class="addr-sltitle">
