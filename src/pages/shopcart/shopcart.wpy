@@ -17,7 +17,6 @@
 
       .lib-icon {
         margin-right: 5px;
-        font-size: 20px;
       }
 
       check-box {
@@ -269,7 +268,7 @@
     <view class="cart-edit-hd">
       <view class="edit-left" @tap="toggleSelectAll">
         <check-box custom-class="cart-checkbox" readonly="true" checked="{{isSelectAll}}" />
-        <icon name="library" custom-class="lib-icon" />
+        <icon name="library" size="20px" custom-class="lib-icon" />
         <text>图书列表</text>
       </view>
       <view class="edit-right">

@@ -11,6 +11,7 @@
 
   .address-defset {
     padding: 15px 10px;
+    line-height: 1;
     .flex-v-center();
 
     text {

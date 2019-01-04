@@ -42,11 +42,12 @@
     margin-top: -12px;
     margin-bottom: -12px;
     margin-left: -8px;
+    line-height: 1;
     .flex-v-center();
   }
 
   .addr-right {
-    .flex-v-center();
+    .flex();
     margin-right: -8px;
   }
 
@@ -55,11 +56,12 @@
     margin-top: -12px;
     margin-bottom: -12px;
     margin-left: 12px;
+    line-height: 1;
+    .flex-v-center();
 
     icon {
       margin-right: 3px;
       color: #888;
-      vertical-align: middle;
     }
 
     text {

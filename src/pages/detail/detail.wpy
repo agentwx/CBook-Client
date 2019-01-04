@@ -750,7 +750,7 @@
     </scroll-view>
   </view>
 
-  <flyer-group id="J_flyer" duration="300" @complete="flyComplete">
+  <flyer-group id="J_flyer" duration="350" @complete="flyComplete">
     <view class="fly-dot"></view>
   </flyer-group>
 </template>

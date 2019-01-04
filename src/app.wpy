@@ -1,6 +1,6 @@
 <style lang="less">
-  @import "styles/font";
   @import "styles/iconfont";
+  @import "styles/font";
   @import "styles/animation";
   @import "styles/hairline";
   @import "styles/flex";
