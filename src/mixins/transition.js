@@ -1,14 +1,24 @@
-export const transition = function(showDefaultValue) {
+import computedBehavior from 'miniprogram-computed'
+import { easingMap } from '../constants/easing'
+
+export const transition = function (showDefaultValue) {
   return Behavior({
+    behaviors: [computedBehavior],
     properties: {
       show: {
         type: Boolean,
         value: showDefaultValue,
-        observer: 'observeShow'
+        observer (value) {
+          this.observeShow(value)
+        }
       },
       duration: {
         type: Number,
         value: 400
+      },
+      easing: {
+        type: String,
+        value: 'ease'
       },
       delay: {
         type: Number,
@@ -22,14 +32,25 @@ export const transition = function(showDefaultValue) {
       display: false
     },
 
-    attached() {
+    computed: {
+      easingValue () {
+        let value = easingMap[this.data.easing]
+        if (value) {
+          return `cubic-bezier(${value.join(',')})`
+        } else {
+          return this.data.easing
+        }
+      }
+    },
+
+    attached () {
       if (this.data.show) {
         this.show()
       }
     },
 
     methods: {
-      observeShow(value) {
+      observeShow (value) {
         if (value) {
           this.show()
         } else {
@@ -39,7 +60,7 @@ export const transition = function(showDefaultValue) {
         }
       },
 
-      show() {
+      show () {
         this.setData({
           inited: true,
           display: true,
@@ -47,12 +68,13 @@ export const transition = function(showDefaultValue) {
         })
       },
 
-      onAnimationEnd() {
+      onAnimationEnd () {
         if (!this.data.show) {
           this.setData({
             display: false
           })
         }
+        this.triggerEvent('animationend', { visible: this.data.show })
       }
     }
   })

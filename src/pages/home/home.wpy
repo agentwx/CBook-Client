@@ -109,11 +109,19 @@
     }
   }
 
-  .filter-sublayer {
+  .filter-toolbar-dropdown {
     position: absolute;
     left: 0;
     top: 100%;
     right: 0;
+    overflow: hidden;
+
+    &.open {
+      height: auto;
+    }
+  }
+
+  .filter-sublayer {
     background-color: #fff;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
   }
@@ -235,52 +243,54 @@
           <icon size="mini" name="filter-o"></icon>
         </view>
       </view>
-      <transition custom-class="filter-sublayer" name="slide-down" duration="300" show="{{filterVisible}}">
-        <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
-          <block wx:for="{{sortTypes}}" wx:key="index">
-            <view class="filter-itemsort" :class="{'selected': item.checked}" @tap="filterBySort({{item.value}})">
-              <text>{{item.name}}</text>
-              <icon name="check-o"></icon>
-            </view>
-          </block>
-        </view>
+      <view class="filter-toolbar-dropdown" :class="{open: showDropdown}">
+        <transition custom-class="filter-sublayer" name="slide-down" duration="500" easing="easeOutExpo" show="{{filterVisible}}" @animationend="onAnimationEnd">
+          <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
+            <block wx:for="{{sortTypes}}" wx:key="index">
+              <view class="filter-itemsort" :class="{'selected': item.checked}" @tap="filterBySort({{item.value}})">
+                <text>{{item.name}}</text>
+                <icon name="check-o"></icon>
+              </view>
+            </block>
+          </view>
 
-        <view class="filter-catelog-wrapper" wx:if="{{filterType === 'catelog'}}">
-          <view class="filter-catelog">
-            <view class="filter-catelog-hd">
-              <icon name="leaf" size="middle" type="svg"></icon>
-              <text>年龄</text>
+          <view class="filter-catelog-wrapper" wx:if="{{filterType === 'catelog'}}">
+            <view class="filter-catelog">
+              <view class="filter-catelog-hd">
+                <icon name="leaf" size="middle" type="svg"></icon>
+                <text>年龄</text>
+              </view>
+              <view class="filter-catelog-bd">
+                <block wx:for="{{ageTypes}}" wx:key="index">
+                  <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('ageTypes', {{item.value}})">{{item.name}}</view>
+                </block>
+              </view>
+              <view class="filter-catelog-hd">
+                <icon name="catelog" size="middle" type="svg"></icon>
+                <text>分类</text>
+              </view>
+              <view class="filter-catelog-bd">
+                <block wx:for="{{tags}}" wx:key="index">
+                  <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('tags', {{item.value}})">{{item.name}}</view>
+                </block>
+              </view>
+              <view class="filter-catelog-hd">
+                <icon name="lang" size="middle" type="svg"></icon>
+                <text>语言</text>
+              </view>
+              <view class="filter-catelog-bd">
+                <block wx:for="{{languageTypes}}" wx:key="index">
+                  <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('languageTypes', {{item.value}})">{{item.name}}</view>
+                </block>
+              </view>
             </view>
-            <view class="filter-catelog-bd">
-              <block wx:for="{{ageTypes}}" wx:key="index">
-                <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('ageTypes', {{item.value}})">{{item.name}}</view>
-              </block>
-            </view>
-            <view class="filter-catelog-hd">
-              <icon name="catelog" size="middle" type="svg"></icon>
-              <text>分类</text>
-            </view>
-            <view class="filter-catelog-bd">
-              <block wx:for="{{tags}}" wx:key="index">
-                <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('tags', {{item.value}})">{{item.name}}</view>
-              </block>
-            </view>
-            <view class="filter-catelog-hd">
-              <icon name="lang" size="middle" type="svg"></icon>
-              <text>语言</text>
-            </view>
-            <view class="filter-catelog-bd">
-              <block wx:for="{{languageTypes}}" wx:key="index">
-                <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('languageTypes', {{item.value}})">{{item.name}}</view>
-              </block>
+            <view class="filter-catelog-action">
+              <view class="filter-btn-reset" @tap="resetFilter">重置</view>
+              <view class="filter-btn-ok" @tap="searchFilter">确定</view>
             </view>
           </view>
-          <view class="filter-catelog-action">
-            <view class="filter-btn-reset" @tap="resetFilter">重置</view>
-            <view class="filter-btn-ok" @tap="searchFilter">确定</view>
-          </view>
-        </view>
-      </transition>
+        </transition>
+      </view>
     </view>
     <overlay show="{{filterVisible}}" duration="300" mask="true" @tap="hideFilter"></overlay>
   </view>
@@ -314,6 +324,7 @@ export default class Index extends wepy.page {
     filterBarTop: 0,
     filterBarFixed: false,
     filterVisible: false,
+    showDropdown: false,
     filterType: null,
     queryParams: null,
     sortType: 1,
@@ -360,6 +371,11 @@ export default class Index extends wepy.page {
       this.sortTypes = this.sortTypes.map(item => {
         return { ...item, checked: item.value === newVal }
       })
+    },
+    filterVisible (newVal) {
+      if (newVal === true) {
+        this.showDropdown = true
+      }
     }
   }
 
@@ -422,6 +438,11 @@ export default class Index extends wepy.page {
     },
     searchFilter () {
       this.hideFilterAndSearch()
+    },
+    onAnimationEnd (e) {
+      if (e.detail.visible === false) {
+        this.showDropdown = false
+      }
     }
   }
 
