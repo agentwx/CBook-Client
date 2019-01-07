@@ -2,23 +2,28 @@
 @import "../../styles/mixins/hairline";
 
 .list-item {
-  position: relative;
-  .flex-v-center();
-  padding: 12px 15px;
+  padding-left: 15px;
   background-color: #fff;
 
-  &.bordered {
-    &:after {
-      .hairline-bottom(inherit, 15px, 15px);
+  &, &-bd {
+    .flex-v-center();
+  }
+
+  &-bd {
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 15px;
+
+    &.bordered {
+      &:after {
+        .hairline-bottom();
+      }
     }
   }
 
-  .list-item-bd {
+  &-bd, &-content {
     flex: 1;
-  }
-
-  .list-item-icon {
-    margin-right: 8px;
   }
 
   &.enabled {

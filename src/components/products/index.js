@@ -19,6 +19,7 @@ Component({
     isLoading: true,
     inited: false,
     showSpin: false,
+    showEmpty: false,
     products: []
   },
   attached () {
@@ -93,13 +94,12 @@ Component({
           products: this.data.products,
           isLoading: false,
           inited: true,
-          showSpin: false
+          showSpin: false,
+          showEmpty: items.length === 0 && this.pageNum > 1
         })
 
         if (items.length > 0) {
           this.pageNum++
-        } else {
-          toast.error('没有更多数据了~')
         }
 
         this.triggerEvent('success', { data: res })
@@ -107,7 +107,8 @@ Component({
         this.setData({
           isLoading: false,
           inited: true,
-          showSpin: false
+          showSpin: false,
+          showEmpty: false
         })
         this.triggerEvent('error')
       } finally {

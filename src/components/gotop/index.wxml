@@ -1,4 +1,17 @@
-<view class="gotop {{customClass}}" hidden="{{!visible}}" style="{{customStyle}}" bindtap="onClick">
-  <icon-button wx:if="{{!useSlot}}" name="arrow-up" size="20px" color="#fff" background-color="rgba(0,0,0,.6)"></icon-button>
-  <slot wx:if="{{useSlot}}"></slot>
+<view
+  class="gotop {{customClass}}"
+  hidden="{{!visible}}"
+  style="{{customStyle}}"
+  bindtap="onClick"
+>
+  <icon-button
+    wx:if="{{!useSlot}}"
+    name="rocket"
+    size="24px"
+    color="#fff"
+    background-color="rgba(0,0,0,.6)"
+  >
+  </icon-button>
+  <slot wx:if="{{useSlot}}">
+  </slot>
 </view>

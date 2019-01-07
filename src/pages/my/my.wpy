@@ -118,6 +118,8 @@
   }
 
   .uc-listitem {
+    margin-bottom: 0 !important;
+
     .icon {
       color: @gcolor;
     }
@@ -167,12 +169,12 @@
 
   <view class="spliter"></view>
 
-  <view class="uc-listitem">
+  <list-item-group custom-class="uc-listitem">
     <list-item icon="order" @tap="goToRecycleOrders">回收订单</list-item>
     <list-item icon="geo" @tap="goToAddress">地址管理</list-item>
     <list-item icon="user-profile" @tap="goToProfile">个人资料</list-item>
-    <list-item icon="service" bordered="false" @tap="callService">联系客服</list-item>
-  </view>
+    <list-item icon="service" @tap="callService">联系客服</list-item>
+  </list-item-group>
 
   <view class="spliter"></view>
 </template>
@@ -187,6 +189,7 @@
     config = {
       navigationBarTitleText: '个人中心',
       usingComponents: {
+        'list-item-group': '/components/list-item-group/index',
         'list-item': '/components/list-item/index',
         'icon-item': '/components/icon-item/index',
         'panel': '/components/panel/index',

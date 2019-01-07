@@ -36,4 +36,5 @@
 </view>
 
 <preloader count="10" visible="{{isLoading}}" />
-<modal-spinner wx:if="{{showSpin && isLoading}}" />
+<modal-spinner wx:if="{{showSpin}}" />
+<weui-loading show="{{showEmpty}}" empty="{{true}}"></weui-loading>

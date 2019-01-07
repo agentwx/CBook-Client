@@ -1,4 +1,5 @@
 @import "../../styles/mixins/common";
+@import "../../styles/mixins/hairline";
 
 .form-item {
   background-color: #fff;
@@ -6,82 +7,88 @@
   &:not(.nomargin) {
     margin-bottom: 10px;
   }
-}
 
-.form-item-inner {
-  .flex-v-center();
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  &-inner {
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 
-  &.underline {
-    border-bottom: .5px solid @color-underline;
+    &.underline {
+      &:after {
+        .hairline-bottom();
+      }
+    }
   }
-}
 
-.form-item-label {
-  display: inline-block;
-  white-space: nowrap;
-  margin-right: 8px;
-  color: #888;
-}
+  &-inner,
+  &-bd {
+    .flex-v-center();
+  }
 
-.form-item-bd {
-  position: relative;
-  background-color: #fff;
-  border-radius: 4px;
-  flex: 1;
-  .flex-v-center();
+  &-label {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 8px;
+    color: #888;
+  }
 
-  > .input {
-    width: 100%;
-    padding: 6px 12px;
-    font-size: 14px;
-    box-sizing: border-box;
+  &-bd {
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
     flex: 1;
 
-    &.large {
-      height: @large;
-      font-size: 16px;
+    > .input {
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 14px;
+      box-sizing: border-box;
+      flex: 1;
+
+      &.large {
+        height: @large;
+        font-size: 16px;
+      }
+
+      &.normal {
+        height: @normal;
+      }
+
+      &.medium {
+        height: @medium;
+      }
+
+      &.small {
+        height: @small;
+      }
     }
 
-    &.normal {
-      height: @normal;
+    > .icon-left {
+      margin-left: 6px;
+      margin-right: -9px;
     }
 
-    &.medium {
-      height: @medium;
+    > .icon-right {
+      display: flex;
+      align-items: center;
+      margin-left: -12px;
+      margin-right: 3px;
     }
 
-    &.small {
-      height: @small;
+    .ctrl-icon {
+      padding: 3px;
+      margin-left: 2px;
+      color: #8a8a8a;
     }
-  }
 
-  > .icon-left {
-    margin-left: 6px;
-    margin-right: -9px;
-  }
+    .pwd-ctrl {
+      font-size: 18px;
+    }
 
-  > .icon-right {
-    display: flex;
-    align-items: center;
-    margin-left: -12px;
-    margin-right: 3px;
-  }
-
-  .ctrl-icon {
-    padding: 3px;
-    margin-left: 2px;
-    color: #8a8a8a;
-  }
-
-  .pwd-ctrl {
-    font-size: 18px;
-  }
-
-  &.bordered {
-    border: .5px solid @color-border;
+    &.bordered {
+      border: .5px solid @color-border;
+    }
   }
 }

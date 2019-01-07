@@ -1,29 +1,30 @@
 <style type="less">
   @import "../styles/mixins/common";
+  @import "../styles/mixins/hairline";
 
   .list-item {
-    position: relative;
-    .flex-v-center();
-    padding: 12px 15px;
+    padding-left: 15px;
     background-color: #fff;
 
-    &.bordered {
-      &:after {
-        content: '';
-        position: absolute;
-        left: 10px;
-        right: 10px;
-        bottom: 0;
-        border-bottom: .5px solid @color-underline;
+    &, &-bd {
+      .flex-v-center();
+    }
+
+    &-bd {
+      position: relative;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      padding-right: 15px;
+
+      &.bordered {
+        &:after {
+          .hairline-bottom();
+        }
       }
     }
 
-    .list-item-bd {
+    &-bd, &-content {
       flex: 1;
-    }
-
-    .list-item-icon {
-      margin-right: 5px;
     }
 
     &.enabled {
@@ -31,31 +32,29 @@
         background-color: @color-active;
       }
     }
-
-    .list-arrow {
-      font-size: 17px;
-      color: #999;
-      margin-left: 5px;
-    }
   }
 </style>
 <template>
-  <view class="list-item {{showArrow ? 'enabled' : ''}} {{bordered ? 'bordered' : ''}}" style="{{style}}" @tap="tap">
+  <view
+    class="list-item {{showArrow ? 'enabled' : ''}}"
+    style="{{style}}" @tap="tap">
     <icon
       wx:if="{{icon}}"
       :name="icon"
       :size="iconSize"
-      class="list-item-icon"
+      style="margin-right: 5px;"
     >
     </icon>
-    <view class="list-item-bd">
-      <slot></slot>
+    <view class="list-item-bd {{bordered ? 'bordered' : ''}}">
+      <view class="list-item-content">
+        <slot></slot>
+      </view>
+      <text
+        class="list-arrow iconfont icon-arrow-right"
+        wx:if="{{showArrow}}"
+      >
+      </text>
     </view>
-    <text
-      class="list-arrow iconfont icon-arrow-right"
-      wx:if="{{showArrow}}"
-    >
-    </text>
   </view>
 </template>
 <script>

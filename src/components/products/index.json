@@ -5,6 +5,7 @@
     "tag": "/components/tag/index",
     "icon": "/components/icon/index",
     "modal-spinner": "/components/modal-spinner/index",
-    "preloader": "/components/preloader/index"
+    "preloader": "/components/preloader/index",
+    "weui-loading": "/components/weui-loading/index"
   }
 }

@@ -1,4 +1,6 @@
-<view class="list-item {{isShowArrow ? 'enabled' : ''}} {{isBordered ? 'bordered' : ''}} {{customClass}}" style="{{customStyle}}">
+<view
+ class="list-item {{isShowArrow ? 'enabled' : ''}} {{customClass}}"
+ style="{{customStyle}}">
   <icon
     wx:if="{{icon}}"
     name="{{icon}}"
@@ -6,15 +8,17 @@
     custom-style="margin-right: 5px;"
   >
   </icon>
-  <view class="list-item-bd">
-    <slot></slot>
+  <view class="list-item-bd {{isBordered ? 'bordered' : ''}}">
+    <view class="list-item-content">
+      <slot></slot>
+    </view>
+    <icon
+      name="arrow-right"
+      color="#bbb"
+      size="17px"
+      custom-style="margin-left: 5px;"
+      wx:if="{{isShowArrow}}"
+    >
+    </icon>
   </view>
-  <icon
-    name="arrow-right"
-    color="#999"
-    size="17px"
-    custom-style="margin-left: 5px;"
-    wx:if="{{isShowArrow}}"
-  >
-  </icon>
 </view>

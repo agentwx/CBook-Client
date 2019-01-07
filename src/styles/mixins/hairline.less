@@ -5,7 +5,7 @@
   position: absolute;
   pointer-events: none;
   box-sizing: border-box;
-  transform-origin: center; /* cover wechat button:after default transforn-origin */
+  transform-origin: center; // cover wechat button:after default transforn-origin
 }
 
 .hairline-mixin(@border-color: @def-color) {
@@ -18,40 +18,22 @@
   border: 0 solid @border-color;
 }
 
-._hairline-bottom (@left, @right) {
+.hairline-bottom(@border-color: @def-color, @left: 0, @right: 0) {
   .hairline-common();
   top: auto;
   left: @left;
   right: @right;
   bottom: 0;
   transform: scaleY(0.5);
-}
-
-.hairline-bottom(@border-color: @def-color, @left: 0, @right: 0) when (@border-color = inherit) {
-  ._hairline-bottom(@left, @right);
-  border-bottom: 1px solid @def-color;
-}
-
-.hairline-bottom(@border-color: @def-color, @left: 0, @right: 0) when (default()) {
-  ._hairline-bottom(@left, @right);
   border-bottom: 1px solid @border-color;
 }
 
-._hairline-top (@left, @right) {
+.hairline-top(@border-color: @def-color, @left: 0, @right: 0) {
   .hairline-common();
   top: 0;
   left: @left;
   right: @right;
   bottom: auto;
   transform: scaleY(0.5);
-}
-
-.hairline-top(@border-color: @def-color, @left: 0, @right: 0) when (@border-color = inherit) {
-  ._hairline-top(@left, @right);
-  border-bottom: 1px solid @def-color;
-}
-
-.hairline-top(@border-color: @def-color, @left: 0, @right: 0) when (default()) {
-  ._hairline-top(@left, @right);
   border-bottom: 1px solid @border-color;
 }

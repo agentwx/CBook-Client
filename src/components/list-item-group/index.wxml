@@ -1,0 +1,5 @@
+<view
+ class="list-item-group {{customClass}}"
+ style="{{customStyle}}">
+  <slot></slot>
+</view>
