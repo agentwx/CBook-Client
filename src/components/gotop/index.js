@@ -21,6 +21,10 @@ Component({
       type: Number,
       value: 300
     },
+    icon: {
+      type: String,
+      value: 'rocket'
+    },
     useSlot: Boolean,
     disabled: Boolean
   },

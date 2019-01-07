@@ -6,7 +6,7 @@
 >
   <icon-button
     wx:if="{{!useSlot}}"
-    name="rocket"
+    name="{{icon}}"
     size="24px"
     color="#fff"
     background-color="rgba(0,0,0,.6)"
