@@ -153,10 +153,6 @@
     icon {
       margin-right: 3px;
     }
-
-    icon, text {
-      vertical-align: middle;
-    }
   }
 
   .filter-catelog-bd {
