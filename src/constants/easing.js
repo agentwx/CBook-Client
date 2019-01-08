@@ -36,3 +36,37 @@ export const easingMap = {
     Math.random().toFixed(3)
   ]
 }
+
+export const easingMapReverse = {
+  linear: 'linear',
+  ease: 'ease',
+  easeIn: 'easeOut',
+  easeOut: 'easeIn',
+  easeInOut: 'easeInOut',
+  easeInQuad: 'easeOutQuad',
+  easeInCubic: 'easeOutCubic',
+  easeInQuart: 'easeOutQuart',
+  easeInQuint: 'easeOutQuint',
+  easeInSine: 'easeOutSine',
+  easeInExpo: 'easeOutExpo',
+  easeInCirc: 'easeOutCirc',
+  easeInBack: 'easeOutBack',
+  easeOutQuad: 'easeInQuad',
+  easeOutCubic: 'easeInCubic',
+  easeOutQuart: 'easeInQuart',
+  easeOutQuint: 'easeInQuint',
+  easeOutSine: 'easeInSine',
+  easeOutExpo: 'easeInExpo',
+  easeOutCirc: 'easeInCirc',
+  easeOutBack: 'easeInBack',
+  easeInOutQuad: 'easeInOutQuad',
+  easeInOutCubic: 'easeInOutCubic',
+  easeInOutQuart: 'easeInOutQuart',
+  easeInOutQuint: 'easeInOutQuint',
+  easeInOutSine: 'easeInOutSine',
+  easeInOutExpo: 'easeInOutExpo',
+  easeInOutCirc: 'easeInOutCirc',
+  easeInOutBack: 'easeInOutBack',
+  custom: 'custom',
+  random: 'random'
+}

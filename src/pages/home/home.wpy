@@ -244,7 +244,7 @@
         </view>
       </view>
       <view class="filter-toolbar-dropdown" :class="{open: showDropdown}">
-        <transition custom-class="filter-sublayer" name="slide-down" duration="500" easing="easeOutExpo" show="{{filterVisible}}" @animationend="onAnimationEnd">
+        <transition custom-class="filter-sublayer" name="slide-down" duration="300" easing="easeOutCirc" show="{{filterVisible}}" @animationend="onAnimationEnd">
           <view class="filter-itemsort-wrap" wx:if="{{filterType === 'sort'}}">
             <block wx:for="{{sortTypes}}" wx:key="index">
               <view class="filter-itemsort" :class="{'selected': item.checked}" @tap="filterBySort({{item.value}})">

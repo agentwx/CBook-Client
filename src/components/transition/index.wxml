@@ -1,7 +1,7 @@
 <view
   wx:if="{{ inited }}"
   class="transition {{customClass}}"
-  style="animation-name: {{ name }}-{{ type }}; animation-duration: {{ duration }}ms; animation-timing-function: {{ easingValue }}; animation-delay: {{ delay }}ms; {{ display ? '' : 'display: none;' }}; {{ customStyle }}"
+  style="animation-name: {{ name }}-{{ type }}; animation-duration: {{ durationValue }}ms; animation-timing-function: {{ easingValue }}; animation-delay: {{ delay }}ms; {{ display ? '' : 'display: none;' }}; {{ customStyle }}"
   bindanimationend="onAnimationEnd"
 >
   <slot />

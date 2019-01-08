@@ -1,5 +1,5 @@
 import computedBehavior from 'miniprogram-computed'
-import { easingMap } from '../constants/easing'
+import { easingMap, easingMapReverse } from '../constants/easing'
 
 export const transition = function (showDefaultValue) {
   return Behavior({
@@ -16,10 +16,16 @@ export const transition = function (showDefaultValue) {
         type: Number,
         value: 400
       },
+      hideDuration: {
+        type: Number,
+        value: -1
+      },
       easing: {
         type: String,
         value: 'ease'
       },
+      reverseEasing: String,
+      autoReverse: Boolean,
       delay: {
         type: Number,
         value: 0
@@ -34,12 +40,28 @@ export const transition = function (showDefaultValue) {
 
     computed: {
       easingValue () {
-        let value = easingMap[this.data.easing]
+        const { type, easing, reverseEasing, autoReverse } = this.data
+        let value
+        if (type === 'enter') {
+          value = easingMap[easing]
+        } else {
+          value = reverseEasing || (autoReverse ? easingMap[easingMapReverse[easing]] : easingMap[easing])
+        }
         if (value) {
           return `cubic-bezier(${value.join(',')})`
         } else {
           return this.data.easing
         }
+      },
+      durationValue () {
+        const { type, duration, hideDuration } = this.data
+        let value
+        if (type === 'enter') {
+          value = duration
+        } else {
+          value = hideDuration >= 0 ? hideDuration : duration
+        }
+        return value
       }
     },
 
