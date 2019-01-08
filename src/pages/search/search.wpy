@@ -226,18 +226,30 @@
       this.queryParams = params
     }
 
+    showSearchBar () {
+      if (!this.searchBarFixed) {
+        this.searchBarFixed = true
+        this.$apply()
+      }
+    }
+
+    hideSearchBar () {
+      if (this.searchBarFixed) {
+        this.searchBarFixed = false
+        this.$apply()
+      }
+    }
+
     onPageScroll (e) {
-      if (e.scrollTop < 60) return
+      if (e.scrollTop === 0) {
+        this.showSearchBar()
+        return
+      }
+      if (e.scrollTop < 80) return
       if (e.scrollTop - this.lastScrollTop > 0) {
-        if (this.searchBarFixed) {
-          this.searchBarFixed = false
-          this.$apply()
-        }
+        this.hideSearchBar()
       } else {
-        if (!this.searchBarFixed) {
-          this.searchBarFixed = true
-          this.$apply()
-        }
+        this.showSearchBar()
       }
       this.lastScrollTop = e.scrollTop
     }
