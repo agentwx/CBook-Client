@@ -4,8 +4,7 @@
       wx:if="{{label}}"
       class="form-item-label"
       style="width: {{labelWidth}};"
-    >
-      {{label}}
+    >{{label}}
     </text>
     <view class="form-item-bd {{isBordered ? 'bordered' : ''}}">
       <icon
