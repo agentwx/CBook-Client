@@ -47,8 +47,11 @@ export const transition = function (showDefaultValue) {
         } else {
           value = reverseEasing || (autoReverse ? easingMap[easingMapReverse[easing]] : easingMap[easing])
         }
+        if (typeof value === 'function') {
+          value = value()
+        }
         if (value) {
-          return `cubic-bezier(${value.join(',')})`
+          return `cubic-bezier(${value})`
         } else {
           return this.data.easing
         }
