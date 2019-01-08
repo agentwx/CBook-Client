@@ -33,7 +33,6 @@
       nomargin="true"
       underline="true"
       text-align="right"
-      size="medium"
       value="{{nickName}}"
       @input="nickNameChange">
     </form-item>
