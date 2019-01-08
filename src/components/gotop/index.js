@@ -37,13 +37,13 @@ Component({
     }
   },
   methods: {
-    handlePage() {
+    handlePage () {
       let self = this
       let page = getCurrentPage()
       let origScroll = page.onPageScroll || function () {}
 
       page.onPageScroll = function (e) {
-        origScroll(e)
+        origScroll.call(page, e)
 
         let visible = false
         if (e.scrollTop > self.data.showOffset) {
