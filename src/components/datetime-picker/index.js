@@ -219,7 +219,7 @@ Component({
       return coerce(this.data.resetable)
     }
   },
-  attached () {
+  ready () {
     this.init()
   },
   methods: {
