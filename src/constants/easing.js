@@ -37,7 +37,7 @@ export const easingMap = {
   ].join(',')
 }
 
-export const easingMapReverse = {
+export const easingReverseMap = {
   linear: 'linear',
   ease: 'ease',
   easeIn: 'easeOut',

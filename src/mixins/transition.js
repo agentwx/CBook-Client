@@ -1,5 +1,5 @@
 import computedBehavior from 'miniprogram-computed'
-import { easingMap, easingMapReverse } from '../constants/easing'
+import { easingMap, easingReverseMap } from '../constants/easing'
 
 export const transition = function (showDefaultValue) {
   return Behavior({
@@ -45,7 +45,7 @@ export const transition = function (showDefaultValue) {
         if (type === 'enter') {
           value = easingMap[easing]
         } else {
-          value = reverseEasing || (autoReverse ? easingMap[easingMapReverse[easing]] : easingMap[easing])
+          value = reverseEasing || (autoReverse ? easingMap[easingReverseMap[easing]] : easingMap[easing])
         }
         if (typeof value === 'function') {
           value = value()
