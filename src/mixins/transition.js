@@ -16,7 +16,7 @@ export const transition = function (showDefaultValue) {
         type: Number,
         value: 400
       },
-      hideDuration: {
+      reverseDuration: {
         type: Number,
         value: -1
       },
@@ -57,12 +57,12 @@ export const transition = function (showDefaultValue) {
         }
       },
       durationValue () {
-        const { type, duration, hideDuration } = this.data
+        const { type, duration, reverseDuration } = this.data
         let value
         if (type === 'enter') {
           value = duration
         } else {
-          value = hideDuration >= 0 ? hideDuration : duration
+          value = reverseDuration >= 0 ? reverseDuration : duration
         }
         return value
       }
