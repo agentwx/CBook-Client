@@ -1,5 +1,5 @@
 import fetch from '../../service/fetch'
-import { getCurrentPage, toast } from '../../utils/util'
+import { getCurrentPage } from '../../utils/util'
 
 Component({
   options: {
