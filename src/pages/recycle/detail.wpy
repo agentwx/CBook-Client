@@ -143,6 +143,23 @@
       background-color: @color-active;
     }
   }
+
+  .reason-title {
+    margin-bottom: 20px;
+    color: #888;
+    text-align: center;
+  }
+
+  .reason-item {
+    margin-bottom: 15px;
+  }
+
+  .reason-actions {
+    btn {
+      display: block;
+      width: 40%;
+    }
+  }
 </style>
 
 <template>
@@ -211,6 +228,25 @@
     <icon name="service" />
     <text>召唤客服</text>
   </view>
+  <view class="action-button" @tap="cancelOrder">
+    <text>取消订单</text>
+  </view>
+
+  <modal visible="{{modalVisible}}" show-close="false">
+    <view class="reason-title">取消订单原因</view>
+    <view class="reasons-wrap">
+      <repeat for="{{cancelReasons}}" key="index">
+        <view class="reason-item" @tap="selectReason({{index}})">
+          <checkbox checked="{{item.checked}}" style="margin-right: 8px;" />
+          <text>{{item.text}}</text>
+        </view>
+      </repeat>
+    </view>
+    <view class="reason-actions flex-between">
+      <btn type="plain" size="small" @tap="handleModal({{false}})">取消</btn>
+      <btn bordered="true" size="small" @tap="handleModal({{true}})">确定</btn>
+    </view>
+  </modal>
 </template>
 
 <script>
@@ -229,16 +265,31 @@
       usingComponents: {
         icon: '/components/icon/index',
         steps: '/components/steps/index',
-        panel: '/components/panel/index'
+        panel: '/components/panel/index',
+        modal: '/components/modal/index',
+        btn: '/components/button/index',
+        checkbox: '/components/check-box/index'
       }
-    }
-
-    components = {
     }
 
     data = {
       stepItems: ['线上审核', '物流取件', '平台取件', '验收书籍', '书费到账'],
-      order: {}
+      cancelReasons: [
+        {
+          checked: false,
+          text: '不想买了'
+        },
+        {
+          checked: false,
+          text: '填错信息，重新下单'
+        },
+        {
+          checked: false,
+          text: '其它原因'
+        }
+      ],
+      order: {},
+      modalVisible: true
     }
 
     computed = {
@@ -256,6 +307,16 @@
         wx.makePhoneCall({
           phoneNumber: '13746584675'
         })
+      },
+      selectReason (index) {
+        this.cancelReasons = this.cancelReasons.map((reason, i) => ({...reason, chceked: index === i}))
+      },
+      handleModal (flag) {
+        console.log(flag)
+        this.modalVisible = false
+        if (flag) {
+          // TODO
+        }
       }
     }
 
