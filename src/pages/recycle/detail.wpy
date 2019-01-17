@@ -4,7 +4,6 @@
 
   page {
     background-color: #f7f7f7;
-    padding-bottom: 10px;
   }
 
   .delivery-body {
@@ -136,6 +135,7 @@
   .action-button {
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: 10px;
     background-color: #fff;
     .flex-center();
 
@@ -157,8 +157,12 @@
   .reason-actions {
     btn {
       display: block;
-      width: 40%;
+      width: 45%;
     }
+  }
+
+  .modal-dialog {
+    width: 70% !important;
   }
 </style>
 
@@ -228,7 +232,7 @@
     <icon name="service" />
     <text>召唤客服</text>
   </view>
-  <view class="action-button" @tap="cancelOrder">
+  <view class="action-button" @tap="showModal" wx:if="{{order.orderStatus === 1000}}">
     <text>取消订单</text>
   </view>
 
@@ -252,11 +256,51 @@
 <script>
   import wepy from 'wepy'
 
-  import { toast } from '../../utils/util'
+  import { toast, getPrevPage } from '../../utils/util'
+  import fetch from '../../service/fetch'
+
+  const ORDER_STATUS_MAP = {
+    1000: {
+      index: 0,
+      desc: '平台审核',
+      items: [1000, 1001, 1002, 1003]
+    },
+    2001: {
+      index: 1,
+      desc: '审核失败',
+      items: [1000, 2001]
+    },
+    2002: {
+      index: 1,
+      desc: '用户取消',
+      items: [1000, 2002]
+    },
+    1001: {
+      index: 1,
+      desc: '物流取件',
+      items: [1000, 1001, 1002, 1003]
+    },
+    2003: {
+      index: 2,
+      desc: '取件失败',
+      items: [1000, 1001, 2003]
+    },
+    1002: {
+      index: 2,
+      desc: '验收书籍',
+      items: [1000, 1001, 1002, 1003]
+    },
+    1003: {
+      index: 3,
+      desc: '书费到账',
+      items: [1000, 1001, 1002, 1003]
+    }
+  }
 
   const BOOK_STATUS_MAP = {
-    0: '待审核',
-    1: '审核通过'
+    1000: '待审核',
+    1001: '验收通过',
+    2001: '验收不通过'
   }
 
   export default class Index extends wepy.page {
@@ -273,11 +317,10 @@
     }
 
     data = {
-      stepItems: ['线上审核', '物流取件', '平台取件', '验收书籍', '书费到账'],
       cancelReasons: [
         {
-          checked: false,
-          text: '不想买了'
+          checked: true,
+          text: '不想卖了'
         },
         {
           checked: false,
@@ -289,12 +332,24 @@
         }
       ],
       order: {},
-      modalVisible: true
+      orderIndex: 0,
+      modalVisible: false
     }
 
     computed = {
+      stepItems () {
+        const statusItem = ORDER_STATUS_MAP[this.order.orderStatus]
+        if (statusItem) {
+          return statusItem.items.map(status => ORDER_STATUS_MAP[status].desc)
+        }
+        return []
+      },
       stepIndex () {
-        return this.order.orderStatus || 0
+        const item = ORDER_STATUS_MAP[this.order.orderStatus]
+        if (item) {
+          return item.index
+        }
+        return 0
       }
     }
 
@@ -309,24 +364,36 @@
         })
       },
       selectReason (index) {
-        this.cancelReasons = this.cancelReasons.map((reason, i) => ({...reason, chceked: index === i}))
+        this.cancelReasons = this.cancelReasons.map((reason, i) => ({...reason, checked: index === i}))
+      },
+      showModal () {
+        this.modalVisible = true
       },
       handleModal (flag) {
-        console.log(flag)
         this.modalVisible = false
         if (flag) {
-          // TODO
+          const reason = this.cancelReasons.find(item => item.checked).text
+          this.cancelOrder(this.order.orderCode, reason)
         }
       }
     }
 
-    onLoad({ order }) {
+    async cancelOrder (orderCode, reason) {
+      await fetch.post('/recover/order/cancel', {orderCode, reason})
+      this.order.orderStatus = 2002
+      this.$apply()
+      getPrevPage().setOrderStatus(this.orderIndex, this.order.orderStatus)
+      toast.success('取消成功')
+    }
+
+    onLoad({ order, index }) {
       if (order) {
         order = JSON.parse(order)
         order.bookInfos = order.bookInfos.map(item =>
           ({...item, bookStatusText: BOOK_STATUS_MAP[item.bookStatus]})
         )
         this.order = order
+        this.orderIndex = index
       }
     }
   }

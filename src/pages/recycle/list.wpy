@@ -103,7 +103,7 @@
 <template>
   <view class="orders-wrapper" wx:if="{{orders.length > 0}}">
     <repeat for="{{orders}}" key="index">
-      <panel @tap="viewDetail({{item}})">
+      <panel @tap="viewDetail({{item}}, {{index}})">
         <view class="panel-title order-hd" slot="title">
           <text class="order-num">单号：{{item.orderCode}}</text>
           <text class="order-status">{{item.orderStatusText}}</text>
@@ -148,11 +148,13 @@
   import fetch from '../../service/fetch'
 
   const ORDER_STATUS_MAP = {
-    0: '线上审核',
-    1: '物流取件',
-    2: '平台取件',
-    3: '验收书籍',
-    4: '书费到账'
+    1000: '平台审核',
+    2001: '审核失败',
+    2002: '用户取消',
+    1001: '物流取件',
+    2003: '取件失败',
+    1002: '验收书籍',
+    1003: '书费到账'
   }
 
   export default class Index extends wepy.page {
@@ -177,8 +179,8 @@
     }
 
     methods = {
-      viewDetail (order) {
-        this.$navigate('/pages/recycle/detail', { order: JSON.stringify(order) })
+      viewDetail (order, index) {
+        this.$navigate('/pages/recycle/detail', { order: JSON.stringify(order), index })
       }
     }
 
@@ -195,7 +197,11 @@
         items = items.map(item =>
           ({...item, orderStatusText: ORDER_STATUS_MAP[item.orderStatus]})
         )
-        this.orders = this.orders.concat(items)
+        if (this.pageNum === 1) {
+          this.orders = items
+        } else {
+          this.orders = this.orders.concat(items)
+        }
         if (items.length > 0) {
           this.pageNum++
           this.isEmpty = false
@@ -208,6 +214,12 @@
       }
     }
 
+    setOrderStatus (index, statusCode) {
+      this.orders[index].orderStatus = statusCode
+      this.orders[index].orderStatusText = ORDER_STATUS_MAP[statusCode]
+      this.$apply()
+    }
+
     reloadOrders () {
       this.pageNum = 1
       this.loadOrders()
@@ -217,7 +229,7 @@
       this.loadOrders()
     }
 
-    onLoad() {
+    onLoad () {
       this.reloadOrders()
     }
   }
