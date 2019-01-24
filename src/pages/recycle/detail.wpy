@@ -212,12 +212,12 @@
   <panel custom-class="income-panel">
     <view class="income-item">
       <text>预计收入</text>
-      <text>￥{{order.income}}</text>
+      <text>￥{{order.expectIncome}}</text>
     </view>
-    <!--<view class="income-item">
+    <view class="income-item" wx:if="{{order.orderStatus === 1003}}">
       <text>实际收入</text>
-      <text>￥{{order.income}}</text>
-    </view>-->
+      <text>￥{{order.actualIncome}}</text>
+    </view>
   </panel>
   <panel custom-class="order-panel">
     <view class="order-item">
