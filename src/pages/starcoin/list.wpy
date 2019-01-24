@@ -47,6 +47,7 @@
     }
 
     &__list {
+      position: relative;
       flex: 1;
       height: 100%;
       overflow: hidden;
@@ -122,7 +123,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 30%;
+    top: 20%;
     text-align: center;
 
     image {
@@ -144,181 +145,126 @@
   }
 </style>
 <template>
-  <block wx:if="{{dataList.length > 0}}">
-    <view class="star-info">
-      <view class="star-info__value">1082</view>
-      <view class="star-info__hint">我的星币</view>
-    </view>
+  <view class="star-info">
+    <view class="star-info__value">{{starPoint}}</view>
+    <view class="star-info__hint">我的星币</view>
+  </view>
 
-    <view class="spliter"></view>
+  <view class="spliter"></view>
 
-    <view class="star-panel">
-      <tab-head custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tab-head>
-      <view class="star-panel__list" wx:if="{{tabIndex === 0}}">
-        <scroll-view class="star-panel__scrollview" scroll-y="true">
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
+  <view class="star-panel">
+    <tab-head custom-class="order-tabhead" items="{{tabItems}}" tabIndex="{{tabIndex}}" @change="tabheadChange"></tab-head>
+    <view class="star-panel__list" wx:if="{{tabIndex === 0}}">
+      <block wx:if="{{dataList.length > 0}}">
+        <scroll-view class="star-panel__scrollview" scroll-y="true" @scrolltolower="loadMore">
+          <repeat for="{{dataList}}" key="index">
+            <view class="star-panel__item hairline--bottom flex-v-center">
+              <view class="star-panel__item--left">
+                <view class="star-panel__item__name">{{item.reason}}</view>
+                <view class="star-panel__item__date">{{item.time}}</view>
+              </view>
+              <view class="star-panel__item--right">{{item.changePoint}}</view>
             </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-          <view class="star-panel__item hairline--bottom flex-v-center">
-            <view class="star-panel__item--left">
-              <view class="star-panel__item__name">买书星币抵扣</view>
-              <view class="star-panel__item__date">2018-12-08 10:30:00</view>
-            </view>
-            <view class="star-panel__item--right">+ 200.00</view>
-          </view>
-
-          <weui-loading visible="{{true}}" empty="{{true}}"></weui-loading>
-
+          </repeat>
+          <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
         </scroll-view>
-      </view>
+      </block>
+      <block wx:else>
+        <view class="empty-layer">
+          <image mode="widthFix" src="../../assets/images/empty-star.png"></image>
+          <view class="empty-action">
+            <view class="empty-text">暂无星币明细记录~</view>
+          </view>
+        </view>
+      </block>
+    </view>
 
-      <view class="star-panel__list" wx:if="{{tabIndex === 1}}">
-        <view class="star-panel__item guide hairline--bottom flex-v-center">
-          <view class="star-panel__item--icon book">
-            <icon name="book"></icon>
-          </view>
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">出售闲置童书</view>
-            <view class="star-panel__item__hint">
-              <text class="c-f90">获得与书籍价格一样的星币数</text>
-            </view>
-          </view>
-          <view class="star-panel__item--right">
-            <btn bordered="true" size="small">去完成</btn>
+    <view class="star-panel__list" wx:if="{{tabIndex === 1}}">
+      <view class="star-panel__item guide hairline--bottom flex-v-center">
+        <view class="star-panel__item--icon book">
+          <icon name="book"></icon>
+        </view>
+        <view class="star-panel__item--left">
+          <view class="star-panel__item__name">出售闲置童书</view>
+          <view class="star-panel__item__hint">
+            <text class="c-f90">获得与书籍价格一样的星币数</text>
           </view>
         </view>
-        <view class="star-panel__item guide hairline--bottom flex-v-center">
-          <view class="star-panel__item--icon link">
-            <icon name="link"></icon>
-          </view>
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">分享到微信群</view>
-            <view class="star-panel__item__hint">
-              <text class="c-f90">获得一个新用户得5星币</text>
-            </view>
-          </view>
-          <view class="star-panel__item--right">
-            <btn bordered="true" size="small">去完成</btn>
+        <view class="star-panel__item--right" @tap="doTask('sale')">
+          <btn bordered="true" size="small">去完成</btn>
+        </view>
+      </view>
+      <view class="star-panel__item guide hairline--bottom flex-v-center">
+        <view class="star-panel__item--icon link">
+          <icon name="link"></icon>
+        </view>
+        <view class="star-panel__item--left">
+          <view class="star-panel__item__name">分享到微信群</view>
+          <view class="star-panel__item__hint">
+            <text class="c-f90">获得一个新用户得5星币</text>
           </view>
         </view>
-        <view class="star-panel__item guide hairline--bottom flex-v-center">
-          <view class="star-panel__item--icon share">
-            <icon name="share"></icon>
-          </view>
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">分享到朋友圏</view>
-            <view class="star-panel__item__hint">
-              <text class="c-f90">获得一个新用户得5星币</text>
-            </view>
-          </view>
-          <view class="star-panel__item--right">
-            <btn bordered="true" size="small">去完成</btn>
+        <view class="star-panel__item--right">
+          <btn bordered="true" size="small" @tap="doTask('wx-appmsg')">去完成</btn>
+        </view>
+      </view>
+      <view class="star-panel__item guide hairline--bottom flex-v-center">
+        <view class="star-panel__item--icon share">
+          <icon name="share"></icon>
+        </view>
+        <view class="star-panel__item--left">
+          <view class="star-panel__item__name">分享到朋友圏</view>
+          <view class="star-panel__item__hint">
+            <text class="c-f90">获得一个新用户得5星币</text>
           </view>
         </view>
-        <view class="star-panel__item guide hairline--bottom flex-v-center">
-          <view class="star-panel__item--icon note">
-            <icon name="note"></icon>
-          </view>
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">每天最少5条书评</view>
-            <view class="star-panel__item__hint">
-              <text class="c-f90">可获得10星币</text>
-            </view>
-          </view>
-          <view class="star-panel__item--right">
-            <btn bordered="true" size="small">去完成</btn>
+        <view class="star-panel__item--right">
+          <btn bordered="true" size="small" @tap="doTask('wx-timeline')">去完成</btn>
+        </view>
+      </view>
+      <view class="star-panel__item guide hairline--bottom flex-v-center">
+        <view class="star-panel__item--icon note">
+          <icon name="note"></icon>
+        </view>
+        <view class="star-panel__item--left">
+          <view class="star-panel__item__name">每天最少5条书评</view>
+          <view class="star-panel__item__hint">
+            <text class="c-f90">可获得10星币</text>
           </view>
         </view>
-        <view class="star-panel__item guide hairline--bottom flex-v-center">
-          <view class="star-panel__item--icon edit">
-            <icon name="edit"></icon>
+        <view class="star-panel__item--right">
+          <btn bordered="true" size="small" @tap="doTask('comment')">去完成</btn>
+        </view>
+      </view>
+      <view class="star-panel__item guide hairline--bottom flex-v-center">
+        <view class="star-panel__item--icon edit">
+          <icon name="edit"></icon>
+        </view>
+        <view class="star-panel__item--left">
+          <view class="star-panel__item__name">填写宝宝信息</view>
+          <view class="star-panel__item__hint">
+            <text class="c-f90">可获得20星币</text>
           </view>
-          <view class="star-panel__item--left">
-            <view class="star-panel__item__name">填写宝宝信息</view>
-            <view class="star-panel__item__hint">
-              <text class="c-f90">可获得20星币</text>
-            </view>
-          </view>
-          <view class="star-panel__item--right">
-            <btn bordered="true" size="small">去完成</btn>
-          </view>
+        </view>
+        <view class="star-panel__item--right">
+          <btn bordered="true" size="small" @tap="doTask('add-baby')">去完成</btn>
         </view>
       </view>
     </view>
-  </block>
-  <block wx:else>
-    <view class="empty-layer">
-      <image mode="widthFix" src="../../assets/images/empty-star.png"></image>
-      <view class="empty-action">
-        <view class="empty-text">暂无星币明细记录~</view>
-      </view>
-    </view>
-  </block>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import fetch from '../../service/fetch'
+  import { confirm } from '../../utils/util'
 
+  @connect({
+    starPoint ({userInfo}) {
+      return userInfo.starPoint
+    }
+  })
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '星币明细',
@@ -331,18 +277,74 @@
     }
 
     data = {
+      isLoading: true,
+      isEmpty: false,
       tabIndex: 0,
       tabItems: ['星币明细', '赚取星币'],
-      dataList: [1]
+      dataList: [],
+      pageNum: 1
     }
 
     methods = {
       tabheadChange (e) {
         this.tabIndex = e.detail.value
+      },
+      loadMore () {
+        this.loadPointList()
+      },
+      async doTask (action) {
+        switch (action) {
+          case 'sale':
+            this.$switch('/pages/recycle/index')
+            break
+          case 'wx-appmsg':
+            break
+          case 'wx-timeline':
+            break
+          case 'comment':
+            const isOK = await confirm('请前往首页挑选一本书并评论')
+            if (isOK) {
+              this.$switch('/pages/home/home')
+            }
+            break
+          case 'add-baby':
+            this.$navigate('/pages/profile/profile')
+            break
+          default:
+            this.$switch('/pages/home/home')
+        }
       }
     }
 
-    onLoad (options) {
+    async loadPointList () {
+      let params = {
+        offset: this.pageNum,
+        limit: 10
+      }
+
+      try {
+        this.isLoading = true
+        let res = await fetch.post('/user/starPoint/List', params)
+        let items = res.datas.Items || []
+        if (this.pageNum === 1) {
+          this.dataList = items
+        } else {
+          this.dataList = this.dataList.concat(items)
+        }
+        if (items.length > 0) {
+          this.pageNum++
+          this.isEmpty = false
+        } else {
+          this.isEmpty = true
+        }
+      } finally {
+        this.isLoading = false
+        this.$apply()
+      }
+    }
+
+    onLoad () {
+      this.loadPointList()
     }
   }
 </script>

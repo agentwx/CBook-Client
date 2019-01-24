@@ -159,13 +159,13 @@
     open (e) {
       this.visible = true
       this.$apply()
-      this.$emit('modalOpen', e)
+      this.$emit('open', e)
     }
 
     close (e) {
       this.visible = false
       this.$apply()
-      this.$emit('modalClose', e)
+      this.$emit('close', e)
     }
 
     methods = {

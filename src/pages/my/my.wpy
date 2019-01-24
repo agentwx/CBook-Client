@@ -139,13 +139,13 @@
       <view class="uc-username">
         <open-data type="userNickName" lang="zh_CN"></open-data>
       </view>
-      <view class="uc-usertype">普通会员</view>
+      <view class="uc-usertype">{{userInfo.vipLevelText}}</view>
     </view>
   </view>
 
   <view class="uc-assets-panel">
     <view class="uc-assets-item" @tap="viewCoins">
-      <view class="assets-value">6</view>
+      <view class="assets-value">{{userInfo.starPoint}}</view>
       <view class="assets-name">星星币</view>
     </view>
     <view class="uc-assets-item">
@@ -181,9 +181,16 @@
 
 <script>
   import wepy from 'wepy'
+  import fetch from '../../service/fetch'
   import { getStore } from 'wepy-redux'
 
   const store = getStore()
+
+  const vipLevelMap = {
+    0: '普通会员',
+    1: 'vip 1级',
+    2: 'vip 2级'
+  }
 
   export default class Index extends wepy.page {
     config = {
@@ -201,6 +208,7 @@
     }
 
     data = {
+      userInfo: {}
     }
 
     methods = {
@@ -230,6 +238,18 @@
       this.$navigate('/pages/orderlist/orderlist', { tabIndex })
     }
 
+    async getUserInfo () {
+      const { datas: userInfo } = await fetch.post('user/baseinfo', {}, false)
+      this.userInfo = {...userInfo, vipLevelText: vipLevelMap[userInfo.vipLevel]}
+      this.$apply()
+      store.dispatch({
+        type: 'ADD_USER_INFO',
+        payload: {
+          data: userInfo
+        }
+      })
+    }
+
     onShow () {
       const { recycles, shopCart } = store.getState()
       const recycleCount = recycles.length
@@ -256,6 +276,8 @@
           index: 2
         })
       }
+
+      this.getUserInfo()
     }
 
     onLoad() {

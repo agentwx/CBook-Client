@@ -7,7 +7,11 @@ const defaultState = {
   gender: 0,
   language: 'zh_CN',
   nickName: '',
-  province: ''
+  province: '',
+  name: '',
+  vipLevel: 0,
+  starPoint: 1494.1,
+  mobile: ''
 }
 
 export default handleActions({

@@ -46,13 +46,13 @@ Component({
       this.setData({
         visible: true
       })
-      this.triggerEvent('modalOpen')
+      this.triggerEvent('open')
     },
     close () {
       this.setData({
         visible: false
       })
-      this.triggerEvent('modalClose')
+      this.triggerEvent('close')
     },
     closeModal (e) {
       this.close(e)

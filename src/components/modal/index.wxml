@@ -4,7 +4,7 @@
       <text>{{title}}</text>
     </view>
     <view class="modal-close" wx:if="{{isShowClose}}" bindtap="closeModal">
-      <icon size="small" color="#999" name="close"></icon>
+      <icon color="#999" name="close"></icon>
     </view>
     <view class="modal-content">
       <slot></slot>

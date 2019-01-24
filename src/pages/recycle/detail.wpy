@@ -85,6 +85,10 @@
 
     .status {
       color: #09c8fe;
+
+      &.red {
+        color: #ff0000;
+      }
     }
   }
 
@@ -145,8 +149,9 @@
   }
 
   .reason-title {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #888;
+    font-size: 16px;
     text-align: center;
   }
 
@@ -155,6 +160,8 @@
   }
 
   .reason-actions {
+    margin-bottom: -5px;
+
     btn {
       display: block;
       width: 45%;
@@ -163,6 +170,40 @@
 
   .modal-dialog {
     width: 70% !important;
+  }
+
+  .deny-wrap {
+    margin-bottom: 25px;
+  }
+
+  .deny-main {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    margin-right: 15px;
+  }
+
+  .deny-bookName {
+    margin-bottom: 8px;
+    font-weight: bold;
+    .ellipsis();
+  }
+
+  .deny-reason {
+    font-size: 13px;
+    color: #ff0000;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  .deny-img {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+    }
   }
 </style>
 
@@ -202,8 +243,11 @@
             <view class="desc">{{item.press}}</view>
           </view>
           <view class="book-specs">
-            <text class="price">￥{{item.costPrice}}</text>
-            <text class="status">{{item.bookStatusText}}</text>
+            <view class="price">￥{{(order.orderStatus === 2001 || order.orderStatus === 1002 || order.orderStatus === 1003) ? item.actualIncome : item.expectIncome}}</view>
+            <view class="status" :class="{'red': item.bookStatus === 2001}" @tap="showDenyInfo({{item}})">
+              {{item.bookStatusText}}
+              <icon name="question-o" size="mini" wx:if="{{item.bookStatus === 2001}}"></icon>
+            </view>
           </view>
         </view>
       </view>
@@ -236,7 +280,7 @@
     <text>取消订单</text>
   </view>
 
-  <modal visible="{{modalVisible}}" show-close="false">
+  <modal visible="{{modalVisible}}" @close="handleModalClose">
     <view class="reason-title">取消订单原因</view>
     <view class="reasons-wrap">
       <repeat for="{{cancelReasons}}" key="index">
@@ -251,6 +295,23 @@
       <btn bordered="true" size="small" @tap="handleModal({{true}})">确定</btn>
     </view>
   </modal>
+
+  <modal visible="{{denyModalVisible}}" @close="handleDenyModalClose">
+    <view class="reason-title">审核未通过原因</view>
+    <view class="deny-wrap flex">
+      <view class="deny-main">
+        <view class="deny-bookName">{{denyInfo.bookName}}</view>
+        <view class="deny-reason">{{denyInfo.reason}}</view>
+      </view>
+      <veiw class="deny-img" @tap="previewDenyImg">
+        <image src="{{denyInfo.img}}" mode="widthFix"></image>
+      </veiw>
+    </view>
+    <view class="reason-actions flex-h-center">
+      <btn @tap="handleDenyModal">确定</btn>
+    </view>
+  </modal>
+
 </template>
 
 <script>
@@ -299,8 +360,8 @@
 
   const BOOK_STATUS_MAP = {
     1000: '待审核',
-    1001: '验收通过',
-    2001: '验收不通过'
+    1001: '审核通过',
+    2001: '审核未通过'
   }
 
   export default class Index extends wepy.page {
@@ -332,8 +393,10 @@
         }
       ],
       order: {},
+      denyInfo: {},
       orderIndex: 0,
-      modalVisible: false
+      modalVisible: false,
+      denyModalVisible: false
     }
 
     computed = {
@@ -358,6 +421,12 @@
         await wepy.setClipboardData({data: this.order.orderCode})
         toast.success('复制成功')
       },
+      async showDenyInfo (book) {
+        const res = await fetch.post('/recover/book/deny/reason', {orderCode: this.order.orderCode, bookCode: book.bookCode})
+        this.denyInfo = {bookName: book.name, reason: res.datas.changeReason, img: res.datas.images}
+        this.denyModalVisible = true
+        this.$apply()
+      },
       callService () {
         wx.makePhoneCall({
           phoneNumber: '13746584675'
@@ -375,6 +444,22 @@
           const reason = this.cancelReasons.find(item => item.checked).text
           this.cancelOrder(this.order.orderCode, reason)
         }
+      },
+      handleDenyModal () {
+        this.denyModalVisible = false
+      },
+      previewDenyImg () {
+        let url = this.denyInfo.img
+        wx.previewImage({
+          current: url,
+          urls: [url]
+        })
+      },
+      handleModalClose () {
+        this.modalVisible = false
+      },
+      handleDenyModalClose () {
+        this.denyModalVisible = false
       }
     }
 
