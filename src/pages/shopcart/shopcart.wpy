@@ -408,6 +408,7 @@
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '购物车',
+      enablePullDownRefresh: true,
       usingComponents: {
         'btn': '/components/button/index',
         'icon': '/components/icon/index',
@@ -538,7 +539,8 @@
     async checkStock () {
       const goodsId = this.products.map(product => product.goodsId)
       if (!goodsId.length) return Promise.resolve()
-      const { datas = [] } = await fetch.post('/sales/goods/stock', { goodsId })
+      wx.showNavigationBarLoading()
+      const { datas = [] } = await fetch.post('/sales/goods/stock', { goodsId }, false)
       datas.forEach(item => {
         let product = this.products.find(product => product.goodsId === item.goodsId)
         if (product) {
@@ -546,6 +548,12 @@
         }
       })
       this.$apply()
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+    }
+
+    onPullDownRefresh () {
+      this.checkStock()
     }
 
     onShow() {
