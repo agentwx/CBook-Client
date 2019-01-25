@@ -101,7 +101,8 @@
     padding-left: 10px;
     padding-right: 10px;
 
-    > view {
+    &-item {
+      .flex();
       padding: 12px 0;
     }
   }
@@ -515,12 +516,24 @@
   <view class="spliter"></view>
 
   <view class="product-info">
-    <view class="hairline--bottom">作者：{{product.author}}</view>
-    <view class="hairline--bottom">出版：{{product.press}}</view>
-    <view class="hairline--bottom">时间：{{publishDateStr}}</view>
-    <view class="hairline--bottom">
-      <raty show-value="false" value="{{product.doubanScore}}"></raty>
-      <text class="comments-count">121条书评</text>
+    <view class="product-info-item hairline--bottom">
+      <text class="product-info-label">作者：</text>
+      <view class="product-info-content">{{product.author}}</view>
+    </view>
+    <view class="product-info-item hairline--bottom">
+      <text class="product-info-label">出版：</text>
+      <view class="product-info-content">{{product.press}}</view>
+    </view>
+    <view class="product-info-item hairline--bottom">
+      <text class="product-info-label">时间：</text>
+      <view class="product-info-content">{{publishDateStr}}</view>
+    </view>
+    <view class="product-info-item hairline--bottom">
+      <text class="product-info-label"> 评分：</text>
+      <view class="product-info-content">
+        <raty show-value="false" value="{{product.doubanScore}}"></raty>
+        <text class="comments-count">121条书评</text>
+      </view>
     </view>
   </view>
 
