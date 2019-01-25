@@ -243,7 +243,9 @@
     .title {
       font-size: 15px;
       font-weight: bold;
-      .ellipsis();
+      // .ellipsis();
+      word-break: break-all;
+      word-wrap: break-word;
       margin-bottom: 3px;
     }
 
@@ -454,10 +456,10 @@
             <view class="order-main">
               <view class="order-pd-hd">
                 <view class="title">{{item.name}}</view>
-                <view class="desc">{{item.author}}</view>
+                <!--<view class="desc">{{item.author}}</view>-->
               </view>
               <view class="order-pd-specs">
-                <text class="price">￥{{item.costPrice}}</text>
+                <text class="price">￥{{filters.toFixed(item.costPrice)}}</text>
               </view>
             </view>
           </view>
@@ -509,6 +511,7 @@
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast, confirm } from '../../utils/util'
+  import filters from '../../filters/number.wxs'
 
   import { connect, getStore } from 'wepy-redux'
 
@@ -547,6 +550,10 @@
       manualShow: false,
       isHintDel: false,
       isbn: null
+    }
+
+    wxs = {
+      filters
     }
 
     computed = {
