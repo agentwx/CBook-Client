@@ -27,7 +27,7 @@
   .detail-salesInfo {
     .flex();
     justify-content: space-between;
-    padding: 0 10px 15px;
+    padding: 0 10px 10px;
   }
 
   .sale-price {
@@ -53,7 +53,7 @@
   }
 
   .sales-share {
-    padding: 4px;
+    padding: 6px;
 
     icon {
       margin-right: 3px;
@@ -170,6 +170,12 @@
     }
   }
 
+  .action-disabled {
+    color: #888;
+    background: @color-disabled;
+    pointer-events: none;
+  }
+
   .action-cart {
     position: relative;
 
@@ -273,7 +279,7 @@
   .pdintro-author {
     color:#777;
     font-size: 13px;
-    .light-font();
+    // .light-font();
     padding-top: 5px;
     padding-bottom: 8px;
   }
@@ -281,7 +287,7 @@
   .pdintro-content {
 
     .text {
-      .light-font();
+      // .light-font();
       font-size: 13px;
       line-height: 1.6;
       text-indent: 2em;
@@ -497,10 +503,12 @@
     </view>
     <view class="sales-aside">
       <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
-      <view class="sales-share flex-v-center">
-        <icon name="transmit"></icon>
-        <text>分享</text>
-      </view>
+      <button class="share-button" open-type="share">
+        <view class="sales-share flex-v-center">
+          <icon name="transmit"></icon>
+          <text>分享</text>
+        </view>
+      </button>
     </view>
   </view>
 
@@ -508,8 +516,8 @@
 
   <view class="product-info">
     <view class="hairline--bottom">作者：{{product.author}}</view>
-    <view class="hairline--bottom">出版社：{{product.press}}</view>
-    <view class="hairline--bottom">出版时间：{{publishDateStr}}</view>
+    <view class="hairline--bottom">出版：{{product.press}}</view>
+    <view class="hairline--bottom">时间：{{publishDateStr}}</view>
     <view class="hairline--bottom">
       <raty show-value="false" value="{{product.doubanScore}}"></raty>
       <text class="comments-count">121条书评</text>
@@ -678,25 +686,37 @@
       </view>
     </view>
     <view class="action-bar--right">
-      <view class="action-item action-buy cash-buy" @tap="goToBuy">
-        <view>
-          <text class="unit">￥</text>
-          <text class="price">{{product.price}}</text>
+      <block wx:if="{{product.stockNumber === 0}}">
+        <view class="action-item action-disabled">
+          <view>商品暂时缺货</view>
         </view>
-        <view class="buy-text">直接买</view>
-      </view>
-      <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
-        <view>
-          <text class="unit">￥</text>
-          <text class="price">{{product.starPrice}}</text>
+      </block>
+      <block wx:elif="{{cartAdded}}">
+        <view class="action-item action-disabled">
+          <view>已加入购物车</view>
         </view>
-        <view class="buy-text">星币价</view>
-      </view>
+      </block>
+      <block wx:else>
+        <view class="action-item action-buy cash-buy" @tap="goToBuy">
+          <view>
+            <text class="unit">￥</text>
+            <text class="price">{{product.price}}</text>
+          </view>
+          <view class="buy-text">直接买</view>
+        </view>
+        <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
+          <view>
+            <text class="unit">￥</text>
+            <text class="price">{{product.starPrice}}</text>
+          </view>
+          <view class="buy-text">星币价</view>
+        </view>
+      </block>
     </view>
   </view>
 
   <view class="detail-pdintro-wrap">
-    <view class="pdintro-title">商品详情</view>
+    <!--<view class="pdintro-title">商品详情</view>-->
     <view class="pdintro-subtitle">
       <view class="text">内容简介</view>
     </view>
@@ -797,6 +817,7 @@
     }
 
     data = {
+      cartAdded: false,
       canBuy: false,
       buyTriggered: false,
       contentBriefExpand: false,
@@ -881,6 +902,7 @@
               ID: this.product.goodsId
             }
           })
+          this.checkCanBy()
         } else {
           toast.error(this.errMsg)
         }
@@ -930,9 +952,28 @@
       }
     }
 
+    checkCanBy () {
+      const { shopCart } = store.getState()
+      const isExsit = shopCart.find(item => item.ID === this.product.goodsId)
+      if (isExsit) {
+        this.cartAdded = true
+      } else {
+        this.cartAdded = false
+      }
+    }
+
+    onShareAppMessage () {
+      return {
+        title: '星月童书',
+        path: '/pages/home/home',
+        imageUrl: ''
+      }
+    }
+
     onLoad({ product }) {
       this.product = JSON.parse(product)
       this.loadData(this.product.isbn)
+      this.checkCanBy()
     }
   }
 </script>

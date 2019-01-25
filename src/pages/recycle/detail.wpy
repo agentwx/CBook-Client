@@ -272,7 +272,7 @@
       <text>创建时间：{{order.createTime}}</text>
     </view>
   </panel>
-  <view class="action-button" @tap="callService">
+  <view class="action-button" @tap="showActionSheet">
     <icon name="service" />
     <text>召唤客服</text>
   </view>
@@ -311,6 +311,16 @@
       <btn @tap="handleDenyModal">确定</btn>
     </view>
   </modal>
+
+  <action-sheet
+    show="{{actionShow}}"
+    actions="{{serviceActions}}"
+    cancelText="取消"
+    @select="selectService"
+    @cancel="hideActionSheet"
+    @close="hideActionSheet"
+  >
+  </action-sheet>
 
 </template>
 
@@ -373,7 +383,8 @@
         panel: '/components/panel/index',
         modal: '/components/modal/index',
         btn: '/components/button/index',
-        checkbox: '/components/check-box/index'
+        checkbox: '/components/check-box/index',
+        'action-sheet': '/components/action-sheet/index'
       }
     }
 
@@ -391,6 +402,11 @@
           checked: false,
           text: '其它原因'
         }
+      ],
+      actionShow: false,
+      serviceActions: [
+        { name: '微信客服', action: 'contact', openType: 'contact' },
+        { name: '电话客服', action: 'makeCall' }
       ],
       order: {},
       denyInfo: {},
@@ -422,15 +438,24 @@
         toast.success('复制成功')
       },
       async showDenyInfo (book) {
-        const res = await fetch.post('/recover/book/deny/reason', {orderCode: this.order.orderCode, bookCode: book.bookCode})
+        const res = await fetch.post('/recover/book/deny/reason', {orderCode: this.order.orderCode, bookCode: book.bookCode}, false)
         this.denyInfo = {bookName: book.name, reason: res.datas.changeReason, img: res.datas.images}
         this.denyModalVisible = true
         this.$apply()
       },
-      callService () {
-        wx.makePhoneCall({
-          phoneNumber: '13746584675'
-        })
+      selectService (e) {
+        const item = e.detail.value
+        if (item.action === 'makeCall') {
+          wx.makePhoneCall({
+            phoneNumber: '18502120206'
+          })
+        }
+      },
+      showActionSheet () {
+        this.actionShow = true
+      },
+      hideActionSheet () {
+        this.actionShow = false
       },
       selectReason (index) {
         this.cancelReasons = this.cancelReasons.map((reason, i) => ({...reason, checked: index === i}))

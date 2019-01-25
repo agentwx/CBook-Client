@@ -62,9 +62,23 @@
   }
 
   .cart-pd-cover {
+    position: relative;
     width: 80px;
     height: 98px;
     margin-right: 10px;
+
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .sold-out-flag {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 56px;
+    height: 56px;
 
     image {
       width: 100%;
@@ -83,7 +97,8 @@
     .pd-title {
       font-size: 15px;
       font-weight: bold;
-      .ellipsis();
+      word-wrap: break-word;
+      word-break: break-all;
       margin-bottom: 3px;
     }
 
@@ -288,7 +303,7 @@
     <view class="cart-list">
       <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
-          <view class="cart-panel" :class="{'hairline--bottom': index < products.length - 1}" @tap="toggleSelect({{item}})">
+          <view class="cart-panel" :class="{'disabled': item.stockNumber === 0, 'hairline--bottom': index < products.length - 1}" @tap="toggleSelect({{item}})">
             <view class="cart-col-checkbox cart-checkbox">
               <check-box readonly="true" checked="{{item.checked}}" />
             </view>
@@ -298,18 +313,21 @@
             <view class="cart-pd-main">
               <view class="pd-head">
                 <view class="pd-title">{{item.name}}</view>
-                <view class="pd-desc">{{item.author}}</view>
-                <view class="pd-orig-price">原价：￥{{item.price}}</view>
+                <!--<view class="pd-desc">{{item.author}}</view>-->
+                <!--<view class="pd-orig-price">原价：￥{{item.price}}</view>-->
               </view>
               <view class="cart-pd-footer">
                 <view class="cart-pdft">
-                  <text class="pd-dist-price" wx:if="{{item.starDeduction > 0}}">星币已抵扣{{item.starDeduction}}元</text>
+                  <text class="pd-dist-price" wx:if="{{item.starDeduction > 0}}">星币已抵扣{{filters.toFixed(item.starDeduction)}}元</text>
                 </view>
                 <view class="pd-now-price">
                   <text class="unit">￥</text>
-                  <text class="price">{{item.starPrice || item.price}}</text>
-                  <text class="count">x{{item.COUNT}}</text>
+                  <text class="price">{{filters.toFixed(item.starPrice || item.price)}}</text>
+                  <!--<text class="count">x{{item.COUNT}}</text>-->
                 </view>
+              </view>
+              <view class="sold-out-flag" wx:if="{{item.stockNumber === 0}}">
+                <image src="../../assets/images/sold-out.png"></image>
               </view>
             </view>
           </view>
@@ -346,7 +364,9 @@
 
 <script>
   import wepy from 'wepy'
-  import { confirm } from '../../utils/util'
+  import { toast, confirm } from '../../utils/util'
+  import fetch from '../../service/fetch'
+  import filters from '../../filters/number.wxs'
   import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
@@ -378,7 +398,7 @@
     },
     cutCount ({ cartProducts }) {
       return cartProducts
-        .filter(product => product.starDeduction > 0)
+        .filter(product => product.starDeduction)
         .reduce((prev, cur) => prev + cur.COUNT, 0)
     },
     cutPrice ({ cartProducts }) {
@@ -401,6 +421,10 @@
       isEdit: false,
       isSelectAll: true,
       isHintDel: false
+    }
+
+    wxs = {
+      filters
     }
 
     watch = {
@@ -428,6 +452,10 @@
     methods = {
       goToBuy () {
         const productsToBuy = this.products.filter(product => product.checked)
+        const noneStocks = productsToBuy.filter(product => product.stockNumber === 0)
+        if (noneStocks.length > 0) {
+          return toast.error('购物车中有缺货商品，请删除后再下单')
+        }
         this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
       },
       goShopping () {
@@ -504,6 +532,19 @@
       this.isHintDel = isHintDel
     }
 
+    async checkStock () {
+      const goodsId = this.products.map(product => product.goodsId)
+      if (!goodsId.length) return Promise.resolve()
+      const { datas = [] } = await fetch.post('/sales/goods/stock', { goodsId })
+      datas.forEach(item => {
+        let product = this.products.find(product => product.goodsId === item.goodsId)
+        if (product) {
+          Object.assign(product, item)
+        }
+      })
+      this.$apply()
+    }
+
     onShow() {
       if (!this.isEdit) {
         this.isSelectAll = true
@@ -511,6 +552,7 @@
       this.setHintDel()
       wx.nextTick(() => {
         this.setBadge()
+        this.checkStock()
       })
     }
 

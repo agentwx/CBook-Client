@@ -1,20 +1,20 @@
 @import "../var";
 @import "./flex";
 
-.word-break() {
+.word-break () {
   word-break: break-all;
   word-wrap: break-word;
 }
 
-.word-nowrap() {
+.word-nowrap () {
   white-space: nowrap;
 }
 
-.light-font() {
+.light-font () {
   font-family: 'SourceHanSansCN-Light';
 }
 
-.animation(@args) {
+.animation (@args) {
   -webkit-animation: @args;
   animation: @args;
 }
@@ -22,6 +22,13 @@
 .marign-auto () {
   margin-left: auto;
   margin-right: auto;
+}
+
+.abs-center () {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .g-gradient (@offset: 50%) {

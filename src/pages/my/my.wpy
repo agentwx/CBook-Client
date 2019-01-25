@@ -149,7 +149,7 @@
       <view class="assets-name">星星币</view>
     </view>
     <view class="uc-assets-item">
-      <view class="assets-value">3</view>
+      <view class="assets-value">0</view>
       <view class="assets-name">优惠券</view>
     </view>
   </view>
@@ -173,10 +173,20 @@
     <list-item icon="order" @tap="goToRecycleOrders">回收订单</list-item>
     <list-item icon="geo" @tap="goToAddress">地址管理</list-item>
     <list-item icon="user-profile" @tap="goToProfile">个人资料</list-item>
-    <list-item icon="service" @tap="callService">联系客服</list-item>
+    <list-item icon="service" @tap="showActionSheet">联系客服</list-item>
   </list-item-group>
 
   <view class="spliter"></view>
+
+  <action-sheet
+    show="{{actionShow}}"
+    actions="{{serviceActions}}"
+    cancelText="取消"
+    @select="selectService"
+    @cancel="hideActionSheet"
+    @close="hideActionSheet"
+  >
+  </action-sheet>
 </template>
 
 <script>
@@ -199,6 +209,7 @@
         'list-item-group': '/components/list-item-group/index',
         'list-item': '/components/list-item/index',
         'icon-item': '/components/icon-item/index',
+        'action-sheet': '/components/action-sheet/index',
         'panel': '/components/panel/index',
         'icon': '/components/icon/index'
       }
@@ -208,7 +219,12 @@
     }
 
     data = {
-      userInfo: {}
+      actionShow: false,
+      userInfo: {},
+      serviceActions: [
+        { name: '微信客服', action: 'contact', openType: 'contact' },
+        { name: '电话客服', action: 'makeCall' }
+      ]
     }
 
     methods = {
@@ -227,10 +243,19 @@
       goToProfile () {
         this.$navigate('/pages/profile/profile')
       },
-      callService () {
-        wx.makePhoneCall({
-          phoneNumber: '13746584675'
-        })
+      selectService (e) {
+        const item = e.detail.value
+        if (item.action === 'makeCall') {
+          wx.makePhoneCall({
+            phoneNumber: '18502120206'
+          })
+        }
+      },
+      showActionSheet () {
+        this.actionShow = true
+      },
+      hideActionSheet () {
+        this.actionShow = false
       }
     }
 

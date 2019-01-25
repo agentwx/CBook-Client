@@ -10,6 +10,6 @@ export const button = Behavior({
     lang: {
       type: String,
       value: 'en'
-    },
+    }
   }
-});
+})

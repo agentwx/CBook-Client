@@ -42,6 +42,24 @@
     color: #f90;
   }
 
+  .abs-center {
+    .abs-center();
+  }
+
+  .share-button {
+    display: inline-block;
+    background: none;
+    padding: 0;
+    line-height: 1;
+    font-size: inherit;
+    color: inherit;
+    border-radius: 0;
+
+    &::after {
+      border: none;
+    }
+  }
+
   // global style for panel component
   .panel-title {
     font-size: 15px;
