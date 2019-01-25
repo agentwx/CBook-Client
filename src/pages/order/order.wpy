@@ -205,7 +205,7 @@
       <repeat for="{{products}}" key="index">
         <view class="order-book">
           <view class="book-name">{{item.name}}</view>
-          <view class="book-count">x{{item.COUNT}}</view>
+          <!--<view class="book-count">x{{item.COUNT}}</view>-->
           <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{item.starPrice || item.price}}</view>
           <view wx:if="{{orderSource==='recycle'}}" class="book-price">￥{{item.costPrice}}</view>
         </view>
