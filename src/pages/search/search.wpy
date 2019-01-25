@@ -174,7 +174,7 @@
         this.isCancel = false
       },
       viewDetail (e) {
-        this.$navigate('/pages/detail/detail', {product: JSON.stringify(e.detail.item)})
+        this.$navigate('/pages/detail/detail', {goodsId: e.detail.item.goodsId})
       },
       onSearchChange (e) {
         this.searchVal = e.detail.value

@@ -307,7 +307,7 @@
             <view class="cart-col-checkbox cart-checkbox">
               <check-box readonly="true" checked="{{item.checked}}" />
             </view>
-            <view class="cart-pd-cover flex-v-center">
+            <view class="cart-pd-cover flex-v-center" @tap.stop="viewDetail({{item.goodsId}})">
               <image src="{{item.smallImageUrl}}" mode="widthFix" lazyload="true"></image>
             </view>
             <view class="cart-pd-main">
@@ -450,6 +450,9 @@
     }
 
     methods = {
+      viewDetail (goodsId) {
+        this.$navigate('/pages/detail/detail', { goodsId })
+      },
       goToBuy () {
         const productsToBuy = this.products.filter(product => product.checked)
         const noneStocks = productsToBuy.filter(product => product.stockNumber === 0)

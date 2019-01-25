@@ -937,21 +937,6 @@
       this.$wxpage.selectComponent('#J_flyer').start(startX, startY, endX, endY)
     }
 
-    async loadData (isbn) {
-      try {
-        let res = await fetch.post('/bookinfo/detail', { isbn }, false)
-        this.detail = res.datas
-        this.contentBriefStr = res.datas.contentBrief
-        this.authorBriefStr = res.datas.authorBrief
-        this.canBuy = true
-        this.$apply()
-      } catch (msg) {
-        this.canBuy = false
-        this.errMsg = msg
-        this.$apply()
-      }
-    }
-
     checkCanBy () {
       const { shopCart } = store.getState()
       const isExsit = shopCart.find(item => item.ID === this.product.goodsId)
@@ -970,9 +955,23 @@
       }
     }
 
-    onLoad({ product }) {
-      this.product = JSON.parse(product)
-      this.loadData(this.product.isbn)
+    async loadData (goodsId) {
+      try {
+        const { datas } = await fetch.post('/sales/goods/detail', { goodsId })
+        this.product = datas
+        this.contentBriefStr = datas.contentBrief
+        this.authorBriefStr = datas.authorBrief
+        this.canBuy = true
+        this.$apply()
+      } catch (msg) {
+        this.canBuy = false
+        this.errMsg = msg
+        this.$apply()
+      }
+    }
+
+    onLoad({ goodsId }) {
+      this.loadData(goodsId)
       this.checkCanBy()
     }
   }
