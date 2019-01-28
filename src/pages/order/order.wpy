@@ -262,7 +262,7 @@
   <panel wx:if="{{orderSource === 'normal'}}">
     <view class="flex-between">
       <view>运费</view>
-      <view class="bold mark">-￥{{filters.toFixed(carriage)}}</view>
+      <view class="bold mark">￥{{filters.toFixed(carriage)}}</view>
     </view>
     <view class="panel-footer" slot="footer">
       <view>星币抵扣￥<text class="bold">{{filters.toFixed(deduction)}}</text>元</view>

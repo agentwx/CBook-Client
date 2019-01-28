@@ -322,7 +322,7 @@
                 </view>
                 <view class="pd-now-price">
                   <text class="unit">￥</text>
-                  <text class="price">{{filters.toFixed(item.starPrice || item.price)}}</text>
+                  <text class="price">{{filters.toFixed(item.starPrice)}}</text>
                   <!--<text class="count">x{{item.COUNT}}</text>-->
                 </view>
               </view>
