@@ -163,7 +163,7 @@
                 <view class="star-panel__item__name">{{item.reason}}</view>
                 <view class="star-panel__item__date">{{item.time}}</view>
               </view>
-              <view class="star-panel__item--right">{{item.changePoint}}</view>
+              <view class="star-panel__item--right">{{filters.toFixed(item.changePoint)}}</view>
             </view>
           </repeat>
           <weui-loading empty="{{pageNum > 1 && !isLoading && isEmpty}}" />
