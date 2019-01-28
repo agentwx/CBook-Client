@@ -963,11 +963,6 @@
     }
 
     onShareAppMessage () {
-      return {
-        title: '星月童书',
-        path: '/pages/home/home',
-        imageUrl: ''
-      }
     }
 
     async loadData (goodsId) {
