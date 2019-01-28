@@ -243,7 +243,8 @@
             <view class="desc">{{item.press}}</view>
           </view>
           <view class="book-specs">
-            <view class="price">￥{{(order.orderStatus === 2001 || order.orderStatus === 1002 || order.orderStatus === 1003) ? item.actualIncome : item.expectIncome}}</view>
+            <view class="price" wx:if="{{order.orderStatus === 2001 || order.orderStatus === 1002 || order.orderStatus === 1003}}">￥{{filters.toFixed(item.actualIncome)}}</view>
+            <view class="price" wx:else>￥{{filters.toFixed(item.expectIncome)}}</view>
             <view class="status" :class="{'red': item.bookStatus === 2001}" @tap="showDenyInfo({{item}})">
               {{item.bookStatusText}}
               <icon name="question-o" size="mini" wx:if="{{item.bookStatus === 2001}}"></icon>
@@ -256,11 +257,11 @@
   <panel custom-class="income-panel">
     <view class="income-item">
       <text>预计收入</text>
-      <text>￥{{order.expectIncome}}</text>
+      <text>￥{{filters.toFixed(order.expectIncome)}}</text>
     </view>
     <view class="income-item" wx:if="{{order.orderStatus === 1003}}">
       <text>实际收入</text>
-      <text>￥{{order.actualIncome}}</text>
+      <text>￥{{filters.toFixed(order.actualIncome)}}</text>
     </view>
   </panel>
   <panel custom-class="order-panel">
@@ -329,6 +330,7 @@
 
   import { toast, getPrevPage } from '../../utils/util'
   import fetch from '../../service/fetch'
+  import filters from '../../filters/number.wxs'
 
   const ORDER_STATUS_MAP = {
     1000: {
@@ -413,6 +415,10 @@
       orderIndex: 0,
       modalVisible: false,
       denyModalVisible: false
+    }
+
+    wxs = {
+      filters
     }
 
     computed = {

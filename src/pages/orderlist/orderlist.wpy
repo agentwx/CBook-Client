@@ -175,7 +175,7 @@
                 <view class="desc">{{book.press}}</view>
               </view>
               <view class="order-pd-specs">
-                <text class="price">￥{{book.price}}</text>
+                <text class="price">￥{{filters.toFixed(book.price)}}</text>
               </view>
             </view>
           </view>
@@ -186,7 +186,7 @@
           </view>
           <view class="order-subinfo">
             <view class="order-sumup">
-              总共{{item.bookInfos.length}}件商品 合计 <text class="price">￥{{item.total}}</text>
+              总共{{item.bookInfos.length}}件商品 合计 <text class="price">￥{{filters.toFixed(item.total)}}</text>
             </view>
             <btn inline="true" bordered="true" size="small" @tap="payOrder({{item.orderCode}})" wx:if="{{item.orderStatus==0}}">去付款</btn>
           </view>
@@ -212,6 +212,7 @@
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast } from '../../utils/util'
+  import filters from '../../filters/number.wxs'
 
   const ORDER_STATUS_MAP = {
     0: '待付款',
@@ -233,9 +234,6 @@
       }
     }
 
-    components = {
-    }
-
     data = {
       isLoading: true,
       isEmpty: false,
@@ -243,6 +241,10 @@
       tabIndex: 0,
       tabItems: ['全部', '待付款', '待发货', '待收货', '已完成'],
       orders: []
+    }
+
+    wxs = {
+      filters
     }
 
     methods = {

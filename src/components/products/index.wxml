@@ -1,3 +1,5 @@
+<wxs src="../../filters/number.wxs" module="filters" />
+
 <view class="product-listview">
   <block wx:for="{{products}}" wx:key="index">
     <view class="product-panel {{index < products.length - 1 ? 'hairline--bottom' : ''}}" data-index="{{index}}" bindtap="onClick">
@@ -19,10 +21,10 @@
           <view class="product-priceInfo">
             <view class="product-price">
               <text class="unit">￥</text>
-              <text>{{item.price}}</text>
+              <text>{{filters.toFixed(item.price)}}</text>
             </view>
             <view class="split"></view>
-            <view class="product-tax">星币价 ￥{{item.starPrice}}</view>
+            <view class="product-tax">星币价 ￥{{filters.toFixed(item.starPrice)}}</view>
           </view>
         </view>
       </view>

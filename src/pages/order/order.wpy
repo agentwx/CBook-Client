@@ -207,8 +207,8 @@
         <view class="order-book">
           <view class="book-name">{{item.name}}</view>
           <!--<view class="book-count">x{{item.COUNT}}</view>-->
-          <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{item.starPrice || item.price}}</view>
-          <view wx:if="{{orderSource==='recycle'}}" class="book-price">￥{{item.costPrice}}</view>
+          <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{filters.toFixed(item.starPrice || item.price)}}</view>
+          <view wx:if="{{orderSource==='recycle'}}" class="book-price">￥{{filters.toFixed(item.costPrice)}}</view>
         </view>
       </repeat>
     </view>
@@ -242,6 +242,7 @@
   import wepy from 'wepy'
   import { toast, confirm, getPrevPage, formatDate, parseDate, formatFloat } from '../../utils/util'
   import fetch from '../../service/fetch'
+  import filters from '../../filters/number.wxs'
 
   const getDateTime = (d = new Date()) => {
     if (typeof d === 'string') d = new Date(d)
@@ -337,6 +338,10 @@
       timeRange: [9, 17],
       timeStep: 2,
       products: []
+    }
+
+    wxs = {
+      filters
     }
 
     computed = {

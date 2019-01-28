@@ -498,9 +498,9 @@
     <view class="sale-price">
       <view class="now-price">
         <text class="unit">￥</text>
-        <text>{{product.price}}</text>
+        <text>{{filters.toFixed(product.price)}}</text>
       </view>
-      <view class="orig-price">￥{{product.costPrice}}</view>
+      <view class="orig-price">￥{{filters.toFixed(product.costPrice)}}</view>
     </view>
     <view class="sales-aside">
       <!-- <view class="sales-count">已售{{product.sales}}份</view>-->
@@ -713,14 +713,14 @@
         <view class="action-item action-buy cash-buy" @tap="goToBuy">
           <view>
             <text class="unit">￥</text>
-            <text class="price">{{product.price}}</text>
+            <text class="price">{{filters.toFixed(product.price)}}</text>
           </view>
           <view class="buy-text">直接买</view>
         </view>
         <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
           <view>
             <text class="unit">￥</text>
-            <text class="price">{{product.starPrice}}</text>
+            <text class="price">{{filters.toFixed(product.starPrice)}}</text>
           </view>
           <view class="buy-text">星币价</view>
         </view>
@@ -792,6 +792,7 @@
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast, formatDate, getNodeRect } from '../../utils/util'
+  import filters from '../../filters/number.wxs'
   import { connect, getStore } from 'wepy-redux'
 
   const store = getStore()
@@ -842,6 +843,10 @@
       detail: {},
       contentBriefStr: '',
       authorBriefStr: ''
+    }
+
+    wxs = {
+      filters
     }
 
     computed = {

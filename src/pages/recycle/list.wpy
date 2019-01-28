@@ -121,7 +121,7 @@
           <view class="create-time">{{item.createTime}}</view>
           <view class="order-subinfo">
             <view class="order-sumup">
-              总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{item.expectIncome}}</text>
+              总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入: <text class="bold">￥{{filters.toFixed(item.expectIncome)}}</text>
             </view>
             <btn inline="true" bordered="true" size="small">查看详情</btn>
           </view>
@@ -146,6 +146,7 @@
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
+  import filters from '../../filters/number.wxs'
 
   const ORDER_STATUS_MAP = {
     1000: '平台审核',
@@ -176,6 +177,10 @@
       isEmpty: false,
       pageNum: 1,
       orders: []
+    }
+
+    wxs = {
+      filters
     }
 
     methods = {
