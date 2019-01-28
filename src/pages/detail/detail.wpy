@@ -138,6 +138,7 @@
   .action-bar {
     &--left {
       .flex();
+      flex: 2;
       border-right: .5px solid @color-gray;
       border-top: .5px solid @color-gray;
 
@@ -149,7 +150,7 @@
     }
 
     &--right {
-      flex: 1;
+      flex: 3;
       .flex();
     }
   }

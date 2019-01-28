@@ -512,7 +512,7 @@
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
-  import { toast, confirm } from '../../utils/util'
+  import { confirm } from '../../utils/util'
   import Notify from '../../components/notify/notify'
   import filters from '../../filters/number.wxs'
 
@@ -592,7 +592,7 @@
       },
       async onConfirm () {
         if (!this.isbn) {
-          return toast.error('请输入书籍的ISBN号')
+          return Notify('请输入书籍的ISBN号')
         }
         await this.queryBookInfo(this.isbn)
         this.manualShow = false
@@ -632,7 +632,7 @@
     async queryBookInfo (isbn) {
       const isExist = store.getState().recycles.find(item => item.isbn === isbn)
       if (isExist) {
-        return toast.error('该图书已经扫描过')
+        return Notify('该图书已经扫描过')
       }
       let { datas = {} } = await fetch.post('/bookinfo/base', { isbn })
       // 作者和内容简介太长，会影响页面之间传值，故过滤掉
