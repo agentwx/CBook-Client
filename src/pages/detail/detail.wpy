@@ -670,6 +670,15 @@
   <view class="detail-action-bar">
     <view class="action-bar--left">
       <icon-item
+        class="action-item action-home"
+        icon="library"
+        inline="false"
+        icon-size="middle"
+        @tap="goToHome"
+      >
+        首页
+      </icon-item>
+      <icon-item
         class="action-item action-fav"
         icon="heart-o"
         inline="false"
@@ -710,13 +719,13 @@
         </view>
       </block>
       <block wx:else>
-        <view class="action-item action-buy cash-buy" @tap="goToBuy">
+        <!--<view class="action-item action-buy cash-buy" @tap="goToBuy">
           <view>
             <text class="unit">￥</text>
             <text class="price">{{filters.toFixed(product.price)}}</text>
           </view>
           <view class="buy-text">直接买</view>
-        </view>
+        </view>-->
         <view id="cart-btn" class="action-item action-buy coin-buy" @tap="addToCart">
           <view>
             <text class="unit">￥</text>
@@ -890,6 +899,9 @@
       addComment () {
         this.$navigate('/pages/comment/new')
       },
+      goToHome () {
+        this.$switch('/pages/home/home')
+      },
       addToFav () {
       },
       writeComment () {
@@ -908,12 +920,10 @@
       },
       addToCart () {
         if (this.canBuy) {
-          // eslint-disable-next-line no-unused-vars
-          const { authorBrief, contentBrief, ...product } = this.product // 作者和内容简介太长，会影响页面之间传值，故过滤掉
           store.dispatch({
             type: 'ADD_CART_PRODUCT',
             payload: {
-              product
+              product: this.product
             }
           })
           store.dispatch({
@@ -977,6 +987,8 @@
         this.contentBriefStr = datas.contentBrief
         this.authorBriefStr = datas.authorBrief
         this.canBuy = true
+        delete this.product.contentBrief
+        delete this.product.authorBrief
         this.$apply()
       } catch (msg) {
         this.canBuy = false

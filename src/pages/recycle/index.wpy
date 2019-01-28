@@ -630,13 +630,14 @@
       if (isExist) {
         return toast.error('该图书已经扫描过')
       }
-      let res = await fetch.post('/bookinfo/base', { isbn })
-      // eslint-disable-next-line no-unused-vars
-      const { authorBrief, contentBrief, ...product } = res.datas // 作者和内容简介太长，会影响页面之间传值，故过滤掉
+      let { datas = {} } = await fetch.post('/bookinfo/base', { isbn })
+      // 作者和内容简介太长，会影响页面之间传值，故过滤掉
+      delete datas.authorBrief
+      delete datas.contentBrief
       store.dispatch({
         type: 'ADD_RECYCLE',
         payload: {
-          product: {...product, COUNT: 1}
+          product: {...datas, COUNT: 1}
         }
       })
       wx.nextTick(() => {
