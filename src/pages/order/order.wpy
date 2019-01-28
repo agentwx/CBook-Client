@@ -188,6 +188,7 @@
     end-year="{{endYear}}"
     start="{{startDateTime}}"
     time-range="{{timeRange}}"
+    time-step="{{timeStep}}"
     use-slot="true"
     @change="datetimeChange"
   >
@@ -239,7 +240,7 @@
 
 <script>
   import wepy from 'wepy'
-  import { toast, getPrevPage, formatDate, parseDate, formatFloat } from '../../utils/util'
+  import { toast, confirm, getPrevPage, formatDate, parseDate, formatFloat } from '../../utils/util'
   import fetch from '../../service/fetch'
 
   const getDateTime = (d = new Date()) => {
@@ -248,44 +249,66 @@
   }
 
   // 验证取件时间的有效性
+  // const validateTime = timeStr => {
+  //   let now = new Date()
+  //   let date = timeStr.split(' ')[0]
+  //   let hour = timeStr.split(' ')[1].split('-')[0]
+  //   let dateTime = parseDate(date).getTime()
+  //   let nowTime = getDateTime()
+  //
+  //   if (dateTime < nowTime) {
+  //     return false
+  //   } else if (dateTime === nowTime && parseInt(hour) < now.getHours() + 2) {
+  //     return false
+  //   }
+  //   return true
+  // }
+
+  // 验证取件时间的有效性
   const validateTime = timeStr => {
-    let now = new Date()
     let date = timeStr.split(' ')[0]
-    let hour = timeStr.split(' ')[1].split('-')[0]
     let dateTime = parseDate(date).getTime()
     let nowTime = getDateTime()
 
-    if (dateTime < nowTime) {
+    if (dateTime <= nowTime) {
       return false
-    } else if (dateTime === nowTime && parseInt(hour) < now.getHours() + 2) {
+    } else if (Math.floor((dateTime - nowTime) / (24 * 60 * 60 * 1000)) > 7) {
       return false
     }
     return true
   }
 
   // 计算时间选择器起始时间节点
-  const getTimeRange = (date, offset = 2) => {
-    const MAX_HOUR = 17
-    const MIN_HOUR = 8
+  // const getTimeRange = (date, offset = 3) => {
+  //   const MAX_HOUR = 14
+  //   const MIN_HOUR = 8
+  //
+  //   let hour = date.getHours()
+  //
+  //   // 如果当前小时大于14点，直接显示下一天的时间
+  //   if (hour >= MAX_HOUR) {
+  //     date.setDate(date.getDate() + 1)
+  //   }
+  //
+  //   let dateStr = formatDate(date, 'yyyy-MM-dd')
+  //   let hourStr = ''
+  //
+  //   // 超过时间界限，选择器回归到起点
+  //   if (hour >= MAX_HOUR || hour < MIN_HOUR) {
+  //     hourStr = `09:00-11:00`
+  //   } else {
+  //     // 当前时间往后推2小时
+  //     hour += offset
+  //     hourStr = `${hour}:00-${hour + 1}:00`
+  //   }
+  //   return `${dateStr} ${hourStr}`
+  // }
 
-    let hour = date.getHours()
-
-    // 如果当前小时大于17点，直接显示下一天的时间
-    if (hour >= MAX_HOUR) {
-      date.setDate(date.getDate() + 1)
-    }
-
+  // 计算时间选择器起始时间节点
+  const getTimeRange = (date) => {
+    date.setDate(date.getDate() + 1)
     let dateStr = formatDate(date, 'yyyy-MM-dd')
-    let hourStr = ''
-
-    // 超过时间界限，选择器回归到起点
-    if (hour >= MAX_HOUR || hour < MIN_HOUR) {
-      hourStr = `09:00-10:00`
-    } else {
-      // 当前时间往后推2小时
-      hour += offset
-      hourStr = `${hour}:00-${hour + 1}:00`
-    }
+    let hourStr = '09:00-11:00'
     return `${dateStr} ${hourStr}`
   }
 
@@ -311,7 +334,8 @@
       address: null,
       startYear: new Date().getFullYear(),
       endYear: new Date().getFullYear() + (new Date().getMonth() > 10 ? 1 : 0),
-      timeRange: [9, 19],
+      timeRange: [9, 17],
+      timeStep: 2,
       products: []
     }
 
@@ -345,7 +369,7 @@
             return toast.error('请选择取件时间')
           }
           if (!validateTime(this.deliveryTime)) {
-            return toast.error('取件时间不合理，请重新选择')
+            return confirm('取件时间最早明天，最晚不超过7天', '提示信息')
           }
         }
 

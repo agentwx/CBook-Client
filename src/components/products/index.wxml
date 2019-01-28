@@ -10,7 +10,7 @@
           <view class="product-desc">{{item.author}}</view>
         </view>
         <view class="product-subInfo">
-          <raty value="{{item.doubanScore}}"></raty>
+          <raty value="{{item.doubanScore}}" show-value="false"></raty>
           <view class="product-tags">
             <tag size="mini" wx:if="{{item.ageType.length > 0}}">{{item.ageType[0]}}</tag>
             <tag size="mini" wx:if="{{item.tags.length > 0}}">{{item.tags[0]}}</tag>

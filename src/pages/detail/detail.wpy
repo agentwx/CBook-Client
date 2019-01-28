@@ -903,10 +903,12 @@
       },
       addToCart () {
         if (this.canBuy) {
+          // eslint-disable-next-line no-unused-vars
+          const { authorBrief, contentBrief, ...product } = this.product // 作者和内容简介太长，会影响页面之间传值，故过滤掉
           store.dispatch({
             type: 'ADD_CART_PRODUCT',
             payload: {
-              product: this.product
+              product
             }
           })
           store.dispatch({
@@ -952,8 +954,8 @@
 
     checkCanBy () {
       const { shopCart } = store.getState()
-      const isExsit = shopCart.find(item => item.ID === this.product.goodsId)
-      if (isExsit) {
+      const isExist = !!shopCart.find(item => item.ID === this.productId)
+      if (isExist) {
         this.cartAdded = true
       } else {
         this.cartAdded = false
@@ -984,6 +986,7 @@
     }
 
     onLoad({ goodsId }) {
+      this.productId = goodsId
       this.loadData(goodsId)
       this.checkCanBy()
     }
