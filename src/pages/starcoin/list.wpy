@@ -259,6 +259,7 @@
   import { connect } from 'wepy-redux'
   import fetch from '../../service/fetch'
   import { confirm } from '../../utils/util'
+  import filters from '../../filters/number.wxs'
 
   @connect({
     starPoint ({userInfo}) {
@@ -283,6 +284,10 @@
       tabItems: ['星币明细', '赚取星币'],
       dataList: [],
       pageNum: 1
+    }
+
+    wxs = {
+      filters
     }
 
     methods = {
