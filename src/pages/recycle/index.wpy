@@ -613,6 +613,9 @@
         this.isbn = e.detail.value
       },
       nextStep () {
+        if (this.totalCount < 5 && this.totalPrice < 200) {
+          return confirm('书本数量满5本或总预计收入满200才可下单')
+        }
         this.$navigate('/pages/order/order', {orderSource: 'recycle', products: JSON.stringify(this.products)})
       },
       clear () {
