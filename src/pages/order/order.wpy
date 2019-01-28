@@ -264,7 +264,7 @@
   <view class="order-action-bar">
     <view class="order-action-left" wx:if="{{orderSource === 'normal'}}">
       <view class="payment-info">
-        合计支付:<view class="mark">￥<text>{{total}}</text></view>
+        合计支付：<view class="mark">￥<text class="bold">{{total}}</text></view>
       </view>
     </view>
     <view class="order-action-button" @tap="submitOrder">提交订单</view>
