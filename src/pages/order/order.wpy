@@ -7,6 +7,15 @@
     background-color: #f7f7f7;
   }
 
+  .bold {
+    font-weight: bold;
+  }
+
+  .mark {
+    color: @red;
+    font-size: 16px;
+  }
+
   .notice-bar {
     position: fixed;
     left: 0;
@@ -111,10 +120,6 @@
     .flex-v-center();
     white-space: nowrap;
 
-    text {
-      font-weight: bold;
-    }
-
     .trade-unit {
       font-size: 12px;
     }
@@ -124,19 +129,45 @@
     }
   }
 
-  .order-action-button {
+  .order-action-bar {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     height: 50px;
+    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
+    .flex();
+  }
+
+  .order-action-left {
+    .flex-v-center();
+    flex: 3;
+    padding-left: 12px;
+    background-color: #fff;
+  }
+
+  .order-action-button {
     font-size: 18px;
     color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
     .g-gradient(60%);
     .flex-center();
+    flex: 1;
 
     &:active {
       .g-darken-gradient(60%);
+    }
+  }
+
+  .payment-info {
+    .mark {
+      display: inline;
+      font-size: 13px;
+    }
+
+    text {
+      font-size: 18px;
     }
   }
 
@@ -183,12 +214,8 @@
 
   <datetime-picker
     wx:if="{{orderSource === 'recycle'}}"
-    fields="range"
-    start-year="{{startYear}}"
-    end-year="{{endYear}}"
-    start="{{startDateTime}}"
-    time-range="{{timeRange}}"
-    time-step="{{timeStep}}"
+    mode="multiSelector"
+    range="{{dateTimeRange}}"
     use-slot="true"
     @change="datetimeChange"
   >
@@ -213,18 +240,35 @@
       </repeat>
     </view>
     <view class="panel-footer" slot="footer">
-      <view class="order-ft">总共 <text>{{totalCount}}</text> 本图书</view>
+      <view class="order-ft">总共 <text class="bold">{{totalCount}}</text> 本图书</view>
       <view class="order-ft">
         <text>{{orderSource==='recycle' ? '预计收入' : '合计'}}</text>
         <view>
           <text class="trade-unit">￥</text>
-          <text class="trade-amount">{{totalPrice}}</text>
+          <text class="trade-amount bold">{{filters.toFixed(totalPrice)}}</text>
         </view>
       </view>
     </view>
   </panel>
 
-  <view class="order-action-button" @tap="submitOrder">提交订单</view>
+  <panel wx:if="{{orderSource === 'normal'}}">
+    <view class="flex-between">
+      <view>运费</view>
+      <view class="bold mark">-￥{{filters.toFixed(carriage)}}</view>
+    </view>
+    <view class="panel-footer" slot="footer">
+      <view>书费抵扣￥<text class="bold">{{filters.toFixed(deduction)}}</text>元</view>
+    </view>
+  </panel>
+
+  <view class="order-action-bar">
+    <view class="order-action-left" wx:if="{{orderSource === 'normal'}}">
+      <view class="payment-info">
+        合计支付:<view class="mark">￥<text>{{total}}</text></view>
+      </view>
+    </view>
+    <view class="order-action-button" @tap="submitOrder">提交订单</view>
+  </view>
 
   <modal visible="{{modalVisible}}" show-close="false">
     <view class="modal-container">
@@ -241,6 +285,7 @@
 <script>
   import wepy from 'wepy'
   import { toast, confirm, getPrevPage, formatDate, parseDate, formatFloat } from '../../utils/util'
+  import { getTimeRange } from '../../components/datetime-picker/dateTimePicker'
   import fetch from '../../service/fetch'
   import filters from '../../filters/number.wxs'
 
@@ -248,22 +293,6 @@
     if (typeof d === 'string') d = new Date(d)
     return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
   }
-
-  // 验证取件时间的有效性
-  // const validateTime = timeStr => {
-  //   let now = new Date()
-  //   let date = timeStr.split(' ')[0]
-  //   let hour = timeStr.split(' ')[1].split('-')[0]
-  //   let dateTime = parseDate(date).getTime()
-  //   let nowTime = getDateTime()
-  //
-  //   if (dateTime < nowTime) {
-  //     return false
-  //   } else if (dateTime === nowTime && parseInt(hour) < now.getHours() + 2) {
-  //     return false
-  //   }
-  //   return true
-  // }
 
   // 验证取件时间的有效性
   const validateTime = timeStr => {
@@ -279,38 +308,14 @@
     return true
   }
 
-  // 计算时间选择器起始时间节点
-  // const getTimeRange = (date, offset = 3) => {
-  //   const MAX_HOUR = 14
-  //   const MIN_HOUR = 8
-  //
-  //   let hour = date.getHours()
-  //
-  //   // 如果当前小时大于14点，直接显示下一天的时间
-  //   if (hour >= MAX_HOUR) {
-  //     date.setDate(date.getDate() + 1)
-  //   }
-  //
-  //   let dateStr = formatDate(date, 'yyyy-MM-dd')
-  //   let hourStr = ''
-  //
-  //   // 超过时间界限，选择器回归到起点
-  //   if (hour >= MAX_HOUR || hour < MIN_HOUR) {
-  //     hourStr = `09:00-11:00`
-  //   } else {
-  //     // 当前时间往后推2小时
-  //     hour += offset
-  //     hourStr = `${hour}:00-${hour + 1}:00`
-  //   }
-  //   return `${dateStr} ${hourStr}`
-  // }
-
-  // 计算时间选择器起始时间节点
-  const getTimeRange = (date) => {
-    date.setDate(date.getDate() + 1)
-    let dateStr = formatDate(date, 'yyyy-MM-dd')
-    let hourStr = '09:00-11:00'
-    return `${dateStr} ${hourStr}`
+  const getDateTimeRange = target => {
+    const times = getTimeRange(9, 17, 2)
+    const weekNames = ['日', '一', '二', '三', '四', '五', '六']
+    const dates = new Array(7).fill(0).map(() => {
+      target.setDate(target.getDate() + 1)
+      return `${formatDate(target, 'yyyy-MM-dd')} 星期${weekNames[target.getDay()]}`
+    })
+    return [dates, times]
   }
 
   export default class Index extends wepy.page {
@@ -329,14 +334,10 @@
 
     data = {
       modalVisible: false,
-      startDateTime: null,
       deliveryTime: '',
       orderSource: 'normal',
       address: null,
-      startYear: new Date().getFullYear(),
-      endYear: new Date().getFullYear() + (new Date().getMonth() > 10 ? 1 : 0),
-      timeRange: [9, 17],
-      timeStep: 2,
+      dateTimeRange: [],
       products: []
     }
 
@@ -348,11 +349,24 @@
       totalPrice() {
         const isn = this.orderSource === 'normal'
         return this.products
-          .reduce((prev, cur) => prev + cur.COUNT * +(isn ? (cur.starPrice || cur.price) : cur.costPrice), 0).toFixed(2)
+           .reduce((prev, cur) => prev + cur.COUNT * +(isn ? (cur.starPrice || cur.price) : cur.costPrice), 0)
       },
       totalCount() {
         return this.products
           .reduce((prev, cur) => prev + cur.COUNT, 0)
+      },
+      carriage() {
+        return 6
+      },
+      deduction() {
+        return this.products.reduce((prev, cur) => prev + cur.COUNT * cur.starDeduction, 0)
+      },
+      discount() {
+        return 1
+      },
+      total() {
+        // 最终支付金额 = 总价x折扣 - 星币抵扣 + 运费
+        return formatFloat(this.totalPrice * this.discount - this.deduction + this.carriage)
       }
     }
 
@@ -413,25 +427,15 @@
       this.$apply()
     }
 
-    getDeduction () {
-      return this.products.reduce((prev, cur) => prev + cur.COUNT * cur.starDeduction, 0)
-    }
-
     async createBuyOrder () {
-      const original = parseFloat(this.totalPrice.toString())
-      const deduction = this.getDeduction()
-      const carriage = 6
-      const discount = 1
-      const total = formatFloat(original * discount + carriage) // 最终支付金额 = 总价x折扣 - 星币抵扣 + 运费
-
       let params = {
         goodsList: this.products.map(item => item.goodsId),
         addressCode: this.address.code,
-        original,
-        total,
-        carriage,
-        deduction,
-        discount
+        original: this.totalPrice,
+        total: this.total,
+        carriage: this.carriage,
+        deduction: this.deduction,
+        discount: this.discount
       }
 
       const res = await fetch.post('/buy/order/create', params)
@@ -473,7 +477,7 @@
       if (orderSource) {
         this.orderSource = orderSource
         if (orderSource === 'recycle') {
-          this.startDateTime = getTimeRange(new Date())
+          this.dateTimeRange = getDateTimeRange(new Date())
         }
       }
       this.orderCreated = false

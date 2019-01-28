@@ -505,12 +505,15 @@
       </view>
     </view>
   </transition>
+
+  <notify id="notify" />
 </template>
 
 <script>
   import wepy from 'wepy'
   import fetch from '../../service/fetch'
   import { toast, confirm } from '../../utils/util'
+  import Notify from '../../components/notify/notify'
   import filters from '../../filters/number.wxs'
 
   import { connect, getStore } from 'wepy-redux'
@@ -538,6 +541,7 @@
         'icon': '/components/icon/index',
         'btn': '/components/button/index',
         'panel': '/components/panel/index',
+        'notify': '/components/notify/index',
         'notice-bar': '/components/notice-bar/index',
         'swipe-cell': '/components/swipe-cell/index',
         'transition': '/components/transition/index'
@@ -614,7 +618,7 @@
       },
       nextStep () {
         if (this.totalCount < 5 && this.totalPrice < 200) {
-          return confirm('书本数量满5本或总预计收入满200才可下单')
+          return Notify('书本数量满5本或总预计收入满200才可下单')
         }
         this.$navigate('/pages/order/order', {orderSource: 'recycle', products: JSON.stringify(this.products)})
       },

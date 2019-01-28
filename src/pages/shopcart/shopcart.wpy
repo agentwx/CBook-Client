@@ -360,12 +360,15 @@
       </view>
     </view>
   </block>
+
+  <notify id="notify" />
 </template>
 
 <script>
   import wepy from 'wepy'
-  import { toast, confirm } from '../../utils/util'
+  import { confirm } from '../../utils/util'
   import fetch from '../../service/fetch'
+  import Notify from '../../components/notify/notify'
   import filters from '../../filters/number.wxs'
   import { connect, getStore } from 'wepy-redux'
 
@@ -412,6 +415,7 @@
       usingComponents: {
         'btn': '/components/button/index',
         'icon': '/components/icon/index',
+        'notify': '/components/notify/index',
         'check-box': '/components/check-box/index',
         'notice-bar': '/components/notice-bar/index',
         'swipe-cell': '/components/swipe-cell/index'
@@ -458,7 +462,7 @@
         const productsToBuy = this.products.filter(product => product.checked)
         const noneStocks = productsToBuy.filter(product => product.stockNumber === 0)
         if (noneStocks.length > 0) {
-          return toast.error('购物车中有缺货商品，请删除后再下单')
+          return Notify('购物车中有缺货商品，请删除后再下单')
         }
         this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
       },

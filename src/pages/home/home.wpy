@@ -34,6 +34,12 @@
     border-radius: 6px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
 
+    swiper {
+      height: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
     image {
       width: 100%;
       height: 100%;
@@ -222,7 +228,13 @@
   </view>
 
   <view class="home-banner">
-    <image src="../../assets/images/home_banner.jpg"></image>
+    <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#08affe" autoplay="true" circular="true" duration="300">
+      <repeat for="{{banners}}" key="index">
+        <swiper-item>
+          <image src="{{item.source}}" @tap="handleBanner({{item}})"></image>
+        </swiper-item>
+      </repeat>
+    </swiper>
   </view>
 
   <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="noop">
@@ -331,6 +343,17 @@ export default class Index extends wepy.page {
     ageValue: 0,
     tagValue: 0,
     langValue: 0,
+    banners: [
+      {
+        source: '../../assets/images/home_banner.jpg',
+        link: ''
+      },
+      {
+        source: '../../assets/images/home_banner2.png',
+        link: '/pages/recycle/index',
+        isTab: true
+      }
+    ],
     sortTypes: [
       {checked: true, value: 1, name: '综合排序'},
       {checked: false, value: 2, name: '人气优先'},
@@ -383,6 +406,15 @@ export default class Index extends wepy.page {
     noop () {},
     toSearch () {
       this.$navigate('/pages/search/search')
+    },
+    handleBanner ({ link, isTab }) {
+      if (link) {
+        if (isTab) {
+          this.$switch(link)
+        } else {
+          this.$navigate(link)
+        }
+      }
     },
     viewDetail (e) {
       this.$navigate('/pages/detail/detail', {goodsId: e.detail.item.goodsId})

@@ -163,7 +163,14 @@ Component({
       type: Number,
       value: 2100
     },
-    value: String,
+    value: {
+      type: [String, Array],
+      value: []
+    },
+    range: {
+      type: Array,
+      value: []
+    },
     start: String,
     end: String,
     rangeKey: String,
@@ -253,7 +260,8 @@ Component({
         })
       } else {
         this.setData({
-          range: this.data.value
+          range: this.data.value,
+          rangeArrayDisplay: this.data.range
         })
       }
     },
@@ -273,7 +281,14 @@ Component({
         }
         this.setData({ range, date })
       } else {
-        value = e.detail
+        value = range.map((item, index) => {
+          return this.data.rangeArrayDisplay[index][item]
+        })
+        value = {
+          ...e.detail,
+          date: value.join(' '),
+          data: this.data.rangeArrayDisplay
+        }
         this.setData({ range, date: range })
       }
 
