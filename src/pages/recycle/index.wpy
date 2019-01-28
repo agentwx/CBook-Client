@@ -203,8 +203,11 @@
   }
 
   .orders-wrap {
-    padding-top: 40px;
     padding-bottom: 50px;
+
+    &.has-tips {
+      padding-top: 40px;
+    }
   }
 
   .order-panel {
@@ -446,7 +449,7 @@
     <notice-bar custom-class="notice-bar" wx:if="{{remainCount > 0 || totalPrice < 200}}">
       <text>继续扫码，还需{{remainCount}}本或预计收入满200元即可下单</text>
     </notice-bar>
-    <view class="orders-wrap">
+    <view class="orders-wrap" :class="{'has-tips': remainCount > 0 || totalPrice < 200}">
       <repeat for="{{products}}" key="index">
         <swipe-cell right-width="60" custom-class="{{isHintDel && index === 0 ? 'hint-del' : ''}}">
           <view class="order-panel" :class="{'hairline--bottom': index < products.length - 1}">

@@ -242,7 +242,7 @@
         <view class="order-book">
           <view class="book-name">{{item.name}}</view>
           <!--<view class="book-count">x{{item.COUNT}}</view>-->
-          <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{filters.toFixed(item.starPrice || item.price)}}</view>
+          <view wx:if="{{orderSource==='normal'}}" class="book-price">￥{{filters.toFixed(item.starPrice)}}</view>
           <view wx:if="{{orderSource==='recycle'}}" class="book-price">￥{{filters.toFixed(item.costPrice)}}</view>
         </view>
       </repeat>
@@ -253,7 +253,7 @@
         <text>{{orderSource==='recycle' ? '预计收入' : '合计'}}</text>
         <view>
           <text class="trade-unit">￥</text>
-          <text class="trade-amount bold">{{filters.toFixed(totalPrice)}}</text>
+          <text class="trade-amount bold">{{filters.toFixed(goodsTotal)}}</text>
         </view>
       </view>
     </view>
@@ -265,7 +265,7 @@
       <view class="bold mark">-￥{{filters.toFixed(carriage)}}</view>
     </view>
     <view class="panel-footer" slot="footer">
-      <view>书费抵扣￥<text class="bold">{{filters.toFixed(deduction)}}</text>元</view>
+      <view>星币抵扣￥<text class="bold">{{filters.toFixed(deduction)}}</text>元</view>
     </view>
   </panel>
 
@@ -299,7 +299,7 @@
 
 <script>
   import wepy from 'wepy'
-  import { toast, getPrevPage, formatDate, parseDate, formatFloat } from '../../utils/util'
+  import { toast, getPrevPage, formatDate, parseDate } from '../../utils/util'
   import { getTimeRange } from '../../components/datetime-picker/dateTimePicker'
   import fetch from '../../service/fetch'
   import Notify from '../../components/notify/notify'
@@ -355,6 +355,12 @@
       protoChecked: false,
       deliveryTime: '',
       orderSource: 'normal',
+      total: 0,
+      goodsTotal: 0,
+      carriage: 0,
+      deduction: 0,
+      discount: 0,
+      starDeducion: 0,
       address: null,
       dateTimeRange: [],
       products: []
@@ -365,27 +371,9 @@
     }
 
     computed = {
-      totalPrice() {
-        const isn = this.orderSource === 'normal'
-        return this.products
-           .reduce((prev, cur) => prev + cur.COUNT * +(isn ? (cur.starPrice || cur.price) : cur.costPrice), 0)
-      },
       totalCount() {
         return this.products
           .reduce((prev, cur) => prev + cur.COUNT, 0)
-      },
-      carriage() {
-        return 6
-      },
-      deduction() {
-        return this.products.reduce((prev, cur) => prev + cur.COUNT * cur.starDeduction, 0)
-      },
-      discount() {
-        return 1
-      },
-      total() {
-        // 最终支付金额 = 总价x折扣 - 星币抵扣 + 运费
-        return formatFloat(this.totalPrice * this.discount - this.deduction + this.carriage)
       }
     }
 
@@ -446,7 +434,7 @@
         addressCode: this.address.code,
         appointment: this.deliveryTime,
         isbnList: this.products.map(item => item.isbn),
-        income: parseFloat(this.totalPrice.toString())
+        income: this.goodsTotal
       }
 
       await fetch.post('/recover/order/create', params)
@@ -460,7 +448,7 @@
       let params = {
         goodsList: this.products.map(item => item.goodsId),
         addressCode: this.address.code,
-        original: this.totalPrice,
+        original: this.goodsTotal,
         total: this.total,
         carriage: this.carriage,
         deduction: this.deduction,
@@ -496,6 +484,25 @@
       this.$apply()
     }
 
+    async orderCompute () {
+      const goodsList = this.products.map(product => product.goodsId)
+      const { datas } = await fetch.post('buy/order/compute/cost', { goodsList })
+      this.total = datas.total
+      this.goodsTotal = datas.goodsTotal
+      this.carriage = datas.carriage
+      this.deduction = datas.deduction
+      this.discount = datas.discount
+      this.starDeducion = datas.starDeducion
+      this.products = this.products.map(product => {
+        let item = datas.bookPrice.find(book => book.goodsId === product.goodsId)
+        if (item) {
+          return {...product, starPrice: item.price}
+        }
+        return product
+      })
+      this.$apply()
+    }
+
     onShow () {
       if (this.orderCreated) {
         this.$switch('/pages/home/home')
@@ -511,6 +518,8 @@
       }
       this.orderCreated = false
       this.products = JSON.parse(products)
+      console.log(this.products)
+      this.orderCompute()
       this.loadAddress()
     }
   }
