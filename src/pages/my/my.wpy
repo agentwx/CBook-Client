@@ -145,7 +145,7 @@
 
   <view class="uc-assets-panel">
     <view class="uc-assets-item" @tap="viewCoins">
-      <view class="assets-value">{{filters.toFixed(userInfo.starPoint)}}</view>
+      <view class="assets-value">{{filters.toFixed(userInfo.starPoint || 0)}}</view>
       <view class="assets-name">星星币</view>
     </view>
     <view class="uc-assets-item">

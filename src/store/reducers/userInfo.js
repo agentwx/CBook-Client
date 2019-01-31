@@ -10,7 +10,7 @@ const defaultState = {
   province: '',
   name: '',
   vipLevel: 0,
-  starPoint: 1494.1,
+  starPoint: 0,
   mobile: ''
 }
 
