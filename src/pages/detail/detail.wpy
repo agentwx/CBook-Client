@@ -534,6 +534,7 @@
       <text class="product-info-label"> 评分：</text>
       <view class="product-info-content">
         <raty show-value="false" value="{{product.doubanScore}}"></raty>
+        <text class="comments-count">121条书评</text>
       </view>
     </view>
   </view>
