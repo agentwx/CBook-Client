@@ -374,6 +374,10 @@
       totalCount() {
         return this.products
           .reduce((prev, cur) => prev + cur.COUNT, 0)
+      },
+      goodsTotal() {
+        return this.products
+           .reduce((prev, cur) => prev + (this.orderSource === 'normal' ? cur.starPrice : cur.costPrice), 0)
       }
     }
 
