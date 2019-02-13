@@ -265,7 +265,7 @@
       <view class="bold mark">￥{{filters.toFixed(carriage)}}</view>
     </view>
     <view class="panel-footer" slot="footer">
-      <view>星币抵扣￥<text class="bold">{{filters.toFixed(deduction)}}</text>元</view>
+      <view>星币抵扣￥<text class="bold">{{filters.toFixed(starDeducion)}}</text>元</view>
     </view>
   </panel>
 
@@ -518,7 +518,6 @@
       }
       this.orderCreated = false
       this.products = JSON.parse(products)
-      console.log(this.products)
       this.orderCompute()
       this.loadAddress()
     }
