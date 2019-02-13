@@ -128,7 +128,8 @@ export default class extends wepy.app {
       'pages/address/address',
       'pages/address/new',
       'pages/starcoin/list',
-      'pages/auth/auth'
+      'pages/auth/auth',
+      'pages/webview/webview'
     ],
     window: {
       navigationBarBackgroundColor: '#fff',

@@ -435,7 +435,7 @@
 
       </view>
 
-      <view class="recycle-hint">
+      <view class="recycle-hint" @tap="viewRules">
         《暂不支持提现，具体查看买卖规则》
       </view>
 
@@ -581,6 +581,9 @@
       },
       toggleExpItem2 () {
         this.expItem2 = !this.expItem2
+      },
+      viewRules () {
+        this.$navigate('/pages/webview/webview', {url: 'https://mp.weixin.qq.com/s/vKf66XVKbcgThu9QKQ2rxA'})
       },
       async scanBarcode () {
         const { result } = await wepy.scanCode()

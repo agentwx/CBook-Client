@@ -1,0 +1,18 @@
+<template>
+  <web-view wx:if="{{source}}" src="{{source}}" />
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    data = {
+      source: null
+    }
+    onLoad ({url}) {
+      if (url) {
+        this.source = url
+      }
+    }
+  }
+</script>
