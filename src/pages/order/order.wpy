@@ -510,16 +510,16 @@
     }
 
     onLoad ({orderSource, products}) {
-      if (orderSource) {
-        this.orderSource = orderSource
-        if (orderSource === 'recycle') {
-          this.dateTimeRange = getDateTimeRange(new Date())
-        }
-      }
+      this.orderSource = orderSource
       this.orderCreated = false
       this.products = JSON.parse(products)
-      this.orderCompute()
       this.loadAddress()
+      if (orderSource === 'normal') {
+        this.orderCompute()
+      }
+      if (orderSource === 'recycle') {
+        this.dateTimeRange = getDateTimeRange(new Date())
+      }
     }
   }
 </script>

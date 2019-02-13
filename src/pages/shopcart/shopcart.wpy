@@ -464,7 +464,7 @@
         if (noneStocks.length > 0) {
           return Notify('购物车中有缺货商品，请删除后再下单')
         }
-        this.$navigate('/pages/order/order', {products: JSON.stringify(productsToBuy)})
+        this.$navigate('/pages/order/order', {orderSource: 'normal', products: JSON.stringify(productsToBuy)})
       },
       goShopping () {
         this.$switch('/pages/home/home')
