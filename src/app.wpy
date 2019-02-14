@@ -149,7 +149,7 @@ export default class extends wepy.app {
     tabBar: {
       color: '#666',
       selectedColor: '#01AAfA',
-      borderStyle: '#ddd',
+      borderStyle: 'black',
       backgroundColor: '#fff',
       list: [
         {
