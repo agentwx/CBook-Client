@@ -157,6 +157,10 @@
 
   .reason-item {
     margin-bottom: 15px;
+
+    checkbox {
+      vertical-align: 2px;
+    }
   }
 
   .reason-actions {
