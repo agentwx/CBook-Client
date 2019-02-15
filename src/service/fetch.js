@@ -26,7 +26,7 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
 
     if (useToken) {
       defHeaders = Object.assign(defHeaders, {
-        token: wx.getStorageSync('token') // token || (token = wx.getStorageSync('token'))
+        token: token || (token = wx.getStorageSync('token'))
       })
     }
 
