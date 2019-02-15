@@ -295,7 +295,7 @@
                   <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('tags', {{item.value}})">{{item.name}}</view>
                 </block>
               </view>
-              <view class="filter-catelog-hd">
+              <!--<view class="filter-catelog-hd">
                 <icon name="lang" size="middle" type="svg"></icon>
                 <text>语言</text>
               </view>
@@ -303,12 +303,15 @@
                 <block wx:for="{{languageTypes}}" wx:key="index">
                   <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('languageTypes', {{item.value}})">{{item.name}}</view>
                 </block>
+              </view>-->
+              <view class="filter-catelog-hd">
+                <icon name="stock" size="middle" type="svg"></icon>
+                <text>库存</text>
               </view>
               <view class="filter-catelog-bd">
-                <view class="filter-stock" @tap="changeStockStatus">
-                  <checkbox square size="small" checked="{{stockChecked}}" />
-                  <text>只看有库存</text>
-                </view>
+                <block wx:for="{{stockTypes}}" wx:key="index">
+                  <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('stockTypes', {{item.value}})">{{item.name}}</view>
+                </block>
               </view>
             </view>
             <view class="filter-catelog-action">
@@ -353,7 +356,6 @@ export default class Index extends wepy.page {
     filterBarFixed: false,
     filterVisible: false,
     showDropdown: false,
-    stockChecked: false,
     filterType: null,
     queryParams: null,
     sortType: 1,
@@ -391,12 +393,16 @@ export default class Index extends wepy.page {
       {checked: false, value: 2, name: '亲子关系'},
       {checked: false, value: 3, name: '历史文学'}
     ],
-    languageTypes: [
+    /* languageTypes: [
       {checked: true, value: 0, name: '全部'},
       {checked: false, value: 1, name: '中文'},
       {checked: false, value: 2, name: '中文注音'},
       {checked: false, value: 3, name: '英文'},
       {checked: false, value: 4, name: '中英文'}
+    ], */
+    stockTypes: [
+      {checked: true, value: 0, name: '全部'},
+      {checked: false, value: 1, name: '有货'}
     ]
   }
 
@@ -480,9 +486,6 @@ export default class Index extends wepy.page {
         return item
       })
     },
-    changeStockStatus () {
-      this.stockChecked = !this.stockChecked
-    },
     resetFilter () {
       this.ageTypes = this.ageTypes.map(item => ({...item, checked: item.value === this.ageValue}))
       this.tags = this.tags.map(item => ({...item, checked: item.value === this.tagValue}))
@@ -526,13 +529,13 @@ export default class Index extends wepy.page {
         key: 'tags',
         values: filterChecked(this.tags)
       },
-      {
+      /* {
         key: 'languageType',
         values: filterChecked(this.languageTypes)
-      },
+      }, */
       {
         key: 'stock',
-        values: [this.stockChecked]
+        values: filterChecked(this.stockTypes)
       }
     ]
 
