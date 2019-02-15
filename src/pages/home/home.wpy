@@ -578,8 +578,24 @@ export default class Index extends wepy.page {
     this.isIOS = /IOS/i.test(sysInfo.system)
     this.getFilterBarTop()
     this.$parent.ready(() => {
-      this.loadProducts()
-      this.$apply()
+      const lastPagePath = wx.getStorageSync('__lastPagePath')
+      if (lastPagePath) {
+        wx.removeStorageSync('__lastPagePath')
+        const tabBarPages = this.$parent.config.tabBar.list.map(item => item.pagePath)
+        const relaPath = lastPagePath.slice(1).split('?')[0]
+        if (tabBarPages.includes(relaPath)) {
+          wx.switchTab({
+            url: lastPagePath
+          })
+        } else {
+          wx.navigateTo({
+            url: lastPagePath
+          })
+        }
+      } else {
+        this.loadProducts()
+        this.$apply()
+      }
     })
   }
 }

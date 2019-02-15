@@ -1,11 +1,12 @@
 import wepy from 'wepy'
-import { toast } from '../utils/util'
+import { toast, confirm, getCurrentPage, parseParams } from '../utils/util'
 
 export const serverUrl = 'https://www.muyin.com/serverapi'
 
 let requestCount = 0
 let errorMsg = ''
 let token = ''
+let isTokenExpired = false
 
 let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
   return new Promise((resolve, reject) => {
@@ -37,16 +38,30 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
     .then(res => {
       if (res.statusCode === 200) {
         if (res.data.code === 0) {
+          isTokenExpired = false
           resolve(res.data)
         } else {
-          reject(errorMsg = res.data.msg)
+          if (res.data.code === 98) {
+            reject(res.data.msg)  // eslint-disable-line
+            !isTokenExpired && confirm('登录信息过期，需要重新登录?').then(isOk => {
+              if (isOk) {
+                const currentPage = getCurrentPage()
+                const lastPagePath = `/${currentPage.route}?${parseParams(currentPage.options)}`
+                wx.setStorageSync('__lastPagePath', lastPagePath)
+                wx.reLaunch({url: '/pages/home/home'})
+              }
+            })
+            isTokenExpired = true
+          } else {
+            reject(errorMsg = res.data.msg)
+          }
         }
       } else {
         reject(errorMsg = (res.data.msg || '服务器发生错误'))
       }
     })
     .catch(() => {
-      reject(errorMsg = '与服务器连接失败')
+      reject(errorMsg = '与服务器连接失败') // eslint-disable-line
     })
     .finally(() => {
       if (--requestCount === 0) {

@@ -352,7 +352,7 @@
 
     data = {
       modalVisible: false,
-      protoChecked: false,
+      protoChecked: true,
       deliveryTime: '',
       orderSource: 'normal',
       total: 0,
@@ -415,7 +415,7 @@
       },
       confirmOrder() {
         this.modalVisible = false
-        this.$navigate('/pages/recycle/list')
+        this.$redirect('/pages/recycle/list')
       },
       datetimeChange(e) {
         this.deliveryTime = e.detail.date
@@ -424,7 +424,10 @@
         this.protoChecked = !this.protoChecked
       },
       viewProtocol() {
-        console.log('view protocol...')
+        this.$navigate('/pages/webview/webview', {
+          url: 'https://mp.weixin.qq.com/s/U1nHYegziyAKmnXA59JEqQ',
+          title: '星月童书用户协议'
+        })
       }
     }
 
@@ -469,11 +472,11 @@
         toast.success('支付成功')
         setTimeout(() => {
           this.orderCreated = true
-          this.$navigate('/pages/orderlist/orderlist')
+          this.$redirect('/pages/orderlist/orderlist')
         }, 1500)
       } catch (e) {
         this.orderCreated = true
-        this.$navigate('/pages/orderlist/orderlist', {tabIndex: 1})
+        this.$redirect('/pages/orderlist/orderlist', {tabIndex: 1})
       } finally {
         const prevPage = getPrevPage()
         if (prevPage.route === 'pages/shopcart/shopcart') {

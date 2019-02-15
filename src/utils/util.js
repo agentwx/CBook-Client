@@ -102,6 +102,14 @@ function isObj(x) {
   return x !== null && (type === 'object' || type === 'function')
 }
 
+function parseParams (params = {}) {
+  const result = Object.keys(params).map(key => {
+    if (params[key] === undefined) return ''
+    return `${key}=${encodeURIComponent(params[key])}`
+  })
+  return result.join('&')
+}
+
 function confirm(msg, title = '', confirmText = '确定', cancelText = '取消') {
   return new Promise(resolve => {
     wx.showModal({
@@ -183,6 +191,7 @@ module.exports = {
   confirm,
   toast,
   isObj,
+  parseParams,
   showLoading,
   hideLoading,
   getPrevPage,

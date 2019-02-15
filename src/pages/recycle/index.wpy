@@ -421,10 +421,10 @@
             <view class="intro-aside">
               <view class="intro-text">审核通过</view>
               <view class="intro-text">书款到账</view>
-              <view class="intro-refuses" @tap="toggleExpItem2()">
+              <!--<view class="intro-refuses" @tap="toggleExpItem2()">
                 <text>什么是审核</text>
                 <icon name="arrow-down" size="small"></icon>
-              </view>
+              </view>-->
             </view>
           </view>
           <view class="explain-dropdown">
@@ -583,7 +583,10 @@
         this.expItem2 = !this.expItem2
       },
       viewRules () {
-        this.$navigate('/pages/webview/webview', {url: 'https://mp.weixin.qq.com/s/vKf66XVKbcgThu9QKQ2rxA'})
+        this.$navigate('/pages/webview/webview', {
+          url: 'https://mp.weixin.qq.com/s/vKf66XVKbcgThu9QKQ2rxA',
+          title: '星月童书专卖规则'
+        })
       },
       async scanBarcode () {
         const { result } = await wepy.scanCode()

@@ -9,9 +9,14 @@
     data = {
       source: null
     }
-    onLoad ({url}) {
+    onLoad ({url, title}) {
       if (url) {
         this.source = url
+      }
+      if (title) {
+        wx.setNavigationBarTitle({
+          title
+        })
       }
     }
   }
