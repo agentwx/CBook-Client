@@ -32,8 +32,8 @@
 
   .book-body {
     .flex();
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   .book-cover {
@@ -232,7 +232,7 @@
       </view>
     </view>
     <repeat for="{{order.bookInfos}}" key="index">
-      <view class="book-body">
+      <view class="book-body" :class="{'hairline--bottom': index < order.bookInfos.length - 1}">
         <view class="book-cover">
           <image src="{{item.smallIcon}}" mode="widthFix" lazyload="true"></image>
         </view>
