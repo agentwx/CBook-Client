@@ -285,7 +285,7 @@
 <template>
   <block wx:if="{{products.length > 0}}">
     <notice-bar custom-class="notice-bar">
-      <text>书费已抵扣{{cutPrice}}元，共{{cutCount}}本，查看抵扣规则</text>
+      <text>星币已抵扣{{cutPrice}}元，共{{cutCount}}本。</text>
     </notice-bar>
 
     <view class="cart-edit-hd">
