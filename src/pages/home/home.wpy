@@ -334,6 +334,7 @@
 import wepy from 'wepy'
 import { getNodeRect } from '../../utils/util'
 import { getStore } from 'wepy-redux'
+import authorize from '../../service/authorize'
 
 const store = getStore()
 
@@ -603,7 +604,7 @@ export default class Index extends wepy.page {
     const sysInfo = wx.getSystemInfoSync()
     this.isIOS = /IOS/i.test(sysInfo.system)
     this.getFilterBarTop()
-    this.$parent.ready(() => {
+    authorize.ready(() => {
       const lastPagePath = wx.getStorageSync('__lastPagePath')
       if (lastPagePath) {
         wx.removeStorageSync('__lastPagePath')
@@ -618,10 +619,9 @@ export default class Index extends wepy.page {
             url: lastPagePath
           })
         }
-      } else {
-        this.loadProducts()
-        this.$apply()
       }
+      this.loadProducts()
+      this.$apply()
     })
   }
 }

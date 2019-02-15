@@ -90,14 +90,9 @@
 import './polyfill'
 import wepy from 'wepy'
 import 'wepy-async-function'
-import { toast } from './utils/util'
-import {
-  login, isAuthorized, getUserInfo,
-  getWxUserInfo, getOpenIdByCode, getUserToken
-} from './utils/wechat'
-
 import { setStore } from 'wepy-redux'
 import configStore from './store'
+import authorize from './service/authorize'
 
 const initialState = wx.getStorageSync('APP_INIT_STATE') || {}
 const store = configStore(initialState)
@@ -180,9 +175,6 @@ export default class extends wepy.app {
     }
   }
 
-  appReady = false
-  readyCallback = null
-
   constructor () {
     super()
     this.use('requestfix')
@@ -190,7 +182,8 @@ export default class extends wepy.app {
   }
 
   async onLaunch () {
-    this.wxlogin()
+    authorize.init({store})
+    authorize.launch()
 
     const { recycles, shopcart } = initialState
 
@@ -226,84 +219,6 @@ export default class extends wepy.app {
         resolve()
       }, s * 1000)
     })
-  }
-
-  async wxlogin () {
-    try {
-      const code = await login()
-      const {openid, unionid} = await getOpenIdByCode(code)
-      this.openId = openid
-      if (unionid) {
-        const tokenData = getUserToken(openid, unionid)
-        this.saveToken(tokenData.datas.token)
-      } else {
-        this.doAuthorize()
-      }
-    } catch (msg) {
-      toast.error(msg)
-    }
-  }
-
-  async getUnionId () {
-    try {
-      const { encryptedData, iv } = await getUserInfo({withCredentials: true, lang: 'zh_CN'})
-      const res = await getWxUserInfo(this.openId, encryptedData, iv)
-      store.dispatch({
-        type: 'ADD_USER_INFO',
-        payload: {
-          data: res.datas
-        }
-      })
-      return res.datas
-    } catch (errMsg) {
-      toast.error(errMsg)
-      return {}
-    }
-  }
-
-  async getToken() {
-    const { unionId } = await this.getUnionId()
-    if (!unionId) {
-      wx.showModal({
-        content: '抱歉，未找到您的unionId',
-        showCancel: false,
-        success: res => {
-          this.doAuthorize()
-        }
-      })
-    } else {
-      const tokenData = await getUserToken(this.openId, unionId)
-      this.saveToken(tokenData.datas.token)
-    }
-  }
-
-  async doAuthorize () {
-    const isAuthored = await isAuthorized()
-    if (isAuthored) {
-      this.getToken()
-    } else {
-      wx.navigateTo({url: '/pages/auth/auth'})
-    }
-  }
-
-  saveToken (token) {
-    wx.setStorageSync('token', token)
-    this.dispatchReady()
-  }
-
-  ready (callback) {
-    this.readyCallback = callback
-    if (this.appReady) {
-      this.dispatchReady()
-    }
-  }
-
-  dispatchReady () {
-    this.appReady = true
-    if (typeof this.readyCallback === 'function') {
-      this.readyCallback.apply(this, arguments)
-      this.readyCallback = null
-    }
   }
 }
 </script>

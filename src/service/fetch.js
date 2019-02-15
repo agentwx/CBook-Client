@@ -1,5 +1,6 @@
 import wepy from 'wepy'
 import { toast, confirm, getCurrentPage, parseParams } from '../utils/util'
+import authorize from '../service/authorize'
 
 export const serverUrl = 'https://www.muyin.com/serverapi'
 
@@ -25,7 +26,7 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
 
     if (useToken) {
       defHeaders = Object.assign(defHeaders, {
-        token: token || (token = wx.getStorageSync('token'))
+        token: wx.getStorageSync('token') // token || (token = wx.getStorageSync('token'))
       })
     }
 
@@ -48,7 +49,9 @@ let fetchApi = (url, params = {}, showLoading = true, useToken = true) => {
                 const currentPage = getCurrentPage()
                 const lastPagePath = `/${currentPage.route}?${parseParams(currentPage.options)}`
                 wx.setStorageSync('__lastPagePath', lastPagePath)
-                wx.reLaunch({url: '/pages/home/home'})
+                authorize.requestToken().then(() => {
+                  wx.reLaunch({url: '/pages/home/home'})
+                })
               }
             })
             isTokenExpired = true

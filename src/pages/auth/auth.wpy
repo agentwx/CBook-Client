@@ -64,6 +64,7 @@
 
 <script>
   import wepy from 'wepy'
+  import authorize from '../../service/authorize'
 
   export default class Index extends wepy.page {
     config = {
@@ -81,7 +82,7 @@
         this.isShow = false
       },
       onGetUserInfo () {
-        this.$parent.getToken()
+        authorize.getToken()
         this.$back()
       }
     }
