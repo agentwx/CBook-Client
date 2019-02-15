@@ -31,6 +31,7 @@ Component({
       type: [Boolean, String],
       value: false
     },
+    square: Boolean,
     checked: {
       type: [Boolean, String],
       value: false,

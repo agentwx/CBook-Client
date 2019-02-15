@@ -306,7 +306,7 @@
               </view>
               <view class="filter-catelog-bd">
                 <view class="filter-stock" @tap="changeStockStatus">
-                  <checkbox checked="{{stockChecked}}" />
+                  <checkbox square size="small" checked="{{stockChecked}}" />
                   <text>只看有库存</text>
                 </view>
               </view>

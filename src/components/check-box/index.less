@@ -8,6 +8,10 @@
   vertical-align: middle;
   transition: background-color .2s ease;
 
+  &.square {
+    border-radius: 0;
+  }
+
   &.checked {
     position: relative;
     background-color: @gcolor;
@@ -40,10 +44,6 @@
   &.small {
     width: 15px;
     height: 15px;
-
-    &:before {
-      border-width: 0 0 1px 1px;
-    }
   }
 
   &.readonly {
