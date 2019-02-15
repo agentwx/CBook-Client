@@ -190,6 +190,14 @@
     }
   }
 
+  .filter-stock {
+    checkbox {
+      vertical-align: 2px;
+      margin-left: 3px;
+      margin-right: 5px;
+    }
+  }
+
   .filter-catelog-action {
     .flex();
     box-shadow:0 -8px 18px rgba(0, 0, 0, 0.04);
@@ -296,6 +304,12 @@
                   <view class="filter-catelog-item" :class="{'selected': item.checked}" @tap="filterByTag('languageTypes', {{item.value}})">{{item.name}}</view>
                 </block>
               </view>
+              <view class="filter-catelog-bd">
+                <view class="filter-stock" @tap="changeStockStatus">
+                  <checkbox checked="{{stockChecked}}" />
+                  <text>只看有库存</text>
+                </view>
+              </view>
             </view>
             <view class="filter-catelog-action">
               <view class="filter-btn-reset" @tap="resetFilter">重置</view>
@@ -328,6 +342,7 @@ export default class Index extends wepy.page {
       'transition': '/components/transition/index',
       'overlay': '/components/overlay/index',
       'icon': '/components/icon/index',
+      'checkbox': '/components/check-box/index',
       'products': '/components/products/index',
       'gotop': '/components/gotop/index'
     }
@@ -338,6 +353,7 @@ export default class Index extends wepy.page {
     filterBarFixed: false,
     filterVisible: false,
     showDropdown: false,
+    stockChecked: false,
     filterType: null,
     queryParams: null,
     sortType: 1,
@@ -464,6 +480,9 @@ export default class Index extends wepy.page {
         return item
       })
     },
+    changeStockStatus () {
+      this.stockChecked = !this.stockChecked
+    },
     resetFilter () {
       this.ageTypes = this.ageTypes.map(item => ({...item, checked: item.value === this.ageValue}))
       this.tags = this.tags.map(item => ({...item, checked: item.value === this.tagValue}))
@@ -510,6 +529,10 @@ export default class Index extends wepy.page {
       {
         key: 'languageType',
         values: filterChecked(this.languageTypes)
+      },
+      {
+        key: 'stock',
+        values: [this.stockChecked]
       }
     ]
 
