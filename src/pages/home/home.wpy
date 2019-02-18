@@ -490,7 +490,8 @@ export default class Index extends wepy.page {
     resetFilter () {
       this.ageTypes = this.ageTypes.map(item => ({...item, checked: item.value === this.ageValue}))
       this.tags = this.tags.map(item => ({...item, checked: item.value === this.tagValue}))
-      this.languageTypes = this.languageTypes.map(item => ({...item, checked: item.value === this.langValue}))
+      // this.languageTypes = this.languageTypes.map(item => ({...item, checked: item.value === this.langValue}))
+      this.stockTypes = this.stockTypes.map(item => ({...item, checked: item.value === this.langValue}))
     },
     searchFilter () {
       this.hideFilterAndSearch()
