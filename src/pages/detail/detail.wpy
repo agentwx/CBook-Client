@@ -369,123 +369,6 @@
     border-radius: 50%;
   }
 
-
-  .comments-list {
-    margin-top: 10px;
-  }
-
-  .comment {
-    &-panel {
-      .flex();
-      padding-top: 12px;
-      padding-bottom: 12px;
-    }
-
-    &-aside {
-      margin-right: 12px;
-    }
-
-    &-avatar {
-      position: relative;
-      width: 50px;
-      height: 50px;
-
-      image {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background-color: @color-preloader;
-      }
-
-      vip-flag {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        transform: translate(10%, 10%);
-      }
-    }
-
-    &-main {
-      flex: 1;
-    }
-
-    &-heading,
-    &-date {
-      margin-bottom: 2px;
-    }
-
-    &-heading {
-      .cmt-user {
-        font-size: 15px;
-        color: #495e7e;
-        font-weight: bold;
-      }
-    }
-
-    &-date {
-      color: #888;
-    }
-
-    &-raty {
-      margin-bottom: 5px;
-
-      raty {
-        margin-left: 5px;
-      }
-    }
-
-    &-desc {
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-
-    &-images {
-      .flex();
-      flex-wrap: wrap;
-
-      image {
-        height: 80px;
-        width: 80px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        background-color: @color-preloader;
-      }
-    }
-
-    &-actions {
-      margin-top: 12px;
-      color: #888;
-
-      icon {
-        margin-right: 8px;
-      }
-
-      > text {
-        font-size: 15px;
-      }
-
-      &__users {
-        margin-right: 8px;
-
-        image {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background-color: @color-preloader;
-          border: 2px solid @white;
-
-          &:not(:first-child) {
-            margin-left: -12px;
-          }
-        }
-      }
-    }
-
-    &-footer {
-      margin-bottom: -15px;
-    }
-  }
-
 </style>
 <template>
   <view class="detail-image-wrap">
@@ -534,7 +417,6 @@
       <text class="product-info-label"> 评分：</text>
       <view class="product-info-content">
         <raty show-value="false" value="{{product.doubanScore}}"></raty>
-        <text class="comments-count">121条书评</text>
       </view>
     </view>
   </view>
@@ -558,117 +440,6 @@
 
   <view class="spliter"></view>
 
-  <view class="comments-panel">
-    <list-item custom-class="comments-hd" bordered="false" show-arrow="true" @tap="viewComments">
-      <text class="bold">精选书评</text>
-      <text>(120)</text>
-    </list-item>
-    <view class="comments-content">
-      <view class="comments-empty" wx:if="{{false}}">
-        <btn type="plain" custom-class="comment-btn" icon="comment" @tap="addComment">抢首评</btn>
-        <view class="comment-hint">抢首评，精选评论，可获得<text class="h">21星币</text></view>
-      </view>
-      <view class="tags-wrapper">
-        <tag>宝宝爱看(36)</tag>
-        <tag>妈妈爱读(36)</tag>
-        <tag>睡前故事(36)</tag>
-        <tag>想象力(36)</tag>
-        <tag>想象力(36)</tag>
-      </view>
-      <view class="comments-list">
-        <view class="comment-panel hairline--bottom">
-          <view class="comment-aside">
-            <view class="comment-avatar">
-              <image src="" mode="aspectFill" lazyload="true"></image>
-              <vip-flag />
-            </view>
-          </view>
-          <view class="comment-main">
-            <view class="comment-heading">
-              <text class="cmt-user">sonicren</text>
-            </view>
-            <view class="comment-date">12月14日</view>
-            <view class="comment-raty">
-              <text>评分</text>
-              <raty value="3" show-value="false"></raty>
-            </view>
-            <view class="comment-body">
-              <view class="comment-desc">
-                宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
-              </view>
-              <view class="comment-images">
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-              </view>
-              <view class="comment-actions flex-between">
-                <view class="comment-actions--left flex-v-center">
-                  <icon name="raise-up" size="middle"></icon>
-                  <view class="comment-actions__users">
-                    <image src="" mode="aspectFill" lazyload="true"></image>
-                    <image src="" mode="aspectFill" lazyload="true"></image>
-                    <image src="" mode="aspectFill" lazyload="true"></image>
-                  </view>
-                  <text class="comment-stars">3人赞</text>
-                </view>
-                <view class="comment-actions--right flex-v-center">
-                  <icon name="comment" size="middle"></icon>
-                  <text class="comment-count">6</text>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-
-        <view class="comment-panel hairline--bottom">
-          <view class="comment-aside">
-            <view class="comment-avatar">
-              <image src="" mode="aspectFill" lazyload="true"></image>
-            </view>
-          </view>
-          <view class="comment-main">
-            <view class="comment-heading">
-              <text class="cmt-user">sonicren</text>
-            </view>
-            <view class="comment-date">12月14日</view>
-            <view class="comment-raty">
-              <text>评分</text>
-              <raty value="3" show-value="false"></raty>
-            </view>
-            <view class="comment-body">
-              <view class="comment-desc">
-                宝宝这些书，非常有想象力，读完这本书，这本书给孩子带来了很多乐趣，孩子们将会了解到：如何思考算法来实现目标，以及如何判断哪种算法合适。
-              </view>
-              <view class="comment-images">
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-                <image src="" mode="aspectFit"></image>
-              </view>
-              <view class="comment-actions flex-between">
-                <view class="comment-actions--left flex-v-center">
-                  <icon name="raise-up" size="middle"></icon>
-                  <text class="comment-stars">1人赞</text>
-                </view>
-                <view class="comment-actions--right flex-v-center">
-                  <icon name="comment" size="middle"></icon>
-                  <text class="comment-count">6</text>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-
-      </view>
-    </view>
-    <view class="comment-footer">
-      <list-item bordered="false" @tap="viewComments">查看全部书评</list-item>
-    </view>
-  </view>
-
-  <view class="spliter"></view>
-
   <view class="detail-action-bar">
     <view class="action-bar--left">
       <icon-item
@@ -679,24 +450,6 @@
         @tap="goToHome"
       >
         首页
-      </icon-item>
-      <icon-item
-        class="action-item action-fav"
-        icon="heart-o"
-        inline="false"
-        icon-size="middle"
-        @tap="addToFav"
-      >
-        收藏
-      </icon-item>
-      <icon-item
-        class="action-item action-comment"
-        icon="write"
-        inline="false"
-        icon-size="middle"
-        @tap="writeComment"
-      >
-        写书评
       </icon-item>
       <view id="cart" class="action-item action-cart" :class="{'shake': buyTriggered}" @tap="goToCart">
         <icon-item
