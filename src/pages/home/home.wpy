@@ -365,7 +365,7 @@ export default class Index extends wepy.page {
     langValue: 0,
     banners: [
       {
-        source: '../../assets/images/home_banner.jpg',
+        source: '../../assets/images/home_banner.png',
         link: ''
       },
       {
