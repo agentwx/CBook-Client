@@ -369,6 +369,123 @@
     border-radius: 50%;
   }
 
+
+  .comments-list {
+    margin-top: 10px;
+  }
+
+  .comment {
+    &-panel {
+      .flex();
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    &-aside {
+      margin-right: 12px;
+    }
+
+    &-avatar {
+      position: relative;
+      width: 50px;
+      height: 50px;
+
+      image {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: @color-preloader;
+      }
+
+      vip-flag {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(10%, 10%);
+      }
+    }
+
+    &-main {
+      flex: 1;
+    }
+
+    &-heading,
+    &-date {
+      margin-bottom: 2px;
+    }
+
+    &-heading {
+      .cmt-user {
+        font-size: 15px;
+        color: #495e7e;
+        font-weight: bold;
+      }
+    }
+
+    &-date {
+      color: #888;
+    }
+
+    &-raty {
+      margin-bottom: 5px;
+
+      raty {
+        margin-left: 5px;
+      }
+    }
+
+    &-desc {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    &-images {
+      .flex();
+      flex-wrap: wrap;
+
+      image {
+        height: 80px;
+        width: 80px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        background-color: @color-preloader;
+      }
+    }
+
+    &-actions {
+      margin-top: 12px;
+      color: #888;
+
+      icon {
+        margin-right: 8px;
+      }
+
+      > text {
+        font-size: 15px;
+      }
+
+      &__users {
+        margin-right: 8px;
+
+        image {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: @color-preloader;
+          border: 2px solid @white;
+
+          &:not(:first-child) {
+            margin-left: -12px;
+          }
+        }
+      }
+    }
+
+    &-footer {
+      margin-bottom: -15px;
+    }
+  }
+
 </style>
 <template>
   <view class="detail-image-wrap">
@@ -518,17 +635,17 @@
       <view class="text">书摘插画</view>
     </view>
     <view class="pdintro-body">
-      <repeat for="{{detail.imags}}" key="index">
+      <repeat for="{{product.imags}}" key="index">
         <image src="{{item}}" wx:if="{{item}}" mode="widthFix" lazyload="true" @tap="previewImage({{item}})"></image>
       </repeat>
     </view>
   </view>
 
-  <view class="suggest-window" wx:if="{{detail.relatedBookInfoList.length > 0}}">
+  <view class="suggest-window" wx:if="{{product.relatedBookInfoList.length > 0}}">
     <view class="suggest-title">猜您喜欢</view>
     <scroll-view class="suggest-scrollview" scroll-x="true">
       <view class="suggest-list">
-        <repeat for="{{detail.relatedBookInfoList}}" key="index">
+        <repeat for="{{product.relatedBookInfoList}}" key="index">
           <view class="suggest-item" @tap="viewDetail({{item}})">
             <view class="suggest-cover">
               <image src="{{item.smallIconDetail}}" lazyload="true"></image>
@@ -597,7 +714,6 @@
       authorMaxLength: 100,
       errMsg: '',
       product: {},
-      detail: {},
       contentBriefStr: '',
       authorBriefStr: ''
     }
@@ -688,7 +804,7 @@
       previewImage (url) {
         wx.previewImage({
           current: url,
-          urls: this.detail.imags
+          urls: this.product.imags
         })
       },
       flyComplete () {
