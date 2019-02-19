@@ -448,6 +448,7 @@
         toast.success('复制成功')
       },
       async showDenyInfo (book) {
+        if (book.bookStatus !== 2001) return Promise.resolve()
         const res = await fetch.post('/recover/book/deny/reason', {orderCode: this.order.orderCode, bookCode: book.bookCode}, false)
         this.denyInfo = {bookName: book.name, reason: res.datas.changeReason, img: res.datas.images}
         this.denyModalVisible = true
