@@ -1,13 +1,59 @@
 @import "../../styles/mixins/common";
 
+@item-height: 60px;
+
 .steps-wrap {
-  .flex();
+  &.horizontal {
+    .flex();
+
+    .step-item {
+      flex: 1;
+      text-align: center;
+
+      &:before {
+        height: 3px;
+        width: 100%;
+        top: 8px;
+        left: -50%;
+        right: 50%;
+      }
+
+      .step-info {
+        margin-top: 6px;
+      }
+    }
+  }
+  &.vertical {
+    .step-item-inner {
+      .flex();
+      min-height: @item-height;
+    }
+    .step-item {
+      &:before {
+        width: 3px;
+        left: 8px;
+        height: @item-height;
+        bottom: 100%;
+        margin-bottom: -9px;
+      }
+
+      &:after {
+        width: 3px;
+        left: 8px;
+        height: @item-height;
+        top: 6px;
+      }
+
+      .step-info {
+        margin-left: 6px;
+      }
+    }
+  }
 }
 
 .step-item {
   position: relative;
-  flex: 1;
-  text-align: center;
+  background-color: #fff;
 
   .step-dot {
     position: relative;
@@ -26,51 +72,73 @@
   &:before,
   &:after {
     content: '';
-    height: 3px;
-    width: 50%;
     position: absolute;
-    top: 8px;
     background-color: #ddd;
   }
 
-  &:before {
-    left: 0;
-    right: 50%;
-  }
-
-  &:after {
-    left: 50%;
+  .step-item-dropdown {
+    position: absolute;
     right: 0;
-  }
+    top: -5px;
+    padding: 10px;
 
-  &:first-child:before,
-  &:last-child:after {
-    display: none;
+    icon {
+      transition: transform .2s ease;
+    }
+
+    &.up {
+      icon {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   .step-text {
-    margin-top: 6px;
-    color: #666;
+    color: #333;
   }
 
-  &.actived {
-    /*&:before,
-    &:not(.last):after {
-      background-color: #09c8fe;
-    }*/
+  .step-date {
+    color: #999;
+    font-size: 12px;
+    margin-top: 3px;
+  }
 
-    &:before,
-    &:after {
+  &.actived,
+  &.step-item-current {
+    &:before {
       background-color: #09c8fe;
     }
 
-    .step-dot {
+    > .step-item-inner > .step-dot {
       background-color: #09c8fe;
       border-color: rgba(9,200,254,.4);
     }
+  }
 
-    .step-text {
-      color: #333;
-    }
+  &.first:before,
+  &.last:after,
+  &.step-item-current:before,
+  &.step-item-current:after {
+    display: none !important;
+  }
+}
+
+.steps-panel-wrap {
+  transition: all .2s ease;
+  overflow: hidden;
+}
+
+.steps-subwrap {
+  transition: all .2s ease;
+  overflow: hidden;
+
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    margin: 2px 0 0 2px;
+  }
+  .step-text {
+    font-size: 12px;
+    color: #777;
   }
 }

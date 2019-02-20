@@ -290,7 +290,7 @@
 
     .text {
       // .light-font();
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
       text-indent: 2em;
       letter-spacing: 1px;

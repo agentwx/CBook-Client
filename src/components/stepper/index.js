@@ -37,6 +37,7 @@ Component({
     classes() {
       return classNames('input-class', 'plus-class', 'minus-class', this.data.customClass)
     },
+
     minusDisabled() {
       return this.data.disabled || this.data.value <= this.data.min
     },
