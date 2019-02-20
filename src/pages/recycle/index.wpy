@@ -528,7 +528,7 @@
       return recycles
     },
     totalPrice ({ recycles }) {
-      return recycles.reduce((prev, cur) => prev + formatFloat(cur.costPrice), 0).toFixed(2)
+      return formatFloat(recycles.reduce((prev, cur) => prev + cur.costPrice, 0)).toFixed(2)
     },
     totalCount ({ recycles }) {
       return recycles.length
