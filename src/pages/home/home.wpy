@@ -372,13 +372,11 @@ export default class Index extends wepy.page {
       {
         source: '../../assets/images/home_banner.png',
         link: 'https://mp.weixin.qq.com/s/csuvCXWzdNvXv0W4gsN7mg',
-        title: '关于星月童书',
-        isWeb: true
+        title: '关于星月童书'
       }/*,
        {
         source: '../../assets/images/home_banner2.png',
-        link: '/pages/recycle/index',
-        isTab: true
+        link: '/pages/recycle/index'
       } */
     ],
     sortTypes: [
@@ -438,12 +436,12 @@ export default class Index extends wepy.page {
     toSearch () {
       this.$navigate('/pages/search/search')
     },
-    handleBanner ({ link, isTab, isWeb, title }) {
+    handleBanner ({ link, title }) {
       if (link) {
-        if (isTab) {
-          this.$switch(link)
-        } else if (isWeb) {
+        if (/^https?:\/\//.test(link)) {
           this.$navigate('/pages/webview/webview', {url: link, title})
+        } else if (this.isInTabs(link.slice(1))) {
+          this.$switch(link)
         } else {
           this.$navigate(link)
         }
@@ -521,10 +519,15 @@ export default class Index extends wepy.page {
     this.filterVisible = false
   }
 
-  getFilterBarTop() {
+  getFilterBarTop () {
     getNodeRect('#filter_bar').then(rect => {
       this.filterBarTop = rect.top
     })
+  }
+
+  isInTabs (path) {
+    const tabBarPages = this.$parent.config.tabBar.list.map(item => item.pagePath)
+    return tabBarPages.includes(path)
   }
 
   loadProducts () {
@@ -618,9 +621,8 @@ export default class Index extends wepy.page {
       const lastPagePath = wx.getStorageSync('__lastPagePath')
       if (lastPagePath) {
         wx.removeStorageSync('__lastPagePath')
-        const tabBarPages = this.$parent.config.tabBar.list.map(item => item.pagePath)
         const relaPath = lastPagePath.slice(1).split('?')[0]
-        if (tabBarPages.includes(relaPath)) {
+        if (this.isInTabs(relaPath)) {
           wx.switchTab({
             url: lastPagePath
           })
