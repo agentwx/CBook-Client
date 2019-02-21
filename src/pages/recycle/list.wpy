@@ -46,8 +46,8 @@
   }
 
   .create-time {
-    font-size: 13px;
-    margin-top: 2px;
+    font-size: 12px;
+    margin-top: 1px;
   }
 
   .order-subinfo {
@@ -118,7 +118,7 @@
           </view>
         </scroll-view>
         <view class="panel-footer order-footer" slot="footer">
-          <view class="create-time">{{item.createTime}}</view>
+          <view class="create-time"><!--{{item.createTime}}--></view>
           <view class="order-subinfo">
             <view class="order-sumup">
               总共<text class="bold">{{item.bookInfos.length}}</text>件商品 预计收入(星币): <text class="bold">￥{{filters.toFixed(item.expectIncome)}}</text>

@@ -260,7 +260,7 @@
   </panel>
   <panel custom-class="income-panel">
     <view class="income-item">
-      <text>预计收入</text>
+      <text>预计收入(星币)</text>
       <text>￥{{filters.toFixed(order.expectIncome)}}</text>
     </view>
     <view class="income-item" wx:if="{{order.orderStatus === 1003}}">
