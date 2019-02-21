@@ -305,7 +305,7 @@
                 </block>
               </view>-->
               <view class="filter-catelog-hd">
-                <icon name="stock" size="middle" type="svg"></icon>
+                <icon name="stock" size="middle" type="svg" style="margin-left: 2px"></icon>
                 <text>库存</text>
               </view>
               <view class="filter-catelog-bd">
