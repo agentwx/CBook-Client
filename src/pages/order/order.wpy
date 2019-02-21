@@ -404,7 +404,7 @@
         }
 
         if (!this.protoChecked) {
-          return Notify('请先勾选星月童书用户服务协议')
+          return Notify('请勾选星月童书用户服务协议')
         }
 
         if (this.orderSource === 'normal') {

@@ -1,4 +1,4 @@
-<view class="steps-wrap {{isVertical ? 'vertical' : 'horizontal'}}">
+<view class="steps-wrap {{isVertical ? 'vertical' : 'horizontal'}}" hidden="{{!collapsed}}">
   <view class="step-item step-item-current" bindtap="togglePanel">
     <view class="step-item-inner">
       <view class="step-dot"></view>
@@ -7,12 +7,15 @@
         <view class="step-date" wx:if="{{curItem.date}}">{{curItem.date}}</view>
       </view>
     </view>
-    <view class="step-item-dropdown {{!collapsed ? 'up' : ''}}">
-      <icon name="arrow-down-o" />
+    <view class="step-item-dropdown">
+      <icon name="angle-down-circle" size="24px" />
     </view>
   </view>
 </view>
 <view class="steps-wrap steps-panel-wrap {{isVertical ? 'vertical' : 'horizontal'}} {{customClass}}" style="height: {{collapsed ? 0 : (isExpanded ? 'auto' : (dataList.length * itemHeight - 30) + 'px')}};{{customStyle}}" bindtransitionend="onTransitionEnd">
+  <view class="step-item-dropdown up" bindtap="togglePanel" hidden="{{collapsed}}">
+    <icon name="angle-down-circle" size="24px" />
+  </view>
   <block wx:for="{{dataList}}" wx:key="index">
     <view class="step-item {{index === 0 ? 'first' : ''}} {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'cur' : ''}} {{index === dataList.length - 1 ? 'last' : ''}}" data-index="{{index}}" bindtap="toggleItem">
       <view class="step-item-inner">

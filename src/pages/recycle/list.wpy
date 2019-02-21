@@ -155,7 +155,7 @@
     1001: '物流取件',
     2003: '取件失败',
     1002: '验收书籍',
-    1003: '书费到账'
+    1003: '星币到账'
   }
 
   export default class Index extends wepy.page {

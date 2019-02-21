@@ -3,6 +3,8 @@
 @item-height: 60px;
 
 .steps-wrap {
+  position: relative;
+
   &.horizontal {
     .flex();
 
@@ -76,22 +78,6 @@
     background-color: #ddd;
   }
 
-  .step-item-dropdown {
-    position: absolute;
-    right: 5px;
-    top: 0;
-
-    icon {
-      transition: transform .2s ease;
-    }
-
-    &.up {
-      icon {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
   .step-text {
     color: #333;
     word-break: break-all;
@@ -126,6 +112,25 @@
   &.last {
     .step-item-inner {
       min-height: 30px;
+    }
+  }
+}
+
+.step-item-dropdown {
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  padding: 10px;
+  color: #777;
+  z-index: 5;
+
+  icon {
+    transition: transform .2s ease;
+  }
+
+  &.up {
+    icon {
+      transform: rotate(180deg);
     }
   }
 }

@@ -629,6 +629,9 @@
         if (this.totalCount < 5 && this.totalPrice < 200) {
           return Notify('书本数量满5本或总预计收入满200才可下单')
         }
+        if (this.totalCount > 30) {
+          return Notify('单笔最多只能回收30本书，请调整。')
+        }
         this.$navigate('/pages/order/order', {orderSource: 'recycle', products: JSON.stringify(this.products)})
       },
       clear () {
