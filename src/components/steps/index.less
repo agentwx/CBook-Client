@@ -55,7 +55,6 @@
 
 .step-item {
   position: relative;
-  background-color: #fff;
 
   .step-dot {
     position: relative;
@@ -141,13 +140,27 @@
 }
 
 .steps-subwrap {
-  transition: all .2s ease;
+  transition: all .4s ease;
   overflow: hidden;
+  margin-top: -15px;
+  margin-bottom: 10px;
+
+  > .step-item {
+    .step-item-inner {
+      min-height: auto;
+
+      .step-info {
+        flex: 1;
+        background-color: #f9f9f9;
+        padding: 8px 8px 20px;
+      }
+    }
+  }
 
   .step-dot {
     width: 9px;
     height: 9px;
-    margin: 2px 0 0 2px
+    margin: 10px 0 0 2px
   }
   .step-text {
     font-size: 13px;

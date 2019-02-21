@@ -12,13 +12,13 @@
     </view>
   </view>
 </view>
-<view class="steps-wrap steps-panel-wrap {{isVertical ? 'vertical' : 'horizontal'}} {{customClass}}" style="height: {{collapsed ? 0 : (isExpanded ? 'auto' : (dataList.length * itemHeight - 30) + 'px')}};{{customStyle}}" bindtransitionend="onTransitionEnd">
+<view class="steps-wrap steps-panel-wrap {{isVertical ? 'vertical' : 'horizontal'}} {{customClass}}" style="height: {{collapsed ? 0 : (isExpanded ? 'auto' : wrapHeight + 'px')}};{{customStyle}}" bindtransitionend="onTransitionEnd">
   <view class="step-item-dropdown up" bindtap="togglePanel" hidden="{{collapsed}}">
     <icon name="angle-down-circle" size="24px" />
   </view>
   <block wx:for="{{dataList}}" wx:key="index">
-    <view class="step-item {{index === 0 ? 'first' : ''}} {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'cur' : ''}} {{index === dataList.length - 1 ? 'last' : ''}}" data-index="{{index}}" bindtap="toggleItem">
-      <view class="step-item-inner">
+    <view class="step-item {{index === 0 ? 'first' : ''}} {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'cur' : ''}} {{index === dataList.length - 1 ? 'last' : ''}}">
+      <view class="step-item-inner" data-index="{{index}}" bindtap="toggleItem">
         <view class="step-dot"></view>
         <view class="step-info">
           <view class="step-text">{{item.text}}</view>
@@ -26,14 +26,16 @@
         </view>
       </view>
       <block wx:if="{{item.subItems.length > 0}}">
-        <view class="step-item-dropdown {{!item.collapsed ? 'up' : ''}}">
+        <view class="step-item-dropdown {{!item.collapsed ? 'up' : ''}}" data-index="{{index}}" bindtap="toggleItem">
           <icon name="arrow-down-o" />
         </view>
-        <view class="steps-wrap steps-subwrap {{isVertical ? 'vertical' : 'horizontal'}}" style="height:{{item.collapsed ? 0 : item.subItems.length * itemHeight + 'px'}};">
+        <view class="steps-wrap steps-subwrap {{isVertical ? 'vertical' : 'horizontal'}}" style="height:{{item.collapsed ? 0 : subWrapHeight + 'px'}};">
           <block wx:for="{{item.subItems}}" wx:key="index">
             <view class="step-item">
               <view class="step-item-inner">
-                <view class="step-dot"></view>
+                <view class="step-label">
+                  <view class="step-dot"></view>
+                </view>
                 <view class="step-info">
                   <view class="step-text">{{item.text}}</view>
                   <view class="step-date" wx:if="{{item.date}}">{{item.date}}</view>

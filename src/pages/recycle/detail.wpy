@@ -380,6 +380,10 @@
     2001: '审核未通过'
   }
 
+  const EXPRESS_MAP = {
+    SF: '顺丰'
+  }
+
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '回收订单详情',
@@ -416,6 +420,7 @@
       ],
       order: {},
       denyInfo: {},
+      expressInfo: null,
       orderIndex: 0,
       modalVisible: false,
       denyModalVisible: false
@@ -431,23 +436,18 @@
         if (statusItem) {
           return statusItem.items.map((status, i) => ({
             text: ORDER_STATUS_MAP[status].desc,
-            date: i < 2 ? '2018-12-31 14:01' : null,
-            subItems: status === 1001 ? [
-              {text: '从上海分拔中心入库', date: '2019-01-22 11:59:02'},
-              {text: '订单已装车完成，从上海分拔中心发出', date: '2019-01-22 11:59:02'},
-              {text: '订单已装车完成，从上海分拔中心发出', date: '2019-01-22 11:59:02'},
-              {text: '订单已装车完成，从上海分拔中心发出', date: '2019-01-22 11:59:02'}
-            ] : []}))
+            // date: i < 2 ? '2018-12-31 14:01' : null,
+            subItems: status === 1001 ? this.expressInfo : null
+          }))
         }
         return []
       },
       stepIndex () {
-        return 1
-        // const item = ORDER_STATUS_MAP[this.order.orderStatus]
-        // if (item) {
-        //   return item.index
-        // }
-        // return 0
+        const item = ORDER_STATUS_MAP[this.order.orderStatus]
+        if (item) {
+          return item.index
+        }
+        return 0
       }
     }
 
@@ -516,6 +516,17 @@
       toast.success('取消成功')
     }
 
+    async getExpressInfo () {
+      let { datas } = await fetch.post('recover/order/express/info', {orderCode: this.order.orderCode}, false)
+      datas.traces = JSON.parse(datas.traces)
+      let expressTraces = datas.traces.map(item => ({text: item.AcceptStation, date: item.AcceptTime})).reverse()
+      this.expressInfo = [
+        { text: `状态: ${datas.reason}` },
+        { text: `${EXPRESS_MAP[datas.shipperCode]}单号: ${datas.logisticCode}` }
+      ].concat(expressTraces)
+      this.$apply()
+    }
+
     onLoad({ order, index }) {
       if (order) {
         order = JSON.parse(order)
@@ -524,6 +535,9 @@
         )
         this.order = order
         this.orderIndex = index
+        if (this.order.orderStatus === 1001) {
+          this.getExpressInfo()
+        }
       }
     }
   }
