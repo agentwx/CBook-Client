@@ -429,9 +429,9 @@
       stepItems () {
         const statusItem = ORDER_STATUS_MAP[this.order.orderStatus]
         if (statusItem) {
-          return statusItem.items.map(status => ({
+          return statusItem.items.map((status, i) => ({
             text: ORDER_STATUS_MAP[status].desc,
-            date: '2018-12-31 14:00-16:00',
+            date: i < 2 ? '2018-12-31 14:01' : null,
             subItems: status === 1001 ? [
               {text: '从上海分拔中心入库', date: '2019-01-22 11:59:02'},
               {text: '订单已装车完成，从上海分拔中心发出', date: '2019-01-22 11:59:02'},
@@ -442,11 +442,12 @@
         return []
       },
       stepIndex () {
-        const item = ORDER_STATUS_MAP[this.order.orderStatus]
-        if (item) {
-          return item.index
-        }
-        return 0
+        return 1
+        // const item = ORDER_STATUS_MAP[this.order.orderStatus]
+        // if (item) {
+        //   return item.index
+        // }
+        // return 0
       }
     }
 

@@ -105,6 +105,15 @@
       .flex();
       padding: 12px 0;
     }
+
+    &-label {
+      white-space: nowrap;
+    }
+
+    &-content {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
   }
 
   .product-flags {
@@ -798,6 +807,7 @@
   import { toast, formatDate, getNodeRect } from '../../utils/util'
   import filters from '../../filters/number.wxs'
   import { connect, getStore } from 'wepy-redux'
+  import authorize from '../../service/authorize'
 
   const store = getStore()
 
@@ -993,8 +1003,10 @@
 
     onLoad({ goodsId }) {
       this.productId = goodsId
-      this.loadData(goodsId)
       this.checkCanBy()
+      authorize.ready(() => {
+        this.loadData(goodsId)
+      })
     }
   }
 </script>

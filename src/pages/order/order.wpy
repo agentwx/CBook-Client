@@ -192,7 +192,7 @@
   }
 
   .order-protocol {
-    padding: 5px 12px;
+    padding: 5px 12px 15px;
 
     .proto-text {
       color: @gcolor;

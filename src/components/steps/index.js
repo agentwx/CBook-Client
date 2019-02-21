@@ -29,7 +29,7 @@ Component({
     },
     itemHeight: {
       type: Number,
-      value: 60
+      value: 65
     },
     items: {
       type: Array,
@@ -60,6 +60,8 @@ Component({
     },
     toggleItem(e) {
       const index = e.currentTarget.dataset.index
+      const subItems = this.data.dataList[index].subItems
+      if (!subItems || !subItems.length) return
       let newDataList = this.data.dataList.map((item, i) => i === index ? ({...item, collapsed: !item.collapsed}) : item)
       this.setData({
         dataList: newDataList

@@ -78,9 +78,8 @@
 
   .step-item-dropdown {
     position: absolute;
-    right: 0;
-    top: -5px;
-    padding: 10px;
+    right: 5px;
+    top: 0;
 
     icon {
       transition: transform .2s ease;
@@ -95,6 +94,8 @@
 
   .step-text {
     color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
   }
 
   .step-date {
@@ -121,6 +122,12 @@
   &.step-item-current:after {
     display: none !important;
   }
+
+  &.last {
+    .step-item-inner {
+      min-height: 30px;
+    }
+  }
 }
 
 .steps-panel-wrap {
@@ -133,12 +140,12 @@
   overflow: hidden;
 
   .step-dot {
-    width: 8px;
-    height: 8px;
-    margin: 2px 0 0 2px;
+    width: 9px;
+    height: 9px;
+    margin: 2px 0 0 2px
   }
   .step-text {
-    font-size: 12px;
-    color: #777;
+    font-size: 13px;
+    color: #666;
   }
 }
