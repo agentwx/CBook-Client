@@ -237,13 +237,18 @@
   </view>
 
   <view class="home-banner">
-    <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#08affe" autoplay="true" circular="true" duration="300">
-      <repeat for="{{banners}}" key="index">
-        <swiper-item>
-          <image src="{{item.source}}" @tap="handleBanner({{item}})"></image>
-        </swiper-item>
-      </repeat>
-    </swiper>
+    <block wx:if="{{banners.length > 1}}">
+      <swiper indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#08affe" autoplay="true" circular="true" duration="300">
+        <repeat for="{{banners}}" key="index">
+          <swiper-item>
+            <image src="{{item.source}}" @tap="handleBanner({{item}})"></image>
+          </swiper-item>
+        </repeat>
+      </swiper>
+    </block>
+    <block wx:elif="{{banners.length === 1}}">
+      <image src="{{banners[0].source}}" @tap="handleBanner({{banners[0]}})"></image>
+    </block>
   </view>
 
   <view id="filter_bar" class="filter-toolbar-wrap" @touchmove.stop="noop">
@@ -366,13 +371,15 @@ export default class Index extends wepy.page {
     banners: [
       {
         source: '../../assets/images/home_banner.png',
-        link: ''
-      },
-      {
+        link: 'https://mp.weixin.qq.com/s/csuvCXWzdNvXv0W4gsN7mg',
+        title: '关于星月童书',
+        isWeb: true
+      }/*,
+       {
         source: '../../assets/images/home_banner2.png',
         link: '/pages/recycle/index',
         isTab: true
-      }
+      } */
     ],
     sortTypes: [
       {checked: true, value: 1, name: '综合排序'},
@@ -431,10 +438,12 @@ export default class Index extends wepy.page {
     toSearch () {
       this.$navigate('/pages/search/search')
     },
-    handleBanner ({ link, isTab }) {
+    handleBanner ({ link, isTab, isWeb, title }) {
       if (link) {
         if (isTab) {
           this.$switch(link)
+        } else if (isWeb) {
+          this.$navigate('/pages/webview/webview', {url: link, title})
         } else {
           this.$navigate(link)
         }
