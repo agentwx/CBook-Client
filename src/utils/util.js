@@ -45,6 +45,10 @@ function formatFloat(f, digit = 2) {
   return Math.round(f * m, 10) / m
 }
 
+function calcSum(objArray, key) {
+  return objArray.reduce((prev, cur) => cur[key] + prev, 0)
+}
+
 function getNodeRect(selector, scope, all) {
   return new Promise(resolve => {
     let query = wx.createSelectorQuery()
@@ -191,6 +195,7 @@ module.exports = {
   confirm,
   toast,
   isObj,
+  calcSum,
   parseParams,
   showLoading,
   hideLoading,

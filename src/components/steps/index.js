@@ -1,5 +1,5 @@
 import computedBehavior from 'miniprogram-computed'
-import { getNodeRect } from '../../utils/util'
+import { getNodeRect, calcSum } from '../../utils/util'
 
 const coerce = (v) =>
   typeof v === 'string'
@@ -67,10 +67,9 @@ Component({
 
       if (!dataList[index].collapsed) {
         getNodeRect('.steps-subwrap > .step-item', this, true).then(ret => {
-          const subWrapHeight = ret.reduce((prev, cur) => cur.height + prev, 0)
           this.setData({
             dataList: dataList,
-            subWrapHeight
+            subWrapHeight: calcSum(ret, 'height')
           })
         })
       } else {
@@ -79,16 +78,17 @@ Component({
         })
       }
     },
-    togglePanel() {
+    togglePanel(e) {
+      const index = e.currentTarget.dataset.index
+      if (index > 0) return
       this.setData({
         isExpanded: false
       })
       if (this.data.collapsed) {
         getNodeRect('.steps-panel-wrap > .step-item', this, true).then(ret => {
-          const wrapHeight = ret.reduce((prev, cur) => cur.height + prev, 0)
           this.setData({
             collapsed: false,
-            wrapHeight
+            wrapHeight: calcSum(ret, 'height')
           })
         })
       } else {

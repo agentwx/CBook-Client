@@ -107,12 +107,11 @@
   &.step-item-current:after {
     display: none !important;
   }
+}
 
-  &.last {
-    .step-item-inner {
-      min-height: 30px;
-    }
-  }
+.step-item.last .step-item-inner,
+.step-item-current .step-item-inner {
+  min-height: 30px !important;
 }
 
 .step-item-dropdown {

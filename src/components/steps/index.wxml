@@ -13,11 +13,11 @@
   </view>
 </view>
 <view class="steps-wrap steps-panel-wrap {{isVertical ? 'vertical' : 'horizontal'}} {{customClass}}" style="height: {{collapsed ? 0 : (isExpanded ? 'auto' : wrapHeight + 'px')}};{{customStyle}}" bindtransitionend="onTransitionEnd">
-  <view class="step-item-dropdown up" bindtap="togglePanel" hidden="{{collapsed}}">
+  <view class="step-item-dropdown up" hidden="{{collapsed}}" bindtap="togglePanel">
     <icon name="angle-down-circle" size="24px" />
   </view>
   <block wx:for="{{dataList}}" wx:key="index">
-    <view class="step-item {{index === 0 ? 'first' : ''}} {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'cur' : ''}} {{index === dataList.length - 1 ? 'last' : ''}}">
+    <view class="step-item {{index === 0 ? 'first' : ''}} {{index < stepIndex + 1 ? 'actived' : ''}} {{index === stepIndex ? 'cur' : ''}} {{index === dataList.length - 1 ? 'last' : ''}}" data-index="{{index}}" bindtap="togglePanel">
       <view class="step-item-inner" data-index="{{index}}" bindtap="toggleItem">
         <view class="step-dot"></view>
         <view class="step-info">
